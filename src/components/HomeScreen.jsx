@@ -66,18 +66,11 @@ export default function HomeScreen({ streak, todayDone, username, onStart, onHis
       <button className="btn-primary" onClick={onStart} style={{ marginBottom: '0.75rem' }}>
         {todayDone ? 'Practice more' : "Start today's session"}
       </button>
-      <br />
-      <button className="btn-ghost" onClick={onHistory} style={{ marginTop: '0.5rem', marginBottom: '0.5rem' }}>
-        View history
-      </button>
-      <br />
-      <button className="btn-ghost" onClick={onWords} style={{ marginTop: '0.5rem', marginBottom: '0.5rem' }}>
-        Word Library
-      </button>
-      <br />
-      <button className="btn-ghost" onClick={onFriends} style={{ marginTop: '0.5rem', marginBottom: '1.5rem' }}>
-        Friends
-      </button>
+      <div style={{ display: 'flex', gap: '0.5rem', justifyContent: 'center', marginTop: '0.5rem', marginBottom: '1.5rem' }}>
+        <button className="btn-ghost" onClick={onHistory}>History</button>
+        <button className="btn-ghost" onClick={onWords}>Words</button>
+        <button className="btn-ghost" onClick={onFriends}>Friends</button>
+      </div>
 
       {/* How it works */}
       <div className="how-it-works">
