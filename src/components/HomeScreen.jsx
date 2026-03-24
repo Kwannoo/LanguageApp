@@ -7,7 +7,7 @@ import { WORDS } from '../data/words.js';
  *   todayDone – boolean – whether today's session is already complete
  *   onStart   – fn      – called when user clicks Start
  */
-export default function HomeScreen({ streak, todayDone, onStart, onHistory }) {
+export default function HomeScreen({ streak, todayDone, onStart, onHistory, onLogout }) {
   return (
     <div className="text-center">
       {/* App title */}
@@ -62,6 +62,16 @@ export default function HomeScreen({ streak, todayDone, onStart, onHistory }) {
         <p>② Type the English translation and press Enter</p>
         <p>③ The card flips to reveal the correct answer</p>
         <p>④ Work 5 minutes every day to build your streak</p>
+      </div>
+
+      {/* Logout */}
+      <div style={{ marginTop: '1.5rem' }}>
+        <button
+          onClick={onLogout}
+          style={{ background: 'none', border: 'none', fontSize: 12, color: 'var(--hint)', cursor: 'pointer', fontFamily: 'var(--font-sans)' }}
+        >
+          Sign out
+        </button>
       </div>
     </div>
   );

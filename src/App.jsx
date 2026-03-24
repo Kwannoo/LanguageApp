@@ -3,94 +3,137 @@ import HomeScreen    from './components/HomeScreen.jsx';
 import Session       from './components/Session.jsx';
 import Complete      from './components/Complete.jsx';
 import HistoryScreen from './components/HistoryScreen.jsx';
-
-/**
- * Streak helpers using localStorage.
- * Format stored: { streak: number, lastDate: string (toDateString) }
- */
-const STORAGE_KEY = 'taalkaarten_streak';
-const HISTORY_KEY = 'taalkaarten_history';
-
-function loadStreakData() {
-  try {
-    const raw = localStorage.getItem(STORAGE_KEY);
-    return raw ? JSON.parse(raw) : { streak: 0, lastDate: null };
-  } catch {
-    return { streak: 0, lastDate: null };
-  }
-}
+import AuthScreen    from './components/AuthScreen.jsx';
+import { supabase }  from './lib/supabase.js';
+import { loadSRS, saveSRS } from './utils/srs.js';
 
 function computeNewStreak(current, lastDate) {
   const today     = new Date().toDateString();
   const yesterday = new Date();
   yesterday.setDate(yesterday.getDate() - 1);
-
-  if (lastDate === today)                         return current;           // already done today
-  if (lastDate === yesterday.toDateString())      return current + 1;      // consecutive day
-  return 1;                                                                  // streak broken
+  if (lastDate === today)                    return current;
+  if (lastDate === yesterday.toDateString()) return current + 1;
+  return 1;
 }
 
-function saveStreakData(streak, date) {
-  try {
-    localStorage.setItem(STORAGE_KEY, JSON.stringify({ streak, lastDate: date }));
-  } catch { /* storage quota exceeded – silently ignore */ }
-}
-
-function loadHistory() {
-  try {
-    const raw = localStorage.getItem(HISTORY_KEY);
-    return raw ? JSON.parse(raw) : [];
-  } catch {
-    return [];
-  }
-}
-
-function saveHistory(history) {
-  try {
-    localStorage.setItem(HISTORY_KEY, JSON.stringify(history));
-  } catch {}
+// Supabase stores dates as "YYYY-MM-DD"; convert to toDateString() for comparison
+function parseDate(dateStr) {
+  if (!dateStr) return null;
+  return new Date(dateStr + 'T12:00:00').toDateString();
 }
 
 export default function App() {
-  const [screen, setScreen]       = useState('home');   // 'home' | 'session' | 'complete' | 'history'
-  const [streak, setStreak]       = useState(0);
-  const [lastDate, setLastDate]   = useState(null);
-  const [todayDone, setTodayDone] = useState(false);
-  const [lastScore, setLastScore] = useState({ correct: 0, total: 0 });
-  const [history, setHistory]     = useState([]);
+  const [screen, setScreen]         = useState('home');
+  const [user, setUser]             = useState(null);
+  const [authLoading, setAuthLoading] = useState(true);
+  const [streak, setStreak]         = useState(0);
+  const [lastDate, setLastDate]     = useState(null);
+  const [todayDone, setTodayDone]   = useState(false);
+  const [lastScore, setLastScore]   = useState({ correct: 0, total: 0 });
+  const [history, setHistory]       = useState([]);
 
-  // Load persisted data on mount
-  useEffect(() => {
-    const { streak: s, lastDate: d } = loadStreakData();
-    setStreak(s);
-    setLastDate(d);
-    setTodayDone(d === new Date().toDateString());
-    setHistory(loadHistory());
+  const loadUserData = useCallback(async (userId) => {
+    // Load profile (streak + SRS)
+    const { data: profile } = await supabase
+      .from('profiles')
+      .select('streak, last_session_date, srs_data')
+      .eq('id', userId)
+      .single();
+
+    if (profile) {
+      setStreak(profile.streak ?? 0);
+      const d = parseDate(profile.last_session_date);
+      setLastDate(d);
+      setTodayDone(d === new Date().toDateString());
+      if (profile.srs_data) saveSRS(profile.srs_data); // hydrate localStorage for Session
+    }
+
+    // Load session history (newest first, max 30)
+    const { data: rows } = await supabase
+      .from('session_history')
+      .select('played_at, correct, total')
+      .eq('user_id', userId)
+      .order('played_at', { ascending: false })
+      .limit(30);
+
+    if (rows) {
+      setHistory(rows.map(r => ({ date: r.played_at, correct: r.correct, total: r.total })));
+    }
   }, []);
+
+  useEffect(() => {
+    // Check for an existing session on mount
+    supabase.auth.getSession().then(({ data: { session } }) => {
+      const u = session?.user ?? null;
+      setUser(u);
+      if (u) loadUserData(u.id).finally(() => setAuthLoading(false));
+      else   setAuthLoading(false);
+    });
+
+    // Listen for login / logout
+    const { data: { subscription } } = supabase.auth.onAuthStateChange((_event, session) => {
+      const u = session?.user ?? null;
+      setUser(u);
+      if (u) {
+        loadUserData(u.id);
+      } else {
+        // Reset all state on logout
+        setStreak(0);
+        setLastDate(null);
+        setTodayDone(false);
+        setHistory([]);
+        setScreen('home');
+      }
+    });
+
+    return () => subscription.unsubscribe();
+  }, [loadUserData]);
 
   const handleSessionComplete = useCallback((score) => {
     setLastScore(score);
 
-    // Append to history (newest first, max 30 entries)
+    // Add to local history immediately (optimistic)
     const entry = { date: new Date().toISOString(), correct: score.correct, total: score.total };
-    setHistory(prev => {
-      const next = [entry, ...prev].slice(0, 30);
-      saveHistory(next);
-      return next;
-    });
+    setHistory(prev => [entry, ...prev].slice(0, 30));
 
-    // Update streak if first session today
+    // Compute new streak
+    let finalStreak = streak;
     if (!todayDone) {
-      const today     = new Date().toDateString();
-      const newStreak = computeNewStreak(streak, lastDate);
-      setStreak(newStreak);
+      const today = new Date().toDateString();
+      finalStreak = computeNewStreak(streak, lastDate);
+      setStreak(finalStreak);
       setLastDate(today);
       setTodayDone(true);
-      saveStreakData(newStreak, today);
     }
 
     setScreen('complete');
-  }, [streak, lastDate, todayDone]);
+
+    // Sync to Supabase in the background — UI is already updated above
+    if (user) {
+      const todayISO   = new Date().toISOString().split('T')[0];
+      const currentSRS = loadSRS(); // grab latest SRS from localStorage (updated by Session)
+
+      supabase.from('profiles')
+        .update({ streak: finalStreak, last_session_date: todayISO, srs_data: currentSRS })
+        .eq('id', user.id)
+        .then(({ error }) => { if (error) console.error('Profile sync failed:', error); });
+
+      supabase.from('session_history')
+        .insert({ user_id: user.id, correct: score.correct, total: score.total })
+        .then(({ error }) => { if (error) console.error('History sync failed:', error); });
+    }
+  }, [streak, lastDate, todayDone, user]);
+
+  // Brief loading screen while we check the auth session
+  if (authLoading) {
+    return (
+      <div style={{ textAlign: 'center', paddingTop: '4rem', color: 'var(--muted)', fontWeight: 600 }}>
+        Loading…
+      </div>
+    );
+  }
+
+  if (!user) return <AuthScreen />;
 
   return (
     <>
@@ -100,6 +143,7 @@ export default function App() {
           todayDone={todayDone}
           onStart={() => setScreen('session')}
           onHistory={() => setScreen('history')}
+          onLogout={() => supabase.auth.signOut()}
         />
       )}
 
