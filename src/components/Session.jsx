@@ -91,7 +91,12 @@ export default function Session({ onComplete, goalMinutes = 5 }) {
     setFlipped(true);
   }, [flipped, input, idx, words, srsData]);
 
-  const handleKey = (e) => { if (e.key === 'Enter') handleCheck(); };
+  // Single global Enter handler — works for both checking and advancing
+  useEffect(() => {
+    const handler = (e) => { if (e.key === 'Enter') handleCheck(); };
+    document.addEventListener('keydown', handler);
+    return () => document.removeEventListener('keydown', handler);
+  }, [handleCheck]);
 
   const pct   = (timeLeft / SESSION_SECONDS) * 100;
   const color = timerColor(timeLeft, SESSION_SECONDS);
@@ -129,7 +134,6 @@ export default function Session({ onComplete, goalMinutes = 5 }) {
         type="text"
         value={input}
         onChange={e => setInput(e.target.value)}
-        onKeyDown={handleKey}
         placeholder="Type the English word…"
         autoComplete="off"
         autoCorrect="off"

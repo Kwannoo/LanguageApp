@@ -3,6 +3,7 @@ import HomeScreen    from './components/HomeScreen.jsx';
 import Session       from './components/Session.jsx';
 import Complete      from './components/Complete.jsx';
 import HistoryScreen from './components/HistoryScreen.jsx';
+import FriendsScreen from './components/FriendsScreen.jsx';
 import AuthScreen    from './components/AuthScreen.jsx';
 import { supabase }  from './lib/supabase.js';
 import { loadSRS, saveSRS } from './utils/srs.js';
@@ -31,6 +32,7 @@ export default function App() {
   const [todayDone, setTodayDone]   = useState(false);
   const [lastScore, setLastScore]   = useState({ correct: 0, total: 0 });
   const [history, setHistory]       = useState([]);
+  const [username, setUsername]     = useState('');
   const [goalMinutes, setGoalMinutes] = useState(
     () => parseInt(localStorage.getItem('taalkaarten_goal') ?? '5', 10)
   );
@@ -44,11 +46,12 @@ export default function App() {
     // Load profile (streak + SRS)
     const { data: profile } = await supabase
       .from('profiles')
-      .select('streak, last_session_date, srs_data')
+      .select('streak, last_session_date, srs_data, username')
       .eq('id', userId)
       .single();
 
     if (profile) {
+      setUsername(profile.username ?? '');
       setStreak(profile.streak ?? 0);
       const d = parseDate(profile.last_session_date);
       setLastDate(d);
@@ -90,6 +93,7 @@ export default function App() {
         setLastDate(null);
         setTodayDone(false);
         setHistory([]);
+        setUsername('');
         setScreen('home');
       }
     });
@@ -149,8 +153,10 @@ export default function App() {
         <HomeScreen
           streak={streak}
           todayDone={todayDone}
+          username={username}
           onStart={() => setScreen('session')}
           onHistory={() => setScreen('history')}
+          onFriends={() => setScreen('friends')}
           onLogout={() => supabase.auth.signOut()}
           goalMinutes={goalMinutes}
           onGoalChange={handleGoalChange}
@@ -173,6 +179,13 @@ export default function App() {
       {screen === 'history' && (
         <HistoryScreen
           history={history}
+          onBack={() => setScreen('home')}
+        />
+      )}
+
+      {screen === 'friends' && (
+        <FriendsScreen
+          user={user}
           onBack={() => setScreen('home')}
         />
       )}

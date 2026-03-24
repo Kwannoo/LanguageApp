@@ -9,6 +9,7 @@ export default function AuthScreen() {
   const [mode, setMode]         = useState('login'); // 'login' | 'signup'
   const [email, setEmail]       = useState('');
   const [password, setPassword] = useState('');
+  const [username, setUsername] = useState('');
   const [error, setError]       = useState('');
   const [message, setMessage]   = useState('');
   const [loading, setLoading]   = useState(false);
@@ -23,9 +24,36 @@ export default function AuthScreen() {
       const { error } = await supabase.auth.signInWithPassword({ email, password });
       if (error) setError(error.message);
     } else {
-      const { error } = await supabase.auth.signUp({ email, password });
-      if (error) setError(error.message);
-      else setMessage('Account created! Check your email to confirm, then sign in.');
+      if (username.trim().length < 3) {
+        setError('Username must be at least 3 characters.');
+        setLoading(false);
+        return;
+      }
+      if (!/^[a-zA-Z0-9_]+$/.test(username)) {
+        setError('Username can only contain letters, numbers, and underscores.');
+        setLoading(false);
+        return;
+      }
+
+      // Check if username is taken
+      const { data: existing } = await supabase
+        .from('profiles')
+        .select('id')
+        .ilike('username', username.trim())
+        .maybeSingle();
+      if (existing) {
+        setError('Username already taken.');
+        setLoading(false);
+        return;
+      }
+
+      const { data, error } = await supabase.auth.signUp({ email, password });
+      if (error) {
+        setError(error.message);
+      } else if (data.user) {
+        await supabase.from('profiles').update({ username: username.trim() }).eq('id', data.user.id);
+        setMessage('Account created! You are now signed in.');
+      }
     }
 
     setLoading(false);
@@ -48,9 +76,9 @@ export default function AuthScreen() {
           color: 'var(--text)',
           marginBottom: 4,
         }}>
-          Taalkaarten
+          Lingo3K
         </h1>
-        <p className="text-muted">Dutch · English · 5 minutes a day</p>
+        <p className="text-muted">Learn 3,000 words. Understand everything.</p>
       </div>
 
       {/* Auth card */}
@@ -66,6 +94,22 @@ export default function AuthScreen() {
         </h2>
 
         <form onSubmit={handleSubmit}>
+          {mode === 'signup' && (
+            <>
+              <label style={{ fontSize: 12, fontWeight: 600, color: 'var(--muted)', display: 'block', marginBottom: 6 }}>
+                Username
+              </label>
+              <input
+                className="input-field"
+                type="text"
+                value={username}
+                onChange={e => setUsername(e.target.value)}
+                placeholder="your_username"
+                required
+                autoComplete="username"
+              />
+            </>
+          )}
           <label style={{ fontSize: 12, fontWeight: 600, color: 'var(--muted)', display: 'block', marginBottom: 6 }}>
             Email
           </label>

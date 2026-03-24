@@ -1,5 +1,3 @@
-import { WORDS } from '../data/words.js';
-
 /**
  * HomeScreen
  * Props:
@@ -9,21 +7,25 @@ import { WORDS } from '../data/words.js';
  */
 const GOAL_OPTIONS = [5, 10, 15];
 
-export default function HomeScreen({ streak, todayDone, onStart, onHistory, onLogout, goalMinutes, onGoalChange }) {
+export default function HomeScreen({ streak, todayDone, username, onStart, onHistory, onLogout, goalMinutes, onGoalChange, onFriends }) {
   return (
     <div className="text-center">
       {/* App title */}
-      <div style={{ marginBottom: '1.75rem' }}>
+      <div style={{ marginBottom: '1.5rem' }}>
         <h1 style={{
           fontFamily: 'var(--font-serif)',
           fontSize: '2.25rem',
-          fontWeight: 400,
+          fontWeight: 800,
           color: 'var(--text)',
           marginBottom: 4,
         }}>
-          Taalkaarten
+          Lingo3K
         </h1>
-        <p className="text-muted">Dutch · English · 5 minutes a day</p>
+        {username ? (
+          <p className="text-muted">Welcome back, <strong style={{ color: 'var(--text)' }}>{username}</strong>! 👋</p>
+        ) : (
+          <p className="text-muted">Learn 3,000 words. Understand everything.</p>
+        )}
       </div>
 
       {/* Stats */}
@@ -33,14 +35,6 @@ export default function HomeScreen({ streak, todayDone, onStart, onHistory, onLo
           <p className="number" style={{ color: streak > 0 ? 'var(--amber)' : 'var(--text)' }}>
             🔥 {streak}
           </p>
-        </div>
-        <div className="stat-card">
-          <p className="label">Words</p>
-          <p className="number">{WORDS.length}</p>
-        </div>
-        <div className="stat-card">
-          <p className="label">Session</p>
-          <p className="number">5 min</p>
         </div>
       </div>
 
@@ -72,8 +66,12 @@ export default function HomeScreen({ streak, todayDone, onStart, onHistory, onLo
         {todayDone ? 'Practice more' : "Start today's session"}
       </button>
       <br />
-      <button className="btn-ghost" onClick={onHistory} style={{ marginTop: '0.5rem', marginBottom: '1.5rem' }}>
+      <button className="btn-ghost" onClick={onHistory} style={{ marginTop: '0.5rem', marginBottom: '0.5rem' }}>
         View history
+      </button>
+      <br />
+      <button className="btn-ghost" onClick={onFriends} style={{ marginTop: '0.5rem', marginBottom: '1.5rem' }}>
+        Friends
       </button>
 
       {/* How it works */}
