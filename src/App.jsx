@@ -31,6 +31,14 @@ export default function App() {
   const [todayDone, setTodayDone]   = useState(false);
   const [lastScore, setLastScore]   = useState({ correct: 0, total: 0 });
   const [history, setHistory]       = useState([]);
+  const [goalMinutes, setGoalMinutes] = useState(
+    () => parseInt(localStorage.getItem('taalkaarten_goal') ?? '5', 10)
+  );
+
+  const handleGoalChange = (m) => {
+    setGoalMinutes(m);
+    localStorage.setItem('taalkaarten_goal', m);
+  };
 
   const loadUserData = useCallback(async (userId) => {
     // Load profile (streak + SRS)
@@ -144,11 +152,13 @@ export default function App() {
           onStart={() => setScreen('session')}
           onHistory={() => setScreen('history')}
           onLogout={() => supabase.auth.signOut()}
+          goalMinutes={goalMinutes}
+          onGoalChange={handleGoalChange}
         />
       )}
 
       {screen === 'session' && (
-        <Session onComplete={handleSessionComplete} />
+        <Session onComplete={handleSessionComplete} goalMinutes={goalMinutes} />
       )}
 
       {screen === 'complete' && (

@@ -3,20 +3,20 @@ import FlashCard from './FlashCard.jsx';
 import { WORDS } from '../data/words.js';
 import { loadSRS, saveSRS, updateSRS, sortByPriority } from '../utils/srs.js';
 
-const SESSION_SECONDS = 5 * 60; // 5 minutes
-
-function timerColor(t) {
-  if (t > 60) return 'var(--timer-ok)';
-  if (t > 30) return 'var(--timer-warn)';
+function timerColor(t, total) {
+  if (t > total * 0.33) return 'var(--timer-ok)';
+  if (t > total * 0.17) return 'var(--timer-warn)';
   return 'var(--timer-crit)';
 }
 
 /**
  * Session
  * Props:
- *   onComplete – fn(score) – called when session ends
+ *   onComplete   – fn(score) – called when session ends
+ *   goalMinutes  – number    – session duration in minutes
  */
-export default function Session({ onComplete }) {
+export default function Session({ onComplete, goalMinutes = 5 }) {
+  const SESSION_SECONDS = goalMinutes * 60;
   const [srsData, setSrsData]     = useState(loadSRS);
   const [words, setWords]         = useState(() => sortByPriority(WORDS, loadSRS()));
   const [idx, setIdx]             = useState(0);
@@ -94,7 +94,7 @@ export default function Session({ onComplete }) {
   const handleKey = (e) => { if (e.key === 'Enter') handleCheck(); };
 
   const pct   = (timeLeft / SESSION_SECONDS) * 100;
-  const color = timerColor(timeLeft);
+  const color = timerColor(timeLeft, SESSION_SECONDS);
   const fmt   = (s) => `${Math.floor(s / 60)}:${String(s % 60).padStart(2, '0')}`;
 
   return (

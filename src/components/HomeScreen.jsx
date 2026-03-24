@@ -7,7 +7,9 @@ import { WORDS } from '../data/words.js';
  *   todayDone – boolean – whether today's session is already complete
  *   onStart   – fn      – called when user clicks Start
  */
-export default function HomeScreen({ streak, todayDone, onStart, onHistory, onLogout }) {
+const GOAL_OPTIONS = [5, 10, 15];
+
+export default function HomeScreen({ streak, todayDone, onStart, onHistory, onLogout, goalMinutes, onGoalChange }) {
   return (
     <div className="text-center">
       {/* App title */}
@@ -39,6 +41,24 @@ export default function HomeScreen({ streak, todayDone, onStart, onHistory, onLo
         <div className="stat-card">
           <p className="label">Session</p>
           <p className="number">5 min</p>
+        </div>
+      </div>
+
+      {/* Goal picker */}
+      <div style={{ marginBottom: '1rem' }}>
+        <p style={{ fontSize: 11, color: 'var(--hint)', textTransform: 'uppercase', letterSpacing: '0.1em', marginBottom: '0.5rem' }}>
+          Session goal
+        </p>
+        <div className="goal-picker">
+          {GOAL_OPTIONS.map(m => (
+            <button
+              key={m}
+              className={`goal-pill${goalMinutes === m ? ' active' : ''}`}
+              onClick={() => onGoalChange(m)}
+            >
+              {m} min
+            </button>
+          ))}
         </div>
       </div>
 

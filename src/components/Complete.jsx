@@ -1,3 +1,6 @@
+import { useEffect } from 'react';
+import confetti from 'canvas-confetti';
+
 /**
  * Complete
  * Props:
@@ -9,6 +12,12 @@
 export default function Complete({ score, streak, onHome, onRetry }) {
   const pct = score.total > 0 ? Math.round((score.correct / score.total) * 100) : 0;
   const emoji = pct >= 80 ? '🌟' : pct >= 50 ? '👍' : '💪';
+
+  useEffect(() => {
+    if (pct >= 80 && score.total > 0) {
+      confetti({ particleCount: 120, spread: 80, origin: { y: 0.55 } });
+    }
+  }, []);
 
   return (
     <div className="text-center">

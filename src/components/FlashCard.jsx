@@ -1,5 +1,3 @@
-import { useRef, useEffect } from 'react';
-
 /**
  * FlashCard
  * Props:
@@ -7,7 +5,17 @@ import { useRef, useEffect } from 'react';
  *   flipped    – boolean              – whether to show back face
  *   isCorrect  – boolean | null       – result of the last answer
  *   userAnswer – string               – what the user typed (shown on incorrect)
+ *   instant    – boolean              – skip flip transition during card reset
  */
+function speak(text) {
+  window.speechSynthesis.cancel();
+  const utt = new SpeechSynthesisUtterance(text);
+  utt.lang = 'nl-NL';
+  utt.rate = 0.7;
+  utt.pitch = 0.5;
+  window.speechSynthesis.speak(utt);
+}
+
 export default function FlashCard({ word, flipped, isCorrect, userAnswer, instant }) {
   return (
     <div className="card-scene">
@@ -17,9 +25,13 @@ export default function FlashCard({ word, flipped, isCorrect, userAnswer, instan
         <div className="card-face">
           <p className="word-label">Dutch word</p>
           <p className="word-dutch">{word.nl}</p>
-          <p style={{ fontSize: 11, color: 'var(--hint)', marginTop: '0.75rem' }}>
-            type the English translation below
-          </p>
+          <button
+            className="speak-btn"
+            onClick={e => { e.stopPropagation(); speak(word.nl); }}
+            title="Listen"
+          >
+            🔊
+          </button>
         </div>
 
         {/* ── Back face: English answer + meaning ── */}

@@ -297,6 +297,49 @@ body {
   margin-top: 2px;
 }
 
+/* ── Speak button ── */
+.speak-btn {
+  background: none;
+  border: none;
+  font-size: 1.3rem;
+  cursor: pointer;
+  margin-top: 0.6rem;
+  opacity: 0.6;
+  transition: opacity 0.15s, transform 0.15s;
+  line-height: 1;
+}
+.speak-btn:hover { opacity: 1; transform: scale(1.15); }
+.speak-btn:active { transform: scale(0.95); }
+
+/* ── Goal picker ── */
+.goal-picker {
+  display: flex;
+  gap: 0.5rem;
+  justify-content: center;
+  margin-bottom: 1rem;
+}
+.goal-pill {
+  padding: 5px 14px;
+  border-radius: 99px;
+  border: 2px solid var(--border);
+  background: var(--surface);
+  font-size: 13px;
+  font-weight: 700;
+  font-family: var(--font-sans);
+  color: var(--muted);
+  cursor: pointer;
+  transition: background 0.15s, border-color 0.15s, color 0.15s;
+}
+.goal-pill.active {
+  background: var(--amber);
+  border-color: var(--amber);
+  color: white;
+}
+.goal-pill:hover:not(.active) {
+  border-color: var(--amber);
+  color: var(--amber);
+}
+
 /* ── Misc ── */
 .text-center { text-align: center; }
 .text-muted  { color: var(--muted); font-size: 13px; }
