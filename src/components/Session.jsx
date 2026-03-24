@@ -1,7 +1,7 @@
 import { useState, useEffect, useRef, useCallback } from 'react';
 import FlashCard from './FlashCard.jsx';
-import { shuffled } from '../data/words.js';
 import { WORDS } from '../data/words.js';
+import { loadSRS, saveSRS, updateSRS, sortByPriority } from '../utils/srs.js';
 
 const SESSION_SECONDS = 5 * 60; // 5 minutes
 
@@ -17,19 +17,29 @@ function timerColor(t) {
  *   onComplete – fn(score) – called when session ends
  */
 export default function Session({ onComplete }) {
-  const [words, setWords]         = useState(() => shuffled(WORDS));
+  const [srsData, setSrsData]     = useState(loadSRS);
+  const [words, setWords]         = useState(() => sortByPriority(WORDS, loadSRS()));
   const [idx, setIdx]             = useState(0);
   const [input, setInput]         = useState('');
   const [flipped, setFlipped]     = useState(false);
+  const [instant, setInstant]     = useState(false);
   const [isCorrect, setIsCorrect] = useState(null);
   const [timeLeft, setTimeLeft]   = useState(SESSION_SECONDS);
   const [score, setScore]         = useState({ correct: 0, total: 0 });
 
-  const inputRef  = useRef(null);
-  const scoreRef  = useRef({ correct: 0, total: 0 });  // kept in sync for closure-safe access
+  const inputRef = useRef(null);
+  const scoreRef = useRef({ correct: 0, total: 0 }); // closure-safe score for timer callback
 
   // Sync scoreRef with score state
   useEffect(() => { scoreRef.current = score; }, [score]);
+
+  // Clear instant after one frame so the next flip animates normally
+  useEffect(() => {
+    if (instant) {
+      const raf = requestAnimationFrame(() => setInstant(false));
+      return () => cancelAnimationFrame(raf);
+    }
+  }, [instant]);
 
   // Countdown timer
   useEffect(() => {
@@ -51,12 +61,15 @@ export default function Session({ onComplete }) {
 
   const handleCheck = useCallback(() => {
     if (flipped) {
-      // Advance to next card
-      setIdx(i => (i + 1) % words.length);
-      if (idx + 1 >= words.length) setWords(shuffled(WORDS)); // re-shuffle when exhausted
-      setInput('');
+      // Advance to next card — reset without animation
+      const nextIdx = (idx + 1) % words.length;
+      setInstant(true);
       setFlipped(false);
+      setIdx(nextIdx);
+      setInput('');
       setIsCorrect(null);
+      // Re-sort when word list is exhausted so new/due words stay prioritized
+      if (nextIdx === 0) setWords(sortByPriority(WORDS, srsData));
       return;
     }
 
@@ -69,12 +82,16 @@ export default function Session({ onComplete }) {
       scoreRef.current = next;
       return next;
     });
-    setFlipped(true);
-  }, [flipped, input, idx, words]);
 
-  const handleKey = (e) => {
-    if (e.key === 'Enter') handleCheck();
-  };
+    // Update SRS for this word
+    const updated = updateSRS(srsData, words[idx].nl, correct);
+    setSrsData(updated);
+    saveSRS(updated);
+
+    setFlipped(true);
+  }, [flipped, input, idx, words, srsData]);
+
+  const handleKey = (e) => { if (e.key === 'Enter') handleCheck(); };
 
   const pct   = (timeLeft / SESSION_SECONDS) * 100;
   const color = timerColor(timeLeft);
@@ -102,6 +119,7 @@ export default function Session({ onComplete }) {
         flipped={flipped}
         isCorrect={isCorrect}
         userAnswer={input}
+        instant={instant}
       />
 
       {/* Input */}

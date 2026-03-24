@@ -8,10 +8,10 @@ import { useRef, useEffect } from 'react';
  *   isCorrect  – boolean | null       – result of the last answer
  *   userAnswer – string               – what the user typed (shown on incorrect)
  */
-export default function FlashCard({ word, flipped, isCorrect, userAnswer }) {
+export default function FlashCard({ word, flipped, isCorrect, userAnswer, instant }) {
   return (
     <div className="card-scene">
-      <div className={`card-3d ${flipped ? 'flipped' : ''}`}>
+      <div className={`card-3d${flipped ? ' flipped' : ''}${instant ? ' instant' : ''}`}>
 
         {/* ── Front face: Dutch word ── */}
         <div className="card-face">

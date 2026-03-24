@@ -7,7 +7,7 @@ import { WORDS } from '../data/words.js';
  *   todayDone – boolean – whether today's session is already complete
  *   onStart   – fn      – called when user clicks Start
  */
-export default function HomeScreen({ streak, todayDone, onStart }) {
+export default function HomeScreen({ streak, todayDone, onStart, onHistory }) {
   return (
     <div className="text-center">
       {/* App title */}
@@ -48,8 +48,12 @@ export default function HomeScreen({ streak, todayDone, onStart }) {
       )}
 
       {/* CTA button */}
-      <button className="btn-primary" onClick={onStart} style={{ marginBottom: '1.5rem' }}>
+      <button className="btn-primary" onClick={onStart} style={{ marginBottom: '0.75rem' }}>
         {todayDone ? 'Practice more' : "Start today's session"}
+      </button>
+      <br />
+      <button className="btn-ghost" onClick={onHistory} style={{ marginTop: '0.5rem', marginBottom: '1.5rem' }}>
+        View history
       </button>
 
       {/* How it works */}
