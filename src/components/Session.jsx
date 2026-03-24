@@ -104,6 +104,14 @@ export default function Session({ onComplete, goalMinutes = 5 }) {
 
   return (
     <div>
+      {/* Logo + encouragement */}
+      <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', marginBottom: '0.5rem' }}>
+        <img src="/transparent-white-logo.png" alt="Vocably" style={{ width: 64 }} />
+        <p style={{ margin: 0, fontSize: 14, color: 'var(--hint)', fontStyle: 'italic', lineHeight: 1.4 }}>
+          Every word brings you closer to fluency!
+        </p>
+      </div>
+
       {/* Timer bar */}
       <div className="timer-row">
         <div className="timer-track">

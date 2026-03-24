@@ -4,7 +4,8 @@ import Session       from './components/Session.jsx';
 import Complete      from './components/Complete.jsx';
 import HistoryScreen from './components/HistoryScreen.jsx';
 import FriendsScreen from './components/FriendsScreen.jsx';
-import AuthScreen    from './components/AuthScreen.jsx';
+import AuthScreen      from './components/AuthScreen.jsx';
+import WordListScreen  from './components/WordListScreen.jsx';
 import { supabase }  from './lib/supabase.js';
 import { loadSRS, saveSRS } from './utils/srs.js';
 
@@ -157,6 +158,7 @@ export default function App() {
           onStart={() => setScreen('session')}
           onHistory={() => setScreen('history')}
           onFriends={() => setScreen('friends')}
+          onWords={() => setScreen('words')}
           onLogout={() => supabase.auth.signOut()}
           goalMinutes={goalMinutes}
           onGoalChange={handleGoalChange}
@@ -181,6 +183,10 @@ export default function App() {
           history={history}
           onBack={() => setScreen('home')}
         />
+      )}
+
+      {screen === 'words' && (
+        <WordListScreen onBack={() => setScreen('home')} />
       )}
 
       {screen === 'friends' && (

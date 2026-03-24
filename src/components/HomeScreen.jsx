@@ -7,11 +7,12 @@
  */
 const GOAL_OPTIONS = [5, 10, 15];
 
-export default function HomeScreen({ streak, todayDone, username, onStart, onHistory, onLogout, goalMinutes, onGoalChange, onFriends }) {
+export default function HomeScreen({ streak, todayDone, username, onStart, onHistory, onLogout, goalMinutes, onGoalChange, onFriends, onWords }) {
   return (
     <div className="text-center">
-      {/* App title */}
+      {/* Logo + App title */}
       <div style={{ marginBottom: '1.5rem' }}>
+        <img src="/transparent-white-logo.png" alt="Vocably" style={{ width: 140, marginBottom: 8 }} />
         <h1 style={{
           fontFamily: 'var(--font-serif)',
           fontSize: '2.25rem',
@@ -19,7 +20,7 @@ export default function HomeScreen({ streak, todayDone, username, onStart, onHis
           color: 'var(--text)',
           marginBottom: 4,
         }}>
-          Lingo3K
+          Vocably
         </h1>
         {username ? (
           <p className="text-muted">Welcome back, <strong style={{ color: 'var(--text)' }}>{username}</strong>! 👋</p>
@@ -68,6 +69,10 @@ export default function HomeScreen({ streak, todayDone, username, onStart, onHis
       <br />
       <button className="btn-ghost" onClick={onHistory} style={{ marginTop: '0.5rem', marginBottom: '0.5rem' }}>
         View history
+      </button>
+      <br />
+      <button className="btn-ghost" onClick={onWords} style={{ marginTop: '0.5rem', marginBottom: '0.5rem' }}>
+        Word Library
       </button>
       <br />
       <button className="btn-ghost" onClick={onFriends} style={{ marginTop: '0.5rem', marginBottom: '1.5rem' }}>

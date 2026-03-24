@@ -76,7 +76,7 @@ export default function AuthScreen() {
           color: 'var(--text)',
           marginBottom: 4,
         }}>
-          Lingo3K
+          Vocably
         </h1>
         <p className="text-muted">Learn 3,000 words. Understand everything.</p>
       </div>
