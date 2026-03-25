@@ -41,6 +41,9 @@ export default function App() {
     () => parseInt(localStorage.getItem('taalkaarten_goal') ?? '5', 10)
   );
   const [words, setWords] = useState([]);
+  const [language, setLanguage] = useState(
+    () => localStorage.getItem('taalkaarten_language') ?? 'nl'
+  );
   const [direction, setDirection] = useState(
     () => localStorage.getItem('taalkaarten_direction') ?? 'nl-en'
   );
@@ -56,13 +59,31 @@ export default function App() {
     localStorage.setItem('taalkaarten_direction', d);
   };
 
-  const loadWords = useCallback(async () => {
-    const cached = getCachedWords();
+  const handleLanguageChange = (lang) => {
+    setLanguage(lang);
+    localStorage.setItem('taalkaarten_language', lang);
+    // Reset direction to match new language
+    const defaultDir = lang === 'nl' ? 'nl-en' : 'ja-en';
+    setDirection(defaultDir);
+    localStorage.setItem('taalkaarten_direction', defaultDir);
+    // Load words for the new language
+    loadWords(lang);
+  };
+
+  const loadWords = useCallback(async (lang) => {
+    const l = lang ?? language;
+    const cached = getCachedWords(l);
     if (cached) { setWords(cached); return; }
-    const { data, error } = await supabase.from('words').select('nl, en, meaning, sentence');
+    const cols = l === 'ja'
+      ? 'nl, en, meaning, sentence, reading, romaji'
+      : 'nl, en, meaning, sentence';
+    const { data, error } = await supabase
+      .from('words')
+      .select(cols)
+      .eq('language', l);
     if (error) { console.error('Failed to load words:', error.message); return; }
-    if (data?.length) { setCachedWords(data); setWords(data); }
-  }, []);
+    if (data?.length) { setCachedWords(data, l); setWords(data); }
+  }, [language]);
 
   const loadUserData = useCallback(async (userId) => {
     // Load profile (streak + SRS)
@@ -196,13 +217,15 @@ export default function App() {
           onLogout={() => supabase.auth.signOut()}
           goalMinutes={goalMinutes}
           onGoalChange={handleGoalChange}
+          language={language}
+          onLanguageChange={handleLanguageChange}
           direction={direction}
           onDirectionChange={handleDirectionChange}
         />
       )}
 
       {screen === 'session' && (
-        <Session onComplete={handleSessionComplete} goalMinutes={goalMinutes} words={words} direction={direction} />
+        <Session onComplete={handleSessionComplete} goalMinutes={goalMinutes} words={words} direction={direction} language={language} />
       )}
 
       {screen === 'complete' && (

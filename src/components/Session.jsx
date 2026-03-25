@@ -8,13 +8,35 @@ function timerColor(t, total) {
   return 'var(--timer-crit)';
 }
 
+/** Resolve a random direction for "mix" mode based on language */
+function randomDir(language) {
+  const pair = language === 'ja' ? ['ja-en', 'en-ja'] : ['nl-en', 'en-nl'];
+  return pair[Math.random() < 0.5 ? 0 : 1];
+}
+
+/** Is the direction "target language → EN"? */
+function isForward(dir) {
+  return dir === 'nl-en' || dir === 'ja-en';
+}
+
 /**
- * Session
- * Props:
- *   onComplete   – fn(score) – called when session ends
- *   goalMinutes  – number    – session duration in minutes
+ * Build the list of accepted answers for the current card + direction.
+ * For Japanese EN→JP: accepts kanji, kana reading, and romaji.
  */
-export default function Session({ onComplete, goalMinutes = 5, words: wordList = [], direction = 'nl-en' }) {
+function getAccepted(word, dir) {
+  if (isForward(dir)) {
+    // User types English
+    return word.en.split('/').map(a => a.trim().toLowerCase());
+  }
+  // User types the target language
+  const answers = word.nl.split('/').map(a => a.trim().toLowerCase());
+  // For Japanese, also accept reading and romaji
+  if (word.reading) answers.push(word.reading.toLowerCase());
+  if (word.romaji)  answers.push(word.romaji.toLowerCase());
+  return answers;
+}
+
+export default function Session({ onComplete, goalMinutes = 5, words: wordList = [], direction = 'nl-en', language = 'nl' }) {
   const SESSION_SECONDS = goalMinutes * 60;
   const [srsData, setSrsData]     = useState(loadSRS);
   const [words, setWords]         = useState(() => sortByPriority(wordList, loadSRS()));
@@ -26,16 +48,14 @@ export default function Session({ onComplete, goalMinutes = 5, words: wordList =
   const [timeLeft, setTimeLeft]   = useState(SESSION_SECONDS);
   const [score, setScore]         = useState({ correct: 0, total: 0 });
   const [cardDir, setCardDir]     = useState(() =>
-    direction === 'mix' ? (Math.random() < 0.5 ? 'nl-en' : 'en-nl') : direction
+    direction === 'mix' ? randomDir(language) : direction
   );
 
   const inputRef = useRef(null);
-  const scoreRef = useRef({ correct: 0, total: 0 }); // closure-safe score for timer callback
+  const scoreRef = useRef({ correct: 0, total: 0 });
 
-  // Sync scoreRef with score state
   useEffect(() => { scoreRef.current = score; }, [score]);
 
-  // Clear instant after one frame so the next flip animates normally
   useEffect(() => {
     if (instant) {
       const raf = requestAnimationFrame(() => setInstant(false));
@@ -43,7 +63,6 @@ export default function Session({ onComplete, goalMinutes = 5, words: wordList =
     }
   }, [instant]);
 
-  // Countdown timer
   useEffect(() => {
     const id = setInterval(() => {
       setTimeLeft(t => {
@@ -58,29 +77,25 @@ export default function Session({ onComplete, goalMinutes = 5, words: wordList =
     return () => clearInterval(id);
   }, [onComplete]);
 
-  // Auto-focus input on mount and after each card advance
   useEffect(() => { inputRef.current?.focus(); }, [idx]);
 
   const handleCheck = useCallback(() => {
     if (flipped) {
-      // Advance to next card — reset without animation
       const nextIdx = (idx + 1) % words.length;
       setInstant(true);
       setFlipped(false);
       setIdx(nextIdx);
       setInput('');
       setIsCorrect(null);
-      if (direction === 'mix') setCardDir(Math.random() < 0.5 ? 'nl-en' : 'en-nl');
-      // Re-sort when word list is exhausted so new/due words stay prioritized
+      if (direction === 'mix') setCardDir(randomDir(language));
       if (nextIdx === 0) setWords(sortByPriority(wordList, srsData));
       return;
     }
 
     if (!input.trim()) return;
 
-    const answer = cardDir === 'nl-en' ? words[idx].en : words[idx].nl;
     const typed = input.trim().toLowerCase();
-    const accepted = answer.split('/').map(a => a.trim().toLowerCase());
+    const accepted = getAccepted(words[idx], cardDir);
     const correct = accepted.includes(typed);
     setIsCorrect(correct);
     setScore(s => {
@@ -89,15 +104,13 @@ export default function Session({ onComplete, goalMinutes = 5, words: wordList =
       return next;
     });
 
-    // Update SRS for this word
     const updated = updateSRS(srsData, words[idx].nl, correct);
     setSrsData(updated);
     saveSRS(updated);
 
     setFlipped(true);
-  }, [flipped, input, idx, words, srsData]);
+  }, [flipped, input, idx, words, srsData, cardDir, direction, language, wordList]);
 
-  // Single global Enter handler — works for both checking and advancing
   useEffect(() => {
     const handler = (e) => { if (e.key === 'Enter') handleCheck(); };
     document.addEventListener('keydown', handler);
@@ -115,6 +128,12 @@ export default function Session({ onComplete, goalMinutes = 5, words: wordList =
   const pct   = (timeLeft / SESSION_SECONDS) * 100;
   const color = timerColor(timeLeft, SESSION_SECONDS);
   const fmt   = (s) => `${Math.floor(s / 60)}:${String(s % 60).padStart(2, '0')}`;
+
+  const placeholder = isForward(cardDir)
+    ? 'Type the English word…'
+    : language === 'ja'
+      ? 'Type in romaji or Japanese…'
+      : 'Type the Dutch word…';
 
   return (
     <div>
@@ -148,6 +167,7 @@ export default function Session({ onComplete, goalMinutes = 5, words: wordList =
         userAnswer={input}
         instant={instant}
         direction={cardDir}
+        language={language}
       />
 
       {/* Input */}
@@ -157,7 +177,7 @@ export default function Session({ onComplete, goalMinutes = 5, words: wordList =
         type="text"
         value={input}
         onChange={e => setInput(e.target.value)}
-        placeholder={cardDir === 'nl-en' ? 'Type the English word…' : 'Type the Dutch word…'}
+        placeholder={placeholder}
         autoComplete="off"
         autoCorrect="off"
         autoCapitalize="off"

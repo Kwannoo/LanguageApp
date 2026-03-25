@@ -1,9 +1,9 @@
-const KEY    = 'taalkaarten_words_v1';
-const TTL_MS = 24 * 60 * 60 * 1000; // 24 hours
+const KEY_PREFIX = 'taalkaarten_words_v1_';
+const TTL_MS    = 24 * 60 * 60 * 1000; // 24 hours
 
-export function getCachedWords() {
+export function getCachedWords(language = 'nl') {
   try {
-    const raw = localStorage.getItem(KEY);
+    const raw = localStorage.getItem(KEY_PREFIX + language);
     if (!raw) return null;
     const { words, ts } = JSON.parse(raw);
     if (Date.now() - ts > TTL_MS) return null;
@@ -12,8 +12,8 @@ export function getCachedWords() {
   } catch { return null; }
 }
 
-export function setCachedWords(words) {
+export function setCachedWords(words, language = 'nl') {
   try {
-    localStorage.setItem(KEY, JSON.stringify({ words, ts: Date.now() }));
+    localStorage.setItem(KEY_PREFIX + language, JSON.stringify({ words, ts: Date.now() }));
   } catch {}
 }

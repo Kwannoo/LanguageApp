@@ -1,24 +1,123 @@
+import { useState } from 'react';
 import Avatar from './Avatar.jsx';
 
-/**
- * HomeScreen
- * Props:
- *   streak      – number  – current day streak
- *   todayDone   – boolean – whether today's session is already complete
- *   avatar      – object  – avatar config
- *   onStart     – fn      – called when user clicks Start
- *   onEditAvatar – fn     – open avatar editor
- */
 const GOAL_OPTIONS = [5, 10, 15];
-const DIRECTION_OPTIONS = [
-  { value: 'nl-en', label: 'NL → EN' },
-  { value: 'en-nl', label: 'EN → NL' },
-  { value: 'mix',   label: 'Mix' },
+const LANGUAGE_OPTIONS = [
+  { value: 'nl', label: '🇳🇱 Dutch', flag: '🇳🇱' },
+  { value: 'ja', label: '🇯🇵 Japanese', flag: '🇯🇵' },
 ];
+const DIRECTION_MAP = {
+  nl: [
+    { value: 'nl-en', label: 'NL → EN' },
+    { value: 'en-nl', label: 'EN → NL' },
+    { value: 'mix',   label: 'Mix' },
+  ],
+  ja: [
+    { value: 'ja-en', label: 'JP → EN' },
+    { value: 'en-ja', label: 'EN → JP' },
+    { value: 'mix',   label: 'Mix' },
+  ],
+};
 
-export default function HomeScreen({ streak, todayDone, username, avatar, onStart, onHistory, onLogout, goalMinutes, onGoalChange, direction, onDirectionChange, onFriends, onWords, onEditAvatar }) {
+export default function HomeScreen({ streak, todayDone, username, avatar, onStart, onHistory, onLogout, goalMinutes, onGoalChange, language, onLanguageChange, direction, onDirectionChange, onFriends, onWords, onEditAvatar }) {
+  const [langOpen, setLangOpen] = useState(false);
+  const directionOptions = DIRECTION_MAP[language] || DIRECTION_MAP.nl;
+  const currentLang = LANGUAGE_OPTIONS.find(l => l.value === language) || LANGUAGE_OPTIONS[0];
+
   return (
-    <div className="text-center">
+    <div className="text-center" style={{ position: 'relative' }}>
+      {/* Language button — top right */}
+      <button
+        onClick={() => setLangOpen(!langOpen)}
+        style={{
+          position: 'absolute', top: 0, right: 0,
+          background: 'var(--surface)',
+          border: '2px solid var(--border)',
+          borderRadius: 'var(--radius-sm)',
+          padding: '6px 12px',
+          cursor: 'pointer',
+          fontSize: 14,
+          fontWeight: 600,
+          fontFamily: 'var(--font-sans)',
+          color: 'var(--text)',
+          display: 'flex',
+          alignItems: 'center',
+          gap: '0.35rem',
+          zIndex: 10,
+        }}
+      >
+        {currentLang.flag} <span style={{ fontSize: 11 }}>▼</span>
+      </button>
+
+      {/* Language slide panel */}
+      <div style={{
+        position: 'fixed',
+        top: 0, right: 0,
+        width: '260px',
+        height: '100%',
+        background: 'var(--surface)',
+        borderLeft: '2px solid var(--border)',
+        boxShadow: '-4px 0 20px rgba(0,0,0,0.1)',
+        transform: langOpen ? 'translateX(0)' : 'translateX(100%)',
+        transition: 'transform 0.25s ease',
+        zIndex: 100,
+        padding: '1.5rem',
+        display: 'flex',
+        flexDirection: 'column',
+        gap: '0.75rem',
+      }}>
+        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '0.5rem' }}>
+          <p style={{ fontWeight: 800, fontSize: '1rem', color: 'var(--text)', margin: 0 }}>Language</p>
+          <button
+            onClick={() => setLangOpen(false)}
+            style={{
+              background: 'none', border: 'none', cursor: 'pointer',
+              fontSize: 20, color: 'var(--muted)', fontFamily: 'var(--font-sans)',
+              padding: '4px 8px', lineHeight: 1,
+            }}
+          >
+            ✕
+          </button>
+        </div>
+        {LANGUAGE_OPTIONS.map(l => (
+          <button
+            key={l.value}
+            onClick={() => { onLanguageChange(l.value); setLangOpen(false); }}
+            style={{
+              display: 'flex',
+              alignItems: 'center',
+              gap: '0.75rem',
+              padding: '12px 14px',
+              borderRadius: 'var(--radius-sm)',
+              border: language === l.value ? '2px solid var(--amber)' : '2px solid var(--border)',
+              background: language === l.value ? 'var(--amber-light)' : 'var(--surface)',
+              cursor: 'pointer',
+              fontFamily: 'var(--font-sans)',
+              fontSize: 14,
+              fontWeight: 600,
+              color: 'var(--text)',
+              transition: 'border-color 0.15s, background 0.15s',
+            }}
+          >
+            <span style={{ fontSize: 24 }}>{l.flag}</span>
+            {l.label.split(' ')[1]}
+          </button>
+        ))}
+      </div>
+
+      {/* Backdrop */}
+      {langOpen && (
+        <div
+          onClick={() => setLangOpen(false)}
+          style={{
+            position: 'fixed',
+            inset: 0,
+            background: 'rgba(0,0,0,0.3)',
+            zIndex: 99,
+          }}
+        />
+      )}
+
       {/* Avatar + App title */}
       <div style={{ marginBottom: '1.5rem' }}>
         <div style={{ display: 'flex', justifyContent: 'center', marginBottom: '0.75rem' }}>
@@ -88,7 +187,7 @@ export default function HomeScreen({ streak, todayDone, username, avatar, onStar
           Direction
         </p>
         <div className="goal-picker">
-          {DIRECTION_OPTIONS.map(d => (
+          {directionOptions.map(d => (
             <button
               key={d.value}
               className={`goal-pill${direction === d.value ? ' active' : ''}`}
@@ -117,10 +216,10 @@ export default function HomeScreen({ streak, todayDone, username, avatar, onStar
 
       {/* How it works */}
       <div className="how-it-works">
-        <p>① A Dutch word appears on the card</p>
-        <p>② Type the English translation and press Enter</p>
+        <p>① A {language === 'ja' ? 'Japanese' : 'Dutch'} word appears on the card</p>
+        <p>② Type the translation and press Enter</p>
         <p>③ The card flips to reveal the correct answer</p>
-        <p>④ Work 5 minutes every day to build your streak</p>
+        <p>④ Practice every day to build your streak</p>
       </div>
 
       {/* Logout */}

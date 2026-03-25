@@ -1,27 +1,35 @@
-/**
- * FlashCard
- * Props:
- *   word       – { nl, en, meaning }  – current word object
- *   flipped    – boolean              – whether to show back face
- *   isCorrect  – boolean | null       – result of the last answer
- *   userAnswer – string               – what the user typed (shown on incorrect)
- *   instant    – boolean              – skip flip transition during card reset
- */
-function speak(text) {
+function speak(text, lang) {
   window.speechSynthesis.cancel();
   const utt = new SpeechSynthesisUtterance(text);
-  utt.lang = 'nl-NL';
+  utt.lang = lang === 'ja' ? 'ja-JP' : 'nl-NL';
   utt.rate = 0.7;
   utt.pitch = 0.5;
   window.speechSynthesis.speak(utt);
 }
 
-export default function FlashCard({ word, flipped, isCorrect, userAnswer, instant, direction = 'nl-en' }) {
-  const isNlEn = direction === 'nl-en';
-  const promptLang  = isNlEn ? 'Dutch'   : 'English';
-  const answerLang  = isNlEn ? 'English'  : 'Dutch';
-  const promptWord  = isNlEn ? word.nl    : word.en;
-  const answerWord  = isNlEn ? word.en    : word.nl;
+export default function FlashCard({ word, flipped, isCorrect, userAnswer, instant, direction = 'nl-en', language = 'nl' }) {
+  const isForward = direction === 'nl-en' || direction === 'ja-en';
+  const langNames = language === 'ja'
+    ? { target: 'Japanese', base: 'English' }
+    : { target: 'Dutch', base: 'English' };
+
+  const promptLang  = isForward ? langNames.target : langNames.base;
+  const answerLang  = isForward ? langNames.base   : langNames.target;
+  const promptWord  = isForward ? word.nl          : word.en;
+  const answerWord  = isForward ? word.en          : word.nl;
+
+  // For Japanese, show reading below the main word
+  const showReading = language === 'ja' && word.reading;
+
+  const speakBtn = (
+    <button
+      className="speak-btn"
+      onClick={e => { e.stopPropagation(); speak(word.nl, language); }}
+      title="Listen"
+    >
+      🔊
+    </button>
+  );
 
   return (
     <div className="card-scene">
@@ -31,15 +39,12 @@ export default function FlashCard({ word, flipped, isCorrect, userAnswer, instan
         <div className="card-face">
           <p className="word-label">{promptLang} word</p>
           <p className="word-dutch">{promptWord}</p>
-          {isNlEn && (
-            <button
-              className="speak-btn"
-              onClick={e => { e.stopPropagation(); speak(word.nl); }}
-              title="Listen"
-            >
-              🔊
-            </button>
+          {isForward && showReading && (
+            <p style={{ fontSize: 14, color: 'var(--muted)', marginTop: 4 }}>
+              {word.reading} ({word.romaji})
+            </p>
           )}
+          {isForward && speakBtn}
         </div>
 
         {/* ── Back face: answer + meaning ── */}
@@ -51,16 +56,12 @@ export default function FlashCard({ word, flipped, isCorrect, userAnswer, instan
           )}
           <p className="word-label">{answerLang}</p>
           <p className="word-english">{answerWord}</p>
-          <p className="word-meaning">{word.meaning}</p>
-          {!isNlEn && (
-            <button
-              className="speak-btn"
-              onClick={e => { e.stopPropagation(); speak(word.nl); }}
-              title="Listen"
-            >
-              🔊
-            </button>
+          {!isForward && showReading && (
+            <p style={{ fontSize: 14, color: 'var(--muted)', marginTop: 4 }}>
+              {word.reading} ({word.romaji})
+            </p>
           )}
+          {!isForward && speakBtn}
           {word.sentence && (
             <p style={{ fontSize: 12, color: 'var(--muted)', marginTop: 6, fontStyle: 'italic' }}>
               "{word.sentence}"
