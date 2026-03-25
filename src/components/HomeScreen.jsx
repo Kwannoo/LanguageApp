@@ -1,18 +1,38 @@
+import Avatar from './Avatar.jsx';
+
 /**
  * HomeScreen
  * Props:
- *   streak    – number  – current day streak
- *   todayDone – boolean – whether today's session is already complete
- *   onStart   – fn      – called when user clicks Start
+ *   streak      – number  – current day streak
+ *   todayDone   – boolean – whether today's session is already complete
+ *   avatar      – object  – avatar config
+ *   onStart     – fn      – called when user clicks Start
+ *   onEditAvatar – fn     – open avatar editor
  */
 const GOAL_OPTIONS = [5, 10, 15];
 
-export default function HomeScreen({ streak, todayDone, username, onStart, onHistory, onLogout, goalMinutes, onGoalChange, onFriends, onWords }) {
+export default function HomeScreen({ streak, todayDone, username, avatar, onStart, onHistory, onLogout, goalMinutes, onGoalChange, onFriends, onWords, onEditAvatar }) {
   return (
     <div className="text-center">
-      {/* Logo + App title */}
+      {/* Avatar + App title */}
       <div style={{ marginBottom: '1.5rem' }}>
-        <img src="/transparent-white-logo.png" alt="Vocably" style={{ width: 140, marginBottom: 8 }} />
+        <div style={{ display: 'flex', justifyContent: 'center', marginBottom: '0.75rem' }}>
+          <button
+            onClick={onEditAvatar}
+            style={{ background: 'none', border: 'none', cursor: 'pointer', padding: 0, position: 'relative' }}
+            title="Edit avatar"
+          >
+            <Avatar config={avatar} size={100} />
+            <span style={{
+              position: 'absolute', bottom: 0, right: 0,
+              background: 'var(--amber)', color: 'white',
+              borderRadius: '50%', width: 26, height: 26,
+              display: 'flex', alignItems: 'center', justifyContent: 'center',
+              fontSize: 13, fontWeight: 700,
+              border: '2px solid var(--bg)',
+            }}>✎</span>
+          </button>
+        </div>
         <h1 style={{
           fontFamily: 'var(--font-serif)',
           fontSize: '2.25rem',

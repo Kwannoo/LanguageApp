@@ -6,7 +6,9 @@ import HistoryScreen from './components/HistoryScreen.jsx';
 import FriendsScreen from './components/FriendsScreen.jsx';
 import AuthScreen      from './components/AuthScreen.jsx';
 import WordListScreen  from './components/WordListScreen.jsx';
+import AvatarEditor    from './components/AvatarEditor.jsx';
 import { supabase }  from './lib/supabase.js';
+import { DEFAULT_AVATAR } from './data/avatarConfig.js';
 import { loadSRS, saveSRS } from './utils/srs.js';
 import { getCachedWords, setCachedWords } from './utils/wordCache.js';
 
@@ -39,6 +41,7 @@ export default function App() {
     () => parseInt(localStorage.getItem('taalkaarten_goal') ?? '5', 10)
   );
   const [words, setWords] = useState([]);
+  const [avatar, setAvatar] = useState(DEFAULT_AVATAR);
 
   const handleGoalChange = (m) => {
     setGoalMinutes(m);
@@ -57,12 +60,13 @@ export default function App() {
     // Load profile (streak + SRS)
     const { data: profile } = await supabase
       .from('profiles')
-      .select('streak, last_session_date, srs_data, username')
+      .select('streak, last_session_date, srs_data, username, avatar')
       .eq('id', userId)
       .single();
 
     if (profile) {
       setUsername(profile.username ?? '');
+      setAvatar(profile.avatar ?? DEFAULT_AVATAR);
       setStreak(profile.streak ?? 0);
       const d = parseDate(profile.last_session_date);
       setLastDate(d);
@@ -112,6 +116,15 @@ export default function App() {
 
     return () => subscription.unsubscribe();
   }, [loadUserData, loadWords]);
+
+  const handleAvatarSave = useCallback(async (newAvatar) => {
+    setAvatar(newAvatar);
+    setScreen('home');
+    if (user) {
+      const { error } = await supabase.from('profiles').update({ avatar: newAvatar }).eq('id', user.id);
+      if (error) console.error('Avatar sync failed:', error);
+    }
+  }, [user]);
 
   const handleSessionComplete = useCallback((score) => {
     setLastScore(score);
@@ -166,10 +179,12 @@ export default function App() {
           streak={streak}
           todayDone={todayDone}
           username={username}
+          avatar={avatar}
           onStart={() => setScreen('session')}
           onHistory={() => setScreen('history')}
           onFriends={() => setScreen('friends')}
           onWords={() => setScreen('words')}
+          onEditAvatar={() => setScreen('avatar')}
           onLogout={() => supabase.auth.signOut()}
           goalMinutes={goalMinutes}
           onGoalChange={handleGoalChange}
@@ -198,6 +213,14 @@ export default function App() {
 
       {screen === 'words' && (
         <WordListScreen onBack={() => setScreen('home')} />
+      )}
+
+      {screen === 'avatar' && (
+        <AvatarEditor
+          avatar={avatar}
+          onSave={handleAvatarSave}
+          onBack={() => setScreen('home')}
+        />
       )}
 
       {screen === 'friends' && (

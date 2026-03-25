@@ -1,5 +1,6 @@
 import { useState, useEffect, useCallback } from 'react';
 import { supabase } from '../lib/supabase.js';
+import Avatar from './Avatar.jsx';
 
 export default function FriendsScreen({ user, onBack }) {
   const [searchQuery, setSearchQuery]     = useState('');
@@ -41,7 +42,7 @@ export default function FriendsScreen({ user, onBack }) {
 
     const { data: profiles } = await supabase
       .from('profiles')
-      .select('id, username, streak')
+      .select('id, username, streak, avatar')
       .in('id', allIds);
 
     const byId = Object.fromEntries((profiles ?? []).map(p => [p.id, p]));
@@ -63,7 +64,7 @@ export default function FriendsScreen({ user, onBack }) {
 
     const { data } = await supabase
       .from('profiles')
-      .select('id, username, streak')
+      .select('id, username, streak, avatar')
       .ilike('username', `%${q}%`)
       .not('username', 'is', null)
       .neq('id', user.id)
@@ -131,9 +132,12 @@ export default function FriendsScreen({ user, onBack }) {
       )}
       {searchResult && searchResult !== 'not_found' && (
         <div className="history-row" style={{ marginBottom: '1.25rem' }}>
-          <div>
-            <p style={{ fontWeight: 700, color: 'var(--text)' }}>{searchResult.username}</p>
-            <p style={{ fontSize: 12, color: 'var(--hint)' }}>🔥 {searchResult.streak} day streak</p>
+          <div style={{ display: 'flex', alignItems: 'center', gap: '0.65rem' }}>
+            <Avatar config={searchResult.avatar} size={40} />
+            <div>
+              <p style={{ fontWeight: 700, color: 'var(--text)' }}>{searchResult.username}</p>
+              <p style={{ fontSize: 12, color: 'var(--hint)' }}>🔥 {searchResult.streak} day streak</p>
+            </div>
           </div>
           <button className="btn-primary" style={{ width: 'auto', padding: '8px 18px', fontSize: 13 }}
             onClick={() => sendRequest(searchResult.id)}>
@@ -155,9 +159,12 @@ export default function FriendsScreen({ user, onBack }) {
               <div className="history-list">
                 {incoming.map(p => (
                   <div key={p.id} className="history-row">
-                    <div>
-                      <p style={{ fontWeight: 700, color: 'var(--text)' }}>{p.username}</p>
-                      <p style={{ fontSize: 12, color: 'var(--hint)' }}>🔥 {p.streak} day streak</p>
+                    <div style={{ display: 'flex', alignItems: 'center', gap: '0.65rem' }}>
+                      <Avatar config={p.avatar} size={36} />
+                      <div>
+                        <p style={{ fontWeight: 700, color: 'var(--text)' }}>{p.username}</p>
+                        <p style={{ fontSize: 12, color: 'var(--hint)' }}>🔥 {p.streak} day streak</p>
+                      </div>
                     </div>
                     <div style={{ display: 'flex', gap: '0.4rem' }}>
                       <button className="btn-primary" style={{ width: 'auto', padding: '7px 14px', fontSize: 12 }}
@@ -184,7 +191,10 @@ export default function FriendsScreen({ user, onBack }) {
               <div className="history-list">
                 {outgoing.map(p => (
                   <div key={p.id} className="history-row">
-                    <p style={{ fontWeight: 700, color: 'var(--text)' }}>{p.username}</p>
+                    <div style={{ display: 'flex', alignItems: 'center', gap: '0.65rem' }}>
+                      <Avatar config={p.avatar} size={36} />
+                      <p style={{ fontWeight: 700, color: 'var(--text)' }}>{p.username}</p>
+                    </div>
                     <button className="btn-ghost" style={{ padding: '7px 14px', fontSize: 12 }}
                       onClick={() => declineRequest(p.requestId)}>
                       Cancel
@@ -208,9 +218,12 @@ export default function FriendsScreen({ user, onBack }) {
               <div className="history-list">
                 {friends.map(p => (
                   <div key={p.id} className="history-row">
-                    <div>
-                      <p style={{ fontWeight: 700, color: 'var(--text)' }}>{p.username}</p>
-                      <p style={{ fontSize: 12, color: 'var(--hint)' }}>🔥 {p.streak} day streak</p>
+                    <div style={{ display: 'flex', alignItems: 'center', gap: '0.65rem' }}>
+                      <Avatar config={p.avatar} size={40} />
+                      <div>
+                        <p style={{ fontWeight: 700, color: 'var(--text)' }}>{p.username}</p>
+                        <p style={{ fontSize: 12, color: 'var(--hint)' }}>🔥 {p.streak} day streak</p>
+                      </div>
                     </div>
                     <button className="btn-ghost" style={{ padding: '7px 14px', fontSize: 12 }}
                       onClick={() => removeFriend(p.id)}>
