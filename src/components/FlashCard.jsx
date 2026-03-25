@@ -44,6 +44,11 @@ export default function FlashCard({ word, flipped, isCorrect, userAnswer, instan
           <p className="word-label">English</p>
           <p className="word-english">{word.en}</p>
           <p className="word-meaning">{word.meaning}</p>
+          {word.sentence && (
+            <p style={{ fontSize: 12, color: 'var(--muted)', marginTop: 6, fontStyle: 'italic' }}>
+              "{word.sentence}"
+            </p>
+          )}
           {isCorrect === false && userAnswer && (
             <p style={{ fontSize: 11, color: 'var(--muted)', marginTop: 8 }}>
               You typed: <em>{userAnswer}</em>
