@@ -25,8 +25,10 @@ function isForward(dir) {
  */
 function getAccepted(word, dir) {
   if (isForward(dir)) {
-    // User types English
-    return word.en.split('/').map(a => a.trim().toLowerCase());
+    // User types English — also accept without "to " prefix for verbs
+    const raw = word.en.split('/').map(a => a.trim().toLowerCase());
+    const extra = raw.filter(a => a.startsWith('to ')).map(a => a.slice(3));
+    return [...raw, ...extra];
   }
   // User types the target language
   const answers = word.nl.split('/').map(a => a.trim().toLowerCase());

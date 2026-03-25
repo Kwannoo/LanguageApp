@@ -12,14 +12,18 @@ export const AVATAR_OPTIONS = {
   eyes: [
     { id: 'eyesnormal', label: 'Normal', src: '/avatar/eyes/eyesnormal.png' },
     { id: 'eyessmile',  label: 'Smile',  src: '/avatar/eyes/eyessmile.png' },
+    { id: 'eyessquint', label: 'Squint', src: '/avatar/eyes/eyessquint.png' },
   ],
   mouth: [
     { id: 'mouthnormal', label: 'Normal', src: '/avatar/mouths/mouthnormal.png' },
     { id: 'mouthsmile',  label: 'Smile',  src: '/avatar/mouths/mouthsmile.png' },
+    { id: 'mountsmiley', label: 'Smiley', src: '/avatar/mouths/mountsmiley.png' },
   ],
   hair: [
-    { id: 'hairguy',   label: 'Short', src: '/avatar/hair/hairguy.png' },
-    { id: 'hiargirl',  label: 'Long',  src: '/avatar/hair/hiargirl.png' },
+    { id: 'hairguy',       label: 'Short',      src: '/avatar/hair/hairguy.png' },
+    { id: 'hiargirl',      label: 'Long',       src: '/avatar/hair/hiargirl.png' },
+    { id: 'hairspikes',    label: 'Spikes',     src: '/avatar/hair/hairspikes.png' },
+    { id: 'hiarlongcurls', label: 'Long Curls', src: '/avatar/hair/hiarlongcurls.png' },
   ],
 };
 
