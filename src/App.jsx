@@ -8,6 +8,7 @@ import AuthScreen      from './components/AuthScreen.jsx';
 import WordListScreen  from './components/WordListScreen.jsx';
 import { supabase }  from './lib/supabase.js';
 import { loadSRS, saveSRS } from './utils/srs.js';
+import { getCachedWords, setCachedWords } from './utils/wordCache.js';
 
 function computeNewStreak(current, lastDate) {
   const today     = new Date().toDateString();
@@ -37,11 +38,20 @@ export default function App() {
   const [goalMinutes, setGoalMinutes] = useState(
     () => parseInt(localStorage.getItem('taalkaarten_goal') ?? '5', 10)
   );
+  const [words, setWords] = useState([]);
 
   const handleGoalChange = (m) => {
     setGoalMinutes(m);
     localStorage.setItem('taalkaarten_goal', m);
   };
+
+  const loadWords = useCallback(async () => {
+    const cached = getCachedWords();
+    if (cached) { setWords(cached); return; }
+    const { data, error } = await supabase.from('words').select('nl, en, meaning, sentence');
+    if (error) { console.error('Failed to load words:', error.message); return; }
+    if (data?.length) { setCachedWords(data); setWords(data); }
+  }, []);
 
   const loadUserData = useCallback(async (userId) => {
     // Load profile (streak + SRS)
@@ -78,7 +88,7 @@ export default function App() {
     supabase.auth.getSession().then(({ data: { session } }) => {
       const u = session?.user ?? null;
       setUser(u);
-      if (u) loadUserData(u.id).finally(() => setAuthLoading(false));
+      if (u) Promise.all([loadUserData(u.id), loadWords()]).finally(() => setAuthLoading(false));
       else   setAuthLoading(false);
     });
 
@@ -88,6 +98,7 @@ export default function App() {
       setUser(u);
       if (u) {
         loadUserData(u.id);
+        loadWords();
       } else {
         // Reset all state on logout
         setStreak(0);
@@ -100,7 +111,7 @@ export default function App() {
     });
 
     return () => subscription.unsubscribe();
-  }, [loadUserData]);
+  }, [loadUserData, loadWords]);
 
   const handleSessionComplete = useCallback((score) => {
     setLastScore(score);
@@ -166,7 +177,7 @@ export default function App() {
       )}
 
       {screen === 'session' && (
-        <Session onComplete={handleSessionComplete} goalMinutes={goalMinutes} />
+        <Session onComplete={handleSessionComplete} goalMinutes={goalMinutes} words={words} />
       )}
 
       {screen === 'complete' && (

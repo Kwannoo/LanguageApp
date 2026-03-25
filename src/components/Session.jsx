@@ -1,6 +1,5 @@
 import { useState, useEffect, useRef, useCallback } from 'react';
 import FlashCard from './FlashCard.jsx';
-import { WORDS } from '../data/words.js';
 import { loadSRS, saveSRS, updateSRS, sortByPriority } from '../utils/srs.js';
 
 function timerColor(t, total) {
@@ -15,10 +14,10 @@ function timerColor(t, total) {
  *   onComplete   – fn(score) – called when session ends
  *   goalMinutes  – number    – session duration in minutes
  */
-export default function Session({ onComplete, goalMinutes = 5 }) {
+export default function Session({ onComplete, goalMinutes = 5, words: wordList = [] }) {
   const SESSION_SECONDS = goalMinutes * 60;
   const [srsData, setSrsData]     = useState(loadSRS);
-  const [words, setWords]         = useState(() => sortByPriority(WORDS, loadSRS()));
+  const [words, setWords]         = useState(() => sortByPriority(wordList, loadSRS()));
   const [idx, setIdx]             = useState(0);
   const [input, setInput]         = useState('');
   const [flipped, setFlipped]     = useState(false);
@@ -69,7 +68,7 @@ export default function Session({ onComplete, goalMinutes = 5 }) {
       setInput('');
       setIsCorrect(null);
       // Re-sort when word list is exhausted so new/due words stay prioritized
-      if (nextIdx === 0) setWords(sortByPriority(WORDS, srsData));
+      if (nextIdx === 0) setWords(sortByPriority(wordList, srsData));
       return;
     }
 
@@ -97,6 +96,14 @@ export default function Session({ onComplete, goalMinutes = 5 }) {
     document.addEventListener('keydown', handler);
     return () => document.removeEventListener('keydown', handler);
   }, [handleCheck]);
+
+  if (!words.length) {
+    return (
+      <div style={{ textAlign: 'center', paddingTop: '4rem', color: 'var(--muted)', fontWeight: 600 }}>
+        Loading words…
+      </div>
+    );
+  }
 
   const pct   = (timeLeft / SESSION_SECONDS) * 100;
   const color = timerColor(timeLeft, SESSION_SECONDS);
