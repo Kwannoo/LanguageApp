@@ -14,7 +14,7 @@ function timerColor(t, total) {
  *   onComplete   – fn(score) – called when session ends
  *   goalMinutes  – number    – session duration in minutes
  */
-export default function Session({ onComplete, goalMinutes = 5, words: wordList = [] }) {
+export default function Session({ onComplete, goalMinutes = 5, words: wordList = [], direction = 'nl-en' }) {
   const SESSION_SECONDS = goalMinutes * 60;
   const [srsData, setSrsData]     = useState(loadSRS);
   const [words, setWords]         = useState(() => sortByPriority(wordList, loadSRS()));
@@ -25,6 +25,9 @@ export default function Session({ onComplete, goalMinutes = 5, words: wordList =
   const [isCorrect, setIsCorrect] = useState(null);
   const [timeLeft, setTimeLeft]   = useState(SESSION_SECONDS);
   const [score, setScore]         = useState({ correct: 0, total: 0 });
+  const [cardDir, setCardDir]     = useState(() =>
+    direction === 'mix' ? (Math.random() < 0.5 ? 'nl-en' : 'en-nl') : direction
+  );
 
   const inputRef = useRef(null);
   const scoreRef = useRef({ correct: 0, total: 0 }); // closure-safe score for timer callback
@@ -67,6 +70,7 @@ export default function Session({ onComplete, goalMinutes = 5, words: wordList =
       setIdx(nextIdx);
       setInput('');
       setIsCorrect(null);
+      if (direction === 'mix') setCardDir(Math.random() < 0.5 ? 'nl-en' : 'en-nl');
       // Re-sort when word list is exhausted so new/due words stay prioritized
       if (nextIdx === 0) setWords(sortByPriority(wordList, srsData));
       return;
@@ -74,7 +78,10 @@ export default function Session({ onComplete, goalMinutes = 5, words: wordList =
 
     if (!input.trim()) return;
 
-    const correct = input.trim().toLowerCase() === words[idx].en.toLowerCase();
+    const answer = cardDir === 'nl-en' ? words[idx].en : words[idx].nl;
+    const typed = input.trim().toLowerCase();
+    const accepted = answer.split('/').map(a => a.trim().toLowerCase());
+    const correct = accepted.includes(typed);
     setIsCorrect(correct);
     setScore(s => {
       const next = { correct: s.correct + (correct ? 1 : 0), total: s.total + 1 };
@@ -140,6 +147,7 @@ export default function Session({ onComplete, goalMinutes = 5, words: wordList =
         isCorrect={isCorrect}
         userAnswer={input}
         instant={instant}
+        direction={cardDir}
       />
 
       {/* Input */}
@@ -149,7 +157,7 @@ export default function Session({ onComplete, goalMinutes = 5, words: wordList =
         type="text"
         value={input}
         onChange={e => setInput(e.target.value)}
-        placeholder="Type the English word…"
+        placeholder={cardDir === 'nl-en' ? 'Type the English word…' : 'Type the Dutch word…'}
         autoComplete="off"
         autoCorrect="off"
         autoCapitalize="off"

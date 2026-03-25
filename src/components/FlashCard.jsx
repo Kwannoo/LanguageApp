@@ -16,34 +16,51 @@ function speak(text) {
   window.speechSynthesis.speak(utt);
 }
 
-export default function FlashCard({ word, flipped, isCorrect, userAnswer, instant }) {
+export default function FlashCard({ word, flipped, isCorrect, userAnswer, instant, direction = 'nl-en' }) {
+  const isNlEn = direction === 'nl-en';
+  const promptLang  = isNlEn ? 'Dutch'   : 'English';
+  const answerLang  = isNlEn ? 'English'  : 'Dutch';
+  const promptWord  = isNlEn ? word.nl    : word.en;
+  const answerWord  = isNlEn ? word.en    : word.nl;
+
   return (
     <div className="card-scene">
       <div className={`card-3d${flipped ? ' flipped' : ''}${instant ? ' instant' : ''}`}>
 
-        {/* ── Front face: Dutch word ── */}
+        {/* ── Front face: prompt word ── */}
         <div className="card-face">
-          <p className="word-label">Dutch word</p>
-          <p className="word-dutch">{word.nl}</p>
-          <button
-            className="speak-btn"
-            onClick={e => { e.stopPropagation(); speak(word.nl); }}
-            title="Listen"
-          >
-            🔊
-          </button>
+          <p className="word-label">{promptLang} word</p>
+          <p className="word-dutch">{promptWord}</p>
+          {isNlEn && (
+            <button
+              className="speak-btn"
+              onClick={e => { e.stopPropagation(); speak(word.nl); }}
+              title="Listen"
+            >
+              🔊
+            </button>
+          )}
         </div>
 
-        {/* ── Back face: English answer + meaning ── */}
+        {/* ── Back face: answer + meaning ── */}
         <div className="card-face card-back">
           {isCorrect !== null && (
             <span className={`result-badge ${isCorrect ? 'badge-correct' : 'badge-incorrect'}`}>
               {isCorrect ? '✓ Correct' : '✗ Incorrect'}
             </span>
           )}
-          <p className="word-label">English</p>
-          <p className="word-english">{word.en}</p>
+          <p className="word-label">{answerLang}</p>
+          <p className="word-english">{answerWord}</p>
           <p className="word-meaning">{word.meaning}</p>
+          {!isNlEn && (
+            <button
+              className="speak-btn"
+              onClick={e => { e.stopPropagation(); speak(word.nl); }}
+              title="Listen"
+            >
+              🔊
+            </button>
+          )}
           {word.sentence && (
             <p style={{ fontSize: 12, color: 'var(--muted)', marginTop: 6, fontStyle: 'italic' }}>
               "{word.sentence}"

@@ -41,11 +41,19 @@ export default function App() {
     () => parseInt(localStorage.getItem('taalkaarten_goal') ?? '5', 10)
   );
   const [words, setWords] = useState([]);
+  const [direction, setDirection] = useState(
+    () => localStorage.getItem('taalkaarten_direction') ?? 'nl-en'
+  );
   const [avatar, setAvatar] = useState(DEFAULT_AVATAR);
 
   const handleGoalChange = (m) => {
     setGoalMinutes(m);
     localStorage.setItem('taalkaarten_goal', m);
+  };
+
+  const handleDirectionChange = (d) => {
+    setDirection(d);
+    localStorage.setItem('taalkaarten_direction', d);
   };
 
   const loadWords = useCallback(async () => {
@@ -188,11 +196,13 @@ export default function App() {
           onLogout={() => supabase.auth.signOut()}
           goalMinutes={goalMinutes}
           onGoalChange={handleGoalChange}
+          direction={direction}
+          onDirectionChange={handleDirectionChange}
         />
       )}
 
       {screen === 'session' && (
-        <Session onComplete={handleSessionComplete} goalMinutes={goalMinutes} words={words} />
+        <Session onComplete={handleSessionComplete} goalMinutes={goalMinutes} words={words} direction={direction} />
       )}
 
       {screen === 'complete' && (

@@ -10,8 +10,13 @@ import Avatar from './Avatar.jsx';
  *   onEditAvatar – fn     – open avatar editor
  */
 const GOAL_OPTIONS = [5, 10, 15];
+const DIRECTION_OPTIONS = [
+  { value: 'nl-en', label: 'NL → EN' },
+  { value: 'en-nl', label: 'EN → NL' },
+  { value: 'mix',   label: 'Mix' },
+];
 
-export default function HomeScreen({ streak, todayDone, username, avatar, onStart, onHistory, onLogout, goalMinutes, onGoalChange, onFriends, onWords, onEditAvatar }) {
+export default function HomeScreen({ streak, todayDone, username, avatar, onStart, onHistory, onLogout, goalMinutes, onGoalChange, direction, onDirectionChange, onFriends, onWords, onEditAvatar }) {
   return (
     <div className="text-center">
       {/* Avatar + App title */}
@@ -72,6 +77,24 @@ export default function HomeScreen({ streak, todayDone, username, avatar, onStar
               onClick={() => onGoalChange(m)}
             >
               {m} min
+            </button>
+          ))}
+        </div>
+      </div>
+
+      {/* Direction picker */}
+      <div style={{ marginBottom: '1rem' }}>
+        <p style={{ fontSize: 11, color: 'var(--hint)', textTransform: 'uppercase', letterSpacing: '0.1em', marginBottom: '0.5rem' }}>
+          Direction
+        </p>
+        <div className="goal-picker">
+          {DIRECTION_OPTIONS.map(d => (
+            <button
+              key={d.value}
+              className={`goal-pill${direction === d.value ? ' active' : ''}`}
+              onClick={() => onDirectionChange(d.value)}
+            >
+              {d.label}
             </button>
           ))}
         </div>
