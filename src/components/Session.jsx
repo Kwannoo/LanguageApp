@@ -38,7 +38,7 @@ function getAccepted(word, dir) {
   return answers;
 }
 
-export default function Session({ onComplete, goalMinutes = 5, words: wordList = [], direction = 'nl-en', language = 'nl' }) {
+export default function Session({ onComplete, goalMinutes = 5, words: wordList = [], direction = 'nl-en', language = 'nl', voice = 'male' }) {
   const SESSION_SECONDS = goalMinutes * 60;
   const [srsData, setSrsData]     = useState(loadSRS);
   const [words, setWords]         = useState(() => sortByPriority(wordList, loadSRS()));
@@ -52,7 +52,6 @@ export default function Session({ onComplete, goalMinutes = 5, words: wordList =
   const [cardDir, setCardDir]     = useState(() =>
     direction === 'mix' ? randomDir(language) : direction
   );
-
   const inputRef = useRef(null);
   const scoreRef = useRef({ correct: 0, total: 0 });
 
@@ -113,6 +112,21 @@ export default function Session({ onComplete, goalMinutes = 5, words: wordList =
     setFlipped(true);
   }, [flipped, input, idx, words, srsData, cardDir, direction, language, wordList]);
 
+  const handleSkip = useCallback(() => {
+    if (flipped) return;
+    // Mark as incorrect and flip to show answer
+    setIsCorrect(false);
+    setScore(s => {
+      const next = { correct: s.correct, total: s.total + 1 };
+      scoreRef.current = next;
+      return next;
+    });
+    const updated = updateSRS(srsData, words[idx].nl, false);
+    setSrsData(updated);
+    saveSRS(updated);
+    setFlipped(true);
+  }, [flipped, srsData, words, idx]);
+
   useEffect(() => {
     const handler = (e) => { if (e.key === 'Enter') handleCheck(); };
     document.addEventListener('keydown', handler);
@@ -170,6 +184,7 @@ export default function Session({ onComplete, goalMinutes = 5, words: wordList =
         instant={instant}
         direction={cardDir}
         language={language}
+        voice={voice}
       />
 
       {/* Input */}
@@ -186,9 +201,16 @@ export default function Session({ onComplete, goalMinutes = 5, words: wordList =
         disabled={flipped}
       />
 
-      <button className="btn-primary" onClick={handleCheck}>
-        {flipped ? 'Next card →' : 'Check answer'}
-      </button>
+      <div style={{ display: 'flex', gap: '0.5rem' }}>
+        {!flipped && (
+          <button className="btn-ghost" onClick={handleSkip} style={{ flex: '0 0 auto', padding: '14px 18px' }}>
+            Skip
+          </button>
+        )}
+        <button className="btn-primary" onClick={handleCheck} style={{ flex: 1 }}>
+          {flipped ? 'Next card →' : 'Check answer'}
+        </button>
+      </div>
 
       <div style={{ textAlign: 'center', marginTop: '0.9rem' }}>
         <button

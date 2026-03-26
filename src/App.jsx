@@ -11,6 +11,8 @@ import { supabase }  from './lib/supabase.js';
 import { DEFAULT_AVATAR } from './data/avatarConfig.js';
 import { loadSRS, saveSRS } from './utils/srs.js';
 import { getCachedWords, setCachedWords } from './utils/wordCache.js';
+import { useOnlineStatus } from './utils/onlineStatus.js';
+import { enqueue, getQueue, clearQueue } from './utils/syncQueue.js';
 
 function computeNewStreak(current, lastDate) {
   const today     = new Date().toDateString();
@@ -21,13 +23,13 @@ function computeNewStreak(current, lastDate) {
   return 1;
 }
 
-// Supabase stores dates as "YYYY-MM-DD"; convert to toDateString() for comparison
 function parseDate(dateStr) {
   if (!dateStr) return null;
   return new Date(dateStr + 'T12:00:00').toDateString();
 }
 
 export default function App() {
+  const online = useOnlineStatus();
   const [screen, setScreen]         = useState('home');
   const [user, setUser]             = useState(null);
   const [authLoading, setAuthLoading] = useState(true);
@@ -48,6 +50,15 @@ export default function App() {
     () => localStorage.getItem('taalkaarten_direction') ?? 'nl-en'
   );
   const [avatar, setAvatar] = useState(DEFAULT_AVATAR);
+  const [srsData, setSrsData] = useState(loadSRS);
+  const [voice, setVoice] = useState(
+    () => localStorage.getItem('taalkaarten_voice') ?? 'male'
+  );
+
+  const handleVoiceChange = (v) => {
+    setVoice(v);
+    localStorage.setItem('taalkaarten_voice', v);
+  };
 
   const handleGoalChange = (m) => {
     setGoalMinutes(m);
@@ -62,11 +73,9 @@ export default function App() {
   const handleLanguageChange = (lang) => {
     setLanguage(lang);
     localStorage.setItem('taalkaarten_language', lang);
-    // Reset direction to match new language
     const defaultDir = lang === 'nl' ? 'nl-en' : 'ja-en';
     setDirection(defaultDir);
     localStorage.setItem('taalkaarten_direction', defaultDir);
-    // Load words for the new language
     loadWords(lang);
   };
 
@@ -86,7 +95,6 @@ export default function App() {
   }, [language]);
 
   const loadUserData = useCallback(async (userId) => {
-    // Load profile (streak + SRS)
     const { data: profile } = await supabase
       .from('profiles')
       .select('streak, last_session_date, srs_data, username, avatar')
@@ -100,10 +108,12 @@ export default function App() {
       const d = parseDate(profile.last_session_date);
       setLastDate(d);
       setTodayDone(d === new Date().toDateString());
-      if (profile.srs_data) saveSRS(profile.srs_data); // hydrate localStorage for Session
+      if (profile.srs_data) {
+        saveSRS(profile.srs_data);
+        setSrsData(profile.srs_data);
+      }
     }
 
-    // Load session history (newest first, max 30)
     const { data: rows } = await supabase
       .from('session_history')
       .select('played_at, correct, total')
@@ -117,7 +127,6 @@ export default function App() {
   }, []);
 
   useEffect(() => {
-    // Check for an existing session on mount
     supabase.auth.getSession().then(({ data: { session } }) => {
       const u = session?.user ?? null;
       setUser(u);
@@ -125,7 +134,6 @@ export default function App() {
       else   setAuthLoading(false);
     });
 
-    // Listen for login / logout
     const { data: { subscription } } = supabase.auth.onAuthStateChange((_event, session) => {
       const u = session?.user ?? null;
       setUser(u);
@@ -133,7 +141,6 @@ export default function App() {
         loadUserData(u.id);
         loadWords();
       } else {
-        // Reset all state on logout
         setStreak(0);
         setLastDate(null);
         setTodayDone(false);
@@ -145,6 +152,24 @@ export default function App() {
 
     return () => subscription.unsubscribe();
   }, [loadUserData, loadWords]);
+
+  // Flush sync queue when coming back online
+  useEffect(() => {
+    if (!online || !user) return;
+    const queue = getQueue();
+    if (!queue.length) return;
+
+    (async () => {
+      for (const item of queue) {
+        if (item.type === 'profile') {
+          await supabase.from('profiles').update(item.data).eq('id', user.id);
+        } else if (item.type === 'history') {
+          await supabase.from('session_history').insert(item.data);
+        }
+      }
+      clearQueue();
+    })();
+  }, [online, user]);
 
   const handleAvatarSave = useCallback(async (newAvatar) => {
     setAvatar(newAvatar);
@@ -158,11 +183,9 @@ export default function App() {
   const handleSessionComplete = useCallback((score) => {
     setLastScore(score);
 
-    // Add to local history immediately (optimistic)
     const entry = { date: new Date().toISOString(), correct: score.correct, total: score.total };
     setHistory(prev => [entry, ...prev].slice(0, 30));
 
-    // Compute new streak
     let finalStreak = streak;
     if (!todayDone) {
       const today = new Date().toDateString();
@@ -172,25 +195,30 @@ export default function App() {
       setTodayDone(true);
     }
 
+    // Refresh SRS data for progress display
+    setSrsData(loadSRS());
+
     setScreen('complete');
 
-    // Sync to Supabase in the background — UI is already updated above
     if (user) {
       const todayISO   = new Date().toISOString().split('T')[0];
-      const currentSRS = loadSRS(); // grab latest SRS from localStorage (updated by Session)
+      const currentSRS = loadSRS();
 
-      supabase.from('profiles')
-        .update({ streak: finalStreak, last_session_date: todayISO, srs_data: currentSRS })
-        .eq('id', user.id)
-        .then(({ error }) => { if (error) console.error('Profile sync failed:', error); });
+      const profileData = { streak: finalStreak, last_session_date: todayISO, srs_data: currentSRS };
+      const historyData = { user_id: user.id, correct: score.correct, total: score.total };
 
-      supabase.from('session_history')
-        .insert({ user_id: user.id, correct: score.correct, total: score.total })
-        .then(({ error }) => { if (error) console.error('History sync failed:', error); });
+      if (online) {
+        supabase.from('profiles').update(profileData).eq('id', user.id)
+          .then(({ error }) => { if (error) console.error('Profile sync failed:', error); });
+        supabase.from('session_history').insert(historyData)
+          .then(({ error }) => { if (error) console.error('History sync failed:', error); });
+      } else {
+        enqueue({ type: 'profile', data: profileData });
+        enqueue({ type: 'history', data: historyData });
+      }
     }
-  }, [streak, lastDate, todayDone, user]);
+  }, [streak, lastDate, todayDone, user, online]);
 
-  // Brief loading screen while we check the auth session
   if (authLoading) {
     return (
       <div style={{ textAlign: 'center', paddingTop: '4rem', color: 'var(--muted)', fontWeight: 600 }}>
@@ -209,6 +237,9 @@ export default function App() {
           todayDone={todayDone}
           username={username}
           avatar={avatar}
+          words={words}
+          srsData={srsData}
+          online={online}
           onStart={() => setScreen('session')}
           onHistory={() => setScreen('history')}
           onFriends={() => setScreen('friends')}
@@ -221,11 +252,13 @@ export default function App() {
           onLanguageChange={handleLanguageChange}
           direction={direction}
           onDirectionChange={handleDirectionChange}
+          voice={voice}
+          onVoiceChange={handleVoiceChange}
         />
       )}
 
       {screen === 'session' && (
-        <Session onComplete={handleSessionComplete} goalMinutes={goalMinutes} words={words} direction={direction} language={language} />
+        <Session onComplete={handleSessionComplete} goalMinutes={goalMinutes} words={words} direction={direction} language={language} voice={voice} />
       )}
 
       {screen === 'complete' && (

@@ -455,7 +455,6 @@ export const WORDS = [
   { nl: 'zowel', en: 'both', level: 'A1', meaning: 'And also', example: '**Zowel** jij als ik.' },
   { nl: 'kerk', en: 'church', level: 'A1', meaning: 'Religious building', example: 'De **kerk** is oud.' },
   { nl: 'meneer', en: 'sir', level: 'A1', meaning: 'Polite address', example: 'Dank u, **meneer**.' },
-  { nl: 'buiten', en: 'outside', level: 'A1', meaning: 'External place', example: 'Ik ga **buiten**.' },
   { nl: 'onderzoek', en: 'research', level: 'A1', meaning: 'Study or investigation', example: 'Het **onderzoek** begint.' },
   { nl: 'beweging', en: 'movement', level: 'A1', meaning: 'Motion', example: 'De **beweging** stopt.' },
   { nl: 'blik', en: 'look/glance', level: 'A1', meaning: 'Way of seeing', example: 'Zijn **blik** is streng.' },
@@ -482,7 +481,7 @@ export const WORDS = [
   { nl: 'richten', en: 'to direct', level: 'A1', meaning: 'To aim', example: 'Hij **richt** zich op werk.' },
   { nl: 'oorlog', en: 'war', level: 'A1', meaning: 'Conflict', example: 'De **oorlog** duurt lang.' },
 
-  { nl: 'eten', en: 'to eat', level: 'A1', meaning: 'Consume food', example: 'Ik **eet** brood.' },
+  { nl: 'eten', en: 'to eat / food', level: 'A1', meaning: 'Consume food', example: 'Ik **eet** brood.' },
   { nl: 'zacht', en: 'soft', level: 'A1', meaning: 'Not hard', example: 'Het kussen is **zacht**.' },
   { nl: 'meestal', en: 'usually', level: 'A1', meaning: 'Most of the time', example: 'Ik kom **meestal**.' },
   { nl: 'straat', en: 'street', level: 'A1', meaning: 'Road', example: 'De **straat** is druk.' },
@@ -583,7 +582,6 @@ export const WORDS = [
 
   { nl: 'eenvoudig', en: 'simple', level: 'A1', meaning: 'Not complex', example: 'Het is **eenvoudig**.' },
   { nl: 'orde', en: 'order', level: 'A1', meaning: 'Arrangement', example: 'Alles is in **orde**.' },
-  { nl: 'weinig', en: 'little', level: 'A1', meaning: 'Small amount', example: 'Ik heb **weinig** tijd.' },
   { nl: 'functie', en: 'function', level: 'A1', meaning: 'Role', example: 'De **functie** is duidelijk.' },
   { nl: 'dik', en: 'thick / fat', level: 'A1', meaning: 'Wide', example: 'Het boek is **dik**.' },
   { nl: 'ongeveer', en: 'approximately', level: 'A1', meaning: 'About', example: 'Het duurt **ongeveer** een uur.' },
@@ -858,7 +856,6 @@ export const WORDS = [
 
   { nl: 'prijs', en: 'price / prize', level: 'A1', meaning: 'Cost of something', example: 'De **prijs** is hoog.' },
   { nl: 'loop', en: 'run / walk / course', level: 'A1', meaning: 'Movement fast', example: 'Ik **loop** snel.' },
-  { nl: 'eten', en: 'to eat/food', level: 'A1', meaning: 'Consume food', example: 'Ik ga **eten**.' },
   { nl: 'aardig', en: 'nice/kind', level: 'A1', meaning: 'Friendly', example: 'Hij is **aardig**.' },
   { nl: 'terecht', en: 'rightly/correct', level: 'A1', meaning: 'Justified', example: 'Dat is **terecht**.' },
   { nl: 'leeftijd', en: 'age', level: 'A1', meaning: 'Years lived', example: 'Mijn **leeftijd** is 20.' },

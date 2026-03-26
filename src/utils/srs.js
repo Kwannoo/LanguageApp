@@ -48,6 +48,20 @@ export function sortByPriority(words, srsData) {
   return [...shuffle(due), ...shuffle(notDue)];
 }
 
+/** Count learned / in-progress / unseen words */
+export function computeProgress(words, srsData) {
+  const total = words.length;
+  let learned = 0;
+  let inProgress = 0;
+  for (const w of words) {
+    const entry = srsData[w.nl];
+    if (!entry) continue;
+    if (entry.interval >= 8) learned++;
+    else inProgress++;
+  }
+  return { total, learned, inProgress, unseen: total - learned - inProgress };
+}
+
 function shuffle(arr) {
   const a = [...arr];
   for (let i = a.length - 1; i > 0; i--) {
