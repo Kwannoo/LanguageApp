@@ -19,7 +19,7 @@ const DIRECTION_MAP = {
   ],
 };
 
-export default function HomeScreen({ streak, todayDone, username, avatar, words, srsData, online, onStart, onHistory, onLogout, goalMinutes, onGoalChange, language, onLanguageChange, direction, onDirectionChange, onFriends, onWords, onEditAvatar, voice, onVoiceChange, showSynonyms, onSynonymsChange }) {
+export default function HomeScreen({ streak, todayDone, username, avatar, words, srsData, online, onStart, onHistory, onLogout, goalMinutes, onGoalChange, language, onLanguageChange, direction, onDirectionChange, onFriends, onWords, onEditAvatar, voice, onVoiceChange, showSynonyms, onSynonymsChange, discoverable, onDiscoverableChange }) {
   const [menuOpen, setMenuOpen] = useState(false);
   const directionOptions = DIRECTION_MAP[language] || DIRECTION_MAP.nl;
 
@@ -202,6 +202,28 @@ export default function HomeScreen({ streak, todayDone, username, avatar, words,
           </div>
           <p style={{ fontSize: 12, color: 'var(--hint)', marginTop: 6 }}>
             Show extra synonyms on the card back
+          </p>
+        </div>
+
+        {/* Privacy */}
+        <div style={{ marginBottom: '1.25rem' }}>
+          <p style={{ fontSize: 14, color: 'var(--hint)', textTransform: 'uppercase', letterSpacing: '0.1em', marginBottom: '0.5rem' }}>
+            Privacy
+          </p>
+          <div style={{ display: 'flex', gap: '0.4rem' }}>
+            {['on', 'off'].map(v => (
+              <button
+                key={v}
+                className={`goal-pill${(v === 'on') === discoverable ? ' active' : ''}`}
+                onClick={() => onDiscoverableChange(v === 'on')}
+                style={{ flex: 1, textTransform: 'capitalize' }}
+              >
+                {v === 'on' ? 'Discoverable' : 'Hidden'}
+              </button>
+            ))}
+          </div>
+          <p style={{ fontSize: 12, color: 'var(--hint)', marginTop: 6 }}>
+            When hidden, others cannot find you by searching
           </p>
         </div>
 

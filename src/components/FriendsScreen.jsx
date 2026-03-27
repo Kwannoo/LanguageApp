@@ -68,6 +68,7 @@ export default function FriendsScreen({ user, onBack }) {
       .ilike('username', `%${q}%`)
       .not('username', 'is', null)
       .neq('id', user.id)
+      .neq('discoverable', false)
       .limit(1)
       .maybeSingle();
 

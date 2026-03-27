@@ -68,6 +68,15 @@ export default function App() {
     localStorage.setItem('taalkaarten_synonyms', val);
   };
 
+  const [discoverable, setDiscoverable] = useState(true);
+
+  const handleDiscoverableChange = async (val) => {
+    setDiscoverable(val);
+    if (user) {
+      await supabase.from('profiles').update({ discoverable: val }).eq('id', user.id);
+    }
+  };
+
   const handleGoalChange = (m) => {
     setGoalMinutes(m);
     localStorage.setItem('taalkaarten_goal', m);
@@ -97,7 +106,8 @@ export default function App() {
     const { data, error } = await supabase
       .from('words')
       .select(cols)
-      .eq('language', l);
+      .eq('language', l)
+      .limit(5000);
     if (error) { console.error('Failed to load words:', error.message); return; }
     if (data?.length) { setCachedWords(data, l); setWords(data); }
   }, [language]);
@@ -105,7 +115,7 @@ export default function App() {
   const loadUserData = useCallback(async (userId) => {
     const { data: profile } = await supabase
       .from('profiles')
-      .select('streak, last_session_date, srs_data, username, avatar')
+      .select('streak, last_session_date, srs_data, username, avatar, discoverable')
       .eq('id', userId)
       .single();
 
@@ -113,6 +123,7 @@ export default function App() {
       setUsername(profile.username ?? '');
       setAvatar(profile.avatar ?? DEFAULT_AVATAR);
       setStreak(profile.streak ?? 0);
+      setDiscoverable(profile.discoverable ?? true);
       const d = parseDate(profile.last_session_date);
       setLastDate(d);
       setTodayDone(d === new Date().toDateString());
@@ -264,6 +275,8 @@ export default function App() {
           onVoiceChange={handleVoiceChange}
           showSynonyms={showSynonyms}
           onSynonymsChange={handleSynonymsChange}
+          discoverable={discoverable}
+          onDiscoverableChange={handleDiscoverableChange}
         />
       )}
 
