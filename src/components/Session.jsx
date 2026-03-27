@@ -36,7 +36,7 @@ function getAccepted(word, dir) {
   return answers;
 }
 
-export default function Session({ onComplete, goalMinutes = 5, words: wordList = [], direction = 'nl-en', language = 'nl', voice = 'male' }) {
+export default function Session({ onComplete, goalMinutes = 5, words: wordList = [], direction = 'nl-en', language = 'nl', voice = 'male', showSynonyms = false }) {
   const SESSION_SECONDS = goalMinutes * 60;
   const [srsData, setSrsData]     = useState(loadSRS);
   const [words, setWords]         = useState(() => sortByPriority(wordList, loadSRS()));
@@ -193,6 +193,7 @@ export default function Session({ onComplete, goalMinutes = 5, words: wordList =
         direction={cardDir}
         language={language}
         voice={voice}
+        showSynonyms={showSynonyms}
       />
 
       {/* Input */}

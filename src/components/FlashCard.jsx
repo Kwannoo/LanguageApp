@@ -20,7 +20,7 @@ function speak(text, lang, voicePref) {
   window.speechSynthesis.speak(utt);
 }
 
-export default function FlashCard({ word, flipped, isCorrect, instant, direction = 'nl-en', language = 'nl', voice = 'male' }) {
+export default function FlashCard({ word, flipped, isCorrect, instant, direction = 'nl-en', language = 'nl', voice = 'male', showSynonyms = false }) {
   const isForward = direction === 'nl-en' || direction === 'ja-en';
   const langNames = language === 'ja'
     ? { target: 'Japanese', base: 'English' }
@@ -79,6 +79,11 @@ export default function FlashCard({ word, flipped, isCorrect, instant, direction
 
           <p className="word-label">{answerLang}</p>
           <p className="word-english">{answerWord}</p>
+          {showSynonyms && word.synonyms && (
+            <p style={{ fontSize: 12, color: 'var(--hint)', marginTop: 2 }}>
+              Also: {word.synonyms}
+            </p>
+          )}
           {!isForward && showReading && (
             <p style={{ fontSize: 14, color: 'var(--muted)', marginTop: 4 }}>
               {word.reading} ({word.romaji})

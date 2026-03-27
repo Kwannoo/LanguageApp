@@ -54,10 +54,18 @@ export default function App() {
   const [voice, setVoice] = useState(
     () => localStorage.getItem('taalkaarten_voice') ?? 'male'
   );
+  const [showSynonyms, setShowSynonyms] = useState(
+    () => localStorage.getItem('taalkaarten_synonyms') === 'true'
+  );
 
   const handleVoiceChange = (v) => {
     setVoice(v);
     localStorage.setItem('taalkaarten_voice', v);
+  };
+
+  const handleSynonymsChange = (val) => {
+    setShowSynonyms(val);
+    localStorage.setItem('taalkaarten_synonyms', val);
   };
 
   const handleGoalChange = (m) => {
@@ -84,8 +92,8 @@ export default function App() {
     const cached = getCachedWords(l);
     if (cached) { setWords(cached); return; }
     const cols = l === 'ja'
-      ? 'nl, en, meaning, sentence, reading, romaji'
-      : 'nl, en, meaning, sentence';
+      ? 'nl, en, meaning, sentence, reading, romaji, synonyms'
+      : 'nl, en, meaning, sentence, synonyms';
     const { data, error } = await supabase
       .from('words')
       .select(cols)
@@ -254,11 +262,13 @@ export default function App() {
           onDirectionChange={handleDirectionChange}
           voice={voice}
           onVoiceChange={handleVoiceChange}
+          showSynonyms={showSynonyms}
+          onSynonymsChange={handleSynonymsChange}
         />
       )}
 
       {screen === 'session' && (
-        <Session onComplete={handleSessionComplete} goalMinutes={goalMinutes} words={words} direction={direction} language={language} voice={voice} />
+        <Session onComplete={handleSessionComplete} goalMinutes={goalMinutes} words={words} direction={direction} language={language} voice={voice} showSynonyms={showSynonyms} />
       )}
 
       {screen === 'complete' && (

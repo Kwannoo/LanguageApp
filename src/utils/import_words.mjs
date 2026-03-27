@@ -29,6 +29,7 @@ async function importDutch() {
     en:       w.en,
     meaning:  w.meaning ?? null,
     sentence: w.example ? w.example.replace(/\*\*/g, '') : null,
+    synonyms: w.synonyms ?? null,
     language: 'nl',
   }));
 
@@ -52,6 +53,7 @@ async function importJapanese() {
     sentence: w.sentence ?? null,
     reading:  w.reading ?? null,
     romaji:   w.romaji ?? null,
+    synonyms: w.synonyms ?? null,
     language: 'ja',
   }));
 
