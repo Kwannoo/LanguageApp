@@ -36,7 +36,7 @@ export default function App() {
   const [streak, setStreak]         = useState(0);
   const [lastDate, setLastDate]     = useState(null);
   const [todayDone, setTodayDone]   = useState(false);
-  const [lastScore, setLastScore]   = useState({ correct: 0, total: 0 });
+  const [lastScore, setLastScore]   = useState({ correct: 0, total: 0, sessionWords: [] });
   const [history, setHistory]       = useState([]);
   const [username, setUsername]     = useState('');
   const [goalMinutes, setGoalMinutes] = useState(
@@ -265,6 +265,7 @@ export default function App() {
         <Complete
           score={lastScore}
           streak={streak}
+          language={language}
           onHome={() => setScreen('home')}
           onRetry={() => setScreen('session')}
         />

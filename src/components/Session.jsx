@@ -2,10 +2,8 @@ import { useState, useEffect, useRef, useCallback } from 'react';
 import FlashCard from './FlashCard.jsx';
 import { loadSRS, saveSRS, updateSRS, sortByPriority } from '../utils/srs.js';
 
-function timerColor(t, total) {
-  if (t > total * 0.33) return 'var(--timer-ok)';
-  if (t > total * 0.17) return 'var(--timer-warn)';
-  return 'var(--timer-crit)';
+function timerColor() {
+  return 'var(--timer-ok)';
 }
 
 /** Resolve a random direction for "mix" mode based on language */
@@ -54,6 +52,7 @@ export default function Session({ onComplete, goalMinutes = 5, words: wordList =
   );
   const inputRef = useRef(null);
   const scoreRef = useRef({ correct: 0, total: 0 });
+  const sessionWordsRef = useRef([]);
 
   useEffect(() => { scoreRef.current = score; }, [score]);
 
@@ -69,7 +68,7 @@ export default function Session({ onComplete, goalMinutes = 5, words: wordList =
       setTimeLeft(t => {
         if (t <= 1) {
           clearInterval(id);
-          onComplete(scoreRef.current);
+          setTimeout(() => onComplete({ ...scoreRef.current, sessionWords: sessionWordsRef.current }), 0);
           return 0;
         }
         return t - 1;
@@ -103,6 +102,14 @@ export default function Session({ onComplete, goalMinutes = 5, words: wordList =
       const next = { correct: s.correct + (correct ? 1 : 0), total: s.total + 1 };
       scoreRef.current = next;
       return next;
+    });
+
+    // Track this word for review
+    sessionWordsRef.current.push({
+      word: words[idx],
+      correct,
+      direction: cardDir,
+      userAnswer: typed
     });
 
     const updated = updateSRS(srsData, words[idx].nl, correct);
@@ -170,8 +177,9 @@ export default function Session({ onComplete, goalMinutes = 5, words: wordList =
           />
         </div>
         <span className="timer-text" style={{ color }}>{fmt(timeLeft)}</span>
-        <span style={{ fontSize: 11, color: 'var(--hint)' }}>
-          {score.correct}/{score.total}
+        <span style={{ fontSize: 15, fontWeight: 600 }}>
+          <span style={{ color: 'var(--success-fg, #2ecc71)' }}>{score.correct}</span>
+          <span style={{ color: 'var(--muted)' }}> / {score.total}</span>
         </span>
       </div>
 
@@ -215,7 +223,7 @@ export default function Session({ onComplete, goalMinutes = 5, words: wordList =
       <div style={{ textAlign: 'center', marginTop: '0.9rem' }}>
         <button
           style={{ background: 'none', border: 'none', fontSize: 12, color: 'var(--hint)', cursor: 'pointer', fontFamily: 'var(--font-sans)' }}
-          onClick={() => onComplete(score)}
+          onClick={() => onComplete({ ...score, sessionWords: sessionWordsRef.current })}
         >
           End session early
         </button>

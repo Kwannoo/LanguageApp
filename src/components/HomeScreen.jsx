@@ -92,7 +92,7 @@ export default function HomeScreen({ streak, todayDone, username, avatar, words,
 
         {/* Language */}
         <div style={{ marginBottom: '1.25rem' }}>
-          <p style={{ fontSize: 11, color: 'var(--hint)', textTransform: 'uppercase', letterSpacing: '0.1em', marginBottom: '0.5rem' }}>
+          <p style={{ fontSize: 14, color: 'var(--hint)', textTransform: 'uppercase', letterSpacing: '0.1em', marginBottom: '0.5rem' }}>
             Language
           </p>
           <div style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
@@ -121,7 +121,7 @@ export default function HomeScreen({ streak, todayDone, username, avatar, words,
 
         {/* Direction */}
         <div style={{ marginBottom: '1.25rem' }}>
-          <p style={{ fontSize: 11, color: 'var(--hint)', textTransform: 'uppercase', letterSpacing: '0.1em', marginBottom: '0.5rem' }}>
+          <p style={{ fontSize: 14, color: 'var(--hint)', textTransform: 'uppercase', letterSpacing: '0.1em', marginBottom: '0.5rem' }}>
             Direction
           </p>
           <div style={{ display: 'flex', gap: '0.4rem' }}>
@@ -140,7 +140,7 @@ export default function HomeScreen({ streak, todayDone, username, avatar, words,
 
         {/* Session goal — slider */}
         <div style={{ marginBottom: '1.25rem' }}>
-          <p style={{ fontSize: 11, color: 'var(--hint)', textTransform: 'uppercase', letterSpacing: '0.1em', marginBottom: '0.5rem' }}>
+          <p style={{ fontSize: 14, color: 'var(--hint)', textTransform: 'uppercase', letterSpacing: '0.1em', marginBottom: '0.5rem' }}>
             Session goal
           </p>
           <div style={{
@@ -157,7 +157,7 @@ export default function HomeScreen({ streak, todayDone, username, avatar, words,
               onChange={e => onGoalChange(parseInt(e.target.value, 10))}
               style={{ width: '100%', accentColor: 'var(--amber)' }}
             />
-            <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: 10, color: 'var(--hint)' }}>
+            <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: 14, color: 'var(--hint)' }}>
               <span>1 min</span>
               <span>15 min</span>
             </div>
@@ -166,7 +166,7 @@ export default function HomeScreen({ streak, todayDone, username, avatar, words,
 
         {/* Voice */}
         <div style={{ marginBottom: '1.25rem' }}>
-          <p style={{ fontSize: 11, color: 'var(--hint)', textTransform: 'uppercase', letterSpacing: '0.1em', marginBottom: '0.5rem' }}>
+          <p style={{ fontSize: 14, color: 'var(--hint)', textTransform: 'uppercase', letterSpacing: '0.1em', marginBottom: '0.5rem' }}>
             Voice
           </p>
           <div style={{ display: 'flex', gap: '0.4rem' }}>
@@ -272,7 +272,7 @@ export default function HomeScreen({ streak, todayDone, username, avatar, words,
                 <div style={{ width: `${pct}%`, background: 'var(--success-fg)', transition: 'width 0.3s' }} />
                 <div style={{ width: `${inPct}%`, background: 'var(--amber)', transition: 'width 0.3s' }} />
               </div>
-              <p style={{ fontSize: 11, color: 'var(--hint)', marginTop: 6 }}>
+              <p style={{ fontSize: 14, color: 'var(--hint)', marginTop: 6 }}>
                 {inProgress} in progress · {total - learned - inProgress} unseen
               </p>
             </div>

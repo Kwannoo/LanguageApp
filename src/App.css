@@ -72,7 +72,7 @@ body {
 /* ── Card flip ── */
 .card-scene {
   perspective: 1100px;
-  height: 220px;
+  height: 260px;
   margin: 1.25rem 0;
 }
 .card-3d {
@@ -342,10 +342,10 @@ body {
 
 /* ── Misc ── */
 .text-center { text-align: center; }
-.text-muted  { color: var(--muted); font-size: 13px; }
+.text-muted  { color: var(--muted); font-size: 15px; }
 .done-pill {
   display: inline-block;
-  font-size: 12px;
+  font-size: 14px;
   padding: 5px 14px;
   border-radius: 99px;
   background: var(--success-bg);
@@ -358,7 +358,7 @@ body {
   margin-top: 0.25rem;
 }
 .how-it-works p {
-  font-size: 12.5px;
+  font-size: 14px;
   color: var(--muted);
   line-height: 2;
 }
