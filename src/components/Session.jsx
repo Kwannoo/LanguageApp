@@ -1,6 +1,7 @@
 import { useState, useEffect, useRef, useCallback } from 'react';
 import FlashCard from './FlashCard.jsx';
 import { loadSRS, saveSRS, updateSRS, sortByPriority } from '../utils/srs.js';
+import { playCorrect, vibrateWrong } from '../utils/feedback.js';
 
 function timerColor() {
   return 'var(--timer-ok)';
@@ -92,11 +93,22 @@ export default function Session({ onComplete, goalMinutes = 5, words: wordList =
       return;
     }
 
-    if (!input.trim()) return;
+    if (!input.trim()) {
+      // Treat empty submit as a skip
+      setIsCorrect(false);
+      setScore(s => { const next = { correct: s.correct, total: s.total + 1 }; scoreRef.current = next; return next; });
+      sessionWordsRef.current.push({ word: words[idx], correct: false, direction: cardDir, userAnswer: '(skipped)' });
+      const skippedSRS = updateSRS(srsData, words[idx].nl, false);
+      setSrsData(skippedSRS);
+      saveSRS(skippedSRS);
+      setFlipped(true);
+      return;
+    }
 
     const typed = input.trim().toLowerCase();
     const accepted = getAccepted(words[idx], cardDir);
     const correct = accepted.includes(typed);
+    if (correct) playCorrect(); else vibrateWrong();
     setIsCorrect(correct);
     setScore(s => {
       const next = { correct: s.correct + (correct ? 1 : 0), total: s.total + 1 };
@@ -121,18 +133,23 @@ export default function Session({ onComplete, goalMinutes = 5, words: wordList =
 
   const handleSkip = useCallback(() => {
     if (flipped) return;
-    // Mark as incorrect and flip to show answer
     setIsCorrect(false);
     setScore(s => {
       const next = { correct: s.correct, total: s.total + 1 };
       scoreRef.current = next;
       return next;
     });
+    sessionWordsRef.current.push({
+      word: words[idx],
+      correct: false,
+      direction: cardDir,
+      userAnswer: '(skipped)',
+    });
     const updated = updateSRS(srsData, words[idx].nl, false);
     setSrsData(updated);
     saveSRS(updated);
     setFlipped(true);
-  }, [flipped, srsData, words, idx]);
+  }, [flipped, srsData, words, idx, cardDir]);
 
   useEffect(() => {
     const handler = (e) => { if (e.key === 'Enter') handleCheck(); };

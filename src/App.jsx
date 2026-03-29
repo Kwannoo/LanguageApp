@@ -1,4 +1,5 @@
 import { useState, useEffect, useCallback } from 'react';
+import PageTransition from './components/PageTransition.jsx';
 import HomeScreen    from './components/HomeScreen.jsx';
 import Session       from './components/Session.jsx';
 import Complete      from './components/Complete.jsx';
@@ -13,14 +14,17 @@ import { loadSRS, saveSRS } from './utils/srs.js';
 import { getCachedWords, setCachedWords } from './utils/wordCache.js';
 import { useOnlineStatus } from './utils/onlineStatus.js';
 import { enqueue, getQueue, clearQueue } from './utils/syncQueue.js';
+import { ensureReferralCode } from './utils/referral.js';
 
-function computeNewStreak(current, lastDate) {
+function computeNewStreak(current, lastDate, freezes = 0) {
   const today     = new Date().toDateString();
   const yesterday = new Date();
   yesterday.setDate(yesterday.getDate() - 1);
-  if (lastDate === today)                    return current;
-  if (lastDate === yesterday.toDateString()) return current + 1;
-  return 1;
+  if (lastDate === today)                    return { streak: current, usedFreeze: false };
+  if (lastDate === yesterday.toDateString()) return { streak: current + 1, usedFreeze: false };
+  // Missed a day — use a freeze if available
+  if (freezes > 0) return { streak: current, usedFreeze: true };
+  return { streak: 1, usedFreeze: false };
 }
 
 function parseDate(dateStr) {
@@ -68,7 +72,9 @@ export default function App() {
     localStorage.setItem('taalkaarten_synonyms', val);
   };
 
-  const [discoverable, setDiscoverable] = useState(true);
+  const [discoverable, setDiscoverable]     = useState(true);
+  const [referralCode, setReferralCode]     = useState('');
+  const [streakFreezes, setStreakFreezes]   = useState(0);
 
   const handleDiscoverableChange = async (val) => {
     setDiscoverable(val);
@@ -115,7 +121,7 @@ export default function App() {
   const loadUserData = useCallback(async (userId) => {
     const { data: profile } = await supabase
       .from('profiles')
-      .select('streak, last_session_date, srs_data, username, avatar, discoverable')
+      .select('streak, last_session_date, srs_data, username, avatar, discoverable, referral_code, streak_freezes')
       .eq('id', userId)
       .single();
 
@@ -124,6 +130,9 @@ export default function App() {
       setAvatar(profile.avatar ?? DEFAULT_AVATAR);
       setStreak(profile.streak ?? 0);
       setDiscoverable(profile.discoverable ?? true);
+      setStreakFreezes(profile.streak_freezes ?? 0);
+      const code = await ensureReferralCode(userId, profile.referral_code);
+      setReferralCode(code);
       const d = parseDate(profile.last_session_date);
       setLastDate(d);
       setTodayDone(d === new Date().toDateString());
@@ -206,10 +215,14 @@ export default function App() {
     setHistory(prev => [entry, ...prev].slice(0, 30));
 
     let finalStreak = streak;
+    let finalFreezes = streakFreezes;
     if (!todayDone) {
       const today = new Date().toDateString();
-      finalStreak = computeNewStreak(streak, lastDate);
+      const { streak: newStreak, usedFreeze } = computeNewStreak(streak, lastDate, streakFreezes);
+      finalStreak = newStreak;
+      if (usedFreeze) finalFreezes = Math.max(0, streakFreezes - 1);
       setStreak(finalStreak);
+      setStreakFreezes(finalFreezes);
       setLastDate(today);
       setTodayDone(true);
     }
@@ -223,7 +236,7 @@ export default function App() {
       const todayISO   = new Date().toISOString().split('T')[0];
       const currentSRS = loadSRS();
 
-      const profileData = { streak: finalStreak, last_session_date: todayISO, srs_data: currentSRS };
+      const profileData = { streak: finalStreak, last_session_date: todayISO, srs_data: currentSRS, streak_freezes: finalFreezes };
       const historyData = { user_id: user.id, correct: score.correct, total: score.total };
 
       if (online) {
@@ -246,10 +259,10 @@ export default function App() {
     );
   }
 
-  if (!user) return <AuthScreen />;
+  if (!user) return <AuthScreen onSignup={(freezes) => setStreakFreezes(f => f + freezes)} />;
 
   return (
-    <>
+    <PageTransition screenKey={screen} style="zoom">
       {screen === 'home' && (
         <HomeScreen
           streak={streak}
@@ -277,6 +290,8 @@ export default function App() {
           onSynonymsChange={handleSynonymsChange}
           discoverable={discoverable}
           onDiscoverableChange={handleDiscoverableChange}
+          streakFreezes={streakFreezes}
+          referralCode={referralCode}
         />
       )}
 
@@ -316,9 +331,10 @@ export default function App() {
       {screen === 'friends' && (
         <FriendsScreen
           user={user}
+          referralCode={referralCode}
           onBack={() => setScreen('home')}
         />
       )}
-    </>
+    </PageTransition>
   );
 }

@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import Avatar from './Avatar.jsx';
+import StatsCard from './StatsCard.jsx';
 import { computeProgress } from '../utils/srs.js';
 
 const LANGUAGE_OPTIONS = [
@@ -19,9 +20,16 @@ const DIRECTION_MAP = {
   ],
 };
 
-export default function HomeScreen({ streak, todayDone, username, avatar, words, srsData, online, onStart, onHistory, onLogout, goalMinutes, onGoalChange, language, onLanguageChange, direction, onDirectionChange, onFriends, onWords, onEditAvatar, voice, onVoiceChange, showSynonyms, onSynonymsChange, discoverable, onDiscoverableChange }) {
-  const [menuOpen, setMenuOpen] = useState(false);
+export default function HomeScreen({ streak, todayDone, username, avatar, words, srsData, online, onStart, onHistory, onLogout, goalMinutes, onGoalChange, language, onLanguageChange, direction, onDirectionChange, onFriends, onWords, onEditAvatar, voice, onVoiceChange, showSynonyms, onSynonymsChange, discoverable, onDiscoverableChange, streakFreezes = 0, referralCode = '' }) {
+  const [menuOpen, setMenuOpen]       = useState(false);
+  const [menuClosing, setMenuClosing] = useState(false);
+  const [showStatsCard, setShowStatsCard] = useState(false);
   const directionOptions = DIRECTION_MAP[language] || DIRECTION_MAP.nl;
+
+  const closeMenu = () => {
+    setMenuClosing(true);
+    setTimeout(() => { setMenuOpen(false); setMenuClosing(false); }, 250);
+  };
 
   return (
     <div className="text-center" style={{ position: 'relative' }}>
@@ -46,7 +54,7 @@ export default function HomeScreen({ streak, todayDone, username, avatar, words,
       </button>
 
       {/* ── Settings slide panel ── */}
-      <div style={{
+      {menuOpen && <div className={menuClosing ? 'settings-panel-out' : 'settings-panel'} style={{
         position: 'fixed',
         top: 0, right: 0,
         width: '280px',
@@ -54,8 +62,6 @@ export default function HomeScreen({ streak, todayDone, username, avatar, words,
         background: 'var(--surface)',
         borderLeft: '2px solid var(--border)',
         boxShadow: '-4px 0 20px rgba(0,0,0,0.1)',
-        transform: menuOpen ? 'translateX(0)' : 'translateX(100%)',
-        transition: 'transform 0.25s ease',
         zIndex: 100,
         padding: '1.5rem',
         overflowY: 'auto',
@@ -65,7 +71,7 @@ export default function HomeScreen({ streak, todayDone, username, avatar, words,
         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '1.25rem' }}>
           <p style={{ fontWeight: 800, fontSize: '1.1rem', color: 'var(--text)', margin: 0 }}>Settings</p>
           <button
-            onClick={() => setMenuOpen(false)}
+            onClick={closeMenu}
             style={{
               background: 'none', border: 'none', cursor: 'pointer',
               fontSize: 20, color: 'var(--muted)', fontFamily: 'var(--font-sans)',
@@ -81,7 +87,7 @@ export default function HomeScreen({ streak, todayDone, username, avatar, words,
           <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '0.75rem' }}>
             <Avatar config={avatar} size={100} />
             <button
-              onClick={() => { setMenuOpen(false); onEditAvatar(); }}
+              onClick={() => { closeMenu(); onEditAvatar(); }}
               className="btn-ghost"
               style={{ width: '100%', textAlign: 'center' }}
             >
@@ -240,12 +246,13 @@ export default function HomeScreen({ streak, todayDone, username, avatar, words,
             Sign out
           </button>
         </div>
-      </div>
+      </div>}
 
       {/* Backdrop */}
       {menuOpen && (
         <div
-          onClick={() => setMenuOpen(false)}
+          className={menuClosing ? 'settings-backdrop-out' : 'settings-backdrop'}
+          onClick={closeMenu}
           style={{
             position: 'fixed', inset: 0,
             background: 'rgba(0,0,0,0.3)',
@@ -292,7 +299,43 @@ export default function HomeScreen({ streak, todayDone, username, avatar, words,
             🔥 {streak}
           </p>
         </div>
+        {streakFreezes > 0 && (
+          <div className="stat-card">
+            <p className="label">Freezes</p>
+            <p className="number" style={{ color: 'var(--amber)' }}>🧊 {streakFreezes}</p>
+          </div>
+        )}
       </div>
+
+      {/* Invite banner */}
+      {referralCode && (
+        <div style={{
+          background: 'var(--surface)', border: '1px solid var(--border)',
+          borderRadius: 'var(--radius-md)', padding: '0.75rem 1.25rem',
+          marginBottom: '1.25rem', display: 'flex', alignItems: 'center',
+          justifyContent: 'space-between', gap: '0.75rem',
+        }}>
+          <div style={{ textAlign: 'left' }}>
+            <p style={{ fontSize: 13, fontWeight: 700, color: 'var(--text)' }}>Invite a friend</p>
+            <p style={{ fontSize: 12, color: 'var(--muted)' }}>Both get a streak freeze 🧊</p>
+          </div>
+          <button
+            className="btn-ghost"
+            style={{ padding: '7px 14px', fontSize: 13, flexShrink: 0 }}
+            onClick={() => {
+              const url = `${window.location.origin}?ref=${referralCode}`;
+              if (navigator.share) {
+                navigator.share({ title: 'Join Vocably!', text: 'Learn Dutch or Japanese with me on Vocably!', url });
+              } else {
+                navigator.clipboard.writeText(url);
+                alert('Invite link copied!');
+              }
+            }}
+          >
+            Share invite
+          </button>
+        </div>
+      )}
 
       {/* Progress */}
       {words.length > 0 && (() => {
@@ -330,14 +373,31 @@ export default function HomeScreen({ streak, todayDone, username, avatar, words,
       )}
 
       {/* CTA button */}
-      <button className="btn-primary" onClick={onStart} style={{ marginBottom: '0.75rem' }}>
+      <button className="btn-primary" onClick={() => { closeMenu(); onStart(); }} style={{ marginBottom: '0.75rem' }}>
         {todayDone ? 'Practice more' : "Start today's session"}
       </button>
-      <div style={{ display: 'flex', gap: '0.5rem', justifyContent: 'center', marginTop: '0.5rem', marginBottom: '1.5rem' }}>
-        <button className="btn-ghost" onClick={onHistory}>History</button>
-        <button className="btn-ghost" onClick={onWords}>Words</button>
-        <button className="btn-ghost" onClick={onFriends}>Friends</button>
+      <div style={{ display: 'flex', gap: '0.5rem', justifyContent: 'center', marginTop: '0.5rem', marginBottom: '0.75rem' }}>
+        <button className="btn-ghost" onClick={() => { closeMenu(); onHistory(); }}>History</button>
+        <button className="btn-ghost" onClick={() => { closeMenu(); onWords(); }}>Words</button>
+        <button className="btn-ghost" onClick={() => { closeMenu(); onFriends(); }}>Friends</button>
       </div>
+      <div style={{ marginBottom: '1.5rem' }}>
+        <button className="btn-ghost" style={{ width: '100%' }} onClick={() => setShowStatsCard(true)}>
+          📊 Share my stats
+        </button>
+      </div>
+
+      {/* Stats card modal */}
+      {showStatsCard && (
+        <StatsCard
+          username={username}
+          streak={streak}
+          words={words}
+          srsData={srsData}
+          language={language}
+          onClose={() => setShowStatsCard(false)}
+        />
+      )}
 
       {/* How it works */}
       <div className="how-it-works">

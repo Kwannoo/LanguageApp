@@ -1,14 +1,13 @@
 import { useState } from 'react';
 import { supabase } from '../lib/supabase.js';
+import { resolveReferralCode, awardStreakFreeze, getReferralFromUrl } from '../utils/referral.js';
 
-/**
- * AuthScreen — login / signup
- * No props needed; Supabase auth state change in App.jsx handles the transition.
- */
 export default function AuthScreen() {
+  const pendingRef = getReferralFromUrl();
   const [mode, setMode]         = useState('login'); // 'login' | 'signup'
   const [email, setEmail]       = useState('');
   const [password, setPassword] = useState('');
+  const [confirmPassword, setConfirmPassword] = useState('');
   const [username, setUsername] = useState('');
   const [error, setError]       = useState('');
   const [message, setMessage]   = useState('');
@@ -34,6 +33,11 @@ export default function AuthScreen() {
         setLoading(false);
         return;
       }
+      if (password !== confirmPassword) {
+        setError('Passwords do not match.');
+        setLoading(false);
+        return;
+      }
 
       // Check if username is taken
       const { data: existing } = await supabase
@@ -52,6 +56,16 @@ export default function AuthScreen() {
         setError(error.message);
       } else if (data.user) {
         await supabase.from('profiles').update({ username: username.trim() }).eq('id', data.user.id);
+        // If referred by someone, award a freeze to both
+        if (pendingRef) {
+          const referrer = await resolveReferralCode(pendingRef);
+          if (referrer && referrer.id !== data.user.id) {
+            await Promise.all([
+              awardStreakFreeze(data.user.id),
+              awardStreakFreeze(referrer.id),
+            ]);
+          }
+        }
         setMessage('Account created! You are now signed in.');
       }
     }
@@ -80,6 +94,17 @@ export default function AuthScreen() {
         </h1>
         <p className="text-muted">Learn 3,000 words. Understand everything.</p>
       </div>
+
+      {/* Referral banner */}
+      {pendingRef && (
+        <div style={{
+          background: 'var(--success-bg)', border: '1px solid var(--success-fg)',
+          borderRadius: 'var(--radius-md)', padding: '0.75rem 1rem',
+          marginBottom: '1rem', fontSize: 13, color: 'var(--success-fg)', fontWeight: 600,
+        }}>
+          🧊 You were invited! Sign up and both you and your friend get a streak freeze.
+        </div>
+      )}
 
       {/* Auth card */}
       <div style={{
@@ -136,6 +161,24 @@ export default function AuthScreen() {
             minLength={6}
             autoComplete={mode === 'login' ? 'current-password' : 'new-password'}
           />
+
+          {mode === 'signup' && (
+            <>
+              <label style={{ fontSize: 12, fontWeight: 600, color: 'var(--muted)', display: 'block', marginBottom: 6 }}>
+                Confirm password
+              </label>
+              <input
+                className="input-field"
+                type="password"
+                value={confirmPassword}
+                onChange={e => setConfirmPassword(e.target.value)}
+                placeholder="••••••••"
+                required
+                minLength={6}
+                autoComplete="new-password"
+              />
+            </>
+          )}
 
           {error && (
             <p style={{ color: 'var(--danger-fg)', fontSize: 13, marginBottom: '0.75rem', fontWeight: 600 }}>

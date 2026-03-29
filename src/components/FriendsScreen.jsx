@@ -2,7 +2,8 @@ import { useState, useEffect, useCallback } from 'react';
 import { supabase } from '../lib/supabase.js';
 import Avatar from './Avatar.jsx';
 
-export default function FriendsScreen({ user, onBack }) {
+export default function FriendsScreen({ user, referralCode = '', onBack }) {
+  const [tab, setTab]                     = useState('friends'); // 'friends' | 'leaderboard'
   const [searchQuery, setSearchQuery]     = useState('');
   const [searchResult, setSearchResult]   = useState(null);  // profile | null | 'not_found'
   const [searching, setSearching]         = useState(false);
@@ -10,6 +11,7 @@ export default function FriendsScreen({ user, onBack }) {
   const [incoming, setIncoming]           = useState([]);
   const [outgoing, setOutgoing]           = useState([]);
   const [loading, setLoading]             = useState(true);
+  const [leaderboard, setLeaderboard]     = useState([]);
 
   const loadFriends = useCallback(async () => {
     // All accepted or pending requests involving this user
@@ -47,9 +49,22 @@ export default function FriendsScreen({ user, onBack }) {
 
     const byId = Object.fromEntries((profiles ?? []).map(p => [p.id, p]));
 
-    setFriends(friendIds.map(id => byId[id]).filter(Boolean));
+    const friendList = friendIds.map(id => byId[id]).filter(Boolean);
+    setFriends(friendList);
     setIncoming(incomingRows.map(r => ({ requestId: r.id, ...byId[r.from_user_id] })).filter(p => p.id));
     setOutgoing(outgoingRows.map(r => ({ requestId: r.id, ...byId[r.to_user_id] })).filter(p => p.id));
+
+    // Build leaderboard: self + friends, sorted by streak descending
+    const { data: selfProfile } = await supabase
+      .from('profiles')
+      .select('id, username, streak, avatar')
+      .eq('id', user.id)
+      .single();
+
+    const board = [selfProfile, ...friendList].filter(Boolean);
+    board.sort((a, b) => (b.streak ?? 0) - (a.streak ?? 0));
+    setLeaderboard(board);
+
     setLoading(false);
   }, [user.id]);
 
@@ -102,10 +117,52 @@ export default function FriendsScreen({ user, onBack }) {
   return (
     <div>
       {/* Header */}
-      <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', marginBottom: '1.5rem' }}>
+      <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', marginBottom: '1rem' }}>
         <button className="btn-ghost" onClick={onBack} style={{ padding: '6px 14px', fontSize: 13 }}>← Back</button>
         <h2 style={{ fontWeight: 800, fontSize: '1.2rem', color: 'var(--text)' }}>Friends</h2>
       </div>
+
+      {/* Tabs */}
+      <div className="goal-picker" style={{ marginBottom: '1.25rem', justifyContent: 'center' }}>
+        <button className={`goal-pill${tab === 'friends' ? ' active' : ''}`} onClick={() => setTab('friends')}>Friends</button>
+        <button className={`goal-pill${tab === 'leaderboard' ? ' active' : ''}`} onClick={() => setTab('leaderboard')}>🏆 Leaderboard</button>
+      </div>
+
+      {/* ── Leaderboard tab ── */}
+      {tab === 'leaderboard' && (
+        <div>
+          {leaderboard.length === 0 ? (
+            <p style={{ textAlign: 'center', color: 'var(--muted)', fontSize: 13, padding: '2rem 0' }}>
+              Add friends to see the leaderboard!
+            </p>
+          ) : (
+            <div className="history-list">
+              {leaderboard.map((p, i) => (
+                <div key={p.id} className="history-row" style={{
+                  background: p.id === user.id ? 'var(--amber-light)' : 'var(--card)',
+                  border: p.id === user.id ? '2px solid var(--amber)' : undefined,
+                }}>
+                  <div style={{ display: 'flex', alignItems: 'center', gap: '0.65rem' }}>
+                    <span style={{ fontWeight: 800, fontSize: 18, color: i === 0 ? '#F5A623' : i === 1 ? '#A0A0A0' : i === 2 ? '#CD7F32' : 'var(--muted)', width: 28, textAlign: 'center' }}>
+                      {i === 0 ? '🥇' : i === 1 ? '🥈' : i === 2 ? '🥉' : `#${i + 1}`}
+                    </span>
+                    <Avatar config={p.avatar} size={38} />
+                    <div>
+                      <p style={{ fontWeight: 700, color: 'var(--text)' }}>
+                        {p.username}{p.id === user.id ? ' (you)' : ''}
+                      </p>
+                      <p style={{ fontSize: 12, color: 'var(--hint)' }}>🔥 {p.streak ?? 0} day streak</p>
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
+          )}
+        </div>
+      )}
+
+      {/* ── Friends tab ── */}
+      {tab === 'friends' && <>
 
       {/* Search */}
       <form onSubmit={handleSearch} style={{ display: 'flex', gap: '0.5rem', marginBottom: '1.5rem' }}>
@@ -235,7 +292,41 @@ export default function FriendsScreen({ user, onBack }) {
               </div>
             )}
           </section>
+
         </>
+      )}
+
+      </>}
+
+      {/* Invite via link */}
+      {tab === 'friends' && referralCode && (
+        <div style={{
+          marginTop: '1.5rem', padding: '0.9rem 1rem',
+          background: 'var(--surface)', border: '1px solid var(--border)',
+          borderRadius: 'var(--radius-md)', textAlign: 'center',
+        }}>
+          <p style={{ fontSize: 13, fontWeight: 700, color: 'var(--text)', marginBottom: 4 }}>
+            Invite friends with your link
+          </p>
+          <p style={{ fontSize: 12, color: 'var(--muted)', marginBottom: '0.75rem' }}>
+            Both you and your friend get a 🧊 streak freeze when they sign up
+          </p>
+          <button
+            className="btn-primary"
+            style={{ fontSize: 13 }}
+            onClick={() => {
+              const url = `${window.location.origin}?ref=${referralCode}`;
+              if (navigator.share) {
+                navigator.share({ title: 'Join Vocably!', text: 'Learn Dutch or Japanese with me!', url });
+              } else {
+                navigator.clipboard.writeText(url);
+                alert('Invite link copied!');
+              }
+            }}
+          >
+            Copy invite link
+          </button>
+        </div>
       )}
     </div>
   );
