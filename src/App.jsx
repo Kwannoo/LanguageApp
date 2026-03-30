@@ -8,6 +8,7 @@ import FriendsScreen from './components/FriendsScreen.jsx';
 import AuthScreen      from './components/AuthScreen.jsx';
 import WordListScreen  from './components/WordListScreen.jsx';
 import AvatarEditor    from './components/AvatarEditor.jsx';
+import ResetPassword   from './components/ResetPassword.jsx';
 import { supabase }  from './lib/supabase.js';
 import { DEFAULT_AVATAR } from './data/avatarConfig.js';
 import { loadSRS, saveSRS } from './utils/srs.js';
@@ -172,9 +173,12 @@ export default function App() {
       else   setAuthLoading(false);
     });
 
-    const { data: { subscription } } = supabase.auth.onAuthStateChange((_event, session) => {
+    const { data: { subscription } } = supabase.auth.onAuthStateChange((event, session) => {
       const u = session?.user ?? null;
       setUser(u);
+      if (event === 'PASSWORD_RECOVERY') {
+        setScreen('resetPassword');
+      }
       if (u) {
         loadUserData(u.id);
         loadWords();
@@ -345,6 +349,10 @@ export default function App() {
           referralCode={referralCode}
           onBack={() => setScreen('home')}
         />
+      )}
+
+      {screen === 'resetPassword' && (
+        <ResetPassword onDone={() => setScreen('home')} />
       )}
     </PageTransition>
   );

@@ -248,8 +248,11 @@ export default function HomeScreen({ streak, todayDone, username, avatar, words,
           </div>
           <button
             onClick={async () => {
-              await supabase.auth.resetPasswordForEmail(email);
-              alert('Password reset email sent! Check your inbox.');
+              const { error } = await supabase.auth.resetPasswordForEmail(email, {
+                redirectTo: window.location.origin,
+              });
+              if (error) alert('Failed to send reset email: ' + error.message);
+              else alert('Password reset email sent! Check your inbox (and spam folder).');
             }}
             style={{
               marginTop: '0.5rem', width: '100%',
