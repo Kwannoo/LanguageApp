@@ -21,7 +21,7 @@ const DIRECTION_MAP = {
   ],
 };
 
-export default function HomeScreen({ streak, todayDone, username, avatar, words, srsData, online, onStart, onHistory, onLogout, goalMinutes, onGoalChange, language, onLanguageChange, direction, onDirectionChange, onFriends, onWords, onEditAvatar, voice, onVoiceChange, showSynonyms, onSynonymsChange, discoverable, onDiscoverableChange, streakFreezes = 0, referralCode = '', email = '' }) {
+export default function HomeScreen({ streak, todayDone, username, avatar, words, srsData, online, onStart, onHistory, onLogout, goalMinutes, onGoalChange, language, onLanguageChange, direction, onDirectionChange, onFriends, onWords, onEditAvatar, voice, onVoiceChange, showSynonyms, onSynonymsChange, discoverable, onDiscoverableChange, streakFreezes = 0, referralCode = '', email = '', coins = 0 }) {
   const [menuOpen, setMenuOpen]       = useState(false);
   const [menuClosing, setMenuClosing] = useState(false);
   const [showStatsCard, setShowStatsCard] = useState(false);
@@ -34,6 +34,20 @@ export default function HomeScreen({ streak, todayDone, username, avatar, words,
 
   return (
     <div className="text-center" style={{ position: 'relative' }}>
+      {/* Coin indicator — top left */}
+      <div style={{
+        position: 'absolute', top: 0, left: 0,
+        display: 'flex', alignItems: 'center', gap: 4,
+        background: 'var(--surface)',
+        border: '2px solid var(--border)',
+        borderRadius: 'var(--radius-sm)',
+        padding: '6px 10px',
+        zIndex: 10,
+      }}>
+        <img src="/avatar/vocacoin.png" alt="" style={{ width: 20, height: 20 }} />
+        <span style={{ fontWeight: 700, fontSize: 14, color: 'var(--amber)' }}>{coins}</span>
+      </div>
+
       {/* Menu button — top right */}
       <button
         onClick={() => setMenuOpen(true)}

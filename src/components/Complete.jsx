@@ -110,6 +110,26 @@ export default function Complete({ score, streak, language = 'nl', onHome, onRet
             </div>
           </div>
 
+          {/* Coins earned */}
+          <div style={{
+            display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 8,
+            padding: '0.75rem 1rem', marginBottom: '1rem',
+            background: score.earnedCoins > 0 ? 'var(--amber-light)' : 'var(--surface)',
+            border: `1px solid ${score.earnedCoins > 0 ? 'var(--amber)' : 'var(--border)'}`,
+            borderRadius: 'var(--radius-md)',
+          }}>
+            <img src="/avatar/vocacoin.png" alt="" style={{ width: 24, height: 24 }} />
+            {score.earnedCoins > 0 ? (
+              <span style={{ fontWeight: 700, fontSize: 15, color: 'var(--amber)' }}>
+                +{score.earnedCoins} coins earned!
+              </span>
+            ) : (
+              <span style={{ fontWeight: 600, fontSize: 13, color: 'var(--muted)' }}>
+                No coins — finish the full session to earn coins!
+              </span>
+            )}
+          </div>
+
           <button className="btn-primary" onClick={onRetry} style={{ marginBottom: '0.75rem' }}>
             Practice more
           </button>

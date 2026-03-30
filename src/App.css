@@ -406,3 +406,9 @@ body {
 .settings-panel-out { animation: settingsSlideOut  0.25s ease forwards; }
 .settings-backdrop     { animation: backdropFadeIn  0.25s ease forwards; }
 .settings-backdrop-out { animation: backdropFadeOut  0.25s ease forwards; }
+
+/* Buy popup animations */
+@keyframes popupIn    { from { opacity: 0; transform: translate(-50%, -50%) scale(0.7); } to { opacity: 1; transform: translate(-50%, -50%) scale(1); } }
+@keyframes popupOut   { from { opacity: 1; transform: translate(-50%, -50%) scale(1); }   to { opacity: 0; transform: translate(-50%, -50%) scale(0.7); } }
+@keyframes popupBgIn  { from { opacity: 0; } to { opacity: 1; } }
+@keyframes popupBgOut { from { opacity: 1; } to { opacity: 0; } }

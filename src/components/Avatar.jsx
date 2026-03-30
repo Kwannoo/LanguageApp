@@ -1,15 +1,15 @@
-import { DEFAULT_AVATAR, getOptionSrc } from '../data/avatarConfig.js';
+import { DEFAULT_AVATAR, LAYER_ORDER, getOptionSrc } from '../data/avatarConfig.js';
 
 /**
  * Avatar – renders a layered character from a config object.
  * Props:
- *   config – { face, eyes, mouth, hair, bg } (falls back to defaults)
+ *   config – { face, eyes, mouth, hair, hats, accessories, bg } (falls back to defaults)
  *   size   – number (px), default 96
  */
 export default function Avatar({ config, size = 96 }) {
   const c = { ...DEFAULT_AVATAR, ...config };
 
-  const layers = ['face', 'eyes', 'mouth', 'hair']
+  const layers = LAYER_ORDER
     .map(cat => getOptionSrc(cat, c[cat]))
     .filter(Boolean);
 

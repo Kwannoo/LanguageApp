@@ -1,6 +1,7 @@
 /**
  * Avatar customisation options.
  * Each category lists the available choices with a label and image path.
+ * Items with a `price` field must be unlocked with coins before use.
  * Add new images to public/avatar/<category>/ and register them here.
  */
 
@@ -35,6 +36,20 @@ export const AVATAR_OPTIONS = {
     { id: 'hairafro',       label: 'Afro',        src: '/avatar/hair/hairafro.png' },
     { id: 'hairmiddlepart', label: 'Middle Part', src: '/avatar/hair/hairmiddlepart.png' },
   ],
+  hats: [
+    { id: 'none',          label: 'None',       src: '/avatar/eyes/none.png' },
+    { id: 'hatpartyhat',   label: 'Party Hat',  src: '/avatar/hats/hatpartyhat.png',  price: 100 },
+    { id: 'hatstrawhat',   label: 'Straw Hat',  src: '/avatar/hats/hatstrawhat.png',  price: 100 },
+    { id: 'hatdurag',      label: 'Durag',      src: '/avatar/hats/hatdurag.png',     price: 100 },
+  ],
+  accessories: [
+    { id: 'none',                  label: 'None',       src: '/avatar/eyes/none.png' },
+    { id: 'accessorybowtie',       label: 'Bow Tie',    src: '/avatar/accessories/accessorybowtie.png',       price: 100 },
+    { id: 'accessorypeacepale',    label: 'Peace (L)',   src: '/avatar/accessories/accessorypeacepale.png',    price: 100 },
+    { id: 'accessorypeaceyellow',  label: 'Peace (M)',   src: '/avatar/accessories/accessorypeaceyellow.png',  price: 100 },
+    { id: 'accessorypeaceblack',   label: 'Peace (D)',   src: '/avatar/accessories/accessorypeaceblack.png',   price: 100 },
+    { id: 'accessoryshine',        label: 'Shine',       src: '/avatar/accessories/accessoryshine.png',        price: 100 },
+  ],
 };
 
 export const BG_COLORS = [
@@ -47,8 +62,13 @@ export const DEFAULT_AVATAR = {
   eyes:  'eyesnormal',
   mouth: 'mouthsmile',
   hair:  'hairguy',
+  hats:  'none',
+  accessories: 'none',
   bg:    '#1CB0F6',
 };
+
+/** Render order for avatar layers (bottom to top) */
+export const LAYER_ORDER = ['face', 'eyes', 'mouth', 'hair', 'hats', 'accessories'];
 
 /** Look up the image src for a given category + id */
 export function getOptionSrc(category, id) {

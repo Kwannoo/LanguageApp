@@ -69,7 +69,7 @@ export default function Session({ onComplete, goalMinutes = 5, words: wordList =
       setTimeLeft(t => {
         if (t <= 1) {
           clearInterval(id);
-          setTimeout(() => onComplete({ ...scoreRef.current, sessionWords: sessionWordsRef.current }), 0);
+          setTimeout(() => onComplete({ ...scoreRef.current, sessionWords: sessionWordsRef.current, completed: true }), 0);
           return 0;
         }
         return t - 1;
@@ -241,7 +241,7 @@ export default function Session({ onComplete, goalMinutes = 5, words: wordList =
       <div style={{ textAlign: 'center', marginTop: '0.9rem' }}>
         <button
           style={{ background: 'none', border: 'none', fontSize: 12, color: 'var(--hint)', cursor: 'pointer', fontFamily: 'var(--font-sans)' }}
-          onClick={() => onComplete({ ...score, sessionWords: sessionWordsRef.current })}
+          onClick={() => onComplete({ ...score, sessionWords: sessionWordsRef.current, completed: false })}
         >
           End session early
         </button>

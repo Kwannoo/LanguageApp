@@ -76,6 +76,8 @@ export default function App() {
   const [discoverable, setDiscoverable]     = useState(true);
   const [referralCode, setReferralCode]     = useState('');
   const [streakFreezes, setStreakFreezes]   = useState(0);
+  const [coins, setCoins]                   = useState(0);
+  const [unlockedItems, setUnlockedItems]   = useState([]);
 
   const handleDiscoverableChange = async (val) => {
     setDiscoverable(val);
@@ -122,7 +124,7 @@ export default function App() {
   const loadUserData = useCallback(async (userId) => {
     const { data: profile } = await supabase
       .from('profiles')
-      .select('streak, last_session_date, srs_data, username, avatar, discoverable, referral_code, streak_freezes')
+      .select('streak, last_session_date, srs_data, username, avatar, discoverable, referral_code, streak_freezes, coins, unlocked_items')
       .eq('id', userId)
       .single();
 
@@ -132,6 +134,8 @@ export default function App() {
       setStreak(profile.streak ?? 0);
       setDiscoverable(profile.discoverable ?? true);
       setStreakFreezes(profile.streak_freezes ?? 0);
+      setCoins(profile.coins ?? 0);
+      setUnlockedItems(profile.unlocked_items ?? []);
       const code = await ensureReferralCode(userId, profile.referral_code);
       setReferralCode(code);
       const d = parseDate(profile.last_session_date);
@@ -145,7 +149,7 @@ export default function App() {
       // Auto-create profile for old accounts that don't have one
       const { data: { user: authUser } } = await supabase.auth.getUser();
       const fallbackName = (authUser?.email?.split('@')[0] ?? 'user').replace(/[^a-zA-Z0-9_]/g, '_');
-      const newProfile = { id: userId, username: fallbackName, avatar: DEFAULT_AVATAR, streak: 0, streak_freezes: 0, discoverable: true };
+      const newProfile = { id: userId, username: fallbackName, avatar: DEFAULT_AVATAR, streak: 0, streak_freezes: 0, coins: 0, unlocked_items: [], discoverable: true };
       await supabase.from('profiles').upsert(newProfile);
       setUsername(fallbackName);
       setAvatar(DEFAULT_AVATAR);
@@ -224,6 +228,17 @@ export default function App() {
     })();
   }, [online, user]);
 
+  const handleBuyItem = useCallback(async (itemId, price) => {
+    const newCoins = Math.max(0, coins - price);
+    const newUnlocked = [...unlockedItems, itemId];
+    setCoins(newCoins);
+    setUnlockedItems(newUnlocked);
+    if (user) {
+      const { error } = await supabase.from('profiles').update({ coins: newCoins, unlocked_items: newUnlocked }).eq('id', user.id);
+      if (error) console.error('Buy item sync failed:', error);
+    }
+  }, [coins, unlockedItems, user]);
+
   const handleAvatarSave = useCallback(async (newAvatar) => {
     setAvatar(newAvatar);
     setScreen('home');
@@ -252,6 +267,13 @@ export default function App() {
       setTodayDone(true);
     }
 
+    // Award coins only if session was completed (not quit early)
+    const earnedCoins = score.completed ? score.correct : 0;
+    const finalCoins = coins + earnedCoins;
+    setCoins(finalCoins);
+    // Store earned coins in score for display on Complete screen
+    score.earnedCoins = earnedCoins;
+
     // Refresh SRS data for progress display
     setSrsData(loadSRS());
 
@@ -261,7 +283,7 @@ export default function App() {
       const todayISO   = new Date().toISOString().split('T')[0];
       const currentSRS = loadSRS();
 
-      const profileData = { streak: finalStreak, last_session_date: todayISO, srs_data: currentSRS, streak_freezes: finalFreezes };
+      const profileData = { streak: finalStreak, last_session_date: todayISO, srs_data: currentSRS, streak_freezes: finalFreezes, coins: finalCoins };
       const historyData = { user_id: user.id, correct: score.correct, total: score.total };
 
       if (online) {
@@ -274,7 +296,7 @@ export default function App() {
         enqueue({ type: 'history', data: historyData });
       }
     }
-  }, [streak, lastDate, todayDone, user, online]);
+  }, [streak, lastDate, todayDone, user, online, coins]);
 
   if (authLoading) {
     return (
@@ -318,6 +340,7 @@ export default function App() {
           streakFreezes={streakFreezes}
           referralCode={referralCode}
           email={user?.email}
+          coins={coins}
         />
       )}
 
@@ -351,6 +374,9 @@ export default function App() {
           avatar={avatar}
           onSave={handleAvatarSave}
           onBack={() => setScreen('home')}
+          coins={coins}
+          unlockedItems={unlockedItems}
+          onBuyItem={handleBuyItem}
         />
       )}
 

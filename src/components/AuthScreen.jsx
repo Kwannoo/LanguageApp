@@ -4,7 +4,7 @@ import { resolveReferralCode, awardStreakFreeze, getReferralFromUrl } from '../u
 
 export default function AuthScreen() {
   const pendingRef = getReferralFromUrl();
-  const [mode, setMode]         = useState('login'); // 'login' | 'signup'
+  const [mode, setMode]         = useState('login'); // 'login' | 'signup' | 'forgot'
   const [email, setEmail]       = useState('');
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
@@ -18,6 +18,16 @@ export default function AuthScreen() {
     setError('');
     setMessage('');
     setLoading(true);
+
+    if (mode === 'forgot') {
+      const { error } = await supabase.auth.resetPasswordForEmail(email, {
+        redirectTo: window.location.origin,
+      });
+      if (error) setError(error.message);
+      else setMessage('Reset link sent! Check your inbox (and spam folder).');
+      setLoading(false);
+      return;
+    }
 
     if (mode === 'login') {
       const { error } = await supabase.auth.signInWithPassword({ email, password });
@@ -73,11 +83,6 @@ export default function AuthScreen() {
     setLoading(false);
   };
 
-  const switchMode = () => {
-    setMode(m => m === 'login' ? 'signup' : 'login');
-    setError('');
-    setMessage('');
-  };
 
   return (
     <div className="text-center">
@@ -115,7 +120,7 @@ export default function AuthScreen() {
         textAlign: 'left',
       }}>
         <h2 style={{ fontWeight: 700, fontSize: '1.1rem', marginBottom: '1.25rem', textAlign: 'center', color: 'var(--text)' }}>
-          {mode === 'login' ? 'Welcome back' : 'Create account'}
+          {mode === 'login' ? 'Welcome back' : mode === 'signup' ? 'Create account' : 'Forgot password'}
         </h2>
 
         <form onSubmit={handleSubmit}>
@@ -148,19 +153,23 @@ export default function AuthScreen() {
             autoComplete="email"
           />
 
-          <label style={{ fontSize: 12, fontWeight: 600, color: 'var(--muted)', display: 'block', marginBottom: 6 }}>
-            Password
-          </label>
-          <input
-            className="input-field"
-            type="password"
-            value={password}
-            onChange={e => setPassword(e.target.value)}
-            placeholder="••••••••"
-            required
-            minLength={6}
-            autoComplete={mode === 'login' ? 'current-password' : 'new-password'}
-          />
+          {mode !== 'forgot' && (
+            <>
+              <label style={{ fontSize: 12, fontWeight: 600, color: 'var(--muted)', display: 'block', marginBottom: 6 }}>
+                Password
+              </label>
+              <input
+                className="input-field"
+                type="password"
+                value={password}
+                onChange={e => setPassword(e.target.value)}
+                placeholder="••••••••"
+                required
+                minLength={6}
+                autoComplete={mode === 'login' ? 'current-password' : 'new-password'}
+              />
+            </>
+          )}
 
           {mode === 'signup' && (
             <>
@@ -180,6 +189,12 @@ export default function AuthScreen() {
             </>
           )}
 
+          {mode === 'forgot' && (
+            <p style={{ fontSize: 13, color: 'var(--muted)', marginBottom: '1rem' }}>
+              Enter your email and we'll send you a link to reset your password.
+            </p>
+          )}
+
           {error && (
             <p style={{ color: 'var(--danger-fg)', fontSize: 13, marginBottom: '0.75rem', fontWeight: 600 }}>
               {error}
@@ -192,14 +207,29 @@ export default function AuthScreen() {
           )}
 
           <button className="btn-primary" type="submit" disabled={loading}>
-            {loading ? '…' : mode === 'login' ? 'Sign in' : 'Create account'}
+            {loading ? '…' : mode === 'login' ? 'Sign in' : mode === 'signup' ? 'Create account' : 'Send reset link'}
           </button>
         </form>
 
-        <p style={{ textAlign: 'center', marginTop: '1.1rem', fontSize: 13, color: 'var(--muted)' }}>
-          {mode === 'login' ? "Don't have an account? " : 'Already have an account? '}
+        {mode === 'login' && (
+          <p style={{ textAlign: 'center', marginTop: '0.75rem', fontSize: 13 }}>
+            <button
+              onClick={() => { setMode('forgot'); setError(''); setMessage(''); }}
+              style={{
+                background: 'none', border: 'none', color: 'var(--muted)',
+                fontWeight: 600, cursor: 'pointer', fontFamily: 'var(--font-sans)',
+                fontSize: 13, padding: 0,
+              }}
+            >
+              Forgot password?
+            </button>
+          </p>
+        )}
+
+        <p style={{ textAlign: 'center', marginTop: '0.75rem', fontSize: 13, color: 'var(--muted)' }}>
+          {mode === 'forgot' ? 'Remember your password? ' : mode === 'login' ? "Don't have an account? " : 'Already have an account? '}
           <button
-            onClick={switchMode}
+            onClick={() => { setMode(mode === 'signup' ? 'login' : mode === 'login' ? 'signup' : 'login'); setError(''); setMessage(''); }}
             style={{
               background: 'none',
               border: 'none',
@@ -211,7 +241,7 @@ export default function AuthScreen() {
               padding: 0,
             }}
           >
-            {mode === 'login' ? 'Sign up' : 'Sign in'}
+            {mode === 'forgot' ? 'Sign in' : mode === 'login' ? 'Sign up' : 'Sign in'}
           </button>
         </p>
       </div>
