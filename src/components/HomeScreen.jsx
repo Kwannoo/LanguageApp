@@ -263,7 +263,7 @@ export default function HomeScreen({ streak, todayDone, username, avatar, words,
 
       {/* Logo + App title */}
       <div style={{ marginBottom: '1.5rem' }}>
-        <img src="/transparent-white-logo.png" alt="Vocably" style={{ width: 220, marginBottom: 8 }} />
+        <img src="/transparent-white-logo.png" alt="Vocardably" style={{ width: 220, marginBottom: 8 }} />
         <h1 style={{
           fontFamily: 'var(--font-serif)',
           fontSize: '2.25rem',
@@ -271,7 +271,7 @@ export default function HomeScreen({ streak, todayDone, username, avatar, words,
           color: 'var(--text)',
           marginBottom: 4,
         }}>
-          Vocably
+          Vocardably
         </h1>
         {username ? (
           <p className="text-muted">Welcome back, <strong style={{ color: 'var(--text)' }}>{username}</strong>!</p>
@@ -325,7 +325,7 @@ export default function HomeScreen({ streak, todayDone, username, avatar, words,
             onClick={() => {
               const url = `${window.location.origin}?ref=${referralCode}`;
               if (navigator.share) {
-                navigator.share({ title: 'Join Vocably!', text: 'Learn Dutch or Japanese with me on Vocably!', url });
+                navigator.share({ title: 'Join Vocardably!', text: 'Learn languages with me on Vocardably!', url });
               } else {
                 navigator.clipboard.writeText(url);
                 alert('Invite link copied!');

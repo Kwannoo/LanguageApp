@@ -90,9 +90,9 @@ export default function AuthScreen() {
           color: 'var(--text)',
           marginBottom: 4,
         }}>
-          Vocably
+          Vocardably
         </h1>
-        <p className="text-muted">Learn 3,000 words. Understand everything.</p>
+        <p className="text-muted">Learn languages, one card at a time.</p>
       </div>
 
       {/* Referral banner */}

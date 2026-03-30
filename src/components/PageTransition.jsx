@@ -1,23 +1,26 @@
 import { useEffect, useRef, useState } from 'react';
 
 export default function PageTransition({ screenKey, children }) {
-  const [displayed, setDisplayed] = useState({ key: screenKey, node: children });
-  const [phase, setPhase]         = useState('idle');
-  const pendingRef                = useRef(null);
-  const timerRef                  = useRef(null);
+  const [displayedKey, setDisplayedKey] = useState(screenKey);
+  const [phase, setPhase]               = useState('idle');
+  const pendingRef                      = useRef(null);
+  const timerRef                        = useRef(null);
+  const prevChildrenRef                 = useRef(children);
+
+  // Keep a ref of the previous children for exit animation
+  if (screenKey === displayedKey) {
+    prevChildrenRef.current = children;
+  }
 
   useEffect(() => {
-    if (screenKey === displayed.key) {
-      setDisplayed(d => ({ ...d, node: children }));
-      return;
-    }
+    if (screenKey === displayedKey) return;
 
-    pendingRef.current = { key: screenKey, node: children };
+    pendingRef.current = screenKey;
     setPhase('exiting');
 
     clearTimeout(timerRef.current);
     timerRef.current = setTimeout(() => {
-      setDisplayed(pendingRef.current);
+      setDisplayedKey(pendingRef.current);
       setPhase('entering');
       timerRef.current = setTimeout(() => setPhase('idle'), 400);
     }, 220);
@@ -30,7 +33,7 @@ export default function PageTransition({ screenKey, children }) {
 
   return (
     <div className={`pt-wrapper ${cls}`}>
-      {displayed.node}
+      {phase === 'exiting' ? prevChildrenRef.current : children}
     </div>
   );
 }

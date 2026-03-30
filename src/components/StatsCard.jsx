@@ -34,7 +34,7 @@ export default function StatsCard({ username, streak, words, srsData, language, 
     // App name
     ctx.fillStyle = '#1CB0F6';
     ctx.font = 'bold 20px system-ui, sans-serif';
-    ctx.fillText('Vocably', 36, 46);
+    ctx.fillText('Vocardably', 36, 46);
 
     // Username
     ctx.fillStyle = '#E8F4FF';
@@ -96,14 +96,14 @@ export default function StatsCard({ username, streak, words, srsData, language, 
     if (!canvas) return;
 
     canvas.toBlob(async (blob) => {
-      const file = new File([blob], 'vocably-stats.png', { type: 'image/png' });
+      const file = new File([blob], 'vocardably-stats.png', { type: 'image/png' });
       if (navigator.canShare?.({ files: [file] })) {
-        await navigator.share({ files: [file], title: `${username}'s Vocably stats` });
+        await navigator.share({ files: [file], title: `${username}'s Vocardably stats` });
       } else {
         // Fallback: download
         const a = document.createElement('a');
         a.href = URL.createObjectURL(blob);
-        a.download = 'vocably-stats.png';
+        a.download = 'vocardably-stats.png';
         a.click();
       }
     }, 'image/png');

@@ -125,7 +125,7 @@ export default function FriendsScreen({ user, referralCode = '', onBack }) {
       {/* Tabs */}
       <div className="goal-picker" style={{ marginBottom: '1.25rem', justifyContent: 'center' }}>
         <button className={`goal-pill${tab === 'friends' ? ' active' : ''}`} onClick={() => setTab('friends')}>Friends</button>
-        <button className={`goal-pill${tab === 'leaderboard' ? ' active' : ''}`} onClick={() => setTab('leaderboard')}>🏆 Leaderboard</button>
+        <button className={`goal-pill${tab === 'leaderboard' ? ' active' : ''}`} onClick={() => setTab('leaderboard')}>🏆 Friends Leaderboard</button>
       </div>
 
       {/* ── Leaderboard tab ── */}
@@ -317,7 +317,7 @@ export default function FriendsScreen({ user, referralCode = '', onBack }) {
             onClick={() => {
               const url = `${window.location.origin}?ref=${referralCode}`;
               if (navigator.share) {
-                navigator.share({ title: 'Join Vocably!', text: 'Learn Dutch or Japanese with me!', url });
+                navigator.share({ title: 'Join Vocardably!', text: 'Learn languages with me on Vocardably!', url });
               } else {
                 navigator.clipboard.writeText(url);
                 alert('Invite link copied!');
