@@ -140,6 +140,16 @@ export default function App() {
         saveSRS(profile.srs_data);
         setSrsData(profile.srs_data);
       }
+    } else {
+      // Auto-create profile for old accounts that don't have one
+      const { data: { user: authUser } } = await supabase.auth.getUser();
+      const fallbackName = (authUser?.email?.split('@')[0] ?? 'user').replace(/[^a-zA-Z0-9_]/g, '_');
+      const newProfile = { id: userId, username: fallbackName, avatar: DEFAULT_AVATAR, streak: 0, streak_freezes: 0, discoverable: true };
+      await supabase.from('profiles').upsert(newProfile);
+      setUsername(fallbackName);
+      setAvatar(DEFAULT_AVATAR);
+      const code = await ensureReferralCode(userId, null);
+      setReferralCode(code);
     }
 
     const { data: rows } = await supabase
@@ -292,6 +302,7 @@ export default function App() {
           onDiscoverableChange={handleDiscoverableChange}
           streakFreezes={streakFreezes}
           referralCode={referralCode}
+          email={user?.email}
         />
       )}
 

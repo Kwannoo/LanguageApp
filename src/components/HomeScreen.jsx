@@ -2,6 +2,7 @@ import { useState } from 'react';
 import Avatar from './Avatar.jsx';
 import StatsCard from './StatsCard.jsx';
 import { computeProgress } from '../utils/srs.js';
+import { supabase } from '../lib/supabase.js';
 
 const LANGUAGE_OPTIONS = [
   { value: 'nl', label: '🇳🇱 Dutch', flag: '🇳🇱' },
@@ -20,7 +21,7 @@ const DIRECTION_MAP = {
   ],
 };
 
-export default function HomeScreen({ streak, todayDone, username, avatar, words, srsData, online, onStart, onHistory, onLogout, goalMinutes, onGoalChange, language, onLanguageChange, direction, onDirectionChange, onFriends, onWords, onEditAvatar, voice, onVoiceChange, showSynonyms, onSynonymsChange, discoverable, onDiscoverableChange, streakFreezes = 0, referralCode = '' }) {
+export default function HomeScreen({ streak, todayDone, username, avatar, words, srsData, online, onStart, onHistory, onLogout, goalMinutes, onGoalChange, language, onLanguageChange, direction, onDirectionChange, onFriends, onWords, onEditAvatar, voice, onVoiceChange, showSynonyms, onSynonymsChange, discoverable, onDiscoverableChange, streakFreezes = 0, referralCode = '', email = '' }) {
   const [menuOpen, setMenuOpen]       = useState(false);
   const [menuClosing, setMenuClosing] = useState(false);
   const [showStatsCard, setShowStatsCard] = useState(false);
@@ -231,6 +232,35 @@ export default function HomeScreen({ streak, todayDone, username, avatar, words,
           <p style={{ fontSize: 12, color: 'var(--hint)', marginTop: 6 }}>
             When hidden, others cannot find you by searching
           </p>
+        </div>
+
+        {/* Account */}
+        <div style={{ marginBottom: '1.25rem' }}>
+          <p style={{ fontSize: 14, color: 'var(--hint)', textTransform: 'uppercase', letterSpacing: '0.1em', marginBottom: '0.5rem' }}>
+            Account
+          </p>
+          <div style={{
+            background: 'var(--bg)', border: '1px solid var(--border)',
+            borderRadius: 'var(--radius-sm)', padding: '12px 14px',
+          }}>
+            <p style={{ fontSize: 12, color: 'var(--hint)', marginBottom: 2 }}>Email</p>
+            <p style={{ fontSize: 14, fontWeight: 600, color: 'var(--text)', wordBreak: 'break-all' }}>{email}</p>
+          </div>
+          <button
+            onClick={async () => {
+              await supabase.auth.resetPasswordForEmail(email);
+              alert('Password reset email sent! Check your inbox.');
+            }}
+            style={{
+              marginTop: '0.5rem', width: '100%',
+              background: 'none', border: '1px solid var(--border)',
+              borderRadius: 'var(--radius-sm)', padding: '8px 14px',
+              fontSize: 13, fontWeight: 600, color: 'var(--text)',
+              cursor: 'pointer', fontFamily: 'var(--font-sans)',
+            }}
+          >
+            Change password
+          </button>
         </div>
 
         {/* Sign out */}
