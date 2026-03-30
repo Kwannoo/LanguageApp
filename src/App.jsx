@@ -166,11 +166,21 @@ export default function App() {
   }, []);
 
   useEffect(() => {
+    // Check if this is a password recovery redirect (hash contains type=recovery)
+    const hash = window.location.hash;
+    const isRecovery = hash.includes('type=recovery');
+
     supabase.auth.getSession().then(({ data: { session } }) => {
       const u = session?.user ?? null;
       setUser(u);
-      if (u) Promise.all([loadUserData(u.id), loadWords()]).finally(() => setAuthLoading(false));
-      else   setAuthLoading(false);
+      if (isRecovery && u) {
+        setScreen('resetPassword');
+        setAuthLoading(false);
+      } else if (u) {
+        Promise.all([loadUserData(u.id), loadWords()]).finally(() => setAuthLoading(false));
+      } else {
+        setAuthLoading(false);
+      }
     });
 
     const { data: { subscription } } = supabase.auth.onAuthStateChange((event, session) => {
@@ -178,6 +188,7 @@ export default function App() {
       setUser(u);
       if (event === 'PASSWORD_RECOVERY') {
         setScreen('resetPassword');
+        return;
       }
       if (u) {
         loadUserData(u.id);
