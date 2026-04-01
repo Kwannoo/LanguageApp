@@ -1,6 +1,7 @@
 import { useState, useEffect, useCallback } from 'react';
 import { supabase } from '../lib/supabase.js';
 import Avatar from './Avatar.jsx';
+import { MASTERED_STREAK } from '../utils/srs.js';
 
 export default function FriendsScreen({ user, referralCode = '', onBack }) {
   const [tab, setTab]                     = useState('friends'); // 'friends' | 'leaderboard'
@@ -12,6 +13,8 @@ export default function FriendsScreen({ user, referralCode = '', onBack }) {
   const [outgoing, setOutgoing]           = useState([]);
   const [loading, setLoading]             = useState(true);
   const [leaderboard, setLeaderboard]     = useState([]);
+  const [selectedFriend, setSelectedFriend] = useState(null);
+  const [loadingProfile, setLoadingProfile] = useState(false);
 
   const loadFriends = useCallback(async () => {
     // All accepted or pending requests involving this user
@@ -106,6 +109,31 @@ export default function FriendsScreen({ user, referralCode = '', onBack }) {
   const declineRequest = async (requestId) => {
     await supabase.from('friend_requests').delete().eq('id', requestId);
     loadFriends();
+  };
+
+  const openFriendProfile = async (friendId) => {
+    setLoadingProfile(true);
+    setSelectedFriend(null);
+    const { data } = await supabase
+      .from('profiles')
+      .select('id, username, streak, avatar, srs_data')
+      .eq('id', friendId)
+      .single();
+    if (data) {
+      const srs = data.srs_data || {};
+      let mastered = 0;
+      let totalWords = 0;
+      const langs = new Set();
+      for (const [key, entry] of Object.entries(srs)) {
+        totalWords++;
+        if ((entry.streak ?? 0) >= MASTERED_STREAK) mastered++;
+        // Detect language by key characteristics (Japanese keys contain kanji/kana)
+        if (/[\u3000-\u9fff\uff00-\uffef]/.test(key)) langs.add('Japanese');
+        else langs.add('Dutch');
+      }
+      setSelectedFriend({ ...data, mastered, totalWords, languages: [...langs] });
+    }
+    setLoadingProfile(false);
   };
 
   const removeFriend = async (friendId) => {
@@ -275,7 +303,7 @@ export default function FriendsScreen({ user, referralCode = '', onBack }) {
             ) : (
               <div className="history-list">
                 {friends.map(p => (
-                  <div key={p.id} className="history-row">
+                  <div key={p.id} className="history-row" style={{ cursor: 'pointer' }} onClick={() => openFriendProfile(p.id)}>
                     <div style={{ display: 'flex', alignItems: 'center', gap: '0.65rem' }}>
                       <Avatar config={p.avatar} size={40} />
                       <div>
@@ -284,7 +312,7 @@ export default function FriendsScreen({ user, referralCode = '', onBack }) {
                       </div>
                     </div>
                     <button className="btn-ghost" style={{ padding: '7px 14px', fontSize: 12 }}
-                      onClick={() => removeFriend(p.id)}>
+                      onClick={(e) => { e.stopPropagation(); removeFriend(p.id); }}>
                       Remove
                     </button>
                   </div>
@@ -328,6 +356,86 @@ export default function FriendsScreen({ user, referralCode = '', onBack }) {
           </button>
         </div>
       )}
+      {/* Friend profile popup */}
+      {(selectedFriend || loadingProfile) && (<>
+        <div
+          onClick={() => setSelectedFriend(null)}
+          style={{
+            position: 'fixed', inset: 0,
+            background: 'rgba(0,0,0,0.5)',
+            zIndex: 200,
+            animation: 'popupBgIn 0.2s ease forwards',
+          }}
+        />
+        <div style={{
+          position: 'fixed',
+          top: '50%', left: '50%',
+          transform: 'translate(-50%, -50%)',
+          zIndex: 201,
+          width: 'min(320px, 90vw)',
+          background: 'var(--surface)',
+          border: '2px solid var(--border)',
+          borderRadius: 16,
+          padding: '1.75rem 1.5rem',
+          textAlign: 'center',
+          animation: 'popupIn 0.25s ease forwards',
+        }}>
+          {loadingProfile ? (
+            <p style={{ color: 'var(--muted)', padding: '2rem 0' }}>Loading...</p>
+          ) : selectedFriend && (
+            <>
+              <div style={{ display: 'flex', justifyContent: 'center' }}>
+                <Avatar config={selectedFriend.avatar} size={100} />
+              </div>
+              <p style={{ fontWeight: 800, fontSize: '1.25rem', color: 'var(--text)', marginTop: '0.75rem' }}>
+                {selectedFriend.username}
+              </p>
+
+              <div className="stats-row" style={{ marginTop: '1rem', marginBottom: '1rem' }}>
+                <div className="stat-card">
+                  <p className="label">Streak</p>
+                  <p className="number" style={{ color: (selectedFriend.streak ?? 0) > 0 ? 'var(--amber)' : 'var(--text)' }}>
+                    🔥 {selectedFriend.streak ?? 0}
+                  </p>
+                </div>
+                <div className="stat-card">
+                  <p className="label">Mastered</p>
+                  <p className="number" style={{ color: 'var(--success-fg)' }}>
+                    📚 {selectedFriend.mastered}
+                  </p>
+                </div>
+              </div>
+
+              {/* Languages */}
+              <div style={{ marginBottom: '1.25rem' }}>
+                <p style={{ fontSize: 12, color: 'var(--hint)', textTransform: 'uppercase', letterSpacing: '0.1em', marginBottom: '0.4rem' }}>
+                  Learning
+                </p>
+                <div style={{ display: 'flex', gap: '0.4rem', justifyContent: 'center', flexWrap: 'wrap' }}>
+                  {selectedFriend.languages.length > 0 ? selectedFriend.languages.map(lang => (
+                    <span key={lang} style={{
+                      fontSize: 13, fontWeight: 600,
+                      padding: '4px 12px',
+                      borderRadius: 'var(--radius-sm)',
+                      background: 'var(--bg)',
+                      border: '1px solid var(--border)',
+                      color: 'var(--text)',
+                    }}>
+                      {lang === 'Japanese' ? '🇯🇵' : '🇳🇱'} {lang}
+                    </span>
+                  )) : (
+                    <span style={{ fontSize: 13, color: 'var(--muted)' }}>No activity yet</span>
+                  )}
+                </div>
+              </div>
+
+              <button className="btn-ghost" onClick={() => setSelectedFriend(null)} style={{ width: '100%' }}>
+                Close
+              </button>
+            </>
+          )}
+        </div>
+      </>)}
     </div>
   );
 }

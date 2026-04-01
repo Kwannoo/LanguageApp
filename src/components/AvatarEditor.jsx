@@ -49,7 +49,7 @@ export default function AvatarEditor({ avatar, onSave, onBack, coins = 0, unlock
 
   const handleOptionClick = (opt) => {
     if (isLocked(opt)) {
-      setBuyPopup({ opt, canAfford: coins >= opt.price });
+      setBuyPopup({ opt, category: tab, canAfford: coins >= opt.price });
       return;
     }
     update(tab, opt.id);
@@ -204,15 +204,9 @@ export default function AvatarEditor({ avatar, onSave, onBack, coins = 0, unlock
             textAlign: 'center',
             animation: `${popupClosing ? 'popupOut' : 'popupIn'} 0.25s ease forwards`,
           }}>
-            {/* Item preview */}
-            <div style={{
-              width: 90, height: 90, margin: '0 auto 1rem',
-              background: 'var(--bg)',
-              borderRadius: 12,
-              display: 'flex', alignItems: 'center', justifyContent: 'center',
-              border: '2px solid var(--border)',
-            }}>
-              <img src={buyPopup.opt.src} alt={buyPopup.opt.label} style={{ width: 70, height: 70, objectFit: 'contain' }} />
+            {/* Avatar preview with item equipped */}
+            <div style={{ margin: '0 auto 1rem' }}>
+              <Avatar config={{ ...draft, [buyPopup.category]: buyPopup.opt.id }} size={110} />
             </div>
 
             <p style={{ fontWeight: 800, fontSize: '1.1rem', color: 'var(--text)', marginBottom: 4 }}>

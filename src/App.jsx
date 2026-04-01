@@ -228,6 +228,18 @@ export default function App() {
     })();
   }, [online, user]);
 
+  const handleBuyFreeze = useCallback(async () => {
+    if (coins < 50 || streakFreezes >= 3) return;
+    const newCoins = coins - 50;
+    const newFreezes = streakFreezes + 1;
+    setCoins(newCoins);
+    setStreakFreezes(newFreezes);
+    if (user) {
+      const { error } = await supabase.from('profiles').update({ coins: newCoins, streak_freezes: newFreezes }).eq('id', user.id);
+      if (error) console.error('Buy freeze sync failed:', error);
+    }
+  }, [coins, streakFreezes, user]);
+
   const handleBuyItem = useCallback(async (itemId, price) => {
     const newCoins = Math.max(0, coins - price);
     const newUnlocked = [...unlockedItems, itemId];
@@ -341,6 +353,7 @@ export default function App() {
           referralCode={referralCode}
           email={user?.email}
           coins={coins}
+          onBuyFreeze={handleBuyFreeze}
         />
       )}
 

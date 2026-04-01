@@ -21,10 +21,14 @@ const DIRECTION_MAP = {
   ],
 };
 
-export default function HomeScreen({ streak, todayDone, username, avatar, words, srsData, online, onStart, onHistory, onLogout, goalMinutes, onGoalChange, language, onLanguageChange, direction, onDirectionChange, onFriends, onWords, onEditAvatar, voice, onVoiceChange, showSynonyms, onSynonymsChange, discoverable, onDiscoverableChange, streakFreezes = 0, referralCode = '', email = '', coins = 0 }) {
+const FREEZE_PRICE = 50;
+
+export default function HomeScreen({ streak, todayDone, username, avatar, words, srsData, online, onStart, onHistory, onLogout, goalMinutes, onGoalChange, language, onLanguageChange, direction, onDirectionChange, onFriends, onWords, onEditAvatar, voice, onVoiceChange, showSynonyms, onSynonymsChange, discoverable, onDiscoverableChange, streakFreezes = 0, referralCode = '', email = '', coins = 0, onBuyFreeze }) {
   const [menuOpen, setMenuOpen]       = useState(false);
   const [menuClosing, setMenuClosing] = useState(false);
   const [showStatsCard, setShowStatsCard] = useState(false);
+  const [showCoinInfo, setShowCoinInfo]   = useState(false);
+  const [showFreezeShop, setShowFreezeShop] = useState(false);
   const directionOptions = DIRECTION_MAP[language] || DIRECTION_MAP.nl;
 
   const closeMenu = () => {
@@ -35,18 +39,23 @@ export default function HomeScreen({ streak, todayDone, username, avatar, words,
   return (
     <div className="text-center" style={{ position: 'relative' }}>
       {/* Coin indicator — top left */}
-      <div style={{
-        position: 'absolute', top: 0, left: 0,
-        display: 'flex', alignItems: 'center', gap: 4,
-        background: 'var(--surface)',
-        border: '2px solid var(--border)',
-        borderRadius: 'var(--radius-sm)',
-        padding: '6px 10px',
-        zIndex: 10,
-      }}>
+      <button
+        onClick={() => setShowCoinInfo(true)}
+        style={{
+          position: 'absolute', top: 0, left: 0,
+          display: 'flex', alignItems: 'center', gap: 4,
+          background: 'var(--surface)',
+          border: '2px solid var(--border)',
+          borderRadius: 'var(--radius-sm)',
+          padding: '6px 10px',
+          zIndex: 10,
+          cursor: 'pointer',
+          fontFamily: 'var(--font-sans)',
+        }}
+      >
         <img src="/avatar/vocacoin.png" alt="" style={{ width: 20, height: 20 }} />
         <span style={{ fontWeight: 700, fontSize: 14, color: 'var(--amber)' }}>{coins}</span>
-      </div>
+      </button>
 
       {/* Menu button — top right */}
       <button
@@ -248,6 +257,30 @@ export default function HomeScreen({ streak, todayDone, username, avatar, words,
           </p>
         </div>
 
+        {/* Streak Freezes */}
+        <div style={{ marginBottom: '1.25rem' }}>
+          <p style={{ fontSize: 14, color: 'var(--hint)', textTransform: 'uppercase', letterSpacing: '0.1em', marginBottom: '0.5rem' }}>
+            Streak Freezes
+          </p>
+          <button
+            onClick={() => setShowFreezeShop(true)}
+            style={{
+              width: '100%', display: 'flex', alignItems: 'center', justifyContent: 'space-between',
+              background: 'var(--bg)', border: '1px solid var(--border)',
+              borderRadius: 'var(--radius-sm)', padding: '12px 14px',
+              cursor: 'pointer', fontFamily: 'var(--font-sans)',
+            }}
+          >
+            <span style={{ fontSize: 14, fontWeight: 600, color: 'var(--text)' }}>
+              🧊 {streakFreezes} freeze{streakFreezes !== 1 ? 's' : ''}
+            </span>
+            <span style={{ fontSize: 12, color: 'var(--amber)', fontWeight: 600 }}>Buy more →</span>
+          </button>
+          <p style={{ fontSize: 12, color: 'var(--hint)', marginTop: 6 }}>
+            Freezes protect your streak when you miss a day
+          </p>
+        </div>
+
         {/* Account */}
         <div style={{ marginBottom: '1.25rem' }}>
           <p style={{ fontSize: 14, color: 'var(--hint)', textTransform: 'uppercase', letterSpacing: '0.1em', marginBottom: '0.5rem' }}>
@@ -339,79 +372,29 @@ export default function HomeScreen({ streak, todayDone, username, avatar, words,
       )}
 
       {/* Stats */}
-      <div className="stats-row">
-        <div className="stat-card">
-          <p className="label">Streak</p>
-          <p className="number" style={{ color: streak > 0 ? 'var(--amber)' : 'var(--text)' }}>
-            🔥 {streak}
-          </p>
-        </div>
-        {streakFreezes > 0 && (
-          <div className="stat-card">
-            <p className="label">Freezes</p>
-            <p className="number" style={{ color: 'var(--amber)' }}>🧊 {streakFreezes}</p>
-          </div>
-        )}
-      </div>
-
-      {/* Invite banner */}
-      {referralCode && (
-        <div style={{
-          background: 'var(--surface)', border: '1px solid var(--border)',
-          borderRadius: 'var(--radius-md)', padding: '0.75rem 1.25rem',
-          marginBottom: '1.25rem', display: 'flex', alignItems: 'center',
-          justifyContent: 'space-between', gap: '0.75rem',
-        }}>
-          <div style={{ textAlign: 'left' }}>
-            <p style={{ fontSize: 13, fontWeight: 700, color: 'var(--text)' }}>Invite a friend</p>
-            <p style={{ fontSize: 12, color: 'var(--muted)' }}>Both get a streak freeze 🧊</p>
-          </div>
-          <button
-            className="btn-ghost"
-            style={{ padding: '7px 14px', fontSize: 13, flexShrink: 0 }}
-            onClick={() => {
-              const url = `${window.location.origin}?ref=${referralCode}`;
-              if (navigator.share) {
-                navigator.share({ title: 'Join Vocardably!', text: 'Learn languages with me on Vocardably!', url });
-              } else {
-                navigator.clipboard.writeText(url);
-                alert('Invite link copied!');
-              }
-            }}
-          >
-            Share invite
-          </button>
-        </div>
-      )}
-
-      {/* Progress */}
-      {words.length > 0 && (() => {
-        const { total, learned, inProgress } = computeProgress(words, srsData);
-        const pct = Math.round((learned / total) * 100);
-        const inPct = Math.round((inProgress / total) * 100);
-        return (
-          <div style={{ marginBottom: '1.25rem' }}>
-            <div style={{
-              background: 'var(--surface)', border: '1px solid var(--border)',
-              borderRadius: 'var(--radius-md)', padding: '0.9rem 1.25rem',
-            }}>
-              <p style={{ fontSize: 14, fontWeight: 600, marginBottom: 8 }}>
-                {learned} / {total} words learned
+      {(() => {
+        const { mastered, inProgress } = words.length > 0 ? computeProgress(words, srsData) : { mastered: 0, inProgress: 0 };
+        return (<>
+          <div className="stats-row">
+            <div className="stat-card">
+              <p className="label">Streak</p>
+              <p className="number" style={{ color: streak > 0 ? 'var(--amber)' : 'var(--text)' }}>
+                🔥 {streak}
               </p>
-              <div style={{
-                height: 10, borderRadius: 5,
-                background: 'var(--border)', overflow: 'hidden',
-                display: 'flex',
-              }}>
-                <div style={{ width: `${pct}%`, background: 'var(--success-fg)', transition: 'width 0.3s' }} />
-                <div style={{ width: `${inPct}%`, background: 'var(--amber)', transition: 'width 0.3s' }} />
-              </div>
-              <p style={{ fontSize: 14, color: 'var(--hint)', marginTop: 6 }}>
-                {inProgress} in progress · {total - learned - inProgress} unseen
+            </div>
+            <div className="stat-card">
+              <p className="label">Mastered</p>
+              <p className="number" style={{ color: 'var(--success-fg)' }}>
+                📚 {mastered}
               </p>
             </div>
           </div>
-        );
+          {inProgress > 0 && (
+            <p style={{ fontSize: 12, color: 'var(--hint)', marginBottom: '1.25rem', marginTop: '-0.5rem' }}>
+              {inProgress} words in progress
+            </p>
+          )}
+        </>);
       })()}
 
       {/* Today's status */}
@@ -428,10 +411,27 @@ export default function HomeScreen({ streak, todayDone, username, avatar, words,
         <button className="btn-ghost" onClick={() => { closeMenu(); onWords(); }}>Words</button>
         <button className="btn-ghost" onClick={() => { closeMenu(); onFriends(); }}>Friends</button>
       </div>
-      <div style={{ marginBottom: '1.5rem' }}>
+      <div style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem', marginBottom: '1.5rem' }}>
         <button className="btn-ghost" style={{ width: '100%' }} onClick={() => setShowStatsCard(true)}>
           📊 Share my stats
         </button>
+        {referralCode && (
+          <button
+            className="btn-ghost"
+            style={{ width: '100%' }}
+            onClick={() => {
+              const url = `${window.location.origin}?ref=${referralCode}`;
+              if (navigator.share) {
+                navigator.share({ title: 'Join Vocardably!', text: 'Learn languages with me on Vocardably!', url });
+              } else {
+                navigator.clipboard.writeText(url);
+                alert('Invite link copied!');
+              }
+            }}
+          >
+            🧊 Invite a friend — you both earn a freeze!
+          </button>
+        )}
       </div>
 
       {/* Stats card modal */}
@@ -451,8 +451,128 @@ export default function HomeScreen({ streak, todayDone, username, avatar, words,
         <p>① A {language === 'ja' ? 'Japanese' : 'Dutch'} word appears on the card</p>
         <p>② Type the translation and press Enter</p>
         <p>③ The card flips to reveal the correct answer</p>
-        <p>④ Practice every day to build your streak</p>
+        <p>④ Practice every day to learn your language and build your streak!</p>
       </div>
+
+      {/* Coin info popup */}
+      {showCoinInfo && (<>
+        <div
+          onClick={() => setShowCoinInfo(false)}
+          style={{
+            position: 'fixed', inset: 0,
+            background: 'rgba(0,0,0,0.5)',
+            zIndex: 200,
+            animation: 'popupBgIn 0.2s ease forwards',
+          }}
+        />
+        <div style={{
+          position: 'fixed',
+          top: '50%', left: '50%',
+          transform: 'translate(-50%, -50%)',
+          zIndex: 201,
+          width: 'min(320px, 90vw)',
+          background: 'var(--surface)',
+          border: '2px solid var(--border)',
+          borderRadius: 16,
+          padding: '1.75rem 1.5rem',
+          textAlign: 'left',
+          animation: 'popupIn 0.25s ease forwards',
+        }}>
+          <div style={{ textAlign: 'center', marginBottom: '1rem' }}>
+            <img src="/avatar/vocacoin.png" alt="" style={{ width: 40, height: 40 }} />
+            <p style={{ fontWeight: 800, fontSize: '1.2rem', color: 'var(--text)', marginTop: 6 }}>VocaCoins</p>
+          </div>
+          <div className="how-it-works" style={{ marginBottom: '1rem' }}>
+            <p>① Answer words correctly to earn coins</p>
+            <p>② Each correct answer = 1 coin</p>
+            <p>③ Finish the full session to collect your coins</p>
+            <p>④ Quitting early means no coins earned</p>
+            <p>⑤ Spend coins to unlock hats & accessories</p>
+          </div>
+          <div style={{ textAlign: 'center' }}>
+            <button className="btn-primary" onClick={() => setShowCoinInfo(false)} style={{ width: '100%' }}>
+              Got it!
+            </button>
+          </div>
+        </div>
+      </>)}
+
+      {/* Freeze shop popup */}
+      {showFreezeShop && (<>
+        <div
+          onClick={() => setShowFreezeShop(false)}
+          style={{
+            position: 'fixed', inset: 0,
+            background: 'rgba(0,0,0,0.5)',
+            zIndex: 200,
+            animation: 'popupBgIn 0.2s ease forwards',
+          }}
+        />
+        <div style={{
+          position: 'fixed',
+          top: '50%', left: '50%',
+          transform: 'translate(-50%, -50%)',
+          zIndex: 201,
+          width: 'min(320px, 90vw)',
+          background: 'var(--surface)',
+          border: '2px solid var(--border)',
+          borderRadius: 16,
+          padding: '1.75rem 1.5rem',
+          textAlign: 'center',
+          animation: 'popupIn 0.25s ease forwards',
+        }}>
+          <p style={{ fontSize: '2.5rem', marginBottom: '0.25rem' }}>🧊</p>
+          <p style={{ fontWeight: 800, fontSize: '1.2rem', color: 'var(--text)', marginBottom: 4 }}>
+            Streak Freezes
+          </p>
+          <p style={{ fontSize: 13, color: 'var(--muted)', marginBottom: '1rem' }}>
+            You have <strong style={{ color: 'var(--text)' }}>{streakFreezes}</strong> freeze{streakFreezes !== 1 ? 's' : ''} (max 3)
+          </p>
+
+          {streakFreezes >= 3 ? (
+            <div style={{
+              background: 'var(--bg)', border: '1px solid var(--border)',
+              borderRadius: 'var(--radius-sm)', padding: '12px 14px',
+              marginBottom: '1rem',
+            }}>
+              <p style={{ fontSize: 13, color: 'var(--hint)', fontWeight: 600 }}>
+                You already have the maximum amount of freezes!
+              </p>
+            </div>
+          ) : (
+            <button
+              className="btn-primary"
+              style={{ width: '100%', marginBottom: '0.75rem', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 6 }}
+              onClick={() => {
+                if (coins < FREEZE_PRICE) return;
+                onBuyFreeze();
+                setShowFreezeShop(false);
+              }}
+              disabled={coins < FREEZE_PRICE}
+            >
+              <span>Buy 1 freeze</span>
+              <span style={{ display: 'inline-flex', alignItems: 'center', gap: 3 }}>
+                <img src="/avatar/vocacoin.png" alt="" style={{ width: 16, height: 16 }} />
+                {FREEZE_PRICE}
+              </span>
+            </button>
+          )}
+
+          {coins < FREEZE_PRICE && streakFreezes < 3 && (
+            <p style={{ fontSize: 12, color: 'var(--danger-fg)', marginBottom: '0.75rem' }}>
+              Not enough coins ({coins}/{FREEZE_PRICE})
+            </p>
+          )}
+
+          <p style={{ fontSize: 12, color: 'var(--hint)', marginBottom: '1rem' }}>
+            Your balance: <strong style={{ color: 'var(--amber)' }}>{coins}</strong> coins
+          </p>
+
+          <button className="btn-ghost" onClick={() => setShowFreezeShop(false)} style={{ width: '100%' }}>
+            Close
+          </button>
+        </div>
+      </>)}
     </div>
   );
 }

@@ -8,7 +8,7 @@ export default function StatsCard({ username, streak, words, srsData, language, 
   const canvasRef = useRef(null);
   const [ready, setReady] = useState(false);
 
-  const { learned, total } = computeProgress(words, srsData);
+  const { mastered, total } = computeProgress(words, srsData);
   const langLabel = language === 'ja' ? 'Japanese' : 'Dutch';
 
   useEffect(() => {
@@ -52,8 +52,8 @@ export default function StatsCard({ username, streak, words, srsData, language, 
     // Stats
     const stats = [
       { label: 'Streak', value: `🔥 ${streak} days` },
-      { label: `${langLabel} words learned`, value: `📚 ${learned} / ${total}` },
-      { label: 'Progress', value: `${total > 0 ? Math.round((learned / total) * 100) : 0}%` },
+      { label: `${langLabel} words mastered`, value: `📚 ${mastered} / ${total}` },
+      { label: 'Progress', value: `${total > 0 ? Math.round((mastered / total) * 100) : 0}%` },
     ];
 
     stats.forEach((s, i) => {
@@ -71,7 +71,7 @@ export default function StatsCard({ username, streak, words, srsData, language, 
     ctx.fillStyle = '#2A4A6A';
     ctx.roundRect(barX, barY, barW, barH, 6);
     ctx.fill();
-    const pct = total > 0 ? learned / total : 0;
+    const pct = total > 0 ? mastered / total : 0;
     if (pct > 0) {
       ctx.fillStyle = '#1CB0F6';
       ctx.roundRect(barX, barY, barW * pct, barH, 6);
@@ -89,7 +89,7 @@ export default function StatsCard({ username, streak, words, srsData, language, 
     ctx.fillText(window.location.origin, 36, 315);
 
     setReady(true);
-  }, [username, streak, learned, total, langLabel]);
+  }, [username, streak, mastered, total, langLabel]);
 
   const handleShare = async () => {
     const canvas = canvasRef.current;

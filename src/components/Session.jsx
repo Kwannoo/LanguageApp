@@ -54,6 +54,8 @@ export default function Session({ onComplete, goalMinutes = 5, words: wordList =
   const inputRef = useRef(null);
   const scoreRef = useRef({ correct: 0, total: 0 });
   const sessionWordsRef = useRef([]);
+  const [paused, setPaused] = useState(false);
+  const timerIdRef = useRef(null);
 
   useEffect(() => { scoreRef.current = score; }, [score]);
 
@@ -64,19 +66,31 @@ export default function Session({ onComplete, goalMinutes = 5, words: wordList =
     }
   }, [instant]);
 
+  // Pause timer when user leaves the tab/app
   useEffect(() => {
-    const id = setInterval(() => {
+    const handleVisibility = () => setPaused(document.hidden);
+    document.addEventListener('visibilitychange', handleVisibility);
+    return () => document.removeEventListener('visibilitychange', handleVisibility);
+  }, []);
+
+  useEffect(() => {
+    if (paused) {
+      clearInterval(timerIdRef.current);
+      timerIdRef.current = null;
+      return;
+    }
+    timerIdRef.current = setInterval(() => {
       setTimeLeft(t => {
         if (t <= 1) {
-          clearInterval(id);
+          clearInterval(timerIdRef.current);
           setTimeout(() => onComplete({ ...scoreRef.current, sessionWords: sessionWordsRef.current, completed: true }), 0);
           return 0;
         }
         return t - 1;
       });
     }, 1000);
-    return () => clearInterval(id);
-  }, [onComplete]);
+    return () => clearInterval(timerIdRef.current);
+  }, [onComplete, paused]);
 
   useEffect(() => { inputRef.current?.focus(); }, [idx]);
 
@@ -193,7 +207,7 @@ export default function Session({ onComplete, goalMinutes = 5, words: wordList =
             style={{ width: `${pct}%`, background: color }}
           />
         </div>
-        <span className="timer-text" style={{ color }}>{fmt(timeLeft)}</span>
+        <span className="timer-text" style={{ color }}>{paused ? '⏸ ' : ''}{fmt(timeLeft)}</span>
         <span style={{ fontSize: 15, fontWeight: 600 }}>
           <span style={{ color: 'var(--success-fg, #2ecc71)' }}>{score.correct}</span>
           <span style={{ color: 'var(--muted)' }}> / {score.total}</span>

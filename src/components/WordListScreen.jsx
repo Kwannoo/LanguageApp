@@ -1,17 +1,10 @@
 import { useState, useMemo } from 'react';
 import { WORDS } from '../data/words.js';
 import { WORDS_JA } from '../data/wordsJa.js';
-import { loadSRS } from '../utils/srs.js';
+import { loadSRS, getWordLevel } from '../utils/srs.js';
 
 const FILTERS = ['All', 'New', 'Learning', 'Good', 'Mastered'];
 const LANGUAGES = ['All', 'Dutch', 'Japanese'];
-
-function getLevel(interval) {
-  if (!interval) return 'New';
-  if (interval <= 2)  return 'Learning';
-  if (interval <= 16) return 'Good';
-  return 'Mastered';
-}
 
 function getLevelColor(level) {
   switch (level) {
@@ -36,9 +29,8 @@ export default function WordListScreen({ onBack }) {
       allWords = allWords.concat(
         WORDS.map(w => {
           const entry = srs[w.nl];
-          const interval = entry?.interval ?? 0;
-          const level = getLevel(interval);
-          return { ...w, interval, level, lang: 'Dutch', displayWord: w.nl, displayMeaning: w.en };
+          const level = getWordLevel(entry);
+          return { ...w, entry, level, lang: 'Dutch', displayWord: w.nl, displayMeaning: w.en };
         })
       );
     }
@@ -48,9 +40,8 @@ export default function WordListScreen({ onBack }) {
       allWords = allWords.concat(
         WORDS_JA.map(w => {
           const entry = srs[w.word];
-          const interval = entry?.interval ?? 0;
-          const level = getLevel(interval);
-          return { ...w, interval, level, lang: 'Japanese', displayWord: w.word, displayMeaning: w.en };
+          const level = getWordLevel(entry);
+          return { ...w, entry, level, lang: 'Japanese', displayWord: w.word, displayMeaning: w.en };
         })
       );
     }
@@ -75,7 +66,7 @@ export default function WordListScreen({ onBack }) {
     if (language === 'All' || language === 'Dutch') {
       c.All += WORDS.length;
       for (const w of WORDS) {
-        c[getLevel(srs[w.nl]?.interval ?? 0)]++;
+        c[getWordLevel(srs[w.nl])]++;
       }
     }
 
@@ -83,7 +74,7 @@ export default function WordListScreen({ onBack }) {
     if (language === 'All' || language === 'Japanese') {
       c.All += WORDS_JA.length;
       for (const w of WORDS_JA) {
-        c[getLevel(srs[w.word]?.interval ?? 0)]++;
+        c[getWordLevel(srs[w.word])]++;
       }
     }
 
