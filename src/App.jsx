@@ -78,11 +78,19 @@ export default function App() {
   const [streakFreezes, setStreakFreezes]   = useState(0);
   const [coins, setCoins]                   = useState(0);
   const [unlockedItems, setUnlockedItems]   = useState([]);
+  const [title, setTitle]                   = useState('');
 
   const handleDiscoverableChange = async (val) => {
     setDiscoverable(val);
     if (user) {
       await supabase.from('profiles').update({ discoverable: val }).eq('id', user.id);
+    }
+  };
+
+  const handleTitleChange = async (val) => {
+    setTitle(val);
+    if (user) {
+      await supabase.from('profiles').update({ title: val }).eq('id', user.id);
     }
   };
 
@@ -124,7 +132,7 @@ export default function App() {
   const loadUserData = useCallback(async (userId) => {
     const { data: profile } = await supabase
       .from('profiles')
-      .select('streak, last_session_date, srs_data, username, avatar, discoverable, referral_code, streak_freezes, coins, unlocked_items')
+      .select('streak, last_session_date, srs_data, username, avatar, discoverable, referral_code, streak_freezes, coins, unlocked_items, title')
       .eq('id', userId)
       .single();
 
@@ -136,6 +144,7 @@ export default function App() {
       setStreakFreezes(profile.streak_freezes ?? 0);
       setCoins(profile.coins ?? 0);
       setUnlockedItems(profile.unlocked_items ?? []);
+      setTitle(profile.title ?? '');
       const code = await ensureReferralCode(userId, profile.referral_code);
       setReferralCode(code);
       const d = parseDate(profile.last_session_date);
@@ -354,6 +363,8 @@ export default function App() {
           email={user?.email}
           coins={coins}
           onBuyFreeze={handleBuyFreeze}
+          title={title}
+          onTitleChange={handleTitleChange}
         />
       )}
 

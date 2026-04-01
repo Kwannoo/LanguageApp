@@ -23,7 +23,14 @@ const DIRECTION_MAP = {
 
 const FREEZE_PRICE = 50;
 
-export default function HomeScreen({ streak, todayDone, username, avatar, words, srsData, online, onStart, onHistory, onLogout, goalMinutes, onGoalChange, language, onLanguageChange, direction, onDirectionChange, onFriends, onWords, onEditAvatar, voice, onVoiceChange, showSynonyms, onSynonymsChange, discoverable, onDiscoverableChange, streakFreezes = 0, referralCode = '', email = '', coins = 0, onBuyFreeze }) {
+export const TITLES = [
+  { id: '',                label: 'None' },
+  { id: 'Word Wizard',    label: 'Word Wizard' },
+  { id: 'Vocab Rookie',   label: 'Vocab Rookie' },
+  { id: 'Polyglot in Training', label: 'Polyglot in Training' },
+];
+
+export default function HomeScreen({ streak, todayDone, username, avatar, words, srsData, online, onStart, onHistory, onLogout, goalMinutes, onGoalChange, language, onLanguageChange, direction, onDirectionChange, onFriends, onWords, onEditAvatar, voice, onVoiceChange, showSynonyms, onSynonymsChange, discoverable, onDiscoverableChange, streakFreezes = 0, referralCode = '', email = '', coins = 0, onBuyFreeze, title = '', onTitleChange }) {
   const [menuOpen, setMenuOpen]       = useState(false);
   const [menuClosing, setMenuClosing] = useState(false);
   const [showStatsCard, setShowStatsCard] = useState(false);
@@ -118,6 +125,37 @@ export default function HomeScreen({ streak, todayDone, username, avatar, words,
               Edit avatar
             </button>
           </div>
+        </div>
+
+        {/* Title */}
+        <div style={{ marginBottom: '1.25rem' }}>
+          <p style={{ fontSize: 14, color: 'var(--hint)', textTransform: 'uppercase', letterSpacing: '0.1em', marginBottom: '0.5rem' }}>
+            Title
+          </p>
+          <div style={{ display: 'flex', flexDirection: 'column', gap: '0.4rem' }}>
+            {TITLES.map(t => (
+              <button
+                key={t.id}
+                onClick={() => onTitleChange(t.id)}
+                style={{
+                  padding: '8px 14px',
+                  borderRadius: 'var(--radius-sm)',
+                  border: title === t.id ? '2px solid var(--amber)' : '2px solid var(--border)',
+                  background: title === t.id ? 'var(--amber-light)' : 'var(--surface)',
+                  cursor: 'pointer',
+                  fontFamily: 'var(--font-sans)',
+                  fontSize: 13, fontWeight: 600, color: 'var(--text)',
+                  textAlign: 'left',
+                  transition: 'border-color 0.15s, background 0.15s',
+                }}
+              >
+                {t.label}
+              </button>
+            ))}
+          </div>
+          <p style={{ fontSize: 12, color: 'var(--hint)', marginTop: 6 }}>
+            Shown under your name on your profile
+          </p>
         </div>
 
         {/* Language */}
@@ -353,9 +391,10 @@ export default function HomeScreen({ streak, todayDone, username, avatar, words,
         }}>
           Vocardably
         </h1>
-        {username ? (
+        {username ? (<>
           <p className="text-muted">Welcome back, <strong style={{ color: 'var(--text)' }}>{username}</strong>!</p>
-        ) : (
+          {title && <p style={{ fontSize: 12, color: 'var(--amber)', fontWeight: 600, fontStyle: 'italic', marginTop: 2 }}>{title}</p>}
+        </>) : (
           <p className="text-muted">Learn 3,000 words. Understand everything.</p>
         )}
       </div>

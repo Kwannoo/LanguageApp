@@ -47,7 +47,7 @@ export default function FriendsScreen({ user, referralCode = '', onBack }) {
 
     const { data: profiles } = await supabase
       .from('profiles')
-      .select('id, username, streak, avatar')
+      .select('id, username, streak, avatar, title')
       .in('id', allIds);
 
     const byId = Object.fromEntries((profiles ?? []).map(p => [p.id, p]));
@@ -60,7 +60,7 @@ export default function FriendsScreen({ user, referralCode = '', onBack }) {
     // Build leaderboard: self + friends, sorted by streak descending
     const { data: selfProfile } = await supabase
       .from('profiles')
-      .select('id, username, streak, avatar')
+      .select('id, username, streak, avatar, title')
       .eq('id', user.id)
       .single();
 
@@ -82,7 +82,7 @@ export default function FriendsScreen({ user, referralCode = '', onBack }) {
 
     const { data } = await supabase
       .from('profiles')
-      .select('id, username, streak, avatar')
+      .select('id, username, streak, avatar, title')
       .ilike('username', `%${q}%`)
       .not('username', 'is', null)
       .neq('id', user.id)
@@ -116,7 +116,7 @@ export default function FriendsScreen({ user, referralCode = '', onBack }) {
     setSelectedFriend(null);
     const { data } = await supabase
       .from('profiles')
-      .select('id, username, streak, avatar, srs_data')
+      .select('id, username, streak, avatar, title, srs_data')
       .eq('id', friendId)
       .single();
     if (data) {
@@ -308,6 +308,7 @@ export default function FriendsScreen({ user, referralCode = '', onBack }) {
                       <Avatar config={p.avatar} size={40} />
                       <div>
                         <p style={{ fontWeight: 700, color: 'var(--text)' }}>{p.username}</p>
+                        {p.title && <p style={{ fontSize: 11, color: 'var(--amber)', fontWeight: 600, fontStyle: 'italic' }}>{p.title}</p>}
                         <p style={{ fontSize: 12, color: 'var(--hint)' }}>🔥 {p.streak} day streak</p>
                       </div>
                     </div>
@@ -390,6 +391,11 @@ export default function FriendsScreen({ user, referralCode = '', onBack }) {
               <p style={{ fontWeight: 800, fontSize: '1.25rem', color: 'var(--text)', marginTop: '0.75rem' }}>
                 {selectedFriend.username}
               </p>
+              {selectedFriend.title && (
+                <p style={{ fontSize: 13, color: 'var(--amber)', fontWeight: 600, fontStyle: 'italic', marginTop: 2 }}>
+                  {selectedFriend.title}
+                </p>
+              )}
 
               <div className="stats-row" style={{ marginTop: '1rem', marginBottom: '1rem' }}>
                 <div className="stat-card">
