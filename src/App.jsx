@@ -364,7 +364,6 @@ export default function App() {
           coins={coins}
           onBuyFreeze={handleBuyFreeze}
           title={title}
-          onTitleChange={handleTitleChange}
         />
       )}
 
@@ -397,10 +396,11 @@ export default function App() {
         <AvatarEditor
           avatar={avatar}
           onSave={handleAvatarSave}
-          onBack={() => setScreen('home')}
           coins={coins}
           unlockedItems={unlockedItems}
           onBuyItem={handleBuyItem}
+          title={title}
+          onTitleChange={handleTitleChange}
         />
       )}
 

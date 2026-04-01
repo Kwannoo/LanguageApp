@@ -116,7 +116,7 @@ export default function FriendsScreen({ user, referralCode = '', onBack }) {
     setSelectedFriend(null);
     const { data } = await supabase
       .from('profiles')
-      .select('id, username, streak, avatar, title, srs_data')
+      .select('id, username, streak, avatar, title, srs_data, created_at')
       .eq('id', friendId)
       .single();
     if (data) {
@@ -308,7 +308,7 @@ export default function FriendsScreen({ user, referralCode = '', onBack }) {
                       <Avatar config={p.avatar} size={40} />
                       <div>
                         <p style={{ fontWeight: 700, color: 'var(--text)' }}>{p.username}</p>
-                        {p.title && <p style={{ fontSize: 11, color: 'var(--amber)', fontWeight: 600, fontStyle: 'italic' }}>{p.title}</p>}
+                        {p.title && <p style={{ fontSize: 12, color: 'var(--amber)', fontWeight: 800 }}>{p.title}</p>}
                         <p style={{ fontSize: 12, color: 'var(--hint)' }}>🔥 {p.streak} day streak</p>
                       </div>
                     </div>
@@ -392,7 +392,7 @@ export default function FriendsScreen({ user, referralCode = '', onBack }) {
                 {selectedFriend.username}
               </p>
               {selectedFriend.title && (
-                <p style={{ fontSize: 13, color: 'var(--amber)', fontWeight: 600, fontStyle: 'italic', marginTop: 2 }}>
+                <p style={{ fontSize: 15, color: 'var(--amber)', fontWeight: 800, marginTop: 2 }}>
                   {selectedFriend.title}
                 </p>
               )}
@@ -434,6 +434,13 @@ export default function FriendsScreen({ user, referralCode = '', onBack }) {
                   )}
                 </div>
               </div>
+
+              {/* Joined date */}
+              {selectedFriend.created_at && (
+                <p style={{ fontSize: 12, color: 'var(--hint)', marginBottom: '1rem' }}>
+                  Joined {new Date(selectedFriend.created_at).toLocaleDateString(undefined, { month: 'long', year: 'numeric' })}
+                </p>
+              )}
 
               <button className="btn-ghost" onClick={() => setSelectedFriend(null)} style={{ width: '100%' }}>
                 Close

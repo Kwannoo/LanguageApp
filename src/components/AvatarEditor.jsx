@@ -10,6 +10,14 @@ const CATEGORIES = [
   { key: 'hats',        label: 'Hats' },
   { key: 'accessories', label: 'Acc.' },
   { key: 'bg',          label: 'BG' },
+  { key: 'title',       label: 'Title' },
+];
+
+const TITLE_OPTIONS = [
+  { id: '',                      label: 'None',                   price: 0 },
+  { id: 'Word Wizard',          label: 'Word Wizard',            price: 75 },
+  { id: 'Vocab Rookie',         label: 'Vocab Rookie',           price: 50 },
+  { id: 'Polyglot in Training', label: 'Polyglot in Training',   price: 100 },
 ];
 
 /**
@@ -22,8 +30,9 @@ const CATEGORIES = [
  *   unlockedItems – string[] (list of unlocked item ids)
  *   onBuyItem   – fn(itemId, price) – called when user buys an item
  */
-export default function AvatarEditor({ avatar, onSave, onBack, coins = 0, unlockedItems = [], onBuyItem }) {
+export default function AvatarEditor({ avatar, onSave, coins = 0, unlockedItems = [], onBuyItem, title = '', onTitleChange }) {
   const [draft, setDraft] = useState({ ...DEFAULT_AVATAR, ...avatar });
+  const [draftTitle, setDraftTitle] = useState(title);
   const [tab, setTab]     = useState('face');
   const [buyPopup, setBuyPopup] = useState(null);    // { opt, canAfford }
   const [popupClosing, setPopupClosing] = useState(false);
@@ -57,9 +66,13 @@ export default function AvatarEditor({ avatar, onSave, onBack, coins = 0, unlock
 
   const handleConfirmBuy = () => {
     if (!buyPopup) return;
-    const { opt } = buyPopup;
+    const { opt, _titleId } = buyPopup;
     onBuyItem(opt.id, opt.price);
-    update(tab, opt.id);
+    if (_titleId !== undefined) {
+      setDraftTitle(_titleId);
+    } else {
+      update(tab, opt.id);
+    }
     setBuyPopup(null);
     setPopupClosing(false);
     setPurchased(opt);
@@ -69,7 +82,7 @@ export default function AvatarEditor({ avatar, onSave, onBack, coins = 0, unlock
     <div>
       {/* Header */}
       <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', marginBottom: '1.5rem' }}>
-        <button className="btn-ghost" onClick={onBack} style={{ padding: '6px 14px', fontSize: 13 }}>← Back</button>
+        <button className="btn-ghost" onClick={() => { onTitleChange(draftTitle); onSave(draft); }} style={{ padding: '6px 14px', fontSize: 13 }}>← Back</button>
         <h2 style={{ fontWeight: 800, fontSize: '1.2rem', color: 'var(--text)' }}>Edit Avatar</h2>
         <div style={{ marginLeft: 'auto', display: 'flex', alignItems: 'center', gap: 4 }}>
           <img src="/avatar/vocacoin.png" alt="" style={{ width: 20, height: 20 }} />
@@ -78,8 +91,13 @@ export default function AvatarEditor({ avatar, onSave, onBack, coins = 0, unlock
       </div>
 
       {/* Live preview */}
-      <div style={{ display: 'flex', justifyContent: 'center', marginBottom: '1.5rem' }}>
+      <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', marginBottom: '1.5rem' }}>
         <Avatar config={draft} size={160} />
+        {draftTitle && (
+          <p style={{ fontSize: 15, color: 'var(--amber)', fontWeight: 800, marginTop: 8 }}>
+            {draftTitle}
+          </p>
+        )}
       </div>
 
       {/* Category tabs */}
@@ -96,88 +114,134 @@ export default function AvatarEditor({ avatar, onSave, onBack, coins = 0, unlock
       </div>
 
       {/* Options grid */}
-      <div style={{
-        display: 'grid',
-        gridTemplateColumns: 'repeat(auto-fill, minmax(80px, 1fr))',
-        gap: '0.75rem',
-        marginBottom: '1.5rem',
-      }}>
-        {tab === 'bg' ? (
-          BG_COLORS.map(color => (
-            <button
-              key={color}
-              onClick={() => update('bg', color)}
-              style={{
-                width: '100%',
-                aspectRatio: '1',
-                borderRadius: 'var(--radius-sm)',
-                background: color,
-                border: draft.bg === color ? '3px solid var(--text)' : '2px solid var(--border)',
-                cursor: 'pointer',
-                transition: 'border-color 0.15s',
-              }}
-            />
-          ))
-        ) : (
-          AVATAR_OPTIONS[tab]?.map(opt => {
-            const locked = isLocked(opt);
-            const canAfford = coins >= (opt.price || 0);
+      {tab === 'title' ? (
+        <div style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem', marginBottom: '1.5rem' }}>
+          {TITLE_OPTIONS.map(t => {
+            const locked = t.price > 0 && !unlockedItems.includes('title:' + t.id);
+            const canAfford = coins >= t.price;
+            const selected = draftTitle === t.id;
             return (
               <button
-                key={opt.id}
-                onClick={() => handleOptionClick(opt)}
+                key={t.id}
+                onClick={() => {
+                  if (locked) {
+                    setBuyPopup({ opt: { ...t, id: 'title:' + t.id }, category: 'title', canAfford, _titleId: t.id });
+                    return;
+                  }
+                  setDraftTitle(t.id);
+                }}
                 style={{
-                  background: 'var(--surface)',
-                  border: draft[tab] === opt.id ? '3px solid var(--amber)' : '2px solid var(--border)',
+                  padding: '10px 14px',
                   borderRadius: 'var(--radius-sm)',
-                  padding: '0.5rem',
+                  border: selected ? '2px solid var(--amber)' : '2px solid var(--border)',
+                  background: selected ? 'var(--amber-light)' : 'var(--surface)',
                   cursor: locked && !canAfford ? 'not-allowed' : 'pointer',
-                  transition: 'border-color 0.15s',
-                  display: 'flex',
-                  flexDirection: 'column',
-                  alignItems: 'center',
-                  gap: '0.35rem',
-                  position: 'relative',
+                  fontFamily: 'var(--font-sans)',
+                  fontSize: 14, fontWeight: 600, color: 'var(--text)',
+                  textAlign: 'left',
+                  transition: 'border-color 0.15s, background 0.15s',
                   opacity: locked && !canAfford ? 0.5 : 1,
+                  display: 'flex', alignItems: 'center', justifyContent: 'space-between',
                 }}
               >
-                <img
-                  src={opt.src}
-                  alt={opt.label}
-                  style={{
-                    width: '100%',
-                    aspectRatio: '1',
-                    objectFit: 'contain',
-                    filter: locked ? 'brightness(0.4)' : 'none',
-                  }}
-                  draggable={false}
-                />
-                <span style={{ fontSize: 11, fontWeight: 600, color: 'var(--muted)' }}>{opt.label}</span>
+                <span style={{ color: locked ? 'var(--muted)' : 'var(--text)' }}>{t.label}</span>
                 {locked && (
                   <span style={{
-                    position: 'absolute',
-                    top: 4, right: 4,
-                    display: 'flex', alignItems: 'center', gap: 2,
-                    fontSize: 10, fontWeight: 700,
+                    display: 'flex', alignItems: 'center', gap: 3,
+                    fontSize: 12, fontWeight: 700,
                     color: canAfford ? 'var(--amber)' : 'var(--muted)',
-                    background: 'var(--bg)',
-                    borderRadius: 4,
-                    padding: '1px 5px',
                   }}>
-                    <img src="/avatar/vocacoin.png" alt="" style={{ width: 12, height: 12 }} />
-                    {opt.price}
+                    <img src="/avatar/vocacoin.png" alt="" style={{ width: 14, height: 14 }} />
+                    {t.price}
                   </span>
                 )}
               </button>
             );
-          })
-        )}
-      </div>
+          })}
+          <p style={{ fontSize: 12, color: 'var(--hint)', marginTop: 4 }}>
+            Shown under your name on your profile
+          </p>
+        </div>
+      ) : (
+        <div style={{
+          display: 'grid',
+          gridTemplateColumns: 'repeat(auto-fill, minmax(80px, 1fr))',
+          gap: '0.75rem',
+          marginBottom: '1.5rem',
+        }}>
+          {tab === 'bg' ? (
+            BG_COLORS.map(color => (
+              <button
+                key={color}
+                onClick={() => update('bg', color)}
+                style={{
+                  width: '100%',
+                  aspectRatio: '1',
+                  borderRadius: 'var(--radius-sm)',
+                  background: color,
+                  border: draft.bg === color ? '3px solid var(--text)' : '2px solid var(--border)',
+                  cursor: 'pointer',
+                  transition: 'border-color 0.15s',
+                }}
+              />
+            ))
+          ) : (
+            AVATAR_OPTIONS[tab]?.map(opt => {
+              const locked = isLocked(opt);
+              const canAfford = coins >= (opt.price || 0);
+              return (
+                <button
+                  key={opt.id}
+                  onClick={() => handleOptionClick(opt)}
+                  style={{
+                    background: 'var(--surface)',
+                    border: draft[tab] === opt.id ? '3px solid var(--amber)' : '2px solid var(--border)',
+                    borderRadius: 'var(--radius-sm)',
+                    padding: '0.5rem',
+                    cursor: locked && !canAfford ? 'not-allowed' : 'pointer',
+                    transition: 'border-color 0.15s',
+                    display: 'flex',
+                    flexDirection: 'column',
+                    alignItems: 'center',
+                    gap: '0.35rem',
+                    position: 'relative',
+                    opacity: locked && !canAfford ? 0.5 : 1,
+                  }}
+                >
+                  <img
+                    src={opt.src}
+                    alt={opt.label}
+                    style={{
+                      width: '100%',
+                      aspectRatio: '1',
+                      objectFit: 'contain',
+                      filter: locked ? 'brightness(0.4)' : 'none',
+                    }}
+                    draggable={false}
+                  />
+                  <span style={{ fontSize: 11, fontWeight: 600, color: 'var(--muted)' }}>{opt.label}</span>
+                  {locked && (
+                    <span style={{
+                      position: 'absolute',
+                      top: 4, right: 4,
+                      display: 'flex', alignItems: 'center', gap: 2,
+                      fontSize: 10, fontWeight: 700,
+                      color: canAfford ? 'var(--amber)' : 'var(--muted)',
+                      background: 'var(--bg)',
+                      borderRadius: 4,
+                      padding: '1px 5px',
+                    }}>
+                      <img src="/avatar/vocacoin.png" alt="" style={{ width: 12, height: 12 }} />
+                      {opt.price}
+                    </span>
+                  )}
+                </button>
+              );
+            })
+          )}
+        </div>
+      )}
 
-      {/* Save */}
-      <button className="btn-primary" onClick={() => onSave(draft)}>
-        Save avatar
-      </button>
 
       {/* ── Buy confirmation popup ── */}
       {buyPopup && (
@@ -204,13 +268,27 @@ export default function AvatarEditor({ avatar, onSave, onBack, coins = 0, unlock
             textAlign: 'center',
             animation: `${popupClosing ? 'popupOut' : 'popupIn'} 0.25s ease forwards`,
           }}>
-            {/* Avatar preview with item equipped */}
-            <div style={{ margin: '0 auto 1rem' }}>
-              <Avatar config={{ ...draft, [buyPopup.category]: buyPopup.opt.id }} size={110} />
-            </div>
+            {/* Preview */}
+            {buyPopup.category === 'title' ? (
+              <div style={{
+                margin: '0 auto 1rem',
+                padding: '1rem',
+                background: 'var(--bg)',
+                borderRadius: 12,
+                border: '2px solid var(--border)',
+              }}>
+                <p style={{ fontWeight: 800, fontSize: '1.1rem', color: 'var(--amber)', fontStyle: 'italic' }}>
+                  "{buyPopup.opt.label}"
+                </p>
+              </div>
+            ) : (
+              <div style={{ margin: '0 auto 1rem' }}>
+                <Avatar config={{ ...draft, [buyPopup.category]: buyPopup.opt.id }} size={110} />
+              </div>
+            )}
 
             <p style={{ fontWeight: 800, fontSize: '1.1rem', color: 'var(--text)', marginBottom: 4 }}>
-              {buyPopup.opt.label}
+              {buyPopup.category === 'title' ? 'Unlock Title' : buyPopup.opt.label}
             </p>
 
             {/* Price tag */}
