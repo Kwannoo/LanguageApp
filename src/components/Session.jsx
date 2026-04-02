@@ -58,6 +58,7 @@ export default function Session({ onComplete, goalMinutes = 5, words: wordList =
   const timerIdRef = useRef(null);
   const [keyboardOpen, setKeyboardOpen] = useState(false);
   const [showQuitConfirm, setShowQuitConfirm] = useState(false);
+  const [viewportH, setViewportH] = useState(null);
 
   useEffect(() => { scoreRef.current = score; }, [score]);
 
@@ -75,17 +76,19 @@ export default function Session({ onComplete, goalMinutes = 5, words: wordList =
     return () => document.removeEventListener('visibilitychange', handleVisibility);
   }, []);
 
-  // Detect keyboard open via Visual Viewport API and scroll input to bottom
+  // Detect keyboard open via Visual Viewport API
   useEffect(() => {
     const vv = window.visualViewport;
     if (!vv) return;
     const handler = () => {
       const isOpen = vv.height < window.innerHeight * 0.75;
       setKeyboardOpen(isOpen);
-      if (isOpen && inputRef.current) {
-        setTimeout(() => {
-          inputRef.current?.scrollIntoView({ block: 'end', behavior: 'smooth' });
-        }, 50);
+      if (isOpen) {
+        setViewportH(vv.height);
+        // Prevent browser from centering input — scroll to top so our flex layout controls positioning
+        setTimeout(() => window.scrollTo(0, 0), 30);
+      } else {
+        setViewportH(null);
       }
     };
     vv.addEventListener('resize', handler);
@@ -209,7 +212,15 @@ export default function Session({ onComplete, goalMinutes = 5, words: wordList =
       : 'Type the Dutch word…';
 
   return (
-    <div style={{ position: 'relative' }}>
+    <div style={{
+      position: 'relative',
+      ...(viewportH ? {
+        display: 'flex',
+        flexDirection: 'column',
+        height: viewportH,
+        overflow: 'hidden',
+      } : {}),
+    }}>
       {/* Quit button — top right */}
       <button
         onClick={() => setShowQuitConfirm(true)}
@@ -233,7 +244,7 @@ export default function Session({ onComplete, goalMinutes = 5, words: wordList =
         <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', marginBottom: '0.25rem', paddingRight: 40 }}>
           <img src="/transparent-white-logo.png" alt="Vocardably" style={{ width: 48 }} />
           <p style={{ margin: 0, fontSize: 13, color: 'var(--hint)', fontStyle: 'italic', lineHeight: 1.4 }}>
-            Every word brings you closer to fluency!
+            Every word brings you closer to fluency! 1
           </p>
         </div>
       )}
@@ -253,18 +264,20 @@ export default function Session({ onComplete, goalMinutes = 5, words: wordList =
         </span>
       </div>
 
-      {/* Flash card */}
-      <FlashCard
-        word={words[idx]}
-        flipped={flipped}
-        isCorrect={isCorrect}
-        userAnswer={input}
-        instant={instant}
-        direction={cardDir}
-        language={language}
-        voice={voice}
-        showSynonyms={showSynonyms}
-      />
+      {/* Flash card — fills remaining space when keyboard is open */}
+      <div style={viewportH ? { flex: 1, minHeight: 0, overflow: 'hidden' } : {}}>
+        <FlashCard
+          word={words[idx]}
+          flipped={flipped}
+          isCorrect={isCorrect}
+          userAnswer={input}
+          instant={instant}
+          direction={cardDir}
+          language={language}
+          voice={voice}
+          showSynonyms={showSynonyms}
+        />
+      </div>
 
       {/* Input */}
       <input
