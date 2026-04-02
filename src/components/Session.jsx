@@ -57,6 +57,7 @@ export default function Session({ onComplete, goalMinutes = 5, words: wordList =
   const [paused, setPaused] = useState(false);
   const timerIdRef = useRef(null);
   const [keyboardOpen, setKeyboardOpen] = useState(false);
+  const [showQuitConfirm, setShowQuitConfirm] = useState(false);
 
   useEffect(() => { scoreRef.current = score; }, [score]);
 
@@ -200,10 +201,28 @@ export default function Session({ onComplete, goalMinutes = 5, words: wordList =
       : 'Type the Dutch word…';
 
   return (
-    <div>
+    <div style={{ position: 'relative' }}>
+      {/* Quit button — top right */}
+      <button
+        onClick={() => setShowQuitConfirm(true)}
+        style={{
+          position: 'absolute', top: 0, right: 0,
+          background: 'var(--surface)',
+          border: '2px solid var(--border)',
+          borderRadius: 'var(--radius-sm)',
+          width: 32, height: 32,
+          display: 'flex', alignItems: 'center', justifyContent: 'center',
+          cursor: 'pointer', fontSize: 16, color: 'var(--muted)',
+          lineHeight: 1, fontFamily: 'var(--font-sans)',
+          zIndex: 10,
+        }}
+      >
+        ✕
+      </button>
+
       {/* Logo + encouragement — hidden when keyboard is open */}
       {!keyboardOpen && (
-        <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', marginBottom: '0.25rem' }}>
+        <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', marginBottom: '0.25rem', paddingRight: 40 }}>
           <img src="/transparent-white-logo.png" alt="Vocardably" style={{ width: 48 }} />
           <p style={{ margin: 0, fontSize: 13, color: 'var(--hint)', fontStyle: 'italic', lineHeight: 1.4 }}>
             Every word brings you closer to fluency!
@@ -264,16 +283,51 @@ export default function Session({ onComplete, goalMinutes = 5, words: wordList =
         </button>
       </div>
 
-      {!keyboardOpen && (
-        <div style={{ textAlign: 'center', marginTop: '0.9rem' }}>
-          <button
-            style={{ background: 'none', border: 'none', fontSize: 12, color: 'var(--hint)', cursor: 'pointer', fontFamily: 'var(--font-sans)' }}
-            onClick={() => onComplete({ ...score, sessionWords: sessionWordsRef.current, completed: false })}
-          >
-            End session early
-          </button>
+      {/* Quit confirmation popup */}
+      {showQuitConfirm && (<>
+        <div
+          onClick={() => setShowQuitConfirm(false)}
+          style={{
+            position: 'fixed', inset: 0,
+            background: 'rgba(0,0,0,0.5)',
+            zIndex: 200,
+            animation: 'popupBgIn 0.2s ease forwards',
+          }}
+        />
+        <div style={{
+          position: 'fixed',
+          top: '50%', left: '50%',
+          transform: 'translate(-50%, -50%)',
+          zIndex: 201,
+          width: 'min(320px, 90vw)',
+          background: 'var(--surface)',
+          border: '2px solid var(--border)',
+          borderRadius: 16,
+          padding: '1.75rem 1.5rem',
+          textAlign: 'center',
+          animation: 'popupIn 0.25s ease forwards',
+        }}>
+          <p style={{ fontSize: '2rem', marginBottom: '0.5rem' }}>⚠️</p>
+          <p style={{ fontWeight: 800, fontSize: '1.1rem', color: 'var(--text)', marginBottom: '0.5rem' }}>
+            End session early?
+          </p>
+          <p style={{ fontSize: 13, color: 'var(--muted)', marginBottom: '1.25rem' }}>
+            You won't earn any coins for this session. Only completing the full session rewards you with coins!
+          </p>
+          <div style={{ display: 'flex', gap: '0.5rem' }}>
+            <button className="btn-ghost" onClick={() => setShowQuitConfirm(false)} style={{ flex: 1 }}>
+              Keep going
+            </button>
+            <button
+              className="btn-primary"
+              style={{ flex: 1, background: 'var(--danger-fg)' }}
+              onClick={() => onComplete({ ...score, sessionWords: sessionWordsRef.current, completed: false })}
+            >
+              End session
+            </button>
+          </div>
         </div>
-      )}
+      </>)}
     </div>
   );
 }
