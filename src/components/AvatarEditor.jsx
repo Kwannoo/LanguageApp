@@ -14,10 +14,13 @@ const CATEGORIES = [
 ];
 
 const TITLE_OPTIONS = [
-  { id: '',                      label: 'None',                   price: 0 },
-  { id: 'Word Wizard',          label: 'Word Wizard',            price: 75 },
-  { id: 'Vocab Rookie',         label: 'Vocab Rookie',           price: 50 },
+  { id: '',                     label: 'None',                  price: 0 },
+  { id: 'Word Wizard',          label: 'Word Wizard',            price: 100 },
+  { id: 'Vocab Rookie',         label: 'Vocab Rookie',           price: 100 },
   { id: 'Polyglot in Training', label: 'Polyglot in Training',   price: 100 },
+  { id: 'King Vocab',           label: 'King Vocab',             price: 100 },
+  { id: 'Goon',                 label: 'Goon',                   price: 100 },
+  { id: 'The Strongest One',    label: 'The Strongest One',      price: 100 },
 ];
 
 /**
@@ -242,7 +245,6 @@ export default function AvatarEditor({ avatar, onSave, coins = 0, unlockedItems 
         </div>
       )}
 
-
       {/* ── Buy confirmation popup ── */}
       {buyPopup && (
         <>
@@ -269,26 +271,14 @@ export default function AvatarEditor({ avatar, onSave, coins = 0, unlockedItems 
             animation: `${popupClosing ? 'popupOut' : 'popupIn'} 0.25s ease forwards`,
           }}>
             {/* Preview */}
-            {buyPopup.category === 'title' ? (
-              <div style={{
-                margin: '0 auto 1rem',
-                padding: '1rem',
-                background: 'var(--bg)',
-                borderRadius: 12,
-                border: '2px solid var(--border)',
-              }}>
-                <p style={{ fontWeight: 800, fontSize: '1.1rem', color: 'var(--amber)', fontStyle: 'italic' }}>
-                  "{buyPopup.opt.label}"
-                </p>
-              </div>
-            ) : (
-              <div style={{ margin: '0 auto 1rem' }}>
+            {buyPopup.category !== 'title' && (
+              <div style={{ display: 'flex', justifyContent: 'center', marginBottom: '1rem' }}>
                 <Avatar config={{ ...draft, [buyPopup.category]: buyPopup.opt.id }} size={110} />
               </div>
             )}
 
             <p style={{ fontWeight: 800, fontSize: '1.1rem', color: 'var(--text)', marginBottom: 4 }}>
-              {buyPopup.category === 'title' ? 'Unlock Title' : buyPopup.opt.label}
+              {buyPopup.category === 'title' ? `Unlock title "${buyPopup.opt.label}"` : buyPopup.opt.label}
             </p>
 
             {/* Price tag */}
@@ -369,15 +359,17 @@ export default function AvatarEditor({ avatar, onSave, coins = 0, unlockedItems 
             <p style={{ fontSize: 14, color: 'var(--muted)', marginBottom: '1rem' }}>
               <strong>{purchased.label}</strong> is now yours.
             </p>
-            <div style={{
-              width: 80, height: 80, margin: '0 auto 1.25rem',
-              background: 'var(--bg)',
-              borderRadius: 12,
-              display: 'flex', alignItems: 'center', justifyContent: 'center',
-              border: '2px solid var(--success-fg)',
-            }}>
-              <img src={purchased.src} alt={purchased.label} style={{ width: 60, height: 60, objectFit: 'contain' }} />
-            </div>
+            {purchased.src && (
+              <div style={{
+                width: 80, height: 80, margin: '0 auto 1.25rem',
+                background: 'var(--bg)',
+                borderRadius: 12,
+                display: 'flex', alignItems: 'center', justifyContent: 'center',
+                border: '2px solid var(--success-fg)',
+              }}>
+                <img src={purchased.src} alt={purchased.label} style={{ width: 60, height: 60, objectFit: 'contain' }} />
+              </div>
+            )}
             <button className="btn-primary" onClick={closeSuccess} style={{ width: '100%' }}>
               Awesome!
             </button>

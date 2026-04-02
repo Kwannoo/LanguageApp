@@ -17,6 +17,8 @@ export const AVATAR_OPTIONS = {
     { id: 'eyesnormal', label: 'Normal', src: '/avatar/eyes/eyesnormal.png' },
     { id: 'eyessmile',  label: 'Smile',  src: '/avatar/eyes/eyessmile.png' },
     { id: 'eyessquint', label: 'Squint', src: '/avatar/eyes/eyessquint.png' },
+    { id: 'eyesdizzy',  label: 'Dizzy',  src: '/avatar/eyes/eyesdizzy.png' },
+    { id: 'eyesdrooly', label: 'Drooly', src: '/avatar/eyes/eyesdrooly.png' },
   ],
   mouth: [
     { id: 'none',         label: 'None',   src: '/avatar/eyes/none.png' },
@@ -34,7 +36,8 @@ export const AVATAR_OPTIONS = {
     { id: 'haircurllong',   label: 'Long Curls',  src: '/avatar/hair/haircurllong.png' },
     { id: 'hairbob',        label: 'Bob',         src: '/avatar/hair/hairbob.png' },
     { id: 'hairafro',       label: 'Afro',        src: '/avatar/hair/hairafro.png' },
-    { id: 'hairmiddlepart', label: 'Middle Part', src: '/avatar/hair/hairmiddlepart.png' },
+    { id: 'hairmiddlepart',  label: 'Middle Part',  src: '/avatar/hair/hairmiddlepart.png' },
+    { id: 'hairspikewhite', label: 'White Spikes', src: '/avatar/hair/hairspikewhite.png' },
   ],
   hats: [
     { id: 'none',          label: 'None',       src: '/avatar/eyes/none.png' },

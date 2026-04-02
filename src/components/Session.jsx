@@ -192,9 +192,9 @@ export default function Session({ onComplete, goalMinutes = 5, words: wordList =
   return (
     <div>
       {/* Logo + encouragement */}
-      <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', marginBottom: '0.5rem' }}>
-        <img src="/transparent-white-logo.png" alt="Vocardably" style={{ width: 64 }} />
-        <p style={{ margin: 0, fontSize: 14, color: 'var(--hint)', fontStyle: 'italic', lineHeight: 1.4 }}>
+      <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', marginBottom: '0.25rem' }}>
+        <img src="/transparent-white-logo.png" alt="Vocardably" style={{ width: 48 }} />
+        <p style={{ margin: 0, fontSize: 13, color: 'var(--hint)', fontStyle: 'italic', lineHeight: 1.4 }}>
           Every word brings you closer to fluency!
         </p>
       </div>
