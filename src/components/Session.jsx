@@ -56,6 +56,7 @@ export default function Session({ onComplete, goalMinutes = 5, words: wordList =
   const sessionWordsRef = useRef([]);
   const [paused, setPaused] = useState(false);
   const timerIdRef = useRef(null);
+  const [keyboardOpen, setKeyboardOpen] = useState(false);
 
   useEffect(() => { scoreRef.current = score; }, [score]);
 
@@ -71,6 +72,15 @@ export default function Session({ onComplete, goalMinutes = 5, words: wordList =
     const handleVisibility = () => setPaused(document.hidden);
     document.addEventListener('visibilitychange', handleVisibility);
     return () => document.removeEventListener('visibilitychange', handleVisibility);
+  }, []);
+
+  // Detect keyboard open via Visual Viewport API
+  useEffect(() => {
+    const vv = window.visualViewport;
+    if (!vv) return;
+    const handler = () => setKeyboardOpen(vv.height < window.innerHeight * 0.75);
+    vv.addEventListener('resize', handler);
+    return () => vv.removeEventListener('resize', handler);
   }, []);
 
   useEffect(() => {
@@ -191,13 +201,15 @@ export default function Session({ onComplete, goalMinutes = 5, words: wordList =
 
   return (
     <div>
-      {/* Logo + encouragement */}
-      <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', marginBottom: '0.25rem' }}>
-        <img src="/transparent-white-logo.png" alt="Vocardably" style={{ width: 48 }} />
-        <p style={{ margin: 0, fontSize: 13, color: 'var(--hint)', fontStyle: 'italic', lineHeight: 1.4 }}>
-          Every word brings you closer to fluency!
-        </p>
-      </div>
+      {/* Logo + encouragement — hidden when keyboard is open */}
+      {!keyboardOpen && (
+        <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', marginBottom: '0.25rem' }}>
+          <img src="/transparent-white-logo.png" alt="Vocardably" style={{ width: 48 }} />
+          <p style={{ margin: 0, fontSize: 13, color: 'var(--hint)', fontStyle: 'italic', lineHeight: 1.4 }}>
+            Every word brings you closer to fluency!
+          </p>
+        </div>
+      )}
 
       {/* Timer bar */}
       <div className="timer-row">
@@ -252,14 +264,16 @@ export default function Session({ onComplete, goalMinutes = 5, words: wordList =
         </button>
       </div>
 
-      <div style={{ textAlign: 'center', marginTop: '0.9rem' }}>
-        <button
-          style={{ background: 'none', border: 'none', fontSize: 12, color: 'var(--hint)', cursor: 'pointer', fontFamily: 'var(--font-sans)' }}
-          onClick={() => onComplete({ ...score, sessionWords: sessionWordsRef.current, completed: false })}
-        >
-          End session early
-        </button>
-      </div>
+      {!keyboardOpen && (
+        <div style={{ textAlign: 'center', marginTop: '0.9rem' }}>
+          <button
+            style={{ background: 'none', border: 'none', fontSize: 12, color: 'var(--hint)', cursor: 'pointer', fontFamily: 'var(--font-sans)' }}
+            onClick={() => onComplete({ ...score, sessionWords: sessionWordsRef.current, completed: false })}
+          >
+            End session early
+          </button>
+        </div>
+      )}
     </div>
   );
 }
