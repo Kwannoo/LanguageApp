@@ -58,7 +58,6 @@ export default function Session({ onComplete, goalMinutes = 5, words: wordList =
   const timerIdRef = useRef(null);
   const [keyboardOpen, setKeyboardOpen] = useState(false);
   const [showQuitConfirm, setShowQuitConfirm] = useState(false);
-  const [inputBottom, setInputBottom] = useState(0);
 
   useEffect(() => { scoreRef.current = score; }, [score]);
 
@@ -76,24 +75,32 @@ export default function Session({ onComplete, goalMinutes = 5, words: wordList =
     return () => document.removeEventListener('visibilitychange', handleVisibility);
   }, []);
 
-  // Detect keyboard open via Visual Viewport API
+  // Detect keyboard open via Visual Viewport API and correct scroll position
   useEffect(() => {
     const vv = window.visualViewport;
     if (!vv) return;
     const handler = () => {
       const isOpen = vv.height < window.innerHeight * 0.75;
       setKeyboardOpen(isOpen);
-      // Calculate how far the visual viewport is from the bottom of the layout viewport
-      const offset = Math.max(0, window.innerHeight - vv.height - vv.offsetTop);
-      setInputBottom(isOpen ? offset : 0);
-      if (isOpen) setTimeout(() => window.scrollTo(0, 0), 30);
+      if (isOpen) {
+        // iOS Safari scrolls to center the focused input in the space above the keyboard.
+        // We correct this: scroll so the input bottom sits just above the keyboard,
+        // leaving the card visible above it.
+        setTimeout(() => {
+          const inputEl = inputRef.current;
+          if (!inputEl) return;
+          const rect = inputEl.getBoundingClientRect();
+          // rect.bottom is the input's bottom edge relative to the visual viewport.
+          // We want it 8px above the keyboard (= vv.height - 8).
+          const scrollAdjust = rect.bottom - (vv.height - 8);
+          window.scrollBy({ top: scrollAdjust, behavior: 'instant' });
+        }, 50);
+      } else {
+        window.scrollTo({ top: 0, behavior: 'instant' });
+      }
     };
     vv.addEventListener('resize', handler);
-    vv.addEventListener('scroll', handler);
-    return () => {
-      vv.removeEventListener('resize', handler);
-      vv.removeEventListener('scroll', handler);
-    };
+    return () => vv.removeEventListener('resize', handler);
   }, []);
 
   useEffect(() => {
@@ -237,7 +244,7 @@ export default function Session({ onComplete, goalMinutes = 5, words: wordList =
         <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', marginBottom: '0.25rem', paddingRight: 40 }}>
           <img src="/transparent-white-logo.png" alt="Vocardably" style={{ width: 48 }} />
           <p style={{ margin: 0, fontSize: 13, color: 'var(--hint)', fontStyle: 'italic', lineHeight: 1.4 }}>
-            Every word brings you closer to fluency! 2
+            Every word brings you closer to fluency! 3
           </p>
         </div>
       )}
@@ -270,7 +277,7 @@ export default function Session({ onComplete, goalMinutes = 5, words: wordList =
         showSynonyms={showSynonyms}
       />
 
-      {/* Input — fixed just above keyboard when keyboard is open so only card + input are visible */}
+      {/* Input */}
       <input
         ref={inputRef}
         className="input-field"
@@ -282,20 +289,9 @@ export default function Session({ onComplete, goalMinutes = 5, words: wordList =
         autoCorrect="off"
         autoCapitalize="off"
         disabled={flipped}
-        style={keyboardOpen ? {
-          position: 'fixed',
-          bottom: inputBottom + 8,
-          left: '1.25rem',
-          right: '1.25rem',
-          zIndex: 5,
-        } : {}}
       />
 
-      {/* Placeholder to keep layout height stable when input becomes fixed */}
-      {keyboardOpen && <div style={{ height: '3.5rem' }} />}
-
-      {/* Buttons — always in normal flow; hidden behind keyboard is fine, Enter key still works */}
-      <div style={{ display: 'flex', gap: '0.5rem', marginTop: '0.5rem' }}>
+      <div style={{ display: 'flex', gap: '0.5rem' }}>
         {!flipped && (
           <button className="btn-ghost" onClick={handleSkip} style={{ flex: '0 0 auto', padding: '14px 18px' }}>
             Skip
