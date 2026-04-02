@@ -58,7 +58,7 @@ export default function Session({ onComplete, goalMinutes = 5, words: wordList =
   const timerIdRef = useRef(null);
   const [keyboardOpen, setKeyboardOpen] = useState(false);
   const [showQuitConfirm, setShowQuitConfirm] = useState(false);
-  const [viewportH, setViewportH] = useState(null);
+  const [inputBottom, setInputBottom] = useState(0);
 
   useEffect(() => { scoreRef.current = score; }, [score]);
 
@@ -83,16 +83,17 @@ export default function Session({ onComplete, goalMinutes = 5, words: wordList =
     const handler = () => {
       const isOpen = vv.height < window.innerHeight * 0.75;
       setKeyboardOpen(isOpen);
-      if (isOpen) {
-        setViewportH(vv.height);
-        // Prevent browser from centering input — scroll to top so our flex layout controls positioning
-        setTimeout(() => window.scrollTo(0, 0), 30);
-      } else {
-        setViewportH(null);
-      }
+      // Calculate how far the visual viewport is from the bottom of the layout viewport
+      const offset = Math.max(0, window.innerHeight - vv.height - vv.offsetTop);
+      setInputBottom(isOpen ? offset : 0);
+      if (isOpen) setTimeout(() => window.scrollTo(0, 0), 30);
     };
     vv.addEventListener('resize', handler);
-    return () => vv.removeEventListener('resize', handler);
+    vv.addEventListener('scroll', handler);
+    return () => {
+      vv.removeEventListener('resize', handler);
+      vv.removeEventListener('scroll', handler);
+    };
   }, []);
 
   useEffect(() => {
@@ -212,15 +213,7 @@ export default function Session({ onComplete, goalMinutes = 5, words: wordList =
       : 'Type the Dutch word…';
 
   return (
-    <div style={{
-      position: 'relative',
-      ...(viewportH ? {
-        display: 'flex',
-        flexDirection: 'column',
-        height: viewportH,
-        overflow: 'hidden',
-      } : {}),
-    }}>
+    <div style={{ position: 'relative' }}>
       {/* Quit button — top right */}
       <button
         onClick={() => setShowQuitConfirm(true)}
@@ -264,44 +257,54 @@ export default function Session({ onComplete, goalMinutes = 5, words: wordList =
         </span>
       </div>
 
-      {/* Flash card — fills remaining space when keyboard is open */}
-      <div style={viewportH ? { flex: 1, minHeight: 0, overflow: 'hidden' } : {}}>
-        <FlashCard
-          word={words[idx]}
-          flipped={flipped}
-          isCorrect={isCorrect}
-          userAnswer={input}
-          instant={instant}
-          direction={cardDir}
-          language={language}
-          voice={voice}
-          showSynonyms={showSynonyms}
-        />
-      </div>
-
-      {/* Input */}
-      <input
-        ref={inputRef}
-        className="input-field"
-        type="text"
-        value={input}
-        onChange={e => setInput(e.target.value)}
-        placeholder={placeholder}
-        autoComplete="off"
-        autoCorrect="off"
-        autoCapitalize="off"
-        disabled={flipped}
+      {/* Flash card */}
+      <FlashCard
+        word={words[idx]}
+        flipped={flipped}
+        isCorrect={isCorrect}
+        userAnswer={input}
+        instant={instant}
+        direction={cardDir}
+        language={language}
+        voice={voice}
+        showSynonyms={showSynonyms}
       />
 
-      <div style={{ display: 'flex', gap: '0.5rem' }}>
-        {!flipped && (
-          <button className="btn-ghost" onClick={handleSkip} style={{ flex: '0 0 auto', padding: '14px 18px' }}>
-            Skip
+      {/* Spacer so the card isn't hidden behind the fixed input bar when keyboard is open */}
+      {keyboardOpen && <div style={{ height: '7rem' }} />}
+
+      {/* Input + buttons — fixed just above keyboard when keyboard is open */}
+      <div style={keyboardOpen ? {
+        position: 'fixed',
+        bottom: inputBottom,
+        left: '1.25rem',
+        right: '1.25rem',
+        background: 'var(--bg)',
+        paddingBottom: '0.5rem',
+        zIndex: 5,
+      } : {}}>
+        <input
+          ref={inputRef}
+          className="input-field"
+          type="text"
+          value={input}
+          onChange={e => setInput(e.target.value)}
+          placeholder={placeholder}
+          autoComplete="off"
+          autoCorrect="off"
+          autoCapitalize="off"
+          disabled={flipped}
+        />
+        <div style={{ display: 'flex', gap: '0.5rem', marginTop: '0.5rem' }}>
+          {!flipped && (
+            <button className="btn-ghost" onClick={handleSkip} style={{ flex: '0 0 auto', padding: '14px 18px' }}>
+              Skip
+            </button>
+          )}
+          <button className="btn-primary" onClick={handleCheck} style={{ flex: 1 }}>
+            {flipped ? 'Next card →' : 'Check answer'}
           </button>
-        )}
-        <button className="btn-primary" onClick={handleCheck} style={{ flex: 1 }}>
-          {flipped ? 'Next card →' : 'Check answer'}
-        </button>
+        </div>
       </div>
 
       {/* Quit confirmation popup */}
