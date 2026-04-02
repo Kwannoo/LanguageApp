@@ -75,11 +75,19 @@ export default function Session({ onComplete, goalMinutes = 5, words: wordList =
     return () => document.removeEventListener('visibilitychange', handleVisibility);
   }, []);
 
-  // Detect keyboard open via Visual Viewport API
+  // Detect keyboard open via Visual Viewport API and scroll input to bottom
   useEffect(() => {
     const vv = window.visualViewport;
     if (!vv) return;
-    const handler = () => setKeyboardOpen(vv.height < window.innerHeight * 0.75);
+    const handler = () => {
+      const isOpen = vv.height < window.innerHeight * 0.75;
+      setKeyboardOpen(isOpen);
+      if (isOpen && inputRef.current) {
+        setTimeout(() => {
+          inputRef.current?.scrollIntoView({ block: 'end', behavior: 'smooth' });
+        }, 50);
+      }
+    };
     vv.addEventListener('resize', handler);
     return () => vv.removeEventListener('resize', handler);
   }, []);
