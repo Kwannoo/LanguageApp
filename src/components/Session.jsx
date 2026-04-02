@@ -237,7 +237,7 @@ export default function Session({ onComplete, goalMinutes = 5, words: wordList =
         <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', marginBottom: '0.25rem', paddingRight: 40 }}>
           <img src="/transparent-white-logo.png" alt="Vocardably" style={{ width: 48 }} />
           <p style={{ margin: 0, fontSize: 13, color: 'var(--hint)', fontStyle: 'italic', lineHeight: 1.4 }}>
-            Every word brings you closer to fluency! 1
+            Every word brings you closer to fluency! 2
           </p>
         </div>
       )}
@@ -270,41 +270,40 @@ export default function Session({ onComplete, goalMinutes = 5, words: wordList =
         showSynonyms={showSynonyms}
       />
 
-      {/* Spacer so the card isn't hidden behind the fixed input bar when keyboard is open */}
-      {keyboardOpen && <div style={{ height: '7rem' }} />}
+      {/* Input — fixed just above keyboard when keyboard is open so only card + input are visible */}
+      <input
+        ref={inputRef}
+        className="input-field"
+        type="text"
+        value={input}
+        onChange={e => setInput(e.target.value)}
+        placeholder={placeholder}
+        autoComplete="off"
+        autoCorrect="off"
+        autoCapitalize="off"
+        disabled={flipped}
+        style={keyboardOpen ? {
+          position: 'fixed',
+          bottom: inputBottom + 8,
+          left: '1.25rem',
+          right: '1.25rem',
+          zIndex: 5,
+        } : {}}
+      />
 
-      {/* Input + buttons — fixed just above keyboard when keyboard is open */}
-      <div style={keyboardOpen ? {
-        position: 'fixed',
-        bottom: inputBottom,
-        left: '1.25rem',
-        right: '1.25rem',
-        background: 'var(--bg)',
-        paddingBottom: '0.5rem',
-        zIndex: 5,
-      } : {}}>
-        <input
-          ref={inputRef}
-          className="input-field"
-          type="text"
-          value={input}
-          onChange={e => setInput(e.target.value)}
-          placeholder={placeholder}
-          autoComplete="off"
-          autoCorrect="off"
-          autoCapitalize="off"
-          disabled={flipped}
-        />
-        <div style={{ display: 'flex', gap: '0.5rem', marginTop: '0.5rem' }}>
-          {!flipped && (
-            <button className="btn-ghost" onClick={handleSkip} style={{ flex: '0 0 auto', padding: '14px 18px' }}>
-              Skip
-            </button>
-          )}
-          <button className="btn-primary" onClick={handleCheck} style={{ flex: 1 }}>
-            {flipped ? 'Next card →' : 'Check answer'}
+      {/* Placeholder to keep layout height stable when input becomes fixed */}
+      {keyboardOpen && <div style={{ height: '3.5rem' }} />}
+
+      {/* Buttons — always in normal flow; hidden behind keyboard is fine, Enter key still works */}
+      <div style={{ display: 'flex', gap: '0.5rem', marginTop: '0.5rem' }}>
+        {!flipped && (
+          <button className="btn-ghost" onClick={handleSkip} style={{ flex: '0 0 auto', padding: '14px 18px' }}>
+            Skip
           </button>
-        </div>
+        )}
+        <button className="btn-primary" onClick={handleCheck} style={{ flex: 1 }}>
+          {flipped ? 'Next card →' : 'Check answer'}
+        </button>
       </div>
 
       {/* Quit confirmation popup */}
