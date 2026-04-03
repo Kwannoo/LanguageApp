@@ -70,9 +70,11 @@ export default function Session({ onComplete, goalMinutes = 5, words: wordList =
   useEffect(() => {
     const root = document.getElementById('root');
     if (!root) return;
-    const prev = { paddingBottom: root.style.paddingBottom };
+    const prev = { justifyContent: root.style.justifyContent, paddingBottom: root.style.paddingBottom };
+    root.style.justifyContent = 'flex-start';
     root.style.paddingBottom = '0';
     return () => {
+      root.style.justifyContent = prev.justifyContent;
       root.style.paddingBottom = prev.paddingBottom;
     };
   }, []);
