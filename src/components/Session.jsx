@@ -86,20 +86,23 @@ export default function Session({ onComplete, goalMinutes = 5, words: wordList =
       const isOpen = vv.height < window.innerHeight * 0.75;
       setKeyboardOpen(isOpen);
       if (isOpen) {
-        // iOS Safari scrolls to center the focused input in the space above the keyboard.
-        // We correct this: scroll so the input bottom sits just above the keyboard,
-        // leaving the card visible above it.
         setTimeout(() => {
           const inputEl = inputRef.current;
           if (!inputEl) return;
-          const rect = inputEl.getBoundingClientRect();
-          // rect.bottom is the input's bottom edge relative to the visual viewport.
-          // We want it 8px above the keyboard (= vv.height - 8).
-          const scrollAdjust = rect.bottom - (vv.height - 8);
-          window.scrollBy({ top: scrollAdjust, behavior: 'instant' });
-        }, 50);
+          // Walk the offsetParent chain for the input's absolute document position.
+          // This is unambiguous — unaffected by vv.offsetTop or window.scrollY.
+          let absTop = 0;
+          let node = inputEl;
+          while (node) { absTop += node.offsetTop; node = node.offsetParent; }
+          const absBottom = absTop + inputEl.offsetHeight;
+          // Scroll so the input sits above the keyboard with ~70px of space
+          // so the "Check answer" button below it is slightly visible.
+          const targetScrollY = absBottom - (vv.height - 70);
+          // Use scrollTo(x, y) — universally supported on all iOS versions.
+          window.scrollTo(0, Math.max(0, targetScrollY));
+        }, 150);
       } else {
-        window.scrollTo({ top: 0, behavior: 'instant' });
+        window.scrollTo(0, 0);
       }
     };
     vv.addEventListener('resize', handler);
