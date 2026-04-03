@@ -59,6 +59,7 @@ export default function Session({ onComplete, goalMinutes = 5, words: wordList =
   const [paused, setPaused] = useState(false);
   const timerIdRef = useRef(null);
   const [keyboardOpen, setKeyboardOpen] = useState(false);
+  const [inputBottom, setInputBottom] = useState(0);
   const [showQuitConfirm, setShowQuitConfirm] = useState(false);
 
   useEffect(() => { scoreRef.current = score; }, [score]);
@@ -78,51 +79,28 @@ export default function Session({ onComplete, goalMinutes = 5, words: wordList =
     return () => document.removeEventListener('visibilitychange', handleVisibility);
   }, []);
 
-  // Detect keyboard open via Visual Viewport API and correct scroll position
+  // Detect keyboard via Visual Viewport API.
+  // Fix the input just above the keyboard using position:fixed so iOS never
+  // scrolls the page — works consistently across all cards.
   useEffect(() => {
     const vv = window.visualViewport;
     if (!vv) return;
     const handler = () => {
       const isOpen = vv.height < window.innerHeight * 0.75;
       setKeyboardOpen(isOpen);
-      if (isOpen) {
-        setTimeout(() => {
-          const inputEl = inputRef.current;
-          if (!inputEl) return;
-          // Walk the offsetParent chain for the input's absolute document position.
-          // This is unambiguous — unaffected by vv.offsetTop or window.scrollY.
-          let absTop = 0;
-          let node = inputEl;
-          while (node) { absTop += node.offsetTop; node = node.offsetParent; }
-          const absBottom = absTop + inputEl.offsetHeight;
-          // Scroll so the input sits above the keyboard with ~70px of space
-          // so the "Check answer" button below it is slightly visible.
-          const targetScrollY = absBottom - (vv.height - 70);
-          // Use scrollTo(x, y) — universally supported on all iOS versions.
-          window.scrollTo(0, Math.max(0, targetScrollY));
-        }, 150);
-      } else {
-        window.scrollTo(0, 0);
-      }
+      // Distance from bottom of layout viewport to bottom of visual viewport = keyboard height
+      const bottom = Math.max(0, window.innerHeight - vv.height - vv.offsetTop);
+      setInputBottom(isOpen ? bottom : 0);
+      // Reset any scroll iOS may have applied so the card stays visible
+      if (isOpen) window.scrollTo(0, 0);
     };
     vv.addEventListener('resize', handler);
-    return () => vv.removeEventListener('resize', handler);
+    vv.addEventListener('scroll', handler);
+    return () => {
+      vv.removeEventListener('resize', handler);
+      vv.removeEventListener('scroll', handler);
+    };
   }, []);
-
-  // Re-run scroll correction when advancing to the next card (keyboard stays open between cards)
-  useEffect(() => {
-    if (!keyboardOpen) return;
-    const vv = window.visualViewport;
-    if (!vv) return;
-    const t = setTimeout(() => {
-      const inputEl = inputRef.current;
-      if (!inputEl) return;
-      let absTop = 0, node = inputEl;
-      while (node) { absTop += node.offsetTop; node = node.offsetParent; }
-      window.scrollTo(0, Math.max(0, absTop + inputEl.offsetHeight - (vv.height - 70)));
-    }, 50);
-    return () => clearTimeout(t);
-  }, [idx, keyboardOpen]);
 
   useEffect(() => {
     if (paused) {
@@ -309,6 +287,9 @@ export default function Session({ onComplete, goalMinutes = 5, words: wordList =
       />
 
       {/* Input */}
+      {/* When keyboard is open the input is fixed above it, so a spacer holds its place in the flow */}
+      {keyboardOpen && <div style={{ height: 48 }} />}
+
       <input
         ref={inputRef}
         className="input-field"
@@ -320,6 +301,13 @@ export default function Session({ onComplete, goalMinutes = 5, words: wordList =
         autoCorrect="off"
         autoCapitalize="off"
         disabled={flipped}
+        style={keyboardOpen ? {
+          position: 'fixed',
+          bottom: inputBottom + 8,
+          left: '1.25rem',
+          right: '1.25rem',
+          zIndex: 5,
+        } : {}}
       />
 
       <div style={{ display: 'flex', gap: '0.5rem' }}>
