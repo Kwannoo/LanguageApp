@@ -88,18 +88,16 @@ export default function Session({ onComplete, goalMinutes = 5, words: wordList =
     const handler = () => {
       const isOpen = vv.height < window.innerHeight * 0.75;
       setKeyboardOpen(isOpen);
-      // Distance from bottom of layout viewport to bottom of visual viewport = keyboard height
-      const bottom = Math.max(0, window.innerHeight - vv.height - vv.offsetTop);
+      // Keyboard height = layout viewport height minus visual viewport height.
+      // Do NOT subtract vv.offsetTop — that's the scroll offset, not the keyboard size,
+      // and updating it on scroll would cause the fixed input to jump while scrolling.
+      const bottom = Math.max(0, window.innerHeight - vv.height);
       setInputBottom(isOpen ? bottom : 0);
       // Reset any scroll iOS may have applied so the card stays visible
       if (isOpen) window.scrollTo(0, 0);
     };
     vv.addEventListener('resize', handler);
-    vv.addEventListener('scroll', handler);
-    return () => {
-      vv.removeEventListener('resize', handler);
-      vv.removeEventListener('scroll', handler);
-    };
+    return () => vv.removeEventListener('resize', handler);
   }, []);
 
   useEffect(() => {
@@ -303,7 +301,7 @@ export default function Session({ onComplete, goalMinutes = 5, words: wordList =
         disabled={flipped}
         style={keyboardOpen ? {
           position: 'fixed',
-          bottom: inputBottom + 8,
+          bottom: inputBottom,
           left: '1.25rem',
           right: '1.25rem',
           zIndex: 5,
