@@ -66,6 +66,19 @@ export default function Session({ onComplete, goalMinutes = 5, words: wordList =
   useEffect(() => { scoreRef.current = score; }, [score]);
   useEffect(() => { srsDataRef.current = srsData; }, [srsData]);
 
+  // Minimise space below the button so the keyboard auto-scroll doesn't push the card off-screen
+  useEffect(() => {
+    const root = document.getElementById('root');
+    if (!root) return;
+    const prev = { justifyContent: root.style.justifyContent, paddingBottom: root.style.paddingBottom };
+    root.style.justifyContent = 'flex-start';
+    root.style.paddingBottom = '0.5rem';
+    return () => {
+      root.style.justifyContent = prev.justifyContent;
+      root.style.paddingBottom = prev.paddingBottom;
+    };
+  }, []);
+
   useEffect(() => {
     if (instant) {
       const raf = requestAnimationFrame(() => setInstant(false));
