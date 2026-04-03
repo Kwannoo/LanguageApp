@@ -29,6 +29,7 @@ export default function HomeScreen({ streak, todayDone, username, avatar, words,
   const [showStatsCard, setShowStatsCard] = useState(false);
   const [showCoinInfo, setShowCoinInfo]   = useState(false);
   const [showFreezeShop, setShowFreezeShop] = useState(false);
+  const [showHowItWorks, setShowHowItWorks] = useState(false);
   const directionOptions = DIRECTION_MAP[language] || DIRECTION_MAP.nl;
 
   const closeMenu = () => {
@@ -38,24 +39,41 @@ export default function HomeScreen({ streak, todayDone, username, avatar, words,
 
   return (
     <div className="text-center" style={{ position: 'relative' }}>
-      {/* Coin indicator — top left */}
-      <button
-        onClick={() => setShowCoinInfo(true)}
-        style={{
-          position: 'absolute', top: 0, left: 0,
-          display: 'flex', alignItems: 'center', gap: 4,
-          background: 'var(--surface)',
-          border: '2px solid var(--border)',
-          borderRadius: 'var(--radius-sm)',
-          padding: '6px 10px',
-          zIndex: 10,
-          cursor: 'pointer',
-          fontFamily: 'var(--font-sans)',
-        }}
-      >
-        <img src="/avatar/vocacoin.png" alt="" style={{ width: 20, height: 20 }} />
-        <span style={{ fontWeight: 700, fontSize: 14, color: 'var(--amber)' }}>{coins}</span>
-      </button>
+      {/* Coin indicator + info button — top left */}
+      <div style={{ position: 'absolute', top: 0, left: 0, display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 6 }}>
+        <button
+          onClick={() => setShowCoinInfo(true)}
+          style={{
+            display: 'flex', alignItems: 'center', gap: 4,
+            background: 'var(--surface)',
+            border: '2px solid var(--border)',
+            borderRadius: 'var(--radius-sm)',
+            padding: '6px 10px',
+            cursor: 'pointer',
+            fontFamily: 'var(--font-sans)',
+          }}
+        >
+          <img src="/avatar/vocacoin.png" alt="" style={{ width: 20, height: 20 }} />
+          <span style={{ fontWeight: 700, fontSize: 14, color: 'var(--amber)' }}>{coins}</span>
+        </button>
+        <button
+          onClick={() => setShowHowItWorks(true)}
+          style={{
+            display: 'flex', alignItems: 'center', justifyContent: 'center',
+            width: 28, height: 28,
+            background: 'var(--surface)',
+            border: '2px solid var(--border)',
+            borderRadius: '50%',
+            cursor: 'pointer',
+            fontFamily: 'var(--font-sans)',
+            fontWeight: 700,
+            fontSize: 14,
+            color: 'var(--muted)',
+          }}
+        >
+          i
+        </button>
+      </div>
 
       {/* Menu button — top right */}
       <button
@@ -389,9 +407,9 @@ export default function HomeScreen({ streak, todayDone, username, avatar, words,
               </p>
             </div>
             <div className="stat-card">
-              <p className="label">Mastered</p>
+              <p className="label"><span style={{ fontSize: 15 }}>🎓</span> Mastered</p>
               <p className="number" style={{ color: 'var(--success-fg)' }}>
-                📚 {mastered}
+                {mastered}
               </p>
             </div>
           </div>
@@ -452,14 +470,6 @@ export default function HomeScreen({ streak, todayDone, username, avatar, words,
         />
       )}
 
-      {/* How it works */}
-      <div className="how-it-works">
-        <p>① A {language === 'ja' ? 'Japanese' : 'Dutch'} word appears on the card</p>
-        <p>② Type the translation and press Enter</p>
-        <p>③ The card flips to reveal the correct answer</p>
-        <p>④ Practice every day to learn your language and build your streak!</p>
-      </div>
-
       {/* Coin info popup */}
       {showCoinInfo && (<>
         <div
@@ -500,6 +510,63 @@ export default function HomeScreen({ streak, todayDone, username, avatar, words,
               Got it!
             </button>
           </div>
+        </div>
+      </>)}
+
+      {/* How it works popup */}
+      {showHowItWorks && (<>
+        <div
+          onClick={() => setShowHowItWorks(false)}
+          style={{
+            position: 'fixed', inset: 0,
+            background: 'rgba(0,0,0,0.5)',
+            zIndex: 200,
+            animation: 'popupBgIn 0.2s ease forwards',
+          }}
+        />
+        <div style={{
+          position: 'fixed', top: '50%', left: '50%',
+          transform: 'translate(-50%, -50%)',
+          background: 'var(--surface)',
+          border: '2px solid var(--border)',
+          borderRadius: 16,
+          padding: '1.75rem 1.5rem',
+          width: 'min(340px, 90vw)',
+          zIndex: 201,
+          animation: 'popupIn 0.25s ease forwards',
+        }}>
+          <p style={{ fontWeight: 800, fontSize: '1.15rem', marginBottom: '1rem', textAlign: 'center' }}>How Vocardably works</p>
+
+          <div style={{ display: 'flex', flexDirection: 'column', gap: '0.75rem', marginBottom: '1.25rem' }}>
+            <div style={{ display: 'flex', gap: '0.75rem', alignItems: 'flex-start' }}>
+              <span style={{ fontSize: '1.2rem' }}>🃏</span>
+              <p style={{ fontSize: 14, color: 'var(--text)', lineHeight: 1.5 }}>
+                A word from your chosen language appears on the card. Type the correct translation to move on.
+              </p>
+            </div>
+            <div style={{ display: 'flex', gap: '0.75rem', alignItems: 'flex-start' }}>
+              <span style={{ fontSize: '1.2rem' }}>⭐</span>
+              <p style={{ fontSize: 14, color: 'var(--text)', lineHeight: 1.5 }}>
+                A word is <strong>mastered</strong> when you get it right the very first time you ever see it, or when you answer it correctly 5 times in a row.
+              </p>
+            </div>
+            <div style={{ display: 'flex', gap: '0.75rem', alignItems: 'flex-start' }}>
+              <span style={{ fontSize: '1.2rem' }}>🔥</span>
+              <p style={{ fontSize: 14, color: 'var(--text)', lineHeight: 1.5 }}>
+                Keep your daily streak alive by completing at least one session every day. Even 5 minutes a day adds up fast!
+              </p>
+            </div>
+            <div style={{ display: 'flex', gap: '0.75rem', alignItems: 'flex-start' }}>
+              <span style={{ fontSize: '1.2rem' }}>💡</span>
+              <p style={{ fontSize: 14, color: 'var(--text)', lineHeight: 1.5 }}>
+                Consistency beats intensity — a short daily session is more effective than cramming once a week. You've got this!
+              </p>
+            </div>
+          </div>
+
+          <button className="btn-primary" onClick={() => setShowHowItWorks(false)} style={{ width: '100%' }}>
+            Let's go!
+          </button>
         </div>
       </>)}
 

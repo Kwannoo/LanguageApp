@@ -116,7 +116,7 @@ export default function FriendsScreen({ user, referralCode = '', onBack }) {
     setSelectedFriend(null);
     const { data } = await supabase
       .from('profiles')
-      .select('id, username, streak, avatar, title, srs_data, created_at')
+      .select('id, username, streak, avatar, title, srs_data, created_at, coins')
       .eq('id', friendId)
       .single();
     if (data) {
@@ -131,7 +131,8 @@ export default function FriendsScreen({ user, referralCode = '', onBack }) {
         if (/[\u3000-\u9fff\uff00-\uffef]/.test(key)) langs.add('Japanese');
         else langs.add('Dutch');
       }
-      setSelectedFriend({ ...data, mastered, totalWords, languages: [...langs] });
+      const inProgress = totalWords - mastered;
+      setSelectedFriend({ ...data, mastered, inProgress, totalWords, languages: [...langs] });
     }
     setLoadingProfile(false);
   };
@@ -397,7 +398,7 @@ export default function FriendsScreen({ user, referralCode = '', onBack }) {
                 </p>
               )}
 
-              <div className="stats-row" style={{ marginTop: '1rem', marginBottom: '1rem' }}>
+              <div className="stats-row" style={{ marginTop: '1rem', marginBottom: '0.5rem' }}>
                 <div className="stat-card">
                   <p className="label">Streak</p>
                   <p className="number" style={{ color: (selectedFriend.streak ?? 0) > 0 ? 'var(--amber)' : 'var(--text)' }}>
@@ -405,9 +406,22 @@ export default function FriendsScreen({ user, referralCode = '', onBack }) {
                   </p>
                 </div>
                 <div className="stat-card">
-                  <p className="label">Mastered</p>
+                  <p className="label">Total coins</p>
+                  <p className="number" style={{ color: 'var(--amber)', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 4 }}>
+                    <img src="/avatar/vocacoin.png" alt="" style={{ width: 24, height: 24 }} />
+                    {selectedFriend.coins ?? 0}
+                  </p>
+                </div>
+              </div>
+              <div className="stats-row" style={{ marginBottom: '1rem' }}>
+                <div className="stat-card">
+                  <p className="label"><span style={{ fontSize: 15 }}>📚</span> Learning</p>
+                  <p className="number">{selectedFriend.inProgress ?? 0}</p>
+                </div>
+                <div className="stat-card">
+                  <p className="label"><span style={{ fontSize: 15 }}>🎓</span> Mastered</p>
                   <p className="number" style={{ color: 'var(--success-fg)' }}>
-                    📚 {selectedFriend.mastered}
+                    {selectedFriend.mastered ?? 0}
                   </p>
                 </div>
               </div>

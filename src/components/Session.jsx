@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef, useCallback } from 'react';
 import FlashCard from './FlashCard.jsx';
-import { loadSRS, saveSRS, updateSRS, sortByPriority } from '../utils/srs.js';
+import { loadSRS, saveSRS, updateSRS, sortByPriority, computeProgress } from '../utils/srs.js';
 import { playCorrect, vibrateWrong } from '../utils/feedback.js';
 
 function timerColor() {
@@ -54,12 +54,15 @@ export default function Session({ onComplete, goalMinutes = 5, words: wordList =
   const inputRef = useRef(null);
   const scoreRef = useRef({ correct: 0, total: 0 });
   const sessionWordsRef = useRef([]);
+  const newLearnedRef = useRef(new Set()); // words that were unseen and got answered correctly
+  const srsDataRef = useRef(srsData);      // mirrors srsData state for timer closure
   const [paused, setPaused] = useState(false);
   const timerIdRef = useRef(null);
   const [keyboardOpen, setKeyboardOpen] = useState(false);
   const [showQuitConfirm, setShowQuitConfirm] = useState(false);
 
   useEffect(() => { scoreRef.current = score; }, [score]);
+  useEffect(() => { srsDataRef.current = srsData; }, [srsData]);
 
   useEffect(() => {
     if (instant) {
@@ -113,7 +116,12 @@ export default function Session({ onComplete, goalMinutes = 5, words: wordList =
       setTimeLeft(t => {
         if (t <= 1) {
           clearInterval(timerIdRef.current);
-          setTimeout(() => onComplete({ ...scoreRef.current, sessionWords: sessionWordsRef.current, completed: true }), 0);
+          setTimeout(() => {
+            const srs = srsDataRef.current;
+            const mastered = Object.values(srs).filter(e => (e.streak ?? 0) >= 5).length;
+            const { inProgress } = computeProgress(words, srs);
+            onComplete({ ...scoreRef.current, sessionWords: sessionWordsRef.current, completed: true, newLearned: newLearnedRef.current.size, mastered, inProgress });
+          }, 0);
           return 0;
         }
         return t - 1;
@@ -159,6 +167,11 @@ export default function Session({ onComplete, goalMinutes = 5, words: wordList =
       scoreRef.current = next;
       return next;
     });
+
+    // Track new words learned (first time seen + correct)
+    if (correct && !srsData[words[idx].nl]) {
+      newLearnedRef.current.add(words[idx].nl);
+    }
 
     // Track this word for review
     sessionWordsRef.current.push({
@@ -243,8 +256,8 @@ export default function Session({ onComplete, goalMinutes = 5, words: wordList =
       {!keyboardOpen && (
         <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', marginBottom: '0.25rem', paddingRight: 40 }}>
           <img src="/transparent-white-logo.png" alt="Vocardably" style={{ width: 48 }} />
-          <p style={{ margin: 0, fontSize: 13, color: 'var(--hint)', fontStyle: 'italic', lineHeight: 1.4 }}>
-            Every word brings you closer to fluency! 3
+          <p style={{ margin: 0, fontSize: 16, color: 'var(--hint)', fontStyle: 'italic', lineHeight: 1.4 }}>
+            Every word brings you closer to fluency!
           </p>
         </div>
       )}
@@ -340,7 +353,12 @@ export default function Session({ onComplete, goalMinutes = 5, words: wordList =
             <button
               className="btn-primary"
               style={{ flex: 1, background: 'var(--danger-fg)' }}
-              onClick={() => onComplete({ ...score, sessionWords: sessionWordsRef.current, completed: false })}
+              onClick={() => {
+                const srs = srsDataRef.current;
+                const mastered = Object.values(srs).filter(e => (e.streak ?? 0) >= 5).length;
+                const { inProgress } = computeProgress(words, srs);
+                onComplete({ ...score, sessionWords: sessionWordsRef.current, completed: false, newLearned: newLearnedRef.current.size, mastered, inProgress });
+              }}
             >
               End session
             </button>

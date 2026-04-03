@@ -30,7 +30,9 @@ export function updateSRS(srsData, wordNl, isCorrect) {
   const prevCorrect = entry.correct ?? 0;
   const prevAttempts = entry.attempts ?? 0;
 
-  const newStreak = isCorrect ? prevStreak + 1 : 0;
+  // First-time correct → immediately master the word
+  const isFirstTime = !srsData[wordNl];
+  const newStreak = isCorrect ? (isFirstTime ? MASTERED_STREAK : prevStreak + 1) : 0;
   const newCorrect = prevCorrect + (isCorrect ? 1 : 0);
   const newAttempts = prevAttempts + 1;
   const newInterval = isCorrect ? Math.min(entry.interval * 2, 60) : 1;

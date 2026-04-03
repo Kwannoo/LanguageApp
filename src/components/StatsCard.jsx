@@ -52,7 +52,7 @@ export default function StatsCard({ username, streak, words, srsData, language, 
     // Stats
     const stats = [
       { label: 'Streak', value: `🔥 ${streak} days` },
-      { label: `${langLabel} words mastered`, value: `📚 ${mastered} / ${total}` },
+      { label: `${langLabel} words mastered`, value: `🎓 ${mastered} / ${total}` },
       { label: 'Progress', value: `${total > 0 ? Math.round((mastered / total) * 100) : 0}%` },
     ];
 

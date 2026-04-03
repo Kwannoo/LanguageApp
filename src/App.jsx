@@ -374,7 +374,6 @@ export default function App() {
       {screen === 'complete' && (
         <Complete
           score={lastScore}
-          streak={streak}
           language={language}
           onHome={() => setScreen('home')}
           onRetry={() => setScreen('session')}

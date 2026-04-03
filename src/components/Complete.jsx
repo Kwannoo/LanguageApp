@@ -10,15 +10,14 @@ import confetti from 'canvas-confetti';
  *   onHome  – fn – go back to home
  *   onRetry – fn – start another session
  */
-export default function Complete({ score, streak, language = 'nl', onHome, onRetry }) {
+export default function Complete({ score, language = 'nl', onHome, onRetry }) {
   const [tab, setTab] = useState('summary');
   const [reviewFilter, setReviewFilter] = useState('all');
-  const pct = score.total > 0 ? Math.round((score.correct / score.total) * 100) : 0;
-  const emoji = pct >= 80 ? '🌟' : pct >= 50 ? '👍' : '💪';
+  const emoji = score.completed ? '🌟' : '💪';
   const sessionWords = score.sessionWords || [];
 
   useEffect(() => {
-    if (pct >= 80 && score.total > 0) {
+    if (score.completed && score.total > 0) {
       confetti({ particleCount: 120, spread: 80, origin: { y: 0.55 } });
     }
   }, []);
@@ -101,12 +100,19 @@ export default function Complete({ score, streak, language = 'nl', onHome, onRet
               <p className="number" style={{ color: 'var(--success-fg)' }}>{score.correct}</p>
             </div>
             <div className="stat-card">
-              <p className="label">Accuracy</p>
-              <p className="number">{pct}%</p>
+              <p className="label"><span style={{ fontSize: 15 }}>📚</span> Learning</p>
+              <p className="number">
+                {score.inProgress ?? 0}
+                {(score.newLearned ?? 0) > 0 && (
+                  <span style={{ fontSize: '0.7em', color: 'var(--success-fg)', marginLeft: 4 }}>
+                    (+{score.newLearned})
+                  </span>
+                )}
+              </p>
             </div>
             <div className="stat-card">
-              <p className="label">Streak</p>
-              <p className="number" style={{ color: 'var(--amber)' }}>🔥 {streak}</p>
+              <p className="label"><span style={{ fontSize: 15 }}>🎓</span> Mastered</p>
+              <p className="number" style={{ color: 'var(--success-fg)' }}>{score.mastered ?? 0}</p>
             </div>
           </div>
 
