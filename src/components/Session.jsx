@@ -59,7 +59,9 @@ export default function Session({ onComplete, goalMinutes = 5, words: wordList =
   const [paused, setPaused] = useState(false);
   const timerIdRef = useRef(null);
   const [keyboardOpen, setKeyboardOpen] = useState(false);
+  const [inputBottom, setInputBottom] = useState(0);
   const [showQuitConfirm, setShowQuitConfirm] = useState(false);
+  const keyboardOpenRef = useRef(false);
 
   useEffect(() => { scoreRef.current = score; }, [score]);
   useEffect(() => { srsDataRef.current = srsData; }, [srsData]);
@@ -78,45 +80,31 @@ export default function Session({ onComplete, goalMinutes = 5, words: wordList =
     return () => document.removeEventListener('visibilitychange', handleVisibility);
   }, []);
 
-  // Scroll correction: when the keyboard opens iOS scrolls to center the input,
-  // which pushes the card off screen. We wait for the keyboard animation to
-  // finish then do one scrollBy to move the input down toward the keyboard,
-  // revealing the card above. The input stays in normal document flow — no
-  // fixed positioning, no dynamic updates.
-  const correctScroll = useCallback(() => {
-    const vv = window.visualViewport;
-    const inputEl = inputRef.current;
-    if (!vv || !inputEl) return;
-    // rect.bottom: where the input's bottom edge currently sits in the visual viewport.
-    // We want it at vv.height - 8 (just above the keyboard).
-    // A negative result scrolls up, revealing the card above the input.
-    const delta = inputEl.getBoundingClientRect().bottom - (vv.height - 100);
-    window.scrollBy(0, delta);
-  }, []);
-
+  // On iOS the document often isn't tall enough to scroll, so window.scrollBy
+  // silently does nothing. Instead, set the input to position:fixed once —
+  // after the keyboard animation fully settles — so it doesn't animate with
+  // the keyboard. window.scrollTo(0,0) keeps the card visible at the top.
   useEffect(() => {
     const vv = window.visualViewport;
     if (!vv) return;
     const handler = () => {
       const isOpen = vv.height < window.innerHeight * 0.75;
+      if (isOpen === keyboardOpenRef.current) return; // ignore mid-animation resize ticks
+      keyboardOpenRef.current = isOpen;
       setKeyboardOpen(isOpen);
       if (isOpen) {
-        // Wait for the keyboard animation to settle before correcting
-        setTimeout(correctScroll, 300);
+        setTimeout(() => {
+          // Read the stable keyboard height after animation completes
+          setInputBottom(Math.max(0, window.innerHeight - window.visualViewport.height));
+          window.scrollTo(0, 0);
+        }, 300);
       } else {
-        window.scrollTo(0, 0);
+        setInputBottom(0);
       }
     };
     vv.addEventListener('resize', handler);
     return () => vv.removeEventListener('resize', handler);
-  }, [correctScroll]);
-
-  // Re-correct when advancing to the next card (keyboard stays open, input re-enables)
-  useEffect(() => {
-    if (!keyboardOpen) return;
-    const t = setTimeout(correctScroll, 100);
-    return () => clearTimeout(t);
-  }, [idx, keyboardOpen, correctScroll]);
+  }, []);
 
   useEffect(() => {
     if (paused) {
@@ -303,6 +291,7 @@ export default function Session({ onComplete, goalMinutes = 5, words: wordList =
       />
 
       {/* Input */}
+      {keyboardOpen && <div style={{ height: 48 }} />}
       <input
         ref={inputRef}
         className="input-field"
@@ -314,6 +303,13 @@ export default function Session({ onComplete, goalMinutes = 5, words: wordList =
         autoCorrect="off"
         autoCapitalize="off"
         disabled={flipped}
+        style={keyboardOpen ? {
+          position: 'fixed',
+          bottom: inputBottom,
+          left: '1.25rem',
+          right: '1.25rem',
+          zIndex: 5,
+        } : {}}
       />
 
       <div style={{ display: 'flex', gap: '0.5rem' }}>
