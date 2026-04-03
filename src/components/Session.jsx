@@ -109,6 +109,21 @@ export default function Session({ onComplete, goalMinutes = 5, words: wordList =
     return () => vv.removeEventListener('resize', handler);
   }, []);
 
+  // Re-run scroll correction when advancing to the next card (keyboard stays open between cards)
+  useEffect(() => {
+    if (!keyboardOpen) return;
+    const vv = window.visualViewport;
+    if (!vv) return;
+    const t = setTimeout(() => {
+      const inputEl = inputRef.current;
+      if (!inputEl) return;
+      let absTop = 0, node = inputEl;
+      while (node) { absTop += node.offsetTop; node = node.offsetParent; }
+      window.scrollTo(0, Math.max(0, absTop + inputEl.offsetHeight - (vv.height - 70)));
+    }, 50);
+    return () => clearTimeout(t);
+  }, [idx, keyboardOpen]);
+
   useEffect(() => {
     if (paused) {
       clearInterval(timerIdRef.current);
