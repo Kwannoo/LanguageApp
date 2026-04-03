@@ -52,6 +52,7 @@ export default function Session({ onComplete, goalMinutes = 5, words: wordList =
     direction === 'mix' ? randomDir(language) : direction
   );
   const inputRef = useRef(null);
+  const checkButtonRef = useRef(null);
   const scoreRef = useRef({ correct: 0, total: 0 });
   const sessionWordsRef = useRef([]);
   const newLearnedRef = useRef(new Set()); // words that were unseen and got answered correctly
@@ -59,7 +60,6 @@ export default function Session({ onComplete, goalMinutes = 5, words: wordList =
   const [paused, setPaused] = useState(false);
   const timerIdRef = useRef(null);
   const [keyboardOpen, setKeyboardOpen] = useState(false);
-  const [inputBottom, setInputBottom] = useState(0);
   const [showQuitConfirm, setShowQuitConfirm] = useState(false);
   const keyboardOpenRef = useRef(false);
 
@@ -80,10 +80,8 @@ export default function Session({ onComplete, goalMinutes = 5, words: wordList =
     return () => document.removeEventListener('visibilitychange', handleVisibility);
   }, []);
 
-  // On iOS the document often isn't tall enough to scroll, so window.scrollBy
-  // silently does nothing. Instead, set the input to position:fixed once —
-  // after the keyboard animation fully settles — so it doesn't animate with
-  // the keyboard. window.scrollTo(0,0) keeps the card visible at the top.
+  // After the keyboard animation settles, scroll so the Check answer button
+  // sits just above the keyboard — keeping the card visible at the top.
   useEffect(() => {
     const vv = window.visualViewport;
     if (!vv) return;
@@ -94,12 +92,17 @@ export default function Session({ onComplete, goalMinutes = 5, words: wordList =
       setKeyboardOpen(isOpen);
       if (isOpen) {
         setTimeout(() => {
-          // Read the stable keyboard height after animation completes
-          setInputBottom(Math.max(0, window.innerHeight - window.visualViewport.height));
-          window.scrollTo(0, 0);
+          const keyboardHeight = window.innerHeight - window.visualViewport.height;
+          const btn = checkButtonRef.current;
+          if (btn) {
+            const buttonBottom = btn.getBoundingClientRect().bottom + window.scrollY;
+            const visibleBottom = window.innerHeight - keyboardHeight;
+            const gap = 12;
+            window.scrollTo(0, Math.max(0, buttonBottom - visibleBottom + gap));
+          }
         }, 300);
       } else {
-        setInputBottom(0);
+        window.scrollTo(0, 0);
       }
     };
     vv.addEventListener('resize', handler);
@@ -291,7 +294,6 @@ export default function Session({ onComplete, goalMinutes = 5, words: wordList =
       />
 
       {/* Input */}
-      {keyboardOpen && <div style={{ height: 48 }} />}
       <input
         ref={inputRef}
         className="input-field"
@@ -303,13 +305,6 @@ export default function Session({ onComplete, goalMinutes = 5, words: wordList =
         autoCorrect="off"
         autoCapitalize="off"
         disabled={flipped}
-        style={keyboardOpen ? {
-          position: 'fixed',
-          bottom: inputBottom,
-          left: '1.25rem',
-          right: '1.25rem',
-          zIndex: 5,
-        } : {}}
       />
 
       <div style={{ display: 'flex', gap: '0.5rem' }}>
@@ -318,7 +313,7 @@ export default function Session({ onComplete, goalMinutes = 5, words: wordList =
             Skip
           </button>
         )}
-        <button className="btn-primary" onClick={handleCheck} style={{ flex: 1 }}>
+        <button ref={checkButtonRef} className="btn-primary" onClick={handleCheck} style={{ flex: 1 }}>
           {flipped ? 'Next card →' : 'Check answer'}
         </button>
       </div>
