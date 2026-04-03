@@ -90,7 +90,7 @@ export default function Session({ onComplete, goalMinutes = 5, words: wordList =
     // rect.bottom: where the input's bottom edge currently sits in the visual viewport.
     // We want it at vv.height - 8 (just above the keyboard).
     // A negative result scrolls up, revealing the card above the input.
-    const delta = inputEl.getBoundingClientRect().bottom - (vv.height - 10);
+    const delta = inputEl.getBoundingClientRect().bottom - (vv.height + 10);
     window.scrollBy(0, delta);
   }, []);
 
