@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { supabase } from '../lib/supabase.js';
 import Avatar from './Avatar.jsx';
 import StatsCard from './StatsCard.jsx';
 import { computeProgress } from '../utils/srs.js';
@@ -29,13 +30,17 @@ const DIRECTION_MAP = {
 
 const FREEZE_PRICE = 50;
 
-export default function HomeScreen({ streak, todayDone, username, avatar, words, srsData, online, onStart, onHistory, onLogout, goalMinutes, onGoalChange, language, onLanguageChange, direction, onDirectionChange, onFriends, onWords, onEditAvatar, showSynonyms, onSynonymsChange, discoverable, onDiscoverableChange, streakFreezes = 0, referralCode = '', email = '', coins = 0, onBuyFreeze, title = '', theme = 'system', onThemeChange }) {
+export default function HomeScreen({ streak, todayDone, username, avatar, words, srsData, online, onStart, onHistory, onLogout, goalMinutes, onGoalChange, language, onLanguageChange, direction, onDirectionChange, onFriends, onWords, onEditAvatar, showSynonyms, onSynonymsChange, discoverable, onDiscoverableChange, streakFreezes = 0, referralCode = '', email = '', coins = 0, onBuyFreeze, title = '', theme = 'system', onThemeChange, onPrivacy, onDeleteAccount }) {
   const [menuOpen, setMenuOpen]       = useState(false);
   const [menuClosing, setMenuClosing] = useState(false);
   const [showStatsCard, setShowStatsCard] = useState(false);
   const [showCoinInfo, setShowCoinInfo]   = useState(false);
   const [showFreezeShop, setShowFreezeShop] = useState(false);
   const [showHowItWorks, setShowHowItWorks] = useState(false);
+  const [deleteStep, setDeleteStep] = useState(null); // null | 'confirm' | 'code'
+  const [deleteCode, setDeleteCode] = useState('');
+  const [deleteError, setDeleteError] = useState('');
+  const [deleteSending, setDeleteSending] = useState(false);
   const directionOptions = DIRECTION_MAP[language] || DIRECTION_MAP.nl;
 
   const closeMenu = () => {
@@ -349,17 +354,25 @@ export default function HomeScreen({ streak, todayDone, username, avatar, words,
           </button>
         </div>
 
-        {/* Sign out */}
-        <div style={{ marginTop: '1rem', borderTop: '1px solid var(--border)', paddingTop: '1rem' }}>
+        {/* Sign out + legal */}
+        <div style={{ marginTop: '1rem', borderTop: '1px solid var(--border)', paddingTop: '1rem', display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
           <button
             onClick={onLogout}
-            style={{
-              background: 'none', border: 'none', fontSize: 13,
-              color: 'var(--danger-fg)', cursor: 'pointer', fontFamily: 'var(--font-sans)',
-              fontWeight: 600,
-            }}
+            style={{ background: 'none', border: 'none', fontSize: 13, color: 'var(--danger-fg)', cursor: 'pointer', fontFamily: 'var(--font-sans)', fontWeight: 600, textAlign: 'left' }}
           >
             Sign out
+          </button>
+          <button
+            onClick={() => { closeMenu(); onPrivacy(); }}
+            style={{ background: 'none', border: 'none', fontSize: 13, color: 'var(--muted)', cursor: 'pointer', fontFamily: 'var(--font-sans)', fontWeight: 600, textAlign: 'left' }}
+          >
+            Privacy Policy
+          </button>
+          <button
+            onClick={() => setDeleteStep('confirm')}
+            style={{ background: 'none', border: 'none', fontSize: 13, color: 'var(--danger-fg)', cursor: 'pointer', fontFamily: 'var(--font-sans)', fontWeight: 600, textAlign: 'left', opacity: 0.7 }}
+          >
+            Delete account
           </button>
         </div>
       </div>}
@@ -654,6 +667,77 @@ export default function HomeScreen({ streak, todayDone, username, avatar, words,
           <button className="btn-ghost" onClick={() => setShowFreezeShop(false)} style={{ width: '100%' }}>
             Close
           </button>
+        </div>
+      </>)}
+
+      {/* Delete account — step 1: confirm */}
+      {deleteStep === 'confirm' && (<>
+        <div onClick={() => setDeleteStep(null)} style={{ position: 'fixed', inset: 0, background: 'rgba(0,0,0,0.5)', zIndex: 200, animation: 'popupBgIn 0.2s ease forwards' }} />
+        <div style={{ position: 'fixed', top: '50%', left: '50%', transform: 'translate(-50%,-50%)', zIndex: 201, width: 'min(320px,90vw)', background: 'var(--surface)', border: '2px solid var(--border)', borderRadius: 16, padding: '1.75rem 1.5rem', textAlign: 'center', animation: 'popupIn 0.25s ease forwards' }}>
+          <p style={{ fontSize: '2rem', marginBottom: '0.5rem' }}>⚠️</p>
+          <p style={{ fontWeight: 800, fontSize: '1.1rem', color: 'var(--text)', marginBottom: '0.5rem' }}>Delete your account?</p>
+          <p style={{ fontSize: 13, color: 'var(--muted)', marginBottom: '1.25rem' }}>
+            This will permanently delete all your progress, streak, and data. We'll send a confirmation code to <strong>{email}</strong> to verify it's really you.
+          </p>
+          <div style={{ display: 'flex', gap: '0.5rem' }}>
+            <button className="btn-ghost" onClick={() => setDeleteStep(null)} style={{ flex: 1 }}>Cancel</button>
+            <button
+              className="btn-primary"
+              style={{ flex: 1, background: 'var(--danger-fg)' }}
+              disabled={deleteSending}
+              onClick={async () => {
+                setDeleteSending(true);
+                setDeleteError('');
+                const { error } = await supabase.auth.signInWithOtp({ email, options: { shouldCreateUser: false } });
+                setDeleteSending(false);
+                if (error) { setDeleteError('Failed to send code. Try again.'); return; }
+                setDeleteStep('code');
+              }}
+            >
+              {deleteSending ? 'Sending…' : 'Send code'}
+            </button>
+          </div>
+          {deleteError && <p style={{ fontSize: 12, color: 'var(--danger-fg)', marginTop: '0.75rem' }}>{deleteError}</p>}
+        </div>
+      </>)}
+
+      {/* Delete account — step 2: enter OTP */}
+      {deleteStep === 'code' && (<>
+        <div onClick={() => setDeleteStep(null)} style={{ position: 'fixed', inset: 0, background: 'rgba(0,0,0,0.5)', zIndex: 200, animation: 'popupBgIn 0.2s ease forwards' }} />
+        <div style={{ position: 'fixed', top: '50%', left: '50%', transform: 'translate(-50%,-50%)', zIndex: 201, width: 'min(320px,90vw)', background: 'var(--surface)', border: '2px solid var(--border)', borderRadius: 16, padding: '1.75rem 1.5rem', textAlign: 'center', animation: 'popupIn 0.25s ease forwards' }}>
+          <p style={{ fontWeight: 800, fontSize: '1.1rem', color: 'var(--text)', marginBottom: '0.5rem' }}>Enter confirmation code</p>
+          <p style={{ fontSize: 13, color: 'var(--muted)', marginBottom: '1rem' }}>
+            Check your email at <strong>{email}</strong> for a 6-digit code.
+          </p>
+          <input
+            className="input-field"
+            type="text"
+            inputMode="numeric"
+            maxLength={6}
+            placeholder="000000"
+            value={deleteCode}
+            onChange={e => setDeleteCode(e.target.value.replace(/\D/g, ''))}
+            style={{ textAlign: 'center', letterSpacing: '0.3em', fontSize: 22, marginBottom: '1rem' }}
+          />
+          {deleteError && <p style={{ fontSize: 12, color: 'var(--danger-fg)', marginBottom: '0.75rem' }}>{deleteError}</p>}
+          <div style={{ display: 'flex', gap: '0.5rem' }}>
+            <button className="btn-ghost" onClick={() => setDeleteStep(null)} style={{ flex: 1 }}>Cancel</button>
+            <button
+              className="btn-primary"
+              style={{ flex: 1, background: 'var(--danger-fg)' }}
+              disabled={deleteCode.length !== 6 || deleteSending}
+              onClick={async () => {
+                setDeleteSending(true);
+                setDeleteError('');
+                const { error } = await supabase.auth.verifyOtp({ email, token: deleteCode, type: 'email' });
+                if (error) { setDeleteError('Invalid or expired code.'); setDeleteSending(false); return; }
+                setDeleteStep(null);
+                onDeleteAccount();
+              }}
+            >
+              {deleteSending ? 'Verifying…' : 'Delete account'}
+            </button>
+          </div>
         </div>
       </>)}
     </div>

@@ -9,6 +9,7 @@ import AuthScreen      from './components/AuthScreen.jsx';
 import WordListScreen  from './components/WordListScreen.jsx';
 import AvatarEditor    from './components/AvatarEditor.jsx';
 import ResetPassword   from './components/ResetPassword.jsx';
+import PrivacyScreen   from './components/PrivacyScreen.jsx';
 import { supabase }  from './lib/supabase.js';
 import { DEFAULT_AVATAR } from './data/avatarConfig.js';
 import { loadSRS, saveSRS } from './utils/srs.js';
@@ -257,6 +258,14 @@ export default function App() {
     })();
   }, [online, user]);
 
+  const handleDeleteAccount = useCallback(async () => {
+    if (!user) return;
+    await supabase.from('session_history').delete().eq('user_id', user.id);
+    await supabase.from('profiles').delete().eq('id', user.id);
+    await supabase.auth.signOut();
+    localStorage.clear();
+  }, [user]);
+
   const handleBuyFreeze = useCallback(async () => {
     if (coins < 50 || streakFreezes >= 3) return;
     const newCoins = coins - 50;
@@ -386,6 +395,8 @@ export default function App() {
           coins={coins}
           onBuyFreeze={handleBuyFreeze}
           title={title}
+          onPrivacy={() => setScreen('privacy')}
+          onDeleteAccount={handleDeleteAccount}
         />
       )}
 
@@ -435,6 +446,10 @@ export default function App() {
 
       {screen === 'resetPassword' && (
         <ResetPassword onDone={() => setScreen('home')} />
+      )}
+
+      {screen === 'privacy' && (
+        <PrivacyScreen onBack={() => setScreen('home')} />
       )}
     </PageTransition>
   );
