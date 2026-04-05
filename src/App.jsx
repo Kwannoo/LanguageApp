@@ -107,7 +107,7 @@ export default function App() {
   const handleLanguageChange = (lang) => {
     setLanguage(lang);
     localStorage.setItem('taalkaarten_language', lang);
-    const defaultDir = lang === 'nl' ? 'nl-en' : 'ja-en';
+    const defaultDir = lang === 'nl' ? 'nl-en' : lang === 'es' ? 'es-en' : 'ja-en';
     setDirection(defaultDir);
     localStorage.setItem('taalkaarten_direction', defaultDir);
     loadWords(lang);
@@ -118,15 +118,22 @@ export default function App() {
     const cached = getCachedWords(l);
     if (cached) { setWords(cached); return; }
     const cols = l === 'ja'
-      ? 'nl, en, meaning, sentence, reading, romaji, synonyms'
-      : 'nl, en, meaning, sentence, synonyms';
-    const { data, error } = await supabase
-      .from('words')
-      .select(cols)
-      .eq('language', l)
-      .limit(5000);
-    if (error) { console.error('Failed to load words:', error.message); return; }
-    if (data?.length) { setCachedWords(data, l); setWords(data); }
+      ? 'word, en, meaning, sentence, reading, romaji, synonyms'
+      : 'word, en, meaning, sentence, synonyms';
+    const PAGE = 1000;
+    let all = [], from = 0, done = false;
+    while (!done) {
+      const { data, error } = await supabase
+        .from('words')
+        .select(cols)
+        .eq('language', l)
+        .range(from, from + PAGE - 1);
+      if (error) { console.error('Failed to load words:', error.message); return; }
+      if (data?.length) all = all.concat(data);
+      if (!data || data.length < PAGE) done = true;
+      else from += PAGE;
+    }
+    if (all.length) { setCachedWords(all, l); setWords(all); }
   }, [language]);
 
   const loadUserData = useCallback(async (userId) => {
@@ -388,7 +395,7 @@ export default function App() {
       )}
 
       {screen === 'words' && (
-        <WordListScreen onBack={() => setScreen('home')} />
+        <WordListScreen onBack={() => setScreen('home')} words={words} language={language} srsData={srsData} />
       )}
 
       {screen === 'avatar' && (

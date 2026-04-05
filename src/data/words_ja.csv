@@ -1,0 +1,1769 @@
+word,en,meaning,sentence,reading,romaji,synonyms,language
+こんにちは,hello,Daytime greeting,"こんにちは、元気ですか。 — Hello, how are you?",こんにちは,konnichiwa,やあ (yaa);おす (osu),ja
+おはよう,good morning,Morning greeting (casual),"おはよう、今日もいい天気だね。 — Good morning, nice weather again today.",おはよう,ohayou,,ja
+こんばんは,good evening,Evening greeting,"こんばんは、お元気ですか。 — Good evening, how are you?",こんばんは,konbanwa,,ja
+さようなら,goodbye,Farewell greeting,"さようなら、また会いましょう。 — Goodbye, let's meet again.",さようなら,sayounara,またね (mata ne);ではまた (dewa mata),ja
+ありがとう,thank you,Expression of gratitude,プレゼントをありがとう。 — Thank you for the present.,ありがとう,arigatou,,ja
+すみません,excuse me,Apology or to get attention,"すみません、駅はどこですか。 — Excuse me, where is the station?",すみません,sumimasen,,ja
+ごめんなさい,I am sorry,Apology for a mistake,遅れてごめんなさい。 — Sorry for being late.,ごめんなさい,gomen nasai,,ja
+お願いします,please,Polite request,"これをお願いします。 — This one, please.",おねがいします,onegaishimasu,ください (kudasai),ja
+いただきます,bon appetit,Said before eating,"いただきます、美味しそうですね。 — Let's eat, it looks delicious.",いただきます,itadakimasu,,ja
+ごちそうさま,thanks for the meal,Said after eating,"ごちそうさま、とても美味しかったです。 — Thanks for the meal, it was very delicious.",ごちそうさま,gochisousama,,ja
+おやすみなさい,good night,Bedtime greeting,"おやすみなさい、いい夢を見てね。 — Good night, sweet dreams.",おやすみなさい,oyasuminasai,,ja
+はじめまして,nice to meet you,First meeting greeting,"はじめまして、田中です。 — Nice to meet you, I'm Tanaka.",はじめまして,hajimemashite,,ja
+お元気ですか,how are you,Asking about well-being,お元気ですか、久しぶりですね。 — How are you? It's been a while.,おげんきですか,ogenki desu ka,,ja
+いらっしゃいませ,welcome,Welcome to a shop,"いらっしゃいませ、何名様ですか。 — Welcome, how many guests?",いらっしゃいませ,irasshaimase,,ja
+私,I,First person pronoun,私は学生です。 — I am a student.,わたし,watashi,,ja
+あなた,you,Second person pronoun,あなたの名前は何ですか。 — What is your name?,あなた,anata,,ja
+彼,he,Third person male pronoun,彼は私の友達です。 — He is my friend.,かれ,kare,,ja
+彼女,she,Third person female pronoun,彼女はとても優しい人です。 — She is a very kind person.,かのじょ,kanojo,,ja
+私たち,we,First person plural pronoun,私たちは日本語を勉強しています。 — We are studying ja.,わたしたち,watashitachi,,ja
+誰,who,Interrogative pronoun for people,誰が来ましたか。 — Who came?,だれ,dare,,ja
+何,what,Interrogative pronoun for things,何を食べたいですか。 — What do you want to eat?,なに,nani,,ja
+自分,oneself,Reflexive pronoun,自分のことは自分でやります。 — I do my own things myself.,じぶん,jibun,,ja
+はい,yes,Affirmative response,"はい、分かりました。 — Yes, I understand.",はい,hai,,ja
+いいえ,no,Negative response,"いいえ、結構です。 — No, I'm fine.",いいえ,iie,,ja
+たぶん,maybe,Expression of uncertainty,たぶん明日は雨が降るでしょう。 — It will probably rain tomorrow.,たぶん,tabun,おそらく (osoraku);かもしれない (kamoshirenai),ja
+もちろん,of course,Definite affirmation,もちろん手伝いますよ。 — Of course I'll help.,もちろん,mochiron,,ja
+一,one,The number 1,"一つください。 — One, please.",いち,ichi,壱 (ichi),ja
+二,two,The number 2,"二人で行きましょう。 — Let's go together, just the two of us.",に,ni,弐 (ni),ja
+三,three,The number 3,三時に会いましょう。 — Let's meet at three o'clock.,さん,san,参 (san),ja
+四,four,The number 4,四月は桜の季節です。 — April is cherry blossom season.,よん,yon,肆 (shi),ja
+五,five,The number 5,五分だけ待ってください。 — Please wait just five minutes.,ご,go,伍 (go),ja
+六,six,The number 6,六時に起きます。 — I wake up at six o'clock.,ろく,roku,陸 (roku),ja
+七,seven,The number 7,七月に旅行に行きます。 — I'm going on a trip in July.,なな,nana,漆 (nana),ja
+八,eight,The number 8,八百屋で野菜を買います。 — I buy vegetables at the greengrocer.,はち,hachi,捌 (hachi),ja
+九,nine,The number 9,九時から授業が始まります。 — Class starts at nine o'clock.,きゅう,kyuu,玖 (kyuu),ja
+十,ten,The number 10,十個のりんごを買いました。 — I bought ten apples.,じゅう,juu,拾 (juu),ja
+百,hundred,The number 100,これは百円です。 — This is one hundred yen.,ひゃく,hyaku,佰 (hyaku),ja
+千,thousand,The number 1000,"千円札を一枚ください。 — One thousand-yen bill, please.",せん,sen,仟 (sen),ja
+万,ten thousand,The number 10000,この鞄は一万円です。 — This bag is ten thousand yen.,まん,man,,ja
+零,zero,The number 0,今日の気温は零度です。 — Today's temperature is zero degrees.,れい,rei,ゼロ (zero),ja
+今日,today,The current day,今日は天気がいいです。 — The weather is nice today.,きょう,kyou,,ja
+明日,tomorrow,The day after today,明日は学校に行きます。 — I'm going to school tomorrow.,あした,ashita,,ja
+昨日,yesterday,The day before today,昨日は映画を見ました。 — I watched a movie yesterday.,きのう,kinou,,ja
+朝,morning,Early part of the day,朝早く起きました。 — I woke up early in the morning.,あさ,asa,午前 (gozen),ja
+昼,noon,Middle of the day,昼ごはんを食べましょう。 — Let's eat lunch.,ひる,hiru,正午 (shougo),ja
+夜,night,Evening or nighttime,夜は静かです。 — It's quiet at night.,よる,yoru,晩 (ban),ja
+今,now,The present moment,今何時ですか。 — What time is it now?,いま,ima,,ja
+時間,time,Duration or time,時間がありません。 — I don't have time.,じかん,jikan,時 (toki),ja
+毎日,every day,Each day,毎日日本語を勉強します。 — I study ja every day.,まいにち,mainichi,,ja
+毎週,every week,Each week,毎週土曜日に買い物に行きます。 — I go shopping every Saturday.,まいしゅう,maishuu,,ja
+先週,last week,The week before this one,先週は忙しかったです。 — Last week was busy.,せんしゅう,senshuu,,ja
+来週,next week,The week after this one,来週テストがあります。 — There's a test next week.,らいしゅう,raishuu,,ja
+午前,AM,Before noon,午前中に仕事を終わらせます。 — I'll finish work by noon.,ごぜん,gozen,,ja
+午後,PM,After noon,午後から雨が降るそうです。 — I heard it will rain in the afternoon.,ごご,gogo,,ja
+今週,this week,The current week,今週は予定がたくさんあります。 — I have a lot of plans this week.,こんしゅう,konshuu,,ja
+今月,this month,The current month,今月の給料日はいつですか。 — When is payday this month?,こんげつ,kongetsu,,ja
+今年,this year,The current year,今年は旅行に行きたいです。 — I want to go on a trip this year.,ことし,kotoshi,,ja
+母,mother,One's own mother,母は料理が上手です。 — My mother is a good cook.,はは,haha,お母さん (okaasan),ja
+父,father,One's own father,父は会社で働いています。 — My father works at a company.,ちち,chichi,お父さん (otousan),ja
+兄,older brother,One's own older brother,兄は大学生です。 — My older brother is a college student.,あに,ani,,ja
+姉,older sister,One's own older sister,姉は東京に住んでいます。 — My older sister lives in Tokyo.,あね,ane,,ja
+弟,younger brother,One's own younger brother,弟はサッカーが好きです。 — My younger brother likes soccer.,おとうと,otouto,,ja
+妹,younger sister,One's own younger sister,妹は高校生です。 — My younger sister is a high school student.,いもうと,imouto,,ja
+家族,family,Family members,家族と一緒に夕食を食べます。 — I eat dinner together with my family.,かぞく,kazoku,一家 (ikka),ja
+子供,child,A young person,子供たちは公園で遊んでいます。 — The children are playing in the park.,こども,kodomo,子 (ko),ja
+赤ちゃん,baby,An infant,赤ちゃんが寝ています。 — The baby is sleeping.,あかちゃん,akachan,乳児 (nyuuji),ja
+夫,husband,One's own husband,夫は毎朝ジョギングをします。 — My husband goes jogging every morning.,おっと,otto,旦那 (danna),ja
+妻,wife,One's own wife,妻は花が好きです。 — My wife likes flowers.,つま,tsuma,奥さん (okusan),ja
+祖母,grandmother,One's own grandmother,祖母の家に遊びに行きます。 — I'm going to visit my grandmother's house.,そぼ,sobo,おばあさん (obaasan),ja
+祖父,grandfather,One's own grandfather,祖父は釣りが趣味です。 — My grandfather's hobby is fishing.,そふ,sofu,おじいさん (ojiisan),ja
+水,water,Drinking water,"水を一杯ください。 — A glass of water, please.",みず,mizu,,ja
+米,rice (uncooked),Uncooked rice grain,米を炊きます。 — I'm going to cook rice.,こめ,kome,,ja
+ご飯,rice / meal,Cooked rice or a meal,ご飯を食べましょう。 — Let's eat.,ごはん,gohan,食事 (shokuji),ja
+肉,meat,Animal meat for eating,肉を焼いています。 — I'm grilling meat.,にく,niku,食肉 (shokuniku),ja
+魚,fish,Fish for eating,魚が新鮮です。 — The fish is fresh.,さかな,sakana,,ja
+野菜,vegetables,Edible plants,野菜をたくさん食べましょう。 — Let's eat lots of vegetables.,やさい,yasai,蔬菜 (sosai),ja
+果物,fruit,Edible fruit,果物が好きです。 — I like fruit.,くだもの,kudamono,フルーツ (furuutsu),ja
+りんご,apple,Apple fruit,りんごを一つ買いました。 — I bought one apple.,りんご,ringo,,ja
+卵,egg,A chicken egg,卵を二つ割ります。 — I'll crack two eggs.,たまご,tamago,玉子 (tamago),ja
+パン,bread,Bread,朝ごはんにパンを食べます。 — I eat bread for breakfast.,ぱん,pan,食パン (shokupan),ja
+牛乳,milk,Cow's milk,毎朝牛乳を飲みます。 — I drink milk every morning.,ぎゅうにゅう,gyuunyuu,,ja
+お茶,tea,ja green tea,お茶を飲みませんか。 — Would you like some tea?,おちゃ,ocha,緑茶 (ryokucha),ja
+コーヒー,coffee,Coffee drink,毎朝コーヒーを飲みます。 — I drink coffee every morning.,こーひー,koohii,カフェ (kafe),ja
+砂糖,sugar,Sugar for sweetening,コーヒーに砂糖を入れますか。 — Do you put sugar in your coffee?,さとう,satou,甘味料 (kanmiryou),ja
+塩,salt,Table salt,塩を少し入れてください。 — Please add a little salt.,しお,shio,食塩 (shokuen),ja
+弁当,lunch box,Packed lunch,母が弁当を作ってくれました。 — My mother made me a lunch box.,べんとう,bentou,,ja
+料理,cooking,Cooking or a dish,日本料理が好きです。 — I like ja cuisine.,りょうり,ryouri,調理 (chouri),ja
+朝ごはん,breakfast,Morning meal,朝ごはんを食べましたか。 — Did you eat breakfast?,あさごはん,asagohan,,ja
+昼ごはん,lunch,Midday meal,昼ごはんは何を食べますか。 — What are you having for lunch?,ひるごはん,hirugohan,ランチ (ranchi),ja
+晩ごはん,dinner,Evening meal,晩ごはんは七時に食べます。 — We eat dinner at seven.,ばんごはん,bangohan,夕食 (yuushoku),ja
+お酒,alcohol,Alcoholic drink,お酒は飲みますか。 — Do you drink alcohol?,おさけ,osake,酒 (sake),ja
+ラーメン,ramen,ja noodle soup,ラーメンを食べに行きましょう。 — Let's go eat ramen.,らーめん,raamen,,ja
+寿司,sushi,Vinegared rice dish,寿司が一番好きな食べ物です。 — Sushi is my favorite food.,すし,sushi,,ja
+頭,head,The head,頭が痛いです。 — I have a headache.,あたま,atama,頭部 (toubu),ja
+手,hand,The hand,手を洗ってください。 — Please wash your hands.,て,te,掌 (tenohira),ja
+目,eye,The eye,目が大きいですね。 — You have big eyes.,め,me,眼 (me),ja
+耳,ear,The ear,耳が痛いです。 — My ear hurts.,みみ,mimi,,ja
+口,mouth,The mouth,口を開けてください。 — Please open your mouth.,くち,kuchi,唇 (kuchibiru),ja
+鼻,nose,The nose,鼻が高いですね。 — You have a tall nose.,はな,hana,鼻腔 (bikou),ja
+足,leg / foot,The leg or foot,足が疲れました。 — My legs are tired.,あし,ashi,脚 (ashi),ja
+体,body,The physical body,体に気をつけてください。 — Please take care of your health.,からだ,karada,身体 (shintai),ja
+顔,face,The face,顔を洗いました。 — I washed my face.,かお,kao,面 (tsura),ja
+歯,tooth,A tooth,歯を磨きます。 — I brush my teeth.,は,ha,,ja
+指,finger,A finger or toe,指を切ってしまいました。 — I accidentally cut my finger.,ゆび,yubi,手指 (yubi),ja
+お腹,stomach,The stomach or belly,お腹が空きました。 — I'm hungry.,おなか,onaka,腹 (hara),ja
+背中,back,The back of the body,背中が痛いです。 — My back hurts.,せなか,senaka,背 (se),ja
+心,heart / mind,The heart or spirit,心が温かくなりました。 — My heart was warmed.,こころ,kokoro,気持ち (kimochi),ja
+赤,red,The color red,赤い花が咲いています。 — Red flowers are blooming.,あか,aka,朱 (shu),ja
+青,blue,The color blue,空が青いです。 — The sky is blue.,あお,ao,蒼 (ao),ja
+白,white,The color white,白い雲が見えます。 — I can see white clouds.,しろ,shiro,白色 (hakushoku),ja
+黒,black,The color black,黒い猫がいます。 — There is a black cat.,くろ,kuro,黒色 (kokushoku),ja
+緑,green,The color green,緑のお茶が好きです。 — I like green tea.,みどり,midori,緑色 (midoriiro),ja
+黄色,yellow,The color yellow,黄色い花がきれいです。 — The yellow flowers are beautiful.,きいろ,kiiro,黄 (ki),ja
+茶色,brown,The color brown,茶色の靴を履いています。 — I'm wearing brown shoes.,ちゃいろ,chairo,褐色 (kasshoku),ja
+ピンク,pink,The color pink,ピンクのシャツを買いました。 — I bought a pink shirt.,ぴんく,pinku,桃色 (momoiro),ja
+食べる,to eat,To consume food,朝ごはんを食べる。 — I eat breakfast.,たべる,taberu,,ja
+飲む,to drink,To consume liquid,水を飲む。 — I drink water.,のむ,nomu,呑む (nomu),ja
+行く,to go,To move to a place,学校に行く。 — I go to school.,いく,iku,,ja
+来る,to come,To move toward speaker,友達が家に来る。 — A friend is coming to my house.,くる,kuru,,ja
+する,to do,To perform an action,宿題をする。 — I do my homework.,する,suru,,ja
+見る,to see,To look at or watch,テレビを見る。 — I watch TV.,みる,miru,,ja
+聞く,to listen,To hear or ask,音楽を聞く。 — I listen to music.,きく,kiku,耳を傾ける (mimi o katamukeru),ja
+話す,to speak,To talk or speak,日本語を話す。 — I speak ja.,はなす,hanasu,述べる (noberu),ja
+書く,to write,To write text,手紙を書く。 — I write a letter.,かく,kaku,記す (shirusu),ja
+読む,to read,To read text,本を読む。 — I read a book.,よむ,yomu,,ja
+買う,to buy,To purchase,お土産を買う。 — I buy souvenirs.,かう,kau,購入する (kounyuu suru),ja
+寝る,to sleep,To go to sleep,十一時に寝る。 — I go to bed at eleven.,ねる,neru,眠る (nemuru),ja
+起きる,to wake up,To get up from sleep,毎朝六時に起きる。 — I wake up at six every morning.,おきる,okiru,,ja
+歩く,to walk,To move on foot,公園を歩く。 — I walk through the park.,あるく,aruku,歩行する (hokou suru),ja
+走る,to run,To move quickly on foot,毎朝走る。 — I run every morning.,はしる,hashiru,駆ける (kakeru),ja
+働く,to work,To do labor,会社で働く。 — I work at a company.,はたらく,hataraku,,ja
+遊ぶ,to play,To play or have fun,友達と遊ぶ。 — I hang out with friends.,あそぶ,asobu,楽しむ (tanoshimu),ja
+待つ,to wait,To wait for something,ここで待つ。 — I'll wait here.,まつ,matsu,待機する (taiki suru),ja
+作る,to make,To create or cook,ケーキを作る。 — I make a cake.,つくる,tsukuru,,ja
+使う,to use,To utilize something,パソコンを使う。 — I use a computer.,つかう,tsukau,利用する (riyou suru),ja
+思う,to think,To have a thought,いい考えだと思う。 — I think it's a good idea.,おもう,omou,,ja
+知る,to know,To have knowledge,その人を知っていますか。 — Do you know that person?,しる,shiru,,ja
+持つ,to hold,To carry or possess,荷物を持つ。 — I carry the luggage.,もつ,motsu,手に持つ (te ni motsu),ja
+住む,to live,To reside in a place,東京に住む。 — I live in Tokyo.,すむ,sumu,暮らす (kurasu),ja
+座る,to sit,To sit down,椅子に座る。 — I sit on a chair.,すわる,suwaru,腰掛ける (koshikakeru),ja
+立つ,to stand,To stand up,ここに立つ。 — I stand here.,たつ,tatsu,,ja
+入る,to enter,To go inside,部屋に入る。 — I enter the room.,はいる,hairu,入場する (nyuujou suru),ja
+出る,to leave,To go out,家を出る。 — I leave the house.,でる,deru,,ja
+帰る,to return,To go home,家に帰る。 — I go home.,かえる,kaeru,戻る (modoru),ja
+開ける,to open,To open something,窓を開ける。 — I open the window.,あける,akeru,開く (hiraku),ja
+閉める,to close,To close something,ドアを閉める。 — I close the door.,しめる,shimeru,閉じる (tojiru),ja
+教える,to teach,To teach or tell,英語を教える。 — I teach English.,おしえる,oshieru,指導する (shidou suru),ja
+勉強する,to study,To study or learn,毎日日本語を勉強する。 — I study ja every day.,べんきょうする,benkyou suru,学ぶ (manabu),ja
+洗う,to wash,To clean with water,手を洗う。 — I wash my hands.,あらう,arau,清める (kiyomeru),ja
+着る,to wear,To put on clothes,コートを着る。 — I put on a coat.,きる,kiru,身に着ける (mi ni tsukeru),ja
+脱ぐ,to take off,To remove clothing,靴を脱ぐ。 — I take off my shoes.,ぬぐ,nugu,,ja
+乗る,to ride,To get on transport,バスに乗る。 — I get on the bus.,のる,noru,搭乗する (toujou suru),ja
+降りる,to get off,To get off transport,次の駅で降りる。 — I get off at the next station.,おりる,oriru,,ja
+会う,to meet,To encounter someone,友達に会う。 — I meet a friend.,あう,au,面会する (menkai suru),ja
+始まる,to begin,To start (intransitive),授業が始まる。 — Class begins.,はじまる,hajimaru,開始する (kaishi suru),ja
+終わる,to end,To finish (intransitive),仕事が終わる。 — Work ends.,おわる,owaru,完了する (kanryou suru),ja
+泳ぐ,to swim,To swim in water,プールで泳ぐ。 — I swim in the pool.,およぐ,oyogu,水泳する (suiei suru),ja
+歌う,to sing,To sing a song,カラオケで歌う。 — I sing at karaoke.,うたう,utau,,ja
+笑う,to laugh,To laugh or smile,面白くて笑う。 — It's funny and I laugh.,わらう,warau,微笑む (hohoemu),ja
+泣く,to cry,To shed tears,悲しくて泣く。 — I'm sad and I cry.,なく,naku,涙を流す (namida o nagasu),ja
+払う,to pay,To make a payment,お金を払う。 — I pay money.,はらう,harau,支払う (shiharau),ja
+送る,to send,To send or give,手紙を送る。 — I send a letter.,おくる,okuru,発送する (hassou suru),ja
+届く,to arrive,To be delivered,荷物が届く。 — The package arrives.,とどく,todoku,着く (tsuku),ja
+忘れる,to forget,To fail to remember,傘を忘れる。 — I forget my umbrella.,わすれる,wasureru,見落とす (miotoosu),ja
+覚える,to remember,To memorize,漢字を覚える。 — I memorize kanji.,おぼえる,oboeru,記憶する (kioku suru),ja
+大きい,big,Large in size,この家は大きいです。 — This house is big.,おおきい,ookii,巨大な (kyodai na),ja
+小さい,small,Small in size,小さい猫がいます。 — There is a small cat.,ちいさい,chiisai,,ja
+新しい,new,Recently made,新しい靴を買いました。 — I bought new shoes.,あたらしい,atarashii,最新の (saishin no),ja
+古い,old,"Not new, aged",この建物は古いです。 — This building is old.,ふるい,furui,,ja
+良い,good,Of high quality,天気が良いです。 — The weather is nice.,よい,yoi,素晴らしい (subarashii),ja
+悪い,bad,Of poor quality,天気が悪いです。 — The weather is bad.,わるい,warui,最悪な (saiaku na),ja
+暑い,hot (weather),High temperature weather,今日は暑いです。 — It's hot today.,あつい,atsui,,ja
+寒い,cold (weather),Low temperature weather,冬は寒いです。 — Winter is cold.,さむい,samui,,ja
+高い,expensive / tall,High in price or height,このレストランは高いです。 — This restaurant is expensive.,たかい,takai,,ja
+安い,cheap,Low in price,この店は安いです。 — This shop is cheap.,やすい,yasui,格安の (kakuyasu no),ja
+長い,long,Extended in length,髪が長いですね。 — Your hair is long.,ながい,nagai,延長した (enchou shita),ja
+短い,short,Not long in length,時間が短いです。 — There isn't much time.,みじかい,mijikai,短小な (tanshounna),ja
+美味しい,delicious,Tastes good,この料理は美味しいです。 — This dish is delicious.,おいしい,oishii,うまい (umai),ja
+まずい,bad tasting,Tastes bad,この薬はまずいです。 — This medicine tastes bad.,まずい,mazui,,ja
+楽しい,fun,Enjoyable,旅行は楽しいです。 — Traveling is fun.,たのしい,tanoshii,愉しい (tanoshii),ja
+嬉しい,happy,Feeling glad,プレゼントをもらって嬉しいです。 — I'm happy to receive a present.,うれしい,ureshii,喜ばしい (yorokobashii),ja
+悲しい,sad,Feeling sorrow,悲しい映画を見ました。 — I watched a sad movie.,かなしい,kanashii,,ja
+忙しい,busy,Having much to do,今週は忙しいです。 — I'm busy this week.,いそがしい,isogashii,多忙な (tabou na),ja
+難しい,difficult,Hard to do,日本語は難しいです。 — ja is difficult.,むずかしい,muzukashii,困難な (konnan na),ja
+易しい,easy,Simple to do,この問題は易しいです。 — This problem is easy.,やさしい,yasashii,簡単な (kantan na),ja
+優しい,kind,Gentle and caring,彼はとても優しい人です。 — He is a very kind person.,やさしい,yasashii,温かい (atatakai),ja
+広い,wide / spacious,Large in area,この部屋は広いです。 — This room is spacious.,ひろい,hiroi,大きな (ookina),ja
+狭い,narrow,Small in area,この道は狭いです。 — This road is narrow.,せまい,semai,小さな (chiisana),ja
+近い,near,Close in distance,駅は近いです。 — The station is nearby.,ちかい,chikai,隣接している (rinsetsu shite iru),ja
+遠い,far,Distant in space,空港は遠いです。 — The airport is far away.,とおい,tooi,,ja
+早い,early / fast,Quick or early in time,朝早い時間に出発します。 — I'll depart early in the morning.,はやい,hayai,速い (hayai),ja
+遅い,late / slow,Behind in time,電車が遅いです。 — The train is late.,おそい,osoi,のろい (noroi),ja
+強い,strong,Having great power,風が強いです。 — The wind is strong.,つよい,tsuyoi,,ja
+弱い,weak,Lacking strength,体が弱いです。 — My body is weak.,よわい,yowai,力のない (chikara no nai),ja
+若い,young,Not old in age,彼女は若いです。 — She is young.,わかい,wakai,年少の (nenshounno),ja
+静か,quiet,Without noise,図書館は静かです。 — The library is quiet.,しずか,shizuka,穏やか (odayaka),ja
+有名,famous,Well known,この寺は有名です。 — This temple is famous.,ゆうめい,yuumei,著名な (chomei na),ja
+元気,energetic,In good health and spirits,今日は元気です。 — I'm feeling great today.,げんき,genki,健康な (kenkou na),ja
+綺麗,beautiful / clean,Pretty or tidy,この花は綺麗です。 — This flower is beautiful.,きれい,kirei,美しい (utsukushii),ja
+便利,convenient,Easy to use,この駅は便利です。 — This station is convenient.,べんり,benri,役立つ (yakutatsu),ja
+家,house,A dwelling place,新しい家に引っ越しました。 — I moved to a new house.,いえ,ie,住居 (juukyo),ja
+学校,school,Educational institution,学校は八時に始まります。 — School starts at eight.,がっこう,gakkou,学び舎 (manabiya),ja
+駅,station,Train station,駅まで歩きます。 — I walk to the station.,えき,eki,停車場 (teishajou),ja
+店,shop,A store,あの店は安いです。 — That shop is cheap.,みせ,mise,商店 (shouten),ja
+道,road,A path or street,この道はまっすぐです。 — This road is straight.,みち,michi,通り (toori),ja
+電車,train,Electric train,電車で会社に行きます。 — I go to work by train.,でんしゃ,densha,列車 (ressha),ja
+車,car,An automobile,新しい車を買いました。 — I bought a new car.,くるま,kuruma,自動車 (jidousha),ja
+電話,telephone,A phone,電話をかけます。 — I'll make a phone call.,でんわ,denwa,携帯 (keitai),ja
+お金,money,Currency,お金が足りません。 — I don't have enough money.,おかね,okane,,ja
+仕事,work / job,Employment or task,仕事が終わりました。 — Work is finished.,しごと,shigoto,業務 (gyoumu),ja
+名前,name,A person's name,お名前は何ですか。 — What is your name?,なまえ,namae,,ja
+友達,friend,A companion,友達と映画を見ます。 — I'm going to watch a movie with a friend.,ともだち,tomodachi,仲間 (nakama),ja
+先生,teacher,An instructor,先生に質問があります。 — I have a question for the teacher.,せんせい,sensei,教師 (kyoushi),ja
+学生,student,A person who studies,大学の学生です。 — I'm a university student.,がくせい,gakusei,生徒 (seito),ja
+本,book,A written work,本を読むのが好きです。 — I like reading books.,ほん,hon,書物 (shomotsu),ja
+映画,movie,A film,映画を見に行きましょう。 — Let's go see a movie.,えいが,eiga,フィルム (firumu),ja
+音楽,music,Musical sounds,音楽を聞いています。 — I'm listening to music.,おんがく,ongaku,楽曲 (gakkyoku),ja
+写真,photo,A photograph,写真を撮ってもいいですか。 — May I take a photo?,しゃしん,shashin,画像 (gazou),ja
+部屋,room,A room in a building,部屋を掃除します。 — I'll clean the room.,へや,heya,室 (shitsu),ja
+窓,window,A window,窓を開けてください。 — Please open the window.,まど,mado,,ja
+ドア,door,A door,ドアを閉めてください。 — Please close the door.,どあ,doa,扉 (tobira),ja
+椅子,chair,A seat,椅子に座ってください。 — Please have a seat.,いす,isu,腰掛け (koshikake),ja
+机,desk,A desk or table,机の上に本があります。 — There is a book on the desk.,つくえ,tsukue,,ja
+鍵,key,A key for a lock,鍵を忘れました。 — I forgot my key.,かぎ,kagi,,ja
+傘,umbrella,Rain protection,傘を持っていきましょう。 — Let's bring an umbrella.,かさ,kasa,,ja
+荷物,luggage,Bags or belongings,荷物が重いです。 — The luggage is heavy.,にもつ,nimotsu,荷 (ni),ja
+切符,ticket,A travel ticket,切符を買いました。 — I bought a ticket.,きっぷ,kippu,乗車券 (joshakou),ja
+地図,map,A map,地図を見てください。 — Please look at the map.,ちず,chizu,略図 (ryakuzu),ja
+花,flower,A flower plant,花がきれいに咲いています。 — The flowers are blooming beautifully.,はな,hana,花卉 (kaki),ja
+木,tree,A tree,大きい木があります。 — There is a big tree.,き,ki,樹木 (jumoku),ja
+山,mountain,A mountain,富士山は高い山です。 — Mt. Fuji is a tall mountain.,やま,yama,山岳 (sangaku),ja
+川,river,A river,川で魚を釣ります。 — I fish in the river.,かわ,kawa,,ja
+海,sea,The ocean,夏に海に行きます。 — I go to the beach in summer.,うみ,umi,大海 (taikai),ja
+空,sky,The sky above,空が青いです。 — The sky is blue.,そら,sora,天空 (tenkuu),ja
+国,country,A nation,どの国に行きたいですか。 — Which country do you want to visit?,くに,kuni,国家 (kokka),ja
+人,person,A human being,あの人は誰ですか。 — Who is that person?,ひと,hito,方 (kata),ja
+男,man,An adult male,あの男の人は背が高いです。 — That man is tall.,おとこ,otoko,男性 (dansei),ja
+女,woman,An adult female,あの女の人は優しいです。 — That woman is kind.,おんな,onna,女性 (josei),ja
+言葉,word / language,A word or words,新しい言葉を覚えました。 — I learned a new word.,ことば,kotoba,語 (go),ja
+手紙,letter,A written letter,友達に手紙を書きます。 — I write a letter to a friend.,てがみ,tegami,書簡 (shokan),ja
+新聞,newspaper,A news publication,毎朝新聞を読みます。 — I read the newspaper every morning.,しんぶん,shinbun,新聞紙 (shinbunshi),ja
+問題,problem,An issue or question,この問題は難しいです。 — This problem is difficult.,もんだい,mondai,課題 (kadai),ja
+答え,answer,A reply or solution,答えが分かりません。 — I don't know the answer.,こたえ,kotae,回答 (kaitou),ja
+意味,meaning,The significance of something,この言葉の意味は何ですか。 — What does this word mean?,いみ,imi,意義 (igi),ja
+趣味,hobby,A leisure activity,趣味は読書です。 — My hobby is reading.,しゅみ,shumi,好み (konomi),ja
+天気,weather,Weather conditions,今日の天気はいいです。 — The weather is nice today.,てんき,tenki,気候 (kikou),ja
+雨,rain,Rainfall,午後から雨が降ります。 — It will rain from the afternoon.,あめ,ame,降雨 (kouu),ja
+雪,snow,Snowfall,雪が降っています。 — It's snowing.,ゆき,yuki,降雪 (kousetsu),ja
+風,wind,Moving air,今日は風が強いです。 — The wind is strong today.,かぜ,kaze,風気 (fuuki),ja
+曇り,cloudy,Overcast sky,明日は曇りです。 — Tomorrow will be cloudy.,くもり,kumori,曇天 (donten),ja
+晴れ,sunny,Clear sky,今日は晴れです。 — It's sunny today.,はれ,hare,晴天 (seiten),ja
+台風,typhoon,A tropical storm,台風が近づいています。 — A typhoon is approaching.,たいふう,taifuu,,ja
+気温,temperature,Air temperature,今日の気温は三十度です。 — Today's temperature is thirty degrees.,きおん,kion,,ja
+服,clothes,Clothing in general,新しい服を買いました。 — I bought new clothes.,ふく,fuku,衣服 (ifuku),ja
+靴,shoes,Footwear,靴を履いてください。 — Please put on your shoes.,くつ,kutsu,履き物 (hakimono),ja
+帽子,hat,Head covering,帽子をかぶります。 — I put on a hat.,ぼうし,boushi,冠 (kanmuri),ja
+シャツ,shirt,An upper body garment,白いシャツを着ています。 — I'm wearing a white shirt.,しゃつ,shatsu,,ja
+ズボン,pants,Trousers,黒いズボンを履いています。 — I'm wearing black pants.,ずぼん,zubon,パンツ (pantsu),ja
+コート,coat,An outer garment,寒いのでコートを着ます。 — It's cold so I'll wear a coat.,こーと,kooto,外套 (gaitou),ja
+眼鏡,glasses,Eyeglasses,眼鏡をかけています。 — I'm wearing glasses.,めがね,megane,めがね (megane),ja
+靴下,socks,Foot coverings,靴下を洗いました。 — I washed the socks.,くつした,kutsushita,ソックス (sokkusu),ja
+猫,cat,A domestic cat,猫が好きです。 — I like cats.,ねこ,neko,猫ちゃん (neko chan),ja
+犬,dog,A domestic dog,犬と散歩します。 — I take a walk with my dog.,いぬ,inu,わんこ (wanko),ja
+鳥,bird,A bird,鳥が歌っています。 — The birds are singing.,とり,tori,小鳥 (kotori),ja
+馬,horse,A horse,馬に乗りたいです。 — I want to ride a horse.,うま,uma,馬匹 (bahiki),ja
+牛,cow,A cow,牛が草を食べています。 — The cow is eating grass.,うし,ushi,雌牛 (meushi),ja
+豚,pig,A pig,豚肉は安いです。 — Pork is cheap.,ぶた,buta,豚肉 (butaniku),ja
+虫,insect,A bug or insect,虫が怖いです。 — I'm scared of insects.,むし,mushi,昆虫 (konchuu),ja
+うさぎ,rabbit,A rabbit,うさぎはかわいいです。 — Rabbits are cute.,うさぎ,usagi,兔 (usagi),ja
+病院,hospital,A medical facility,病院に行きます。 — I'm going to the hospital.,びょういん,byouin,医院 (iin),ja
+銀行,bank,A financial institution,銀行でお金を下ろします。 — I'll withdraw money at the bank.,ぎんこう,ginkou,金融機関 (kinyuu kikan),ja
+公園,park,A public park,公園で遊びます。 — I play in the park.,こうえん,kouen,庭園 (teien),ja
+レストラン,restaurant,An eatery,レストランで食事をします。 — I eat at a restaurant.,れすとらん,resutoran,食堂 (shokudou),ja
+図書館,library,A book lending facility,図書館で本を借ります。 — I borrow books from the library.,としょかん,toshokan,,ja
+郵便局,post office,A mail service office,郵便局で手紙を出します。 — I send a letter at the post office.,ゆうびんきょく,yuubinkyoku,,ja
+空港,airport,An airport,空港に迎えに行きます。 — I'm going to pick someone up at the airport.,くうこう,kuukou,飛行場 (hikoujou),ja
+コンビニ,convenience store,A small shop open late,コンビニでお弁当を買います。 — I buy a lunch box at the convenience store.,こんびに,konbini,,ja
+スーパー,supermarket,A grocery store,スーパーで野菜を買います。 — I buy vegetables at the supermarket.,すーぱー,suupaa,,ja
+ホテル,hotel,Accommodation,ホテルを予約しました。 — I booked a hotel.,ほてる,hoteru,,ja
+会社,company,A business or firm,会社に行きます。 — I'm going to the office.,かいしゃ,kaisha,,ja
+トイレ,toilet,A restroom,トイレはどこですか。 — Where is the restroom?,といれ,toire,洗面所 (senmenjo),ja
+大学,university,Higher education school,大学で日本語を勉強します。 — I study ja at university.,だいがく,daigaku,,ja
+神社,shrine,A Shinto shrine,新年に神社に行きます。 — I go to the shrine on New Year's.,じんじゃ,jinja,社 (yashiro),ja
+寺,temple,A Buddhist temple,京都で寺を見ました。 — I visited temples in Kyoto.,てら,tera,,ja
+大丈夫,alright,Okay or no problem,大丈夫ですか。 — Are you alright?,だいじょうぶ,daijoubu,問題ない (mondai nai),ja
+分かる,to understand,To comprehend,日本語が分かりますか。 — Do you understand ja?,わかる,wakaru,理解する (rikai suru),ja
+欲しい,want,To desire something,新しいパソコンが欲しいです。 — I want a new computer.,ほしい,hoshii,,ja
+好き,like,To be fond of,日本料理が好きです。 — I like ja food.,すき,suki,,ja
+嫌い,dislike,To not be fond of,虫が嫌いです。 — I don't like insects.,きらい,kirai,嫌悪する (ken-o suru),ja
+上手,skilled,Good at something,日本語が上手ですね。 — Your ja is good.,じょうず,jouzu,,ja
+下手,unskilled,Poor at something,料理が下手です。 — I'm bad at cooking.,へた,heta,苦手な (nigate na),ja
+大変,tough / very,Difficult or extreme,仕事は大変です。 — Work is tough.,たいへん,taihen,困難な (konnan na),ja
+危ない,dangerous,Risky or hazardous,ここは危ないです。 — It's dangerous here.,あぶない,abunai,危険な (kiken na),ja
+必要,necessary,Required or needed,パスポートが必要です。 — A passport is required.,ひつよう,hitsuyou,不可欠な (fukaketsu na),ja
+可能,possible,Able to be done,変更は可能ですか。 — Is it possible to make changes?,かのう,kanou,,ja
+簡単,simple,Not complicated,この料理は簡単です。 — This dish is simple to make.,かんたん,kantan,易しい (yasashii),ja
+一緒,together,Doing something jointly,一緒に行きましょう。 — Let's go together.,いっしょ,issho,,ja
+本当,really / true,The truth,本当ですか。 — Really?,ほんとう,hontou,真実 (shinjitsu),ja
+違う,to differ,To be different or wrong,それは違います。 — That's wrong.,ちがう,chigau,異なる (kotonaru),ja
+同じ,same,Identical or equal,私たちは同じ学校です。 — We go to the same school.,おなじ,onaji,,ja
+春,spring,The spring season,春に桜が咲きます。 — Cherry blossoms bloom in spring.,はる,haru,春季 (shunki),ja
+夏,summer,The summer season,夏は暑いです。 — Summer is hot.,なつ,natsu,夏季 (kakki),ja
+秋,autumn,The fall season,秋は紅葉がきれいです。 — The autumn leaves are beautiful in fall.,あき,aki,秋季 (shuuki),ja
+冬,winter,The winter season,冬は雪が降ります。 — It snows in winter.,ふゆ,fuyu,冬季 (touki),ja
+桜,cherry blossom,Cherry blossom tree,桜が満開です。 — The cherry blossoms are in full bloom.,さくら,sakura,,ja
+バス,bus,A bus vehicle,バスで学校に行きます。 — I go to school by bus.,ばす,basu,路線バス (rosen basu),ja
+自転車,bicycle,A bicycle,自転車で買い物に行きます。 — I go shopping by bicycle.,じてんしゃ,jitensha,自転 (jiten),ja
+飛行機,airplane,An aircraft,飛行機で東京に行きます。 — I'm going to Tokyo by plane.,ひこうき,hikouki,航空機 (koukuuki),ja
+右,right,Right direction,右に曲がってください。 — Please turn right.,みぎ,migi,,ja
+左,left,Left direction,左に曲がってください。 — Please turn left.,ひだり,hidari,左方 (sahō),ja
+上,up / above,Upper position,机の上に本があります。 — There is a book on the desk.,うえ,ue,,ja
+下,down / below,Lower position,机の下に猫がいます。 — There is a cat under the desk.,した,shita,底 (soko),ja
+前,front / before,In front of,駅の前で待っています。 — I'm waiting in front of the station.,まえ,mae,前方 (zenpou),ja
+後ろ,behind,At the back of,後ろを見てください。 — Please look behind you.,うしろ,ushiro,背後 (haigo),ja
+中,inside,The interior,箱の中に何がありますか。 — What's inside the box?,なか,naka,内部 (naibu),ja
+外,outside,The exterior,外は寒いです。 — It's cold outside.,そと,soto,外部 (gaibu),ja
+隣,next to,Adjacent to,隣の人は親切です。 — The person next door is kind.,となり,tonari,,ja
+テレビ,television,A TV set,テレビを見ています。 — I'm watching TV.,てれび,terebi,テレビジョン (terebijon),ja
+パソコン,computer,A personal computer,パソコンで仕事をします。 — I work on the computer.,ぱそこん,pasokon,コンピュータ (konpyuuta),ja
+携帯,mobile phone,A cell phone,携帯を忘れました。 — I forgot my phone.,けいたい,keitai,,ja
+薬,medicine,Medication,薬を飲んでください。 — Please take your medicine.,くすり,kusuri,医薬品 (iyakuhin),ja
+病気,illness,A sickness,病気で休みます。 — I'm taking a day off because I'm sick.,びょうき,byouki,疾患 (shikkan),ja
+誕生日,birthday,Day of birth,明日は誕生日です。 — Tomorrow is my birthday.,たんじょうび,tanjoubi,生まれた日 (umareta hi),ja
+旅行,trip,A journey or travel,来月旅行に行きます。 — I'm going on a trip next month.,りょこう,ryokou,,ja
+散歩,walk / stroll,A leisurely walk,犬と散歩をします。 — I take a walk with my dog.,さんぽ,sanpo,散策 (sansaku),ja
+買い物,shopping,Purchasing goods,週末に買い物に行きます。 — I go shopping on weekends.,かいもの,kaimono,,ja
+掃除,cleaning,Tidying up,部屋の掃除をします。 — I'll clean the room.,そうじ,souji,清掃 (seisou),ja
+洗濯,laundry,Washing clothes,洗濯をしなければなりません。 — I have to do the laundry.,せんたく,sentaku,洗い物 (araimono),ja
+予約,reservation,A booking,レストランを予約しました。 — I made a reservation at a restaurant.,よやく,yoyaku,事前予約 (jizen yoyaku),ja
+約束,promise,An agreement or appointment,友達と約束があります。 — I have plans with a friend.,やくそく,yakusoku,誓い (chikai),ja
+練習,practice,Training or rehearsal,毎日ピアノの練習をします。 — I practice piano every day.,れんしゅう,renshuu,稽古 (keiko),ja
+準備,preparation,Getting ready,旅行の準備をしています。 — I'm preparing for the trip.,じゅんび,junbi,用意 (youi),ja
+経験,experience,Personal experience,いい経験になりました。 — It was a good experience.,けいけん,keiken,,ja
+生活,daily life,Everyday living,日本での生活は楽しいです。 — Life in Japan is fun.,せいかつ,seikatsu,,ja
+安全,safe,Free from danger,この町は安全です。 — This town is safe.,あんぜん,anzen,,ja
+世界,world,The world,世界を旅行したいです。 — I want to travel the world.,せかい,sekai,地球 (chikyuu),ja
+文化,culture,Cultural traditions,日本の文化に興味があります。 — I'm interested in ja culture.,ぶんか,bunka,風習 (fuushuu),ja
+最近,recently,In recent times,最近忙しいです。 — I've been busy lately.,さいきん,saikin,近頃 (chikagoro),ja
+特別,special,Not ordinary,今日は特別な日です。 — Today is a special day.,とくべつ,tokubetsu,,ja
+普通,normal,Ordinary or usual,普通の電車で行きます。 — I'll take the regular train.,ふつう,futsuu,通常 (tsuujou),ja
+これ,this,Object near the speaker,これは何ですか。 — What is this?,これ,kore,,ja
+それ,that,Object near the listener,それは本です。 — That is a book.,それ,sore,,ja
+あれ,that over there,Object far from both,あれは山です。 — That over there is a mountain.,あれ,are,,ja
+ここ,here,Place near the speaker,ここに座ってください。 — Please sit here.,ここ,koko,,ja
+だれ,who,Question word for person,だれが来ましたか。 — Who came?,だれ,dare,どなた (donata),ja
+なに,what,Question word for object,何を食べますか。 — What will you eat?,なに,nani,,ja
+どこ,where,Question word for place,トイレはどこですか。 — Where is the toilet?,どこ,doko,,ja
+いつ,when,Question word for time,いつ日本に来ましたか。 — When did you come to Japan?,いつ,itsu,,ja
+ある,to be / exist,Existence of inanimate objects,机の上に本がある。 — There is a book on the desk.,ある,aru,,ja
+いる,to be / exist,Existence of living things,庭に猫がいる。 — There is a cat in the garden.,いる,iru,,ja
+分かると,to understand,Comprehension,意味が分かる。 — I understand the meaning.,わかる,wakaru,理解する (rikai suru),ja
+言う,to say,Expressing with words,先生が言う。 — The teacher says.,いう,iu,述べる (noberu),ja
+時,time / hour,Point in time,時は金なり。 — Time is money.,とき / じ,toki / ji,時間 (jikan),ja
+日本,Japan,The country,日本は美しい。 — Japan is beautiful.,にほん,nihon,にっぽん (nippon),ja
+日本語,ja language,The language,日本語を勉強する。 — I study ja.,にほんご,nihongo,,ja
+円,yen,ja currency,これは千円です。 — This is 1000 yen.,えん,en,,ja
+熱い,hot,Object temperature,熱いお茶。 — Hot tea.,あつい,atsui,,ja
+面白い,interesting / funny,Entertaining,この漫画は面白い。 — This manga is interesting.,おもしろい,omoshiroi,滑稽 (kokkei),ja
+おいしい,delicious,Good tasting,このケーキはおいしい。 — This cake is delicious.,おいしい,oishii,うまい (umai),ja
+とても,very,Adverb of degree,とても寒いです。 — It is very cold.,とても,totemo,非常に (hijou ni),ja
+少し,a little,Small amount,少し疲れた。 — I am a little tired.,すこし,sukoshi,ちょっと (chotto),ja
+全部,all / everything,Total amount,全部食べました。 — I ate everything.,ぜんぶ,zenbu,全て (subete),ja
+もっと,more,Additional degree,もっと勉強しなさい。 — Study more.,もっと,motto,,ja
+また,again / also,Once more,また会いましょう。 — Let's meet again.,また,mata,再度 (saido),ja
+だけ,only,Limit / Just,これだけしかない。 — There is only this much.,だけ,dake,のみ (nomi),ja
+初めて,for the first time,Initial occurrence,日本は初めてですか。 — Is this your first time in Japan?,はじめて,hajime te,,ja
+すぐ,immediately,Right away,すぐに行きます。 — I'll go immediately.,すぐ,sugu,直ちに (tadachi ni),ja
+ゆっくり,slowly / relaxed,Without haste,ゆっくり話してください。 — Please speak slowly.,ゆっくり,yukkuri,,ja
+どうぞ,please / here you go,Offering something,"どうぞ、座ってください。 — Please (go ahead), sit down.",どうぞ,douzo,,ja
+おめでとう,congratulations,Celebratory greeting,誕生日おめでとう！ — Happy Birthday!,おめでとう,omedetou,,ja
+失礼します,excuse me,Formal apology / leaving,お先に失礼します。 — Excuse me (for leaving first).,しつれいします,shitsurei shimasu,,ja
+頑張って,do your best,Encouragement,テスト、頑張って！ — Do your best on the test!,がんばって,ganbatte,,ja
+ちょっと,a moment / a bit,Casual amount,ちょっと待って。 — Wait a moment.,ちょっと,chotto,少し (sukoshi),ja
+全然,not at all,Negative emphasis,全然分からない。 — I don't understand at all.,ぜんぜん,zenzen,,ja
+いつも,always,Every time,いつもありがとうございます。 — Thank you always.,いつも,itsumo,絶えず (taezu),ja
+ときどき,sometimes,Occasionally,ときどき海に行きます。 — I sometimes go to the sea.,ときどき,tokidoki,たまに (tamani),ja
+よく,often / well,Frequency or quality,よくできました。 — Well done.,よく,yoku,しばしば (shibashiba),ja
+たいてい,usually,Mostly,たいてい家で夕食を食べる。 — I usually eat dinner at home.,たいてい,taitei,普通 (futsuu),ja
+呼ぶ,to call / invite,Summoning someone,タクシーを呼んでください。 — Please call a taxi.,よぶ,yobu,招く (maneku),ja
+あげる,to give,Giving to someone,彼女にプレゼントをあげる。 — I give a present to my girlfriend.,あげる,ageru,差し上げる (sashiageru),ja
+もらう,to receive,Getting from someone,誕生日に時計をもらった。 — I received a watch for my birthday.,もらう,morau,頂く (itadaku),ja
+疲れる,to get tired,Losing energy,仕事で疲れました。 — I'm tired from work.,つかれる,tsukare ru,消耗する (shoumou suru),ja
+止まる,to stop,Coming to a halt,車が止まる。 — The car stops.,とまる,tomaru,静止する (seishi suru),ja
+出す,to take out / submit,Sending or removing,ゴミを出す。 — I take out the trash.,だす,dasu,提出する (teishutsu suru),ja
+入れる,to put in,Inserting,鞄に財布を入れる。 — I put my wallet in the bag.,いれる,ireru,挿入する (sounyuu suru),ja
+誰か,someone,Unspecified person,誰かいますか。 — Is someone there?,だれか,dareka,,ja
+何か,something,Unspecified object,何か食べたい。 — I want to eat something.,なにか,nanika,,ja
+どこか,somewhere,Unspecified place,どこかへ行きたい。 — I want to go somewhere.,どこか,dokoka,,ja
+年,year,Calendar year,今年は二〇二五年です。 — This year is 2025.,とし / ねん,toshi / nen,歳月 (saigetsu),ja
+月,month / moon,Calendar month,一月は寒い。 — January is cold.,つき / げつ,tsuki / getsu,,ja
+週,week,Seven-day period,一週間は早い。 — One week is fast.,しゅう,shuu,,ja
+日,day / sun,Calendar day,今日はいい日だ。 — Today is a good day.,ひ / にち,hi / nichi,,ja
+毎月,every month,Frequency,毎月雑誌を買う。 — I buy a magazine every month.,まいつき,maitsuki,,ja
+毎年,every year,Frequency,毎年海外旅行に行く。 — I go on an overseas trip every year.,まいとし / まいねん,maitoshi / mainen,,ja
+先月,last month,The previous month,先月日本に来た。 — I came to Japan last month.,せんげつ,sengetsu,,ja
+来月,next month,The following month,来月から新しい仕事。 — New job starting next month.,らいげつ,raigetsu,,ja
+去年,last year,The previous year,去年の夏は暑かった。 — Last year's summer was hot.,きょねん,kyonen,昨年 (sakunen),ja
+来年,next year,The following year,来年大学を卒業する。 — I graduate college next year.,らいねん,rainen,,ja
+晩 / 夜,evening / night,Late part of day,"夜は冷えますね。 — It gets cold at night, doesn't it?",ばん / よる,ban / yoru,今夜 (konya),ja
+声,voice,Sound from mouth,大きい声で話して。 — Speak with a loud voice.,こえ,koe,,ja
+交番,police box,Small police station,交番で道を聞く。 — I ask for directions at the police box.,こうばん,kouban,,ja
+角,corner,Turning point,角を曲がる。 — Turn the corner.,かど,kado,,ja
+近く,near,Close by,駅の近く。 — Near the station.,ちかく,chikaku,付近 (fukin),ja
+遠く,far,Distant,遠くに見える。 — Visible in the distance.,とおく,tooku,遥か (haruka),ja
+成る,to become,Change of state,医者になりたい。 — I want to become a doctor.,なる,naru,,ja
+考える,to think / consider,Mental process,将来について考える。 — I think about the future.,かんがえる,kangaeru,思う (omou),ja
+休む,to rest / be absent,Taking a break,今日は仕事を休みます。 — I'm taking the day off work today.,やすむ,yasumu,休憩する (kyuukei suru),ja
+貸す,to lend,Giving temporarily,ペンを貸してください。 — Please lend me a pen.,かす,kasu,,ja
+借りる,to borrow,Taking temporarily,本を借りる。 — I borrow a book.,かりる,kariru,,ja
+消す,to turn off / erase,Extinguishing / deleting,テレビを消す。 — Turn off the TV.,けす,kesu,オフにする (ofu ni suru),ja
+点ける,to turn on,Activating light/power,電気を点ける。 — Turn on the light.,つける,tsukeru,オンにする (on ni suru),ja
+運ぶ,to carry / transport,Moving an object,荷物を運ぶ。 — I carry the luggage.,はこぶ,hakobu,輸送する (yusou suru),ja
+選ぶ,to choose / select,Making a choice,好きな色を選ぶ。 — Choose the color you like.,えらぶ,erabu,選択する (sentaku suru),ja
+手伝う,to help / assist,Lending a hand,母の手伝いをする。 — I help my mother.,てつだう,tetsudau,助ける (tasukeru),ja
+重い,heavy,Weight (large),この鞄は重い。 — This bag is heavy.,おもい,omoi,,ja
+軽い,light,Weight (small),この靴はとても軽い。 — These shoes are very light.,かるい,karui,,ja
+暗い,dark,Lacking light,部屋が暗い。 — The room is dark.,くらい,kurai,,ja
+明るい,bright / cheerful,Light or personality,明るい色。 — A bright color.,あかるい,akarui,陽気 (youki),ja
+速い,fast,Speed (quick),走るのが速い。 — He runs fast.,はやい,hayai,迅速 (jinsoku),ja
+不便,inconvenient,Not useful,ここは交通が不便だ。 — Transport is inconvenient here.,ふべん,fuben,,ja
+暇,free time / bored,Not busy,今日は暇です。 — I am free today.,ひま,hima,,ja
+親切,kind,Polite / helpful,あの人は親切です。 — That person is kind.,しんせつ,shinsetsu,優しい (yasashii),ja
+一番,the most / number one,Superlative,これが一番好き。 — I like this the best.,いちばん,ichiban,最高 (saikou),ja
+最初,the first / beginning,Starting point,最初は難しい。 — It's difficult at first.,さいしょ,saisho,第一 (daiichi),ja
+最後,the last / final,Ending point,これが最後です。 — This is the last one.,さいご,saigo,最終 (saishu u),ja
+理由,reason,Cause / motive,遅れた理由。 — The reason for being late.,りゆう,riyuu,原因 (genin),ja
+方法,method / way,Technique,使い方が分からない。 — I don't know the way to use it.,ほうほう,houhou,やり方 (yarikata),ja
+意見,opinion,Viewpoint,意見を言う。 — State an opinion.,いけん,iken,,ja
+連絡,contact,Communication,後で連絡します。 — I will contact you later.,れんらく,renraku,,ja
+相談,consultation,Discussing a problem,友達に相談する。 — Consult with a friend.,そうだん,soudan,,ja
+注意,caution / warning,Carefulness,火の用心。 — Be careful with fire.,ちゅうい,chuui,用心 (youjin),ja
+反対,opposite / against,Disagreement / reverse,意見に反対する。 — I oppose the opinion.,はんたい,hantai,逆 (gyaku),ja
+賛成,agreement,Approval / support,提案に賛成する。 — I agree with the proposal.,さんせい,sansei,同意 (douyi),ja
+絶対,absolutely,Certainty,絶対に忘れない。 — I will absolutely not forget.,ぜったい,zettai,必ず (kanarazu),ja
+特に,especially,Particularly,特にこれが好き。 — I especially like this.,とくに,tokuni,,ja
+大体,mostly / roughly,Approximate,大体分かった。 — I mostly understood.,だいたい,daitai,ほぼ (hobo),ja
+必ず,without fail,Necessity,必ず来てください。 — Please come without fail.,かならず,kanarazu,絶対に (zettai ni),ja
+少しも,not at all (with neg.),Zero amount,少しも怖くない。 — I'm not a bit scared.,すこしも,sukoshi mo,全然 (zenzen),ja
+やっと,finally / at last,Achieved with effort,やっと終わった。 — Finally finished.,やっと,yatto,ついに (tsuini),ja
+ついに,finally / in the end,Conclusion of events,ついに別れた。 — Finally broke up.,ついに,tsuini,とうとう (toutou),ja
+もし,if,Supposition,"もし雨なら行きません。 — If it rains, I won't go.",もし,moshi,,ja
+しかし,however,Contrast,"しかし、高いです。 — However, it is expensive.",しかし,shikashi,でも (demo),ja
+そして,and / then,Addition / sequence,"そして、彼は去った。 — And then, he left.",そして,soshite,,ja
+だから,so / therefore,Cause and effect,"忙しい、だから行けない。 — I'm busy, so I can't go.",だから,dakara,それで (sorede),ja
+決める,to decide,Make a choice,卒業後の進路を決める。 — I decide my path after graduation.,きめる,kimeru,決定する (kettei suru),ja
+探す,to search / look for,Looking for an object,失くした鍵を探す。 — I am looking for the lost keys.,さがす,sagasu,探索する (tansaku suru),ja
+怒る,to get angry,Feeling mad,先生が怒った。 — The teacher got angry.,おこる,okoru,憤る (ikidouru),ja
+喜ぶ,to be happy / rejoice,Feeling joy,プレゼントを喜ぶ。 — To be happy with a present.,よろこぶ,yorokobu,祝う (iwau),ja
+助ける,to help / rescue,Assisting someone,困っている人を助ける。 — Help people in trouble.,たすける,tasukeru,救う (sukuu),ja
+頼む,to ask / request,Asking for a favor,"水をお願いします（頼む）。 — I request water, please.",たのむ,tanomu,依頼する (irai suru),ja
+誘う,to invite,Asking someone to go,友達を映画に誘う。 — Invite a friend to a movie.,さそう,sasou,招く (maneku),ja
+受ける,to receive / take,"Take an exam, receive",試験を受ける。 — I will take the exam.,うける,ukeru,受け取る (uketoru),ja
+投げる,to throw,Propelling an object,ボールを投げる。 — Throw the ball.,なげる,nageru,,ja
+踏む,to step on,Treading on something,足を踏まれた。 — My foot was stepped on.,ふむ,fumu,,ja
+噛む,to chew / bite,Using teeth,よく噛んで食べる。 — Chew well and eat.,かむ,kamu,,ja
+慣れる,to get used to,Become accustomed,新しい生活に慣れる。 — Get used to a new life.,なれる,nareru,,ja
+泊まる,to stay overnight,Staying at a hotel,ホテルに泊まる。 — I stay at a hotel.,とまる,tomaru,宿泊する (shukuhaku suru),ja
+直す,to fix / repair,Correcting a mistake,時計を直す。 — I repair the watch.,なおす,naosu,修理する (shuuri suru),ja
+準備する,to prepare,Getting ready,旅行の準備をする。 — I prepare for a trip.,じゅんびする,junbi suru,用意する (youi suru),ja
+寂しい,lonely,Feeling alone,一人で寂しい。 — I am lonely by myself.,さびしい,sabishii,孤独 (kodoku),ja
+恥ずかしい,embarrassing / shy,Feeling ashamed,人前で歌うのは恥ずかしい。 — It's embarrassing to sing in public.,はずかしい,hazukashii,,ja
+苦しい,painful / difficult,Physical or mental pain,息が苦しい。 — Difficult to breathe.,くるしい,kurushii,辛い (tsurai),ja
+珍しい,rare / unusual,Not common,珍しい鳥を見つけた。 — I found a rare bird.,めずらしい,mezurashii,希少 (kishou),ja
+素晴らしい,wonderful,Excellent,"素晴らしい景色ですね。 — It's a wonderful view, isn't it?",すばらしい,subarashii,最高 (saikou),ja
+正しい,correct / right,Factually accurate,正しい答え。 — The correct answer.,ただしい,tadashii,正確 (seikaku),ja
+酷い,awful / terrible,Bad quality/behavior,酷い天気だ。 — It's awful weather.,ひどい,hidoi,最悪 (saiaku),ja
+細い,thin / slender,Small diameter,道が細い。 — The road is narrow (thin).,ほそい,hosoi,スリム (surimu),ja
+太い,thick / fat,Large diameter,太い足。 — Thick legs.,ふとい,futoi,,ja
+固い,hard / solid,Firm texture,このパンは固い。 — This bread is hard.,かたい,katai,硬い (katai),ja
+柔らかい,soft,Supple texture,柔らかい布団。 — A soft futon.,やわらかい,yawarakai,ソフト (sofuto),ja
+深い,deep,Large depth,この川は深い。 — This river is deep.,ふかい,fukai,,ja
+浅い,shallow,Small depth,浅いプール。 — A shallow pool.,あさい,asai,,ja
+危険,dangerous,Not safe,危険な場所。 — A dangerous place.,きけん,kiken,危ない (abunai),ja
+複雑,complex,Not simple,複雑な問題。 — A complex problem.,ふくざつ,fukuzatsu,難解 (nankai),ja
+単純,simple,Not complex,単純な理由。 — A simple reason.,たんじゅん,tanjun,簡単 (kantan),ja
+丁寧,polite / careful,Good manners,丁寧な言葉。 — Polite language.,ていねい,teinei,礼儀正しい (reigi tadashii),ja
+失礼,rude / impolite,Bad manners,失礼な態度。 — A rude attitude.,しつれい,shitsurei,無礼 (burei),ja
+正直,honest,Truthful,正直に言って。 — Speak honestly.,しょうじき,shoujiki,素直 (sunao),ja
+太陽,sun,The star in our system,太陽が昇る。 — The sun rises.,たいよう,taiyou,お日様 (ohisama),ja
+星,star,Points of light in sky,星が輝いている。 — The stars are shining.,ほし,hoshi,,ja
+地球,Earth,Our planet,地球は青かった。 — The Earth was blue.,ちきゅう,chikyuu,,ja
+空気,air,Atmosphere,空気が美味しい。 — The air tastes good (is fresh).,くうき,kuuki,,ja
+景色,scenery,View,山の景色。 — Mountain scenery.,けしき,keshiki,風景 (fuukei),ja
+海岸,coast / beach,Land by the sea,海岸を散歩する。 — Walk along the coast.,かいがん,kaigan,浜辺 (hamabe),ja
+砂漠,desert,Arid land,砂漠は暑い。 — The desert is hot.,さばく,sabaku,,ja
+森林,forest,Wooded area,森林浴をする。 — To go forest bathing.,しんりん,shinrin,森 (mori),ja
+季節,season,Time of year,一番好きな季節。 — My favorite season.,きせつ,kisetsu,四季 (shiki),ja
+台所,kitchen,Cooking area,台所で料理する。 — Cook in the kitchen.,だいどころ,daidokoro,キッチン (kicchin),ja
+玄関,entrance hall,Entrance of a home,玄関で靴を脱ぐ。 — Take off shoes at the entrance.,げんかん,genkan,入り口 (iriguchi),ja
+お風呂,bath,Place to wash,お風呂に入る。 — Take a bath.,おふろ,ofuro,浴室 (yokushitsu),ja
+冷蔵庫,refrigerator,Cold food storage,牛乳を冷蔵庫に入れる。 — Put the milk in the fridge.,れいぞうこ,reizouko,,ja
+洗濯機,washing machine,Device for laundry,洗濯機を回す。 — Run the washing machine.,せんたくき,sentakuki,,ja
+掃除機,vacuum cleaner,Device for cleaning,掃除機をかける。 — To vacuum.,そうじき,soujiki,,ja
+鏡,mirror,Reflecting glass,鏡を見る。 — Look in the mirror.,かがみ,kagami,,ja
+石鹸,soap,Cleaning agent,石鹸で手を洗う。 — Wash hands with soap.,せっけん,sekken,ソープ (soopu),ja
+歯ブラシ,toothbrush,Dental tool,歯ブラシを替える。 — Change the toothbrush.,はぶらし,haburashi,,ja
+包丁,kitchen knife,Cutting tool,包丁で野菜を切る。 — Cut vegetables with a knife.,ほうちょう,houchou,,ja
+皿,plate,Dishware,皿を洗う。 — Wash the dishes.,さら,sara,,ja
+茶碗,bowl / rice bowl,Vessel for rice,茶碗を割った。 — I broke the rice bowl.,ちゃわん,chawan,,ja
+お箸,chopsticks,Eating utensils,お箸を使う。 — Use chopsticks.,おはし,ohashi,,ja
+警察,police,Law enforcement,警察に届ける。 — Report to the police.,けいさつ,keisatsu,警官 (keikan),ja
+消防署,fire station,Emergency facility,消防署はどこですか。 — Where is the fire station?,しょうぼうしょ,shoubou sho,,ja
+お寺,temple,Buddhist religious site,古いお寺を訪ねる。 — Visit an old temple.,おてら,otera,,ja
+地下鉄,subway,Underground train,地下鉄は便利だ。 — The subway is convenient.,ちかてつ,chikatetsu,,ja
+港,port / harbor,Boat stop,横浜の港。 — Yokohama port.,みなと,minato,,ja
+教室,classroom,Room for learning,教室に入る。 — Enter the classroom.,きょうしつ,kyoushitsu,,ja
+試験,exam / test,Evaluation,試験に合格する。 — Pass the exam.,しけん,shiken,テスト (tesuto),ja
+宿題,homework,Assignments,宿題を忘れた。 — I forgot my homework.,しゅくだい,shukudai,,ja
+歴史,history,Past events,日本の歴史を学ぶ。 — Learn ja history.,れきし,rekishi,,ja
+地理,geography,Study of land,地理の授業。 — Geography class.,ちり,chiri,,ja
+数学,mathematics,Study of numbers,数学は苦手です。 — I am bad at math.,すうがく,suugaku,算数 (sansuu),ja
+科学,science,Study of nature,科学の力。 — The power of science.,かがく,kagaku,,ja
+法律,law,Legal rules,法律を守る。 — Obey the law.,ほうりつ,houritsu,,ja
+自由,freedom,Liberty,自由になりたい。 — I want to be free.,じゆう,jiyuu,,ja
+平和,peace,Lack of war,世界平和を願う。 — Pray for world peace.,へいわ,heiwa,,ja
+戦争,war,Armed conflict,戦争が終わる。 — The war ends.,せんそう,sensou,,ja
+経済,economy,Financial system,経済の状況。 — The economic situation.,けいざい,keizai,,ja
+政治,politics,Government affairs,政治に関心がある。 — Interested in politics.,せいじ,seiji,,ja
+記憶,memory,Mental record,記憶力がいい。 — Have a good memory.,きおく,kioku,,ja
+感情,emotion,Feelings,感情を抑える。 — Suppress emotions.,かんじょう,kanjou,気持ち (kimochi),ja
+習慣,habit / custom,Regular behavior,毎朝の習慣。 — Every morning's habit.,しゅうかん,shuukan,,ja
+将来,future,Time to come,将来の夢。 — Dreams for the future.,しょうらい,shourai,未来 (mirai),ja
+成功,success,Achievement,計画は成功した。 — The plan was a success.,せいこう,seikou,,ja
+失敗,failure / mistake,Lack of success,失敗を恐れない。 — Don't fear failure.,しっぱい,shippai,ミス (misu),ja
+勤める,to work for,To be employed at,銀行に勤めています。 — I work for a bank.,つとめる,tsutomeru,働く (hataraku),ja
+捨てる,to throw away,Discarding,ゴミを捨てないで。 — Don't throw away trash.,すてる,suteru,処分する (shobun suru),ja
+拾う,to pick up,Gathering from ground,タクシーを拾う。 — Pick up (hail) a taxi.,ひろう,hirou,,ja
+磨く,to polish / brush,Cleaning by rubbing,歯を磨く。 — Brush teeth.,みがく,migaku,,ja
+返す,to return (object),Giving back,お金を返す。 — Return the money.,かえす,kaesu,戻す (modosu),ja
+謝る,to apologize,Expressing regret,彼に謝る。 — Apologize to him.,あやまる,ayamaru,陳謝する (chinsha suru),ja
+祝う,to celebrate,Observing an event,誕生日を祝う。 — Celebrate a birthday.,いわう,iwau,祝福する (shukufuku suru),ja
+壊す,to break,Damaging something,時計を壊した。 — I broke the watch.,こわす,kowasu,破壊する (hakai suru),ja
+甘い,sweet,Taste,甘いお菓子。 — Sweet sweets.,あまい,amai,,ja
+辛い,spicy / hot,Taste,辛いカレー。 — Spicy curry.,からい,karai,,ja
+苦い,bitter,Taste,良薬は口に苦し。 — Good medicine tastes bitter.,にがい,nigai,,ja
+塩辛い,salty,Taste,このスープは塩辛い。 — This soup is salty.,しおからい,shiokarai,しょっぱい (shoppai),ja
+酸っぱい,sour,Taste,レモンは酸っぱい。 — Lemons are sour.,すっぱい,suppai,,ja
+濃い,strong / thick,"Flavor, color, or liquid",コーヒーが濃い。 — The coffee is strong.,こい,koi,,ja
+薄い,weak / thin,"Flavor, color, or paper",味が薄い。 — The flavor is weak.,うすい,usui,,ja
+涼しい,cool,Temperature (pleasant),今日は涼しい。 — Today is cool.,すずしい,suzushii,,ja
+暖かい,warm,Temperature (pleasant),暖かい春。 — A warm spring.,あたたかい,atatakai,,ja
+汚い,dirty / messy,Condition,部屋が汚い。 — The room is dirty.,きたない,kitanai,不潔 (fuketsu),ja
+丸い,round,Shape,丸い窓。 — A round window.,まるい,marui,,ja
+四角い,square,Shape,四角い箱。 — A square box.,しかくい,shikakui,,ja
+首,neck,Body part,首が痛い。 — My neck hurts.,くび,kubi,,ja
+肩,shoulder,Body part,肩がこる。 — To have stiff shoulders.,かた,kata,,ja
+胸,chest / breast,Body part,胸が熱くなる。 — My heart (chest) warms.,むね,mune,,ja
+腰,waist / lower back,Body part,腰を下ろす。 — To sit down (lower waist).,こし,koshi,,ja
+喉,throat,Body part,喉が渇いた。 — I am thirsty (throat is dry).,のど,nodo,,ja
+腕,arm,Body part,腕を組む。 — Fold one's arms.,うで,ude,,ja
+爪,nail / claw,Body part,爪を切る。 — Cut nails.,つめ,tsume,,ja
+醤油,soy sauce,Seasoning,醤油をつける。 — Dip in soy sauce.,しょうゆ,shouyu,,ja
+飲み物,drink,Beverage,冷たい飲み物。 — A cold drink.,のみもの,nomimono,飲料 (inryou),ja
+菓子,sweets / snacks,Food,お菓子を食べる。 — Eat snacks.,かし,kashi,おやつ (oyatsu),ja
+財布,wallet / purse,Item,財布を忘れた。 — I forgot my wallet.,さいふ,saifu,,ja
+タオル,towel,Daily item,タオルで拭く。 — Wipe with a towel.,たおる,taoru,,ja
+電気,electricity / light,Utility,電気を消す。 — Turn off the light.,でんき,denki,,ja
+火,fire,Natural element,火に気をつけて。 — Be careful with fire.,ひ,hi,,ja
+場所,place / location,General noun,場所を変える。 — Change the place.,ばしょ,bashyo,所 (tokoro),ja
+近所,neighborhood,Area nearby,近所の公園。 — A neighborhood park.,きんじょ,kinjo,,ja
+住所,address,Location,住所を書く。 — Write the address.,じゅうしょ,juusho,,ja
+建物,building,Structure,高い建物。 — A tall building.,たてもの,tatemono,ビル (biru),ja
+入口,entrance,Opening,入口はあちらです。 — The entrance is over there.,いりぐち,iriguchi,,ja
+出口,exit,Opening,非常出口。 — Emergency exit.,でぐち,deguchi,,ja
+予定,plan / schedule,Future action,明日の予定。 — Tomorrow's schedule.,よてい,yotei,計画 (keikaku),ja
+利用,use / utilization,Using a service,バスを利用する。 — To use the bus.,りよう,riyou,使う (tsukau),ja
+目的,purpose / aim,Goal,旅の目的。 — Purpose of the trip.,もくてき,mokuteki,,ja
+突然,suddenly,Adverb,突然雨が降った。 — Suddenly it rained.,とつぜん,totsuzen,急に (kyuu ni),ja
+急に,suddenly / in a hurry,Adverb,急に止まる。 — Stop suddenly.,きゅうに,kyuu ni,,ja
+しばらく,for a while,Time,しばらく休みます。 — I will rest for a while.,しばらく,shibaraku,,ja
+ずっと,all along / by far,Degree,ずっと待っていた。 — I was waiting all along.,ずっと,zutto,,ja
+勝つ,to win,Triumph in a game,試合に勝つ。 — To win a match.,かつ,katsu,勝利する (shouri suru),ja
+負ける,to lose,Defeat in a game,自分に負けないで。 — Don't lose to yourself.,まける,makeru,敗北する (haiboku suru),ja
+信じる,to believe / trust,Faith in someone,あなたを信じています。 — I believe in you.,しんじる,shinjiru,信頼する (shinrai suru),ja
+調べる,to investigate / check,Researching info,辞書で単語を調べる。 — Look up a word in a dictionary.,しらべる,shiraberu,調査する (chousa suru),ja
+集める,to collect,Gathering items,切手を集めています。 — I am collecting stamps.,あつめる,atsumeru,収集する (shuushuu suru),ja
+比べる,to compare,Contrast two things,去年と比べる。 — Compare with last year.,くらべる,kuraberu,比較する (hikaku suru),ja
+変える,to change something,Modifying,計画を変える。 — Change the plan.,かえる,kaeru,変更する (henkou suru),ja
+変わる,to change (itself),Becoming different,信号が変わる。 — The signal changes.,かわる,kawaru,変化する (henka suru),ja
+驚く,to be surprised,Feeling shock,ニュースに驚いた。 — I was surprised by the news.,おどろく,odoroku,びっくりする (bikkuri suru),ja
+褒める,to praise,Giving a compliment,先生に褒められた。 — I was praised by the teacher.,ほめる,homeru,称賛する (shousan suru),ja
+叱る,to scold,Reprimanding,母に叱られた。 — I was scolded by my mother.,しかる,shikaru,怒る (okoru),ja
+育てる,to raise / bring up,Nurturing,子供を育てる。 — Raise a child.,そだてる,sodateru,教育する (kyouiku suru),ja
+続く,to continue,Go on without stopping,雨が三日続いた。 — The rain continued for three days.,つづく,tsuzuku,継続する (keizoku suru),ja
+止める,to stop something,Ceasing an action,タバコを止める。 — Quit smoking.,やめる,yameru,中止する (chuushi suru),ja
+決まる,to be decided,Being settled,日程が決まった。 — The schedule has been decided.,きまる,kimaru,決定する (kettei suru),ja
+連絡する,to contact,Communicate,後で連絡します。 — I will contact you later.,れんらくする,renraku suru,伝える (tsutaeru),ja
+紹介する,to introduce,Presenting someone,友達を紹介します。 — I will introduce my friend.,しょうかいする,shoukai suru,,ja
+相談する,to consult,Discussing a problem,医者に相談する。 — Consult with a doctor.,そうだんする,soudan suru,,ja
+夢,dream,Vision or goal,将来の夢は何ですか。 — What is your dream for the future?,ゆめ,yume,,ja
+嘘,lie,Falsehood,嘘をつかないで。 — Don't tell lies.,うそ,uso,虚偽 (kyogi),ja
+噂,rumor,Gossip,悪い噂を聞いた。 — I heard a bad rumor.,うわさ,uwasa,評判 (hyouban),ja
+音,sound,Noise (inanimate),変な音がする。 — There is a strange sound.,おと,oto,サウンド (saundo),ja
+光,light,Brightness,光が差し込む。 — Light shines in.,ひかり,hikari,輝き (kagayaki),ja
+影,shadow / reflection,Dark shape,自分の影。 — One's own shadow.,かげ,kage,,ja
+自然,nature,The natural world,自然を守ろう。 — Let's protect nature.,しぜん,shizen,,ja
+環境,environment,Surroundings,環境に優しい。 — Environmentally friendly.,かんきょう,kankyou,,ja
+技術,technology / skill,Technical ability,新しい技術。 — New technology.,ぎじゅつ,gijutsu,スキル (sukiru),ja
+教育,education,Learning,教育は大切だ。 — Education is important.,きょういく,kyouiku,,ja
+社会,society,The public,社会に出る。 — Enter society (start working).,しゃかい,shakai,,ja
+幸福,happiness,Well-being,幸福な人生。 — A happy life.,こうふく,koufuku,幸せ (shiawase),ja
+自信,confidence,Belief in oneself,自信を持って。 — Have confidence.,じしん,jishin,,ja
+勇気,courage,Bravery,勇気を出して。 — Summon your courage.,ゆうき,yuuki,,ja
+安心,relief / peace of mind,Feeling safe,それを聞いて安心した。 — I was relieved to hear that.,あんしん,anshin,ホッとする (hotto suru),ja
+心配,worry / anxiety,Feeling uneasy,心配しないで。 — Don't worry.,しんぱい,shinpai,不安 (fuan),ja
+残念,regrettable / pity,Disappointment,それは残念ですね。 — That's too bad (pity).,ざんねん,zannen,惜しい (oshii),ja
+無理,impossible / excessive,Too difficult,無理しないでください。 — Please don't overdo it.,むり,muri,不可能 (fukanou),ja
+無駄,waste,Uselessness,時間の無駄だ。 — It's a waste of time.,むだ,muda,,ja
+不必要,unnecessary,Not required,不必要な外出を控える。 — Refrain from unnecessary outings.,ふひつよう,fuhitsuyou,無用 (muyou),ja
+不思議,mysterious / strange,Wonder,不思議な話。 — A mysterious story.,ふしぎ,fushigi,奇妙 (kimyou),ja
+当然,natural / obvious,Expected,当然の結果だ。 — It is a natural result.,とうぜん,touzen,当たり前 (atarimae),ja
+偶然,by chance / coincidence,Accidental,駅で偶然会った。 — Met at the station by chance.,ぐうぜん,guuzen,たまたま (tamatama),ja
+過去,the past,Gone by time,過去を振り返る。 — Look back on the past.,かこ,kako,,ja
+現在,the present,Now,"現在、三時です。 — Currently, it is 3 o'clock.",げんざい,genzai,今 (ima),ja
+暖房,heating,Warm air utility,暖房をつける。 — Turn on the heater.,だんぼう,danbou,,ja
+冷房,air conditioning,Cold air utility,冷房が効いている。 — Air conditioning is working.,れいぼう,reibou,クーラー (kuuraa),ja
+道具,tool,Equipment,掃除の道具。 — Cleaning tools.,どうぐ,dougu,ツール (tsuuru),ja
+機会,opportunity / chance,Moment to act,良い機会です。 — It is a good opportunity.,きかい,kikai,チャンス (chansu),ja
+目標,target / objective,Specific aim,目標を達成する。 — Achieve a target.,もくひょう,mokuhyou,ターゲット (taagetto),ja
+結果,result,Outcome,テストの結果。 — Test results.,けっか,kekka,,ja
+関係,relationship / connection,Involvement,彼との関係。 — Relationship with him.,かんけい,kankei,,ja
+内容,content,Inside info,本の内容。 — Content of the book.,ないよう,naiyou,,ja
+部分,part / section,Portion,その部分だけ直す。 — Fix only that part.,ぶぶん,bubun,箇所 (kasho),ja
+全体,whole / entire,Total,全体を見る。 — Look at the whole.,ぜんたい,zentai,,ja
+種類,kind / type,Variety,色々な種類がある。 — There are many types.,しゅるい,shurui,タイプ (taipu),ja
+程度,degree / level,Amount,どの程度の速さ？ — How fast? (What degree of speed?),ていど,teido,レベル (reberu),ja
+半分,half,50 percent,半分に分ける。 — Divide in half.,はんぶん,hanbun,,ja
+以上,more than / that's all,Limit or conclusion,五人以上。 — More than five people.,いじょう,ijou,,ja
+以下,less than,Limit,千円以下。 — 1000 yen or less.,いか,ika,,ja
+以外,except for,Excluding,彼以外、皆来た。 — Everyone except him came.,いがい,igai,,ja
+以内,within,Inside a limit,一時間以内に戻る。 — Return within one hour.,いない,inai,,ja
+実は,actually / to tell the truth,Revealing a fact,"実は、嘘です。 — Actually, it's a lie.",じつは,jitsu wa,,ja
+やはり,as expected / after all,Confirmation,"やはり、雨だった。 — As I thought, it rained.",やはり / やっぱり,yahari / yappari,案の定 (annojou),ja
+絶対に,absolutely,Certainty,絶対に行きます。 — I will absolutely go.,ぜったいに,zettai ni,必ず (kanarazu),ja
+決して,never (with negative),Strong negative,決して忘れない。 — I will never forget.,けっして,kesshite,全然 (ぜんぜん),ja
+たまに,occasionally / once in a while,Low frequency,たまに外食する。 — I occasionally eat out.,たまに,tamani,時々 (tokidoki),ja
+かなり,quite / considerably,Fairly high degree,かなり大きいです。 — It is quite big.,かなり,kanari,相当 (soutou),ja
+生きる,to live / exist,Being alive,力強く生きる。 — To live strongly.,いきる,ikiru,生存する (seizon suru),ja
+動く,to move,Physical movement,機械が動く。 — The machine moves.,うごく,ugoku,作動する (sadou suru),ja
+飛ぶ,to fly,Moving through air,鳥が空を飛ぶ。 — Birds fly in the sky.,とぶ,tobu,,ja
+登る,to climb,Ascending,山に登る。 — To climb a mountain.,のぼる,noboru,上がる (agaru),ja
+渡る,to cross,Going across,道を渡る。 — To cross the road.,わたる,wataru,横断する (oudan suru),ja
+踊る,to dance,Moving to music,一緒に踊りましょう。 — Let's dance together.,おどる,odoru,ダンスする (dansu suru),ja
+弾く,to play (strings),Playing an instrument,ピアノを弾く。 — To play the piano.,ひく,hiku,,ja
+叩く,to hit / clap,Striking,ドアを叩く。 — To knock (hit) on the door.,たたく,tataku,打つ (utsu),ja
+祈る,to pray,Religious act / wish,平和を祈る。 — To pray for peace.,いのる,inoru,願う (negau),ja
+並ぶ,to line up,Standing in a row,列に並ぶ。 — To stand in a line.,ならぶ,narabu,整列する (seiretsu suru),ja
+届ける,to deliver,Bringing an item,荷物を届ける。 — To deliver a package.,とどける,todokeru,配達する (haitatsu suru),ja
+壊れる,to break (intrans.),Getting damaged,スマホが壊れた。 — My smartphone broke.,こわれる,kowareru,故障する (koshou suru),ja
+包む,to wrap,Covering with paper,プレゼントを包む。 — To wrap a present.,つつむ,tsutsumu,包装する (housou suru),ja
+庭,garden / yard,Outdoor area of a house,庭で花を育てる。 — Grow flowers in the garden.,にわ,niwa,,ja
+屋根,roof,Top of a building,赤い屋根の家。 — A house with a red roof.,やね,yane,,ja
+壁,wall,Vertical structure,壁に絵を掛ける。 — Hang a picture on the wall.,かべ,kabe,,ja
+階段,stairs,Steps between floors,階段を上る。 — Go up the stairs.,かいだん,kaidan,,ja
+廊下,hallway,Corridor,廊下を走らないで。 — Don't run in the hallway.,ろうか,rouka,,ja
+棚,shelf,Storage surface,本を棚に戻す。 — Put the book back on the shelf.,たな,tana,,ja
+封筒,envelope,Stationery,封筒に切手を貼る。 — Stick a stamp on the envelope.,ふうとう,fuutou,,ja
+葉書,postcard,Stationery,旅先から葉書を送る。 — Send a postcard from a trip.,はがき,hagaki,,ja
+番号,number,Numerical identifier,電話番号を教えて。 — Tell me your phone number.,ばんごう,bangou,数字 (suuji),ja
+名字,surname,Family name,彼の名字は佐藤です。 — His surname is Sato.,みょうじ,myouji,姓 (sei),ja
+職業,occupation,Job / profession,職業は何ですか。 — What is your occupation?,しょくぎょう,shokugyou,仕事 (shigoto),ja
+履歴書,resume / CV,Job application paper,履歴書を書く。 — To write a resume.,りれきしょ,rirekisho,,ja
+面接,interview,Job meeting,明日は面接がある。 — I have an interview tomorrow.,めんせつ,mensetsu,,ja
+給料,salary / pay,Earnings,給料日が楽しみだ。 — I look forward to payday.,きゅうりょう,kyuuryou,月給 (gekkyuu),ja
+信号,traffic light,Road signal,信号が赤になる。 — The light turns red.,しんごう,shingou,,ja
+橋,bridge,Crossing structure,大きな橋を渡る。 — Cross a big bridge.,はし,hashi,,ja
+鉄道,railway,Train system,日本の鉄道は正確だ。 — Japan's railways are punctual.,てつどう,tetsudou,,ja
+船,ship / boat,Water transport,船で海を渡る。 — Cross the sea by boat.,ふね,fune,ボート (booto),ja
+湖,lake,Inland body of water,湖のほとり。 — The lakeside.,みずうみ,mizuumi,,ja
+地名,place name,Location name,珍しい地名。 — A rare place name.,ちめい,chimei,,ja
+地震,earthquake,Natural disaster,地震が起きた。 — An earthquake occurred.,じしん,jishin,,ja
+火山,volcano,Erupting mountain,富士山は火山です。 — Mt. Fuji is a volcano.,かざン,kazan,,ja
+伝統,tradition,Cultural heritage,日本の伝統を守る。 — Protect ja traditions.,でんとう,dentou,,ja
+宗教,religion,Belief system,宗教の自由。 — Freedom of religion.,しゅうきょう,shuukyou,,ja
+春休み,spring break,School holiday,春休みに旅行する。 — Travel during spring break.,はるやすみ,haruyasumi,,ja
+夏休み,summer break,School holiday,夏休みが待ち遠しい。 — I can't wait for summer break.,なつやすみ,natsuyasumi,,ja
+冬休み,winter break,School holiday,冬休みは実家に帰る。 — Go home for winter break.,ふゆやすみ,fuyuyasumi,,ja
+羨ましい,envious / jealous,Feeling envy,あなたが羨ましい。 — I'm envious of you.,うらやましい,urayamashii,,ja
+懐かしい,nostalgic,Dear memory,懐かしい歌。 — A nostalgic song.,なつかしい,natsukashii,,ja
+恐ろしい,terrifying,Scary,恐ろしい体験。 — A terrifying experience.,おそろしい,osoroshii,怖い (kowai),ja
+詳しい,detailed / knowledgeable,In-depth,詳しい内容。 — Detailed content.,くわしい,kuwashii,詳細な (shousai na),ja
+鋭い,sharp,Keen edge,鋭いナイフ。 — A sharp knife.,するどい,surudoi,,ja
+鈍い,dull / slow,Not sharp,感覚が鈍い。 — Senses are dull.,にぶい,nibui,,ja
+柔かい,soft,Pliant,柔らかいパン。 — Soft bread.,やわらかい,yawarakai,ソフト (sofuto),ja
+正式,formal / official,Proper,正式な手続き。 — Formal procedures.,せいしき,seishiki,公式 (koushiki),ja
+賑やか,lively / noisy,Bustling,賑やかな街。 — A lively town.,にぎやか,nigiyaka,活気がある (kakki ga aru),ja
+適当,appropriate / vague,Suitable or lazy,適当な価格。 — An appropriate price.,てきとう,tekitou,ふさわしい (fusawashii),ja
+十分,enough / sufficient,Adequate,時間は十分ある。 — There is enough time.,じゅうぶん,juubun,たっぷり (tappuri),ja
+不十分,insufficient,Not enough,説明が不十分だ。 — The explanation is insufficient.,ふじゅうぶん,fujuubun,,ja
+最高,best / highest,Top quality,最高の気分。 — The best feeling.,さいこう,saikou,一番 (ichiban),ja
+最低,worst / lowest,Bottom quality,最低の天気。 — The worst weather.,さいてい,saitei,最悪 (saiaku),ja
+守る,to protect / obey,Guarding or following rules,約束を守る。 — Keep a promise.,まもる,mamoru,防ぐ (fusegu),ja
+戦う,to fight,Engaging in combat or competition,病気と戦う。 — To fight against an illness.,たたかう,tatakau,争う (arasou),ja
+数える,to count,Finding the total,数字を数える。 — Count the numbers.,かぞえる,kazoeru,,ja
+量る,to measure,Finding weight or volume,体重を量る。 — Weigh oneself.,はかる,hakaru,測定する (sokutei suru),ja
+片付ける,to tidy up,Putting things away,部屋を片付ける。 — Tidy up the room.,かたづける,katadukeru,整理する (seiri suru),ja
+注文する,to order,Requesting a service/item,コーヒーを注文する。 — Order a coffee.,ちゅうもんする,chuumon suru,依頼する (irai suru),ja
+予約する,to reserve,Booking in advance,レストランを予約する。 — Reserve a restaurant.,よやくする,yoyaku suru,,ja
+確認する,to confirm / check,Verifying,予定を確認する。 — Check the schedule.,かくにんする,kakunin suru,チェックする (chekku suru),ja
+参加する,to participate,Joining an event,会議に参加する。 — Participate in the meeting.,さんかする,sanka suru,出席する (shusseki suru),ja
+反対する,to oppose,Disagreeing,意見に反対する。 — To oppose an opinion.,はんたいする,hantai suru,逆らう (sakarau),ja
+賛成する,to agree,Approving,提案に賛成する。 — To agree with a proposal.,さんせいする,sansei suru,同意する (doui suru),ja
+心配する,to worry,Feeling anxious,家族を心配する。 — To worry about family.,しんぱいする,shinpai suru,不安になる (fuan ni naru),ja
+我慢する,to endure / be patient,Holding back,痛みを我慢する。 — Endure the pain.,がまんする,gaman suru,耐える (taeru),ja
+無理する,to overdo it,Pushing too hard,無理しないでください。 — Please don't overdo it.,むりする,muri suru,,ja
+経験する,to experience,Going through an event,海外生活を経験する。 — Experience living abroad.,けいけんする,keiken suru,,ja
+失敗する,to fail,Making a mistake,テストに失敗した。 — I failed the test.,しっぱいする,shippai suru,ミスする (misu suru),ja
+成功する,to succeed,Achieving a goal,事業に成功する。 — Succeed in business.,せいこうする,seikou suru,,ja
+説明する,to explain,Clarifying,理由を説明する。 — Explain the reason.,せつめいする,setsumei suru,解説する (kaisetsu suru),ja
+遅刻する,to be late,Arriving after the time,会議に遅刻する。 — Be late for the meeting.,ちこくする,chikoku suru,遅れる (okureru),ja
+計算する,to calculate,Mathematical processing,合計を計算する。 — Calculate the total.,けいさんする,keisan suru,,ja
+散歩する,to take a walk,Leisurely walking,公園を散歩する。 — Take a walk in the park.,さんぽする,sanpo suru,,ja
+掃除する,to clean,Removing dirt/clutter,部屋を掃除する。 — Clean the room.,そうじする,souji suru,清掃する (seisou suru),ja
+洗濯する,to do laundry,Washing clothes,服を洗濯する。 — Wash the clothes.,せんたくする,sentaku suru,,ja
+料理する,to cook,Preparing food,晩ご飯を料理する。 — Cook dinner.,りょうりする,ryouri suru,調理する (chouri suru),ja
+厳しい,strict / severe,Hard or stern,先生は厳しい。 — The teacher is strict.,きびしい,kibishii,厳格 (genkaku),ja
+細かい,fine / detailed,Small parts,細かいお金。 — Small change (money).,こまかい,komakai,詳細な (shousai na),ja
+熱心,enthusiastic,Earnest,彼は勉強に熱心だ。 — He is enthusiastic about studying.,ねっしん,nesshin,情熱的 (jounetsuteki),ja
+勝手,selfish / convenience,One's own way,勝手なことをしないで。 — Don't do as you please (selfishly).,かって,katte,わがまま (wagamama),ja
+大切,important / precious,Valuable,家族は大切だ。 — Family is important.,たいせつ,taisetsu,重要 (juuyou),ja
+急,sudden / steep,Abrupt,急な階段。 — Steep stairs.,きゅう,kyuu,突然 (totsuzen),ja
+多分,probably,Likely,多分、雨が降る。 — It will probably rain.,たぶん,tabun,おそらく (osoraku),ja
+骨,bone,Body part,骨を折る。 — Break a bone.,ほね,hone,,ja
+心臓,heart (organ),Internal organ,心臓の音。 — Heartbeat (sound of heart).,しんぞう,shinzou,,ja
+血,blood,Body fluid,血が出る。 — To bleed.,ち,chi,血液 (ketsueki),ja
+風邪,cold (illness),Health condition,風邪をひいた。 — I caught a cold.,かぜ,kaze,,ja
+怪我,injury,Physical hurt,足に怪我をした。 — I injured my leg.,けが,kega,負傷 (fushou),ja
+健康,health,Well-being,健康が一番。 — Health is number one.,けんこう,kenkou,,ja
+医者,doctor,Medical professional,医者になりたい。 — I want to be a doctor.,いしゃ,isha,医師 (ishi),ja
+看護師,nurse,Medical professional,看護師さんは優しい。 — The nurse is kind.,かんごし,kangoshi,,ja
+歯医者,dentist,Medical professional,歯医者が嫌いです。 — I hate the dentist.,はいしゃ,haisha,,ja
+熱,fever / heat,Body temperature,熱がある。 — To have a fever.,ねつ,netsu,,ja
+咳,cough,Symptom,咳が出る。 — To have a cough.,せき,seki,,ja
+注射,injection / shot,Medical treatment,注射は痛い。 — Shots hurt.,ちゅうしゃ,chuusha,,ja
+入院,hospitalization,Staying in hospital,一週間、入院する。 — Be hospitalized for a week.,にゅういん,nyuuin,,ja
+退院,discharge from hospital,Leaving hospital,明日、退院します。 — I'm being discharged tomorrow.,たいいん,taiin,,ja
+雲,cloud,Vapor in sky,白い雲。 — White clouds.,くも,kumo,,ja
+雷,thunder / lightning,Storm element,雷が鳴る。 — It thunders.,かみなり,kaminari,,ja
+火事,fire (disaster),Destructive fire,火事に気をつけて。 — Be careful of fires.,かじ,kaji,,ja
+事故,accident,Calamity,交通事故。 — Traffic accident.,じこ,jiko,,ja
+波,wave,Sea movement,波が高い。 — Waves are high.,なみ,nami,,ja
+新幹線,bullet train,High speed train,新幹線で行く。 — Go by bullet train.,しんかんせん,shinkansen,,ja
+駐車場,parking lot,Car area,駐車場はあそこです。 — The parking lot is over there.,ちゅうしゃじょう,chuushajou,,ja
+交差点,intersection,Road crossing,交差点を曲がる。 — Turn at the intersection.,こうさてん,kousaten,,ja
+屋上,rooftop,Top of building,屋上からの景色。 — View from the rooftop.,おくじょう,okujou,,ja
+箱,box,Container,箱に入れる。 — Put in the box.,はこ,hako,,ja
+瓶,bottle,Glass container,ビンの蓋。 — The lid of the bottle.,びん,bin,ボトル (botoru),ja
+缶,can,Metal container,空き缶を捨てる。 — Throw away the empty can.,かん,kan,,ja
+袋,bag / sack,Flexible container,レジ袋はいりません。 — I don't need a plastic bag.,ふくろ,fukuro,,ja
+時計,watch / clock,Time device,時計を見る。 — Look at the clock.,とけい,tokei,,ja
+情報,information,Data,情報を集める。 — Gather information.,じょうほう,jouhou,,ja
+設定,settings,Configuration,スマホの設定。 — Smartphone settings.,せってい,settei,,ja
+画面,screen,Display,画面が割れた。 — The screen broke.,がめん,gamen,,ja
+電池,battery,Power source,電池が切れた。 — The battery died.,でんち,denchi,,ja
+電波,signal / reception,Wave transmission,電波が悪い。 — The reception is bad.,でんぱ,denpa,,ja
+検索,search / look up,Digital search,グーグルで検索する。 — Search on Google.,けんさく,kensaku,,ja
+登録,registration,Signing up,サイトに登録する。 — Register on a site.,とうろく,touroku,,ja
+添付,attachment,Electronic addition,ファイルを添付する。 — Attach a file.,てんぷ,tenpu,,ja
+送信,sending,Dispatching mail/data,メールを送信する。 — Send an email.,そうしん,soushin,,ja
+受信,receiving,Getting mail/data,メールを受信する。 — Receive an email.,じゅしん,jushin,,ja
+文,sentence,Text unit,文を書く。 — Write a sentence.,ぶん,bun,,ja
+漢字,kanji,ja characters,漢字は難しい。 — Kanji is difficult.,かんじ,kanji,,ja
+勉強,study,Learning,日本語の勉強。 — Studying ja.,べんきょう,benkyou,,ja
+会議,meeting,Professional talk,会議が長い。 — The meeting is long.,かいぎ,kaigi,,ja
+資料,documents / data,Papers,資料を準備する。 — Prepare the documents.,しりょう,shiryou,,ja
+残業,overtime,Extra work,今日は残業だ。 — I have overtime today.,ざんぎょう,zangyou,,ja
+休み,holiday / rest,Time off,明日は休みだ。 — Tomorrow is a holiday.,やすみ,yasumi,休暇 (kyuuka),ja
+同僚,colleague,Coworker,同僚と飲む。 — Drink with a colleague.,どうりょう,douryou,,ja
+部長,manager / dept head,Office title,部長に報告する。 — Report to the manager.,ぶちょう,buchou,,ja
+和食,ja food,Traditional food,和食が好きです。 — I like ja food.,わしょく,washoku,,ja
+洋食,Western food,Western cuisine,洋食を食べる。 — Eat Western food.,ようしょく,youshoku,,ja
+朝食,breakfast,Morning meal,朝食を食べる。 — Eat breakfast.,ちょうしょく,choushoku,朝ごはん (asagohan),ja
+昼食,lunch,Noon meal,昼食をとる。 — Have lunch.,ちゅうしょく,chuushoku,お昼 (ohiru),ja
+夕食,dinner,Evening meal,夕食を作る。 — Make dinner.,ゆうしょく,yuushoku,晩ごはん (bangohan),ja
+外食,eating out,Dining at restaurant,今日は外食しよう。 — Let's eat out today.,がいしょく,gaishoku,,ja
+油,oil,Fat for cooking,油で揚げる。 — Deep fry (fry in oil).,あぶら,abura,,ja
+味,taste / flavor,Sensation,味が薄い。 — The flavor is weak.,あじ,aji,,ja
+進める,to advance / promote,Moving forward,計画を進める。 — Proceed with the plan.,すすめる,susumeru,前進させる (zenshin saseru),ja
+進む,to go forward / progress,Self-movement,工事が進む。 — Construction is progressing.,すすむ,susumu,前進する (zenshin suru),ja
+伝える,to convey / report,Passing on info,メッセージを伝える。 — Convey a message.,つたえる,tsutaeru,報告する (houkoku suru),ja
+続ける,to continue (trans.),Keeping an action going,勉強を続ける。 — Continue studying.,つづける,tsuzukeru,継続する (keizoku suru),ja
+集まる,to gather (intrans.),People meeting,人が駅に集まる。 — People gather at the station.,あつまる,atsumaru,集合する (shuugou suru),ja
+見つける,to find,Locating something,失くした鍵を見つける。 — Find the lost keys.,みつける,mitsukeru,発見する (hakken suru),ja
+見つかる,to be found,Being located,財布が見つかった。 — The wallet was found.,みつかる,mitsukaru,,ja
+直る,to be fixed,Being repaired,時計が直った。 — The watch is fixed.,なおる,naoru,修理される (shuuri sareru),ja
+残る,to remain / stay behind,Leftover,食べ物が少し残る。 — A little food remains.,のこる,nokoru,残留する (zanryuu suru),ja
+残す,to leave behind,Not finishing everything,ご飯を残さないで。 — Don't leave food behind.,のこす,nokosu,,ja
+落ちる,to fall (intrans.),Dropping down,試験に落ちる。 — To fail (fall) an exam.,おちる,ochiru,落下する (rakka suru),ja
+落とす,to drop (trans.),Accidentally dropping,財布を落とした。 — I dropped my wallet.,おとす,otosu,,ja
+起こす,to cause / wake someone,"Initiating, waking someone",火事を起こす。 — To cause a fire.,おこす,okosu,発生させる (hassei saseru),ja
+消える,to disappear / go out,Vanishing or power off,電気が消えた。 — The light went out.,きえる,kieru,消失する (shoushitsu suru),ja
+並べる,to line up (trans.),Arranging items,皿を並べる。 — Arrange the plates.,ならべる,naraberu,整列させる (seiretsu saseru),ja
+割れる,to break / crack,Fragile item breaking,窓ガラスが割れた。 — The window glass broke.,われる,wareru,,ja
+割る,to break / divide,Splitting something,卵を割る。 — Crack an egg.,わる,waru,分割する (bunkatsu suru),ja
+付く,to be attached / stained,Adhering,汚れが付く。 — To get a stain.,つく,tsuku,付着する (fuchaku suru),ja
+付ける,to attach / turn on,Applying or activating,日記を付ける。 — To keep (attach) a diary.,つける,tsukeru,,ja
+戻る,to return / go back,Returning to a place,席に戻る。 — Return to one's seat.,もどる,modoru,帰る (kaeru),ja
+戻す,to put back,Returning an item,本を棚に戻す。 — Put the book back on the shelf.,もどす,modosu,返却する (henkyaku suru),ja
+始める,to begin (trans.),Initiating,会議を始める。 — Start the meeting.,はじめる,hajimeru,開始する (kaishi suru),ja
+終える,to finish (trans.),Completing,仕事を終える。 — Finish the job.,おえる,oeru,完了する (kanryou suru),ja
+上がる,to rise / go up,Ascending,物価が上がる。 — Prices go up.,あがる,agaru,上昇する (joushou suru),ja
+上げる,to raise / give,Lifting or gifting,手を上げる。 — Raise your hand.,あげる,ageru,高める (takameru),ja
+下がる,to fall / go down,Descending,熱が下がる。 — The fever goes down.,さがる,sagaru,下降する (kakou suru),ja
+下げる,to lower,Reducing,頭を下げる。 — Bow (lower your head).,さげる,sageru,低くする (hikuku suru),ja
+冷える,to get cold,Temperature dropping,足が冷える。 — My feet get cold.,ひえる,hieru,,ja
+冷やす,to cool down,Chilling something,ビールを冷やす。 — Chill the beer.,ひやす,hiyasu,冷やす (kyaku),ja
+開く,to open (intrans.),Opening by itself,ドアが開いた。 — The door opened.,あく,aku,開放される (kaihou sareru),ja
+閉まる,to close (intrans.),Closing by itself,店が閉まっている。 — The shop is closed.,しまる,shimaru,閉鎖される (heisa sareru),ja
+土,earth / soil,Ground material,土を掘る。 — Dig the soil.,つち,tsuchi,地面 (jimen),ja
+石,stone,Small rock,石を投げる。 — Throw a stone.,いし,ishi,小石 (koishi),ja
+動物,animal,Living creature,動物園。 — Zoo.,どうぶつ,doubutsu,生き物 (ikimono),ja
+植物,plant,Flora,植物を育てる。 — Grow plants.,しょくぶつ,shokubutsu,,ja
+森,forest,Dense woods,森を歩く。 — Walk in the forest.,もり,mori,森林 (shinrin),ja
+島,island,Land in water,小さな島。 — A small island.,しま,shima,離島 (ritou),ja
+温度,temperature,Degree of heat,温度を測る。 — Measure the temperature.,おんど,ondo,気温 (kion),ja
+湿度,humidity,Moisture,湿度が高い。 — Humidity is high.,しつど,shitsudo,,ja
+気持ち,feeling / mood,Emotion,気持ちがいい。 — It feels good.,きもち,kimochi,気分 (kibun),ja
+気分,state of mind / health,Condition,気分が悪い。 — I feel sick/bad.,きぶん,kibun,,ja
+愛,love,Deep affection,愛を信じる。 — Believe in love.,あい,ai,愛情 (aijou),ja
+幸せ,happiness,Good fortune,幸せな人生。 — A happy life.,しあわせ,shiawase,幸福 (koufuku),ja
+喜び,joy / pleasure,Happiness,喜びを感じる。 — Feel joy.,よろこび,yorokobi,,ja
+悲しみ,sadness / sorrow,Grief,悲しみに暮れる。 — To be lost in sadness.,かなしみ,kanashimi,,ja
+怒り,anger,Rage,怒りを抑える。 — Suppress anger.,いかり,ikari,憤り (ikidouri),ja
+驚き,surprise,Shock,驚きのニュース。 — Surprising news.,おどろき,odoroki,,ja
+不安,uneasiness,Lack of security,不安を感じる。 — Feel uneasy.,ふあん,fuan,,ja
+希望,hope,Aspiration,希望を捨てるな。 — Don't give up hope.,きぼう,kibou,願い (negai),ja
+満足,satisfaction,Contentment,結果に満足する。 — Be satisfied with the result.,まんぞく,manzoku,,ja
+興味,interest,Curiosity,歴史に興味がある。 — I'm interested in history.,きょうみ,kyoumi,関心 (kanshin),ja
+考え,thought / idea,Mental product,考えを伝える。 — Convey one's thoughts.,かんがえ,kangae,意見 (iken),ja
+正確,accurate,Correct,正確な時間。 — Accurate time.,せいかく,seikaku,,ja
+他人,other people,Others,他人と比較する。 — Compare with others.,たにん,tanin,ほかの方 (hoka no kata),ja
+親,parent,Mother or father,親に相談する。 — Consult with parents.,おや,oya,両親 (ryoushin),ja
+老人,elderly person,Senior,老人に席を譲る。 — Give a seat to the elderly.,ろうじん,roujin,お年寄り (otoshiyori),ja
+隣人,neighbor,Person living next,隣人と挨拶する。 — Greet the neighbor.,りんじん,rinjin,隣の方 (tonari no kata),ja
+上司,boss,Superior,上司に報告する。 — Report to the boss.,じょうし,joushi,,ja
+部下,subordinate,Junior,部下に教える。 — Teach a subordinate.,ぶか,buka,,ja
+警察官,police officer,Law enforcement,警察官に道を尋ねる。 — Ask a cop for directions.,けいさつかん,keisatsukan,警官 (keikan),ja
+客,guest / customer,Client,大切なお客。 — An important guest.,きゃく,kyaku,来客 (raikyaku),ja
+相手,partner / opponent,The other person,相手の目を見る。 — Look into the other's eyes.,あいて,aite,,ja
+事務所,office,Workplace,事務所に戻る。 — Go back to the office.,じむしょ,jimusho,オフィス (ofisu),ja
+工場,factory,Manufacturing site,工場を見学する。 — Tour a factory.,こうじょう,koujou,,ja
+広場,square / plaza,Open space,駅前の広場。 — The plaza in front of the station.,ひろば,hiroba,,ja
+風呂,bath,Washing area,風呂に入る。 — Take a bath.,ふろ,furo,浴室 (yokushitsu),ja
+本棚,bookshelf,Storage,本を本棚に置く。 — Put the book on the shelf.,ほんだな,hondana,,ja
+切手,stamp,Postal tool,切手を貼る。 — Stick a stamp.,きって,kitte,,ja
+書類,document,Professional paper,書類を準備する。 — Prepare the documents.,しょるい,shorui,,ja
+雑誌,magazine,Publication,雑誌を物理。 — Read a magazine.,ざっし,zasshi,,ja
+辞書,dictionary,Ref book,辞書を引く。 — Look up in a dictionary.,じしょ,jisho,辞典 (jiten),ja
+価値,value / worth,Importance,価値がある。 — It has value.,かち,kachi,,ja
+秘密,secret,Hidden info,秘密を守る。 — Keep a secret.,ひみつ,himitsu,,ja
+会話,conversation,Dialogue,英会話。 — English conversation.,かいわ,kaiwa,対話 (taiwa),ja
+文章,sentence / text,Written unit,長い文章。 — A long sentence.,ぶんしょう,bunshou,,ja
+紹介,introduction,Presentation,自己紹介。 — Self-introduction.,しょうかい,shoukai,,ja
+医学,medicine,Healing study,医学部。 — Medical department.,いがく,igaku,,ja
+もしもし,hello (on phone),Greeting,"もしもし、聞こえますか？ — Hello, can you hear me?",もしもし,moshimoshi,,ja
+やっぱり,as expected / also,Confirmation,"やっぱり、そうだ。 — As I thought, that's it.",やっぱり,yappari,やはり (yahari),ja
+もう一度,once more,Repeat,もう一度言って。 — Say it one more time.,もういちど,mou ichido,再度 (saido),ja
+別々,separately,Split,"お会計は別々で。 — Separate checks, please.",べつべつ,betsubetsu,,ja
+そろそろ,soon / it's time,Transition,そろそろ帰ります。 — It's about time I go home.,そろそろ,sorosoro,,ja
+どんどん,steadily / rapidly,Fast progress,どんどん良くなる。 — It's getting better and better.,どんどん,dondon,,ja
+だんだん,gradually,Slow progress,だんだん寒くなる。 — It's gradually getting colder.,だんだん,dandan,徐々に (jojo ni),ja
+思い出す,to remember / recall,Bringing back a memory,子供の頃を思い出す。 — I remember my childhood.,おもいだす,omoidasu,覚えている (oboete iru),ja
+断る,to refuse / decline,Saying no,誘いを断る。 — Decline an invitation.,ことわる,kotowaru,拒否する (kyohi suru),ja
+足りる,to be enough,Being sufficient,時間は足りますか。 — Is there enough time?,たりる,tariru,十分だ (juubun da),ja
+向かう,to face / head toward,Direction,駅に向かう。 — Head toward the station.,むかう,mukau,行く (iku),ja
+多い,many,many,人が多いです。,おおい,ooi,多数 (たすう),ja
+少ない,few,few,時間が少ないです。,すくない,sukunai,少量 (しょうりょう),ja
+後,after/back,after; behind,後で電話します。,あと,ato,後方 (こうほう),ja
+売る,to sell,to sell,店で商品を売ります。,うる,uru,販売する (はんばいする),ja
+取る,to take,to take,写真を取ります。,とる,toru,取得する (しゅとくする),ja
+置く,to put,to put,机に置きます。,おく,oku,配置する (はいちする),ja
+市場,market,market,市場で魚を買います。,いちば,ichiba,マーケット (maaketto),ja
+値段,price,price,値段が高いです。,ねだん,nedan,価格 (かかく),ja
+夕方,evening,evening,夕方に散歩します。,ゆうがた,yuugata,夕刻 (ゆうこく),ja
+分,minute,minute,あと五分です。,ふん,funn,分間 (ふんかん),ja
+秒,second,second,一秒待ってください。,びょう,byou,秒間 (びょうかん),ja
+天,heaven/sky,heaven,天が明るいです。,てん,ten,天空 (てんくう),ja
+地,earth,earth,地面が濡れています。,ち,chi,大地 (だいち),ja
+草,grass,grass,草が青いです。,くさ,kusa,雑草 (ざっそう),ja
+色,color,color,色がきれいです。,いろ,iro,色彩 (しきさい),ja
+力,power,strength,力が必要です。,ちから,chikara,能力 (のうりょく),ja
+質問,question,question,質問があります。,しつもん,shitsumon,問い (とい),ja
+合格,pass,pass,試験に合格しました。,ごうかく,goukaku,成功 (せいこう),ja
+努力,effort,effort,努力が大切です。,どりょく,doryoku,尽力 (じんりょく),ja
+運動,exercise,exercise,運動をします。,うんどう,undou,スポーツ (supootsu),ja
+店員,clerk,clerk,店員に聞きます。,てんいん,tenin,スタッフ (sutaffu),ja
+商品,product,product,商品を買います。,しょうひん,shouhin,製品 (せいひん),ja
+注文,order,order,料理を注文します。,ちゅうもん,chuumon,依頼 (いらい),ja
+食べ物,food,food,食べ物を買います。,たべもの,tabemono,食品 (しょくひん),ja
+にぎやか,lively,lively,町はにぎやかです。,にぎやか,nigiyaka,活気 (かっき),ja
+一部,part,part,一部だけ見ました。,いちぶ,ichibu,部分 (ぶぶん),ja
+増える,to increase,to increase,人口が増えています。,ふえる,fueru,増加する (ぞうかする),ja
+減る,to decrease,to decrease,水が減りました。,へる,heru,減少する (げんしょうする),ja
+渡す,to hand over,to hand over,書類を渡します。,わたす,watasu,手渡す (てわたす),ja
+見せる,to show,to show,写真を見せます。,みせる,miseru,提示する (ていじする),ja
+習う,to learn,to learn,ピアノを習っています。,ならう,narau,学ぶ (まなぶ),ja
+感じる,to feel,to feel,寒さを感じます。,かんじる,kanjiru,感覚する (かんかくする),ja
+疑う,to doubt,to doubt,結果を疑います。,うたがう,utagau,不信に思う (ふしんにおもう),ja
+助かる,to be saved,to be saved,助かりました。,たすかる,tasukaru,救われる (すくわれる),ja
+攻める,to attack,to attack,敵を攻めます。,せめる,semeru,攻撃する (こうげきする),ja
+止む,to stop,to stop (rain),雨が止みました。,やむ,yamu,収まる (おさまる),ja
+鳴る,to ring,to ring,電話が鳴っています。,なる,naru,響く (ひびく),ja
+鳴らす,to ring,to ring (something),ベルを鳴らします。,ならす,narasu,響かせる (ひびかせる),ja
+光る,to shine,to shine,星が光っています。,ひかる,hikaru,輝く (かがやく),ja
+輝く,to shine,to shine,宝石が輝いています。,かがやく,kagayaku,光る (ひかる),ja
+温まる,to warm up,to warm up,体が温まります。,あたたまる,atatamaru,暖まる (atatamaru),ja
+温める,to warm,to warm,スープを温めます。,あたためる,atatameru,加熱する (かねつする),ja
+乾く,to dry,to dry,服が乾きました。,かわく,kawaku,乾燥する (かんそうする),ja
+乾かす,to dry,to dry,髪を乾かします。,かわかす,kawakasu,乾燥させる (kansou saseru),ja
+濡れる,to get wet,to get wet,雨で濡れました。,ぬれる,nureru,湿る (しめる),ja
+濡らす,to wet,to wet,服を濡らしました。,ぬらす,nurasu,湿らせる (shiméraseru),ja
+滑る,to slip,to slip,道で滑りました。,すべる,suberu,転ぶ (ころぶ),ja
+転ぶ,to fall,to fall,道で転びました。,ころぶ,korobu,倒れる (たおれる),ja
+倒れる,to collapse,to collapse,木が倒れました。,たおれる,taoreru,崩れる (くずれる),ja
+起き上がる,to get up,to get up,すぐ起き上がりました。,おきあがる,okiagaru,立ち上がる (たちあがる),ja
+立ち上がる,to stand up,to stand up,椅子から立ち上がります。,たちあがる,tachiagaru,起立する (kiritsu suru),ja
+座り込む,to sit down suddenly,to sit down,疲れて座り込みました。,すわりこむ,suwarikomu,座る (すわる),ja
+招く,to invite,to invite,友達を招きます。,まねく,maneku,呼ぶ (よぶ),ja
+訪ねる,to visit,to visit,先生を訪ねます。,たずねる,tazuneru,訪問する (ほうもんする),ja
+訪れる,to visit,to visit,京都を訪れます。,おとずれる,otozureru,訪問する (houmon suru),ja
+泊める,to lodge,to lodge,友達を泊めます。,とめる,tomeru,宿泊させる (shukuhaku saseru),ja
+飛ばす,to fly,to fly (something),飛行機を飛ばします。,とばす,tobasu,飛行させる (hikou saseru),ja
+潜る,to dive,to dive,海に潜ります。,もぐる,moguru,潜水する (せんすいする),ja
+降る,to fall,to fall (rain/snow),雨が降ります。,ふる,furu,降下する (kouka suru),ja
+吹く,to blow,to blow,風が吹いています。,ふく,fuku,風が流れる (kaze ga nagareru),ja
+燃える,to burn,to burn,火が燃えています。,もえる,moeru,燃焼する (ねんしょうする),ja
+燃やす,to burn,to burn (something),紙を燃やします。,もやす,moyasu,燃焼させる (nenshou saseru),ja
+重要,important,important,これは重要な問題です。,じゅうよう,juuyou,大切 (たいせつ),ja
+願う,to wish,to wish,成功を願います。,ねがう,negau,祈る (いのる),ja
+決定,decision,decision,決定を待っています。,けってい,kettei,判断 (はんだん),ja
+判断,judgment,judgment,正しい判断をします。,はんだん,handan,決定 (けってい),ja
+原因,cause,cause,事故の原因を調べます。,げんいん,genin,理由 (りゆう),ja
+効果,effect,effect,効果があります。,こうか,kouka,効き目 (ききめ),ja
+影響,influence,influence,天気が影響します。,えいきょう,eikyou,作用 (さよう),ja
+状態,condition,condition,状態が良いです。,じょうたい,joutai,状況 (じょうきょう),ja
+状況,situation,situation,状況を説明します。,じょうきょう,joukyou,状態 (じょうたい),ja
+場合,case,case,場合によります。,ばあい,baai,ケース (keesu),ja
+体験,experience,experience,新しい体験です。,たいけん,taiken,経験 (けいけん),ja
+活動,activity,activity,活動に参加します。,かつどう,katsudou,行動 (こうどう),ja
+行動,action,action,すぐ行動します。,こうどう,koudou,活動 (かつどう),ja
+計画,plan,plan,旅行の計画を立てます。,けいかく,keikaku,予定 (よてい),ja
+用意,preparation,preparation,用意ができました。,ようい,youi,準備 (じゅんび),ja
+確認,confirmation,confirmation,内容を確認します。,かくにん,kakunin,チェック (chekku),ja
+警告,warning,warning,警告が出ました。,けいこく,keikoku,注意 (ちゅうい),ja
+禁止,prohibition,prohibition,ここは禁止です。,きんし,kinshi,禁じる (kinjiru),ja
+許可,permission,permission,許可をもらいます。,きょか,kyoka,承認 (しょうにん),ja
+承認,approval,approval,上司が承認しました。,しょうにん,shounin,許可 (きょか),ja
+管理,management,management,時間を管理します。,かんり,kanri,運営 (うんえい),ja
+運営,operation,operation,会社を運営します。,うんえい,unei,管理 (かんり),ja
+使用,use,use,道具を使用します。,しよう,shiyou,利用 (りよう),ja
+発見,discovery,discovery,新しい発見があります。,はっけん,hakken,見つける (mitsukeru),ja
+発明,invention,invention,新しい発明です。,はつめい,hatsumei,創作 (そうさく),ja
+創造,creation,creation,新しい価値を創造します。,そうぞう,souzou,創作 (そうさく),ja
+表現,expression,expression,感情を表現します。,ひょうげん,hyougen,表す (あらわす),ja
+説明,explanation,explanation,説明を聞きます。,せつめい,setsumei,解説 (かいせつ),ja
+解説,explanation,explanation,詳しく解説します。,かいせつ,kaisetsu,説明 (せつめい),ja
+理解,understanding,understanding,内容を理解します。,りかい,rikai,分かる (わかる),ja
+解決,solution,solution,問題を解決します。,かいけつ,kaiketsu,解消 (かいしょう),ja
+解消,resolution,resolution,ストレスを解消します。,かいしょう,kaishou,解決 (かいけつ),ja
+参加,participation,participation,イベントに参加します。,さんか,sanka,出席 (しゅっせき),ja
+出席,attendance,attendance,会議に出席します。,しゅっせき,shusseki,参加 (さんか),ja
+欠席,absence,absence,授業を欠席しました。,けっせき,kesseki,不参加 (fusanka),ja
+遅刻,late,late,遅刻しました。,ちこく,chikoku,遅れ (おくれ),ja
+早退,leave early,leave early,早退します。,そうたい,soutai,途中退席 (tochuu taishaku),ja
+受付,reception,reception,受付で名前を書きます。,うけつけ,uketsuke,窓口 (まどぐち),ja
+案内,guidance,guidance,案内してくれます。,あんない,annai,ガイド (gaido),ja
+通知,notification,notification,通知が届きました。,つうち,tsuuchi,連絡 (れんらく),ja
+報告,report,report,結果を報告します。,ほうこく,houkoku,報道 (ほうどう),ja
+議論,discussion,discussion,問題について議論します。,ぎろん,giron,討論 (とうろん),ja
+討論,debate,debate,意見を討論します。,とうろん,touron,議論 (ぎろん),ja
+提案,proposal,proposal,新しい提案です。,ていあん,teian,提議 (teigi),ja
+同意,agreement,agreement,条件に同意します。,どうい,doui,賛成 (さんせい),ja
+否定,denial,denial,事実を否定します。,ひてい,hitei,反対 (はんたい),ja
+不可能,impossible,impossible,それは不可能です。,ふかのう,fukanou,無理 (むり),ja
+達成する,to achieve,to achieve,目標を達成します。,たっせいする,tasseisuru,成功する (せいこうする),ja
+改善,improvement,improvement,問題を改善します。,かいぜん,kaizen,改良 (かいりょう),ja
+改良,improvement,improvement,製品を改良します。,かいりょう,kairyou,改善 (かいぜん),ja
+増加,increase,increase,売上が増加しました。,ぞうか,zouka,増える (ふえる),ja
+減少,decrease,decrease,人口が減少しています。,げんしょう,genshou,減る (へる),ja
+維持,maintenance,maintenance,健康を維持します。,いじ,iji,保つ (たもつ),ja
+保存,preservation,preservation,データを保存します。,ほぞん,hozon,保管 (ほかん),ja
+保管,storage,storage,荷物を保管します。,ほかん,hokan,保存 (ほぞん),ja
+整理,organization,organization,部屋を整理します。,せいり,seiri,整頓 (せいとん),ja
+整頓,tidying,tidying,机を整頓します。,せいとん,seiton,整理 (せいり),ja
+清掃,cleaning,cleaning,道路を清掃します。,せいそう,seisou,掃除 (そうじ),ja
+修理,repair,repair,機械を修理します。,しゅうり,shuuri,直す (なおす),ja
+交換,exchange,exchange,部品を交換します。,こうかん,koukan,取り替える (torikaeru),ja
+取り替える,to replace,to replace,電池を取り替えます。,とりかえる,torikaeru,交換する (こうかんする),ja
+急ぐ,to hurry,to hurry,急いでください。,いそぐ,isogu,急行する (kyuukou suru),ja
+間に合う,to be in time,to be in time,電車に間に合いました。,まにあう,maniau,間に合せる (maniawaseru),ja
+遅れる,to be late,to be late,会議に遅れました。,おくれる,okureru,遅延する (chien suru),ja
+直ちに,immediately,immediately,直ちに開始します。,ただちに,tadachini,すぐ (sugu),ja
+おそらく,probably,probably,おそらく来ないでしょう。,おそらく,osoraku,多分 (tabun),ja
+ぜひ,by all means,by all means,ぜひ来てください。,ぜひ,zehi,必ず (kanarazu),ja
+確かに,indeed,indeed,確かにそうです。,たしかに,tashikani,本当に (hontou ni),ja
+本当に,really,really,本当にありがとう。,ほんとうに,hontou ni,実際に (jissai ni),ja
+例えば,for example,for example,例えばこれはどうですか。,たとえば,tatoeba,例として (rei toshite),ja
+つまり,in other words,in other words,つまり簡単です。,つまり,tsumari,要するに (you suru ni),ja
+要するに,in short,in short,要するに難しいです。,ようするに,you suru ni,つまり (tsumari),ja
+さらに,furthermore,furthermore,さらに説明します。,さらに,sarani,加えて (kuwaete),ja
+加えて,in addition,in addition,加えて説明します。,くわえて,kuwaete,さらに (sarani),ja
+でも,but,but,でも行きます。,でも,demo,しかし (shikashi),ja
+そのため,therefore,therefore,そのため中止です。,そのため,sono tame,だから (dakara),ja
+それから,then,then,それから帰りました。,それから,sorekara,そして (soshite),ja
+再び,again,again,再び試します。,ふたたび,futatabi,また (mata),ja
+ほとんど,almost,almost,ほとんど終わりました。,ほとんど,hotondo,大体 (daitai),ja
+全く,not at all,not at all,全く分かりません。,まったく,mattaku,全然 (zenzen),ja
+相当,considerably,considerably,相当疲れました。,そうとう,soutou,かなり (kanari),ja
+非常に,extremely,extremely,非常に重要です。,ひじょうに,hijou ni,とても (totemo),ja
+主に,mainly,mainly,主に日本語を勉強します。,おもに,omoni,中心に (chuushin ni),ja
+中心,center,center,中心に集まります。,ちゅうしん,chuushin,中央 (chuuou),ja
+中央,center,center,中央に座ります。,ちゅうおう,chuuou,中心 (chuushin),ja
+周り,surroundings,surroundings,周りを見てください。,まわり,mawari,周囲 (shuui),ja
+周囲,surroundings,surroundings,周囲を確認します。,しゅうい,shuui,周り (mawari),ja
+途中,on the way,on the way,途中で止まりました。,とちゅう,tochuu,中間 (chuukan),ja
+初め,beginning,beginning,初めは難しいです。,はじめ,hajime,最初 (saisho),ja
+途中で,midway,midway,途中で帰りました。,とちゅうで,tochuu de,中で (naka de),ja
+急行,express train,express,急行に乗ります。,きゅうこう,kyuukou,快速 (kaisoku),ja
+普通列車,local train,local train,普通列車に乗ります。,ふつうれっしゃ,futsuu ressha,各駅停車 (kakueki teisha),ja
+快速,rapid train,rapid,快速で行きます。,かいそく,kaisoku,急行 (kyuukou),ja
+各駅停車,local train,local train,各駅停車です。,かくえきていしゃ,kakueki teisha,普通列車 (futsuu ressha),ja
+乗り換え,transfer,transfer,乗り換えます。,のりかえ,norikae,変更 (henkou),ja
+料金,fee,fee,料金を払います。,りょうきん,ryoukin,費用 (hiyou),ja
+費用,cost,cost,費用が高いです。,ひよう,hiyou,料金 (ryoukin),ja
+無料,free,free,入場は無料です。,むりょう,muryou,タダ (tada),ja
+有料,paid,paid,ここは有料です。,ゆうりょう,yuuryou,有料 (yuuryou),ja
+割引,discount,discount,割引があります。,わりびき,waribiki,値引き (nebiki),ja
+値引き,discount,discount,値引きします。,ねびき,nebiki,割引 (waribiki),ja
+支払う,to pay,to pay,料金を支払います。,しはらう,shiharau,払う (harau),ja
+貯める,to save,to save money,お金を貯めます。,ためる,tameru,貯金する (chokin suru),ja
+貯金,savings,savings,貯金があります。,ちょきん,chokin,貯める (tameru),ja
+稼ぐ,to earn,to earn,お金を稼ぎます。,かせぐ,kasegu,収入を得る (shuunyuu o eru),ja
+収入,income,income,収入が増えました。,しゅうにゅう,shuunyuu,所得 (shotoku),ja
+支出,expense,expense,支出を減らします。,ししゅつ,shishutsu,出費 (shuppi),ja
+出費,expense,expense,出費が多いです。,しゅっぴ,shuppi,支出 (shishutsu),ja
+返却,return,return,返却します。,へんきゃく,henkyaku,返す (kaesu),ja
+依頼,request,request,依頼しました。,いらい,irai,お願い (onegai),ja
+お願い,request,request,お願いがあります。,おねがい,onegai,依頼 (irai),ja
+拒否,refusal,refusal,提案を拒否します。,きょひ,kyohi,断る (kotowaru),ja
+受け入れる,to accept,to accept,意見を受け入れます。,うけいれる,ukeireru,承諾する (shoudaku suru),ja
+承諾,consent,consent,承諾しました。,しょうだく,shoudaku,同意 (doui),ja
+叫ぶ,to shout,Voice,"大声で叫ぶ。 — Shout loudly.",さけぶ,sakebu,怒鳴る (donaru),ja
+眠る,to sleep,Sleep,"ぐっすり眠る。 — Sleep soundly.",ねむる,nemuru,寝る (neru),ja
+掃く,to sweep,Cleaning,"庭を掃く。 — Sweep the yard.",はく,haku,清掃する (seisou suru),ja
+救う,to save,Rescue,"命を救う。 — Save a life.",すくう,sukuu,助ける (tasukeru),ja
+決断する,to decide firmly,Decision,"進路を決断する。 — Make a firm decision.",けつだんする,ketsudan suru,決める (kimeru),ja
+許す,to forgive,Forgiveness,"失敗を許す。 — Forgive a mistake.",ゆるす,yurusu,大目に見る (oome ni miru),ja
+学ぶ,to study,Learning,"歴史を学ぶ。 — Study history.",まなぶ,manabu,勉強する (benkyou suru),ja
+研究する,to research,Research,"文化を研究する。 — Research culture.",けんきゅうする,kenkyuu suru,調査する (chousa suru),ja
+知らせる,to inform,Information,"結果を知らせる。 — Inform the results.",しらせる,shiraseru,通知する (tsuuchi suru),ja
+探る,to probe,Search,"真相を探る。 — Probe the truth.",さぐる,saguru,調べる (shiraberu),ja
+動かす,to move (something),Movement,"机を動かす。 — Move a desk.",うごかす,ugokasu,移動させる (idou saseru),ja
+治る,to heal (intransitive),Healing,"風邪が治る。 — Recover from a cold.",なおる,naoru,回復する (kaifuku suru),ja
+治す,to heal (something),Healing,"傷を治す。 — Heal a wound.",なおす,naosu,修復する (shuufuku suru),ja
+迎える,to welcome,Reception,"客を迎える。 — Welcome guests.",むかえる,mukaeru,出迎える (demukaeru),ja
+焼く,to bake / grill,Cooking,"魚を焼く。 — Grill fish.",やく,yaku,調理する (chouri suru),ja
+煮る,to boil,Cooking,"肉を煮る。 — Boil meat.",にる,niru,茹でる (yuderu),ja
+育つ,to grow,Growth,"子供が育つ。 — Children grow.",そだつ,sodatsu,成長する (seichou suru),ja
+運転する,to drive,Driving,"車を運転する。 — Drive a car.",うんてんする,unten suru,操縦する (soujuu suru),ja
+計画する,to plan,Planning,"旅行を計画する。 — Plan a trip.",けいかくする,keikaku suru,予定する (yotei suru),ja
+整理する,to organize,Organization,"机を整理する。 — Organize the desk.",せいりする,seiri suru,片付ける (katazukeru),ja
+含む,to include,Inclusion,"税金を含む。 — Include tax.",ふくむ,fukumu,入れる (ireru),ja
+許可する,to permit,Permission,"参加を許可する。 — Permit participation.",きょかする,kyoka suru,認める (mitomeru),ja
+存在する,to exist,Existence,"問題が存在する。 — A problem exists.",そんざいする,sonzai suru,ある (aru),ja
+行う,to carry out,Action,"調査を行う。 — Conduct a survey.",おこなう,okonau,実施する (jisshi suru),ja
+聞こえる,to be heard,Hearing,"声が聞こえる。 — A voice is heard.",きこえる,kikoeru,響く (hibiku),ja
+必要とする,to need,Requirement,"助けを必要とする。 — Need help.",ひつようとする,hitsuyou to suru,求める (motomeru),ja
+増やす,to increase (something),Increase,"売上を増やす。 — Increase sales.",ふやす,fuyasu,拡大する (kakudai suru),ja
+減らす,to decrease (something),Decrease,"費用を減らす。 — Reduce costs.",へらす,herasu,削減する (sakugen suru),ja
+起こる,to occur,Occurrence,"事故が起こる。 — An accident occurs.",おこる,okoru,発生する (hassei suru),ja
+表す,to express,Expression,"気持ちを表す。 — Express feelings.",あらわす,arawasu,示す (shimesu),ja
+示す,to show,Indication,"証拠を示す。 — Show evidence.",しめす,shimesu,表す (arawasu),ja
+建てる,to build,Construction,"家を建てる。 — Build a house.",たてる,tateru,建設する (kensetsu suru),ja
+立てる,to set up,Setup,"計画を立てる。 — Make a plan.",たてる,tateru,作成する (sakusei suru),ja
+売れる,to be sold,Selling,"本が売れる。 — The book sells well.",うれる,ureru,販売される (hanbai sareru),ja
+流れる,to flow,Flow,"川が流れる。 — The river flows.",ながれる,nagareru,移動する (idou suru),ja
+流す,to let flow,Flow,"水を流す。 — Let water flow.",ながす,nagasu,注ぐ (sosogu),ja
+呼吸する,to breathe,Breath,"深く呼吸する。 — Breathe deeply.",こきゅうする,kokyuu suru,息をする (iki wo suru),ja
+笑顔になる,to smile,Expression,"自然と笑顔になる。 — Naturally smile.",えがおになる,egao ni naru,微笑む (hohoemu),ja
+学習する,to learn,Learning,"知識を学習する。 — Learn knowledge.",がくしゅうする,gakushuu suru,習う (narau),ja
+始動する,to start up,Activation,"エンジンを始動する。 — Start the engine.",しどうする,shidou suru,起動する (kidou suru),ja
+使用する,to use,Usage,"道具を使用する。 — Use a tool.",しようする,shiyou suru,使う (tsukau),ja
+成立する,to be established,Formation,"契約が成立する。 — The contract is formed.",せいりつする,seiritsu suru,決まる (kimaru),ja
+申し込む,to apply,Application,"大会に申し込む。 — Apply for a tournament.",もうしこむ,moushikomu,応募する (oubo suru),ja
+決意する,to resolve,Determination,"成功を決意する。 — Resolve to succeed.",けついする,ketsui suru,決める (kimeru),ja
+理解する,to understand,Understanding,"意味を理解する。 — Understand the meaning.",りかいする,rikai suru,分かる (wakaru),ja
+発見する,to discover,Discovery,"新事実を発見する。 — Discover new facts.",はっけんする,hakken suru,見つける (mitsukeru),ja
+生活する,to live,Life,"都会で生活する。 — Live in a city.",せいかつする,seikatsu suru,暮らす (kurasu),ja
+移動する,to move,Movement,"部屋を移動する。 — Move rooms.",いどうする,idou suru,動く (ugoku),ja
+提供する,to provide,Provision,"情報を提供する。 — Provide information.",ていきょうする,teikyou suru,与える (ataeru),ja
+認める,to acknowledge,Acknowledgment,"失敗を認める。 — Acknowledge failure.",みとめる,mitomeru,了承する (ryoushou suru),ja
+述べる,to state,Statement,"意見を述べる。 — State an opinion.",のべる,noberu,言う (iu),ja
+進行する,to proceed,Progress,"工事が進行する。 — Construction proceeds.",しんこうする,shinkou suru,進む (susumu),ja
+表現する,to express,Expression,"感情を表現する。 — Express emotions.",ひょうげんする,hyouwen suru,示す (shimesu),ja
+適用する,to apply (rules),Application,"規則を適用する。 — Apply rules.",てきようする,tekiyou suru,使う (tsukau),ja
+契約する,to contract,Agreement,"会社と契約する。 — Sign a contract with a company.",けいやくする,keiyaku suru,取り決める (torikimeru),ja
+要求する,to demand,Request,"返金を要求する。 — Demand a refund.",ようきゅうする,youkyuu suru,求める (motomeru),ja
+報告する,to report,Reporting,"状況を報告する。 — Report the situation.",ほうこくする,houkoku suru,知らせる (shiraseru),ja
+判断する,to judge,Judgment,"状況を判断する。 — Judge the situation.",はんだんする,handan suru,見極める (mikiwameru),ja
+試す,to try,Trial,"新方法を試す。 — Try a new method.",ためす,tamesu,挑戦する (chousen suru),ja
+選択する,to choose,Selection,"科目を選択する。 — Choose a subject.",せんたくする,sentaku suru,選ぶ (erabu),ja
+対応する,to deal with,Response,"問題に対応する。 — Deal with problems.",たいおうする,taiou suru,処理する (shori suru),ja
+処理する,to process,Processing,"データを処理する。 — Process data.",しょりする,shori suru,扱う (atsukau),ja
+記録する,to record,Record,"結果を記録する。 — Record results.",きろくする,kiroku suru,メモする (memo suru),ja
+調整する,to adjust,Adjustment,"設定を調整する。 — Adjust settings.",ちょうせいする,chousei suru,整える (totonoeru),ja
+管理する,to manage,Management,"資金を管理する。 — Manage funds.",かんりする,kanri suru,運営する (un'ei suru),ja
+反応する,to react,Reaction,"音に反応する。 — React to sound.",はんのうする,hannou suru,応じる (oujiru),ja
+協力する,to cooperate,Cooperation,"一緒に協力する。 — Cooperate together.",きょうりょくする,kyouryoku suru,助け合う (tasukeau),ja
+観察する,to observe,Observation,"動物を観察する。 — Observe animals.",かんさつする,kansatsu suru,見る (miru),ja
+達する,to reach,Attainment,"目標に達する。 — Reach a goal.",たっする,tassuru,到達する (toutatsu suru),ja
+構成する,to compose,Composition,"文章を構成する。 — Structure a text.",こうせいする,kousei suru,組み立てる (kumitateru),ja
+記述する,to describe,Description,"結果を記述する。 — Describe results.",きじゅつする,kijutsu suru,説明する (setsumei suru),ja
+拒否する,to refuse,Refusal,"要求を拒否する。 — Refuse a request.",きょひする,kyohi suru,断る (kotowaru),ja
+表示する,to display,Display,"画面に表示する。 — Display on screen.",ひょうじする,hyouji suru,見せる (miseru),ja
+承認する,to approve,Approval,"計画を承認する。 — Approve the plan.",しょうにんする,shounin suru,認める (mitomeru),ja
+企画する,to plan,Planning,"イベントを企画する。 — Plan an event.",きかくする,kikaku suru,計画する (keikaku suru),ja
+防ぐ,to prevent,Prevention,"事故を防ぐ。 — Prevent accidents.",ふせぐ,fusegu,避ける (sakeru),ja
+支える,to support,Support,"家族を支える。 — Support a family.",ささえる,sasaeru,助ける (tasukeru),ja
+構える,to set up,Preparation,"店を構える。 — Set up a shop.",かまえる,kamaeru,建てる (tateru),ja
+含める,to include,Inclusion,"送料を含める。 — Include shipping.",ふくめる,fukumeru,入れる (ireru),ja
+依頼する,to request,Request,"修理を依頼する。 — Request repair.",いらいする,irai suru,頼む (tanomu),ja
+発表する,to announce,Announcement,"結果を発表する。 — Announce results.",はっぴょうする,happyou suru,知らせる (shiraseru),ja
+分析する,to analyze,Analysis,"データを分析する。 — Analyze data.",ぶんせきする,bunseki suru,調べる (shiraberu),ja
+応援する,to support,Cheering,"友人を応援する。 — Cheer a friend.",おうえんする,ouen suru,助ける (tasukeru),ja
+移す,to transfer,Transfer,"席を移す。 — Move seats.",うつす,utsusu,動かす (ugokasu),ja
+動作する,to operate,Operation,"機械が動作する。 — The machine operates.",どうさする,dousa suru,動く (ugoku),ja
+求める,to seek,Seeking,"真実を求める。 — Seek the truth.",もとめる,motomeru,探す (sagasu),ja
+得る,to obtain,Obtain,"情報を得る。 — Obtain information.",える,eru,手に入れる (te ni ireru),ja
+向ける,to direct,Direction,"注意を向ける。 — Direct attention.",むける,mukeru,向かせる (mukaseru),ja
+向く,to face,Orientation,"北を向く。 — Face north.",むく,muku,面する (mensuru),ja
+扱う,to handle,Handling,"荷物を扱う。 — Handle luggage.",あつかう,atsukau,処理する (shori suru),ja
+越える,to cross,Passing,"山を越える。 — Cross over a mountain.",こえる,koeru,渡る (wataru),ja
+超える,to exceed,Exceed,"限界を超える。 — Exceed limits.",こえる,koeru,上回る (uwamawaru),ja
+変化する,to change,Change,"気温が変化する。 — Temperature changes.",へんかする,henka suru,変わる (kawaru),ja
+支配する,to control,Control,"地域を支配する。 — Control a region.",しはいする,shihai suru,統治する (touchi suru),ja
+操作する,to operate,Operation,"機械を操作する。 — Operate a machine.",そうさする,sousa suru,扱う (atsukau),ja
+構築する,to construct,Construction,"システムを構築する。 — Build a system.",こうちくする,kouchiku suru,作る (tsukuru),ja
+改善する,to improve,Improvement,"環境を改善する。 — Improve the environment.",かいぜんする,kaizen suru,良くする (yoku suru),ja
+保つ,to maintain,Maintain,"関係を保つ。 — Maintain a relationship.",たもつ,tamotsu,維持する (iji suru),ja
+含まれる,to be included,Inclusion,"税金が含まれる。 — Tax is included.",ふくまれる,fukumareru,入る (hairu),ja
+結ぶ,to tie,Bind,"靴ひもを結ぶ。 — Tie shoelaces.",むすぶ,musubu,つなぐ (tsunagu),ja
+続行する,to proceed,Proceed,"作業を続行する。 — Continue work.",ぞっこうする,zokkou suru,続ける (tsuzukeru),ja
+示される,to be shown,Shown,"データが示される。 — Data is shown.",しめされる,shimesareru,表れる (arawareru),ja
+起こり得る,to be possible,Possibility,"事故が起こり得る。 — Accidents can occur.",おこりうる,okoriuru,可能だ (kanou da),ja
+回す,to turn,Turn,"ハンドルを回す。 — Turn the handle.",まわす,mawasu,回転する (kaiten suru),ja
+回る,to rotate,Rotate,"地球が回る。 — Earth rotates.",まわる,mawaru,回転する (kaiten suru),ja
+打つ,to hit,Hit,"ボールを打つ。 — Hit a ball.",うつ,utsu,叩く (tataku),ja
+当たる,to hit (intransitive),Hit,"日が当たる。 — Sunlight hits.",あたる,ataru,触れる (fureru),ja
+当てる,to apply / hit,Apply,"番号を当てる。 — Guess the number.",あてる,ateru,当選する (tousen suru),ja
+伸びる,to stretch,Growth,"髪が伸びる。 — Hair grows longer.",のびる,nobiru,成長する (seichou suru),ja
+伸ばす,to extend,Extend,"手を伸ばす。 — Extend one's hand.",のばす,nobasu,広げる (hirogeru),ja
+抱える,to carry / hold,Hold,"問題を抱える。 — Carry a problem.",かかえる,kakaeru,持つ (motsu),ja
+抱く,to embrace,Embrace,"夢を抱く。 — Embrace a dream.",いだく,idaku,思う (omou),ja
+引く,to pull,Pull,"ドアを引く。 — Pull the door.",ひく,hiku,引っ張る (hipparu),ja
+引っ張る,to pull strongly,Pull,"ロープを引っ張る。 — Pull a rope.",ひっぱる,hipparu,引く (hiku),ja
+押す,to push,Push,"ボタンを押す。 — Push a button.",おす,osu,押し込む (oshikomu),ja
+押し込む,to shove,Shove,"ドアを押し込む。 — Push the door in.",おしこむ,oshikomu,押す (osu),ja
+勧める,to recommend,Recommendation,"本を勧める。 — Recommend a book.",すすめる,susumeru,紹介する (shoukai suru),ja
+比べられる,to be compared,Comparison,"結果が比べられる。 — Results are compared.",くらべられる,kurabera reru,対比される (taihi sareru),ja
+限る,to limit,Limit,"人数を限る。 — Limit the number of people.",かぎる,kagiru,制限する (seigen suru),ja
+制限する,to restrict,Restriction,"速度を制限する。 — Restrict speed.",せいげんする,seigen suru,限る (kagiru),ja
+供給する,to supply,Supply,"電力を供給する。 — Supply electricity.",きょうきゅうする,kyoukyuu suru,提供する (teikyou suru),ja
+警告する,to warn,Warning,"危険を警告する。 — Warn of danger.",けいこくする,keikoku suru,注意する (chuui suru),ja
+守られる,to be protected,Protection,"法律で守られる。 — Protected by law.",まもられる,mamorareru,保護される (hogo sareru),ja
+抜く,to pull out,Removal,"草を抜く。 — Pull out weeds.",ぬく,nuku,取り除く (torinozoku),ja
+抜ける,to come out,Removal,"釘が抜ける。 — A nail comes out.",ぬける,nukeru,外れる (hazureru),ja
+移る,to shift,Shift,"責任が移る。 — Responsibility shifts.",うつる,utsuru,変わる (kawaru),ja
+深める,to deepen,Deepening,"理解を深める。 — Deepen understanding.",ふかめる,fukameru,高める (takameru),ja
+深まる,to deepen (intransitive),Deepening,"友情が深まる。 — Friendship deepens.",ふかまる,fukamaru,強まる (tsuyomaru),ja
+高まる,to rise (emotion),Rise,"期待が高まる。 — Expectations rise.",たかまる,takamaru,増える (fueru),ja
+高める,to raise,Raising,"意識を高める。 — Raise awareness.",たかめる,takameru,上げる (ageru),ja
+広める,to spread,Spread,"情報を広める。 — Spread information.",ひろめる,hiromeru,伝える (tsutaeru),ja
+広まる,to spread (intransitive),Spread,"噂が広まる。 — A rumor spreads.",ひろまる,hiromaru,拡散する (kakusan suru),ja
+限定する,to limit,Limitation,"選択肢を限定する。 — Limit the options.",げんていする,gentei suru,制限する (seigen suru),ja
+回復する,to recover,Recovery,"経済が回復する。 — The economy recovers.",かいふくする,kaifuku suru,戻る (modoru),ja
+独立する,to become independent,Independence,"国が独立する。 — A nation becomes independent.",どくりつする,dokuritsu suru,自立する (jiritsu suru),ja
+提出する,to submit,Submission,"書類を提出する。 — Submit documents.",ていしゅつする,teishutsu suru,出す (dasu),ja
+調査する,to investigate,Investigation,"事件を調査する。 — Investigate an incident.",ちょうさする,chousa suru,調べる (shiraberu),ja
+意識する,to be aware,Awareness,"危険を意識する。 — Be aware of danger.",いしきする,ishiki suru,気づく (kizuku),ja
+依存する,to depend,Dependence,"親に依存する。 — Depend on parents.",いぞんする,izon suru,頼る (tayoru),ja
+報道する,to report (news),Media,"事件を報道する。 — Report an incident.",ほうどうする,houdou suru,伝える (tsutaeru),ja
+登録する,to register,Registration,"会員に登録する。 — Register as a member.",とうろくする,touroku suru,申し込む (moushikomu),ja
+適応する,to adapt,Adaptation,"環境に適応する。 — Adapt to the environment.",てきおうする,tekioh suru,慣れる (nareru),ja
+統一する,to unify,Unification,"意見を統一する。 — Unify opinions.",とういつする,touitsu suru,まとめる (matomeru),ja
+把握する,to grasp,Understanding,"状況を把握する。 — Grasp the situation.",はあくする,haaku suru,理解する (rikai suru),ja
+監視する,to monitor,Monitoring,"状況を監視する。 — Monitor the situation.",かんしする,kanshi suru,見守る (mimomoru),ja
+発行する,to issue,Issue,"チケットを発行する。 — Issue tickets.",はっこうする,hakkou suru,出す (dasu),ja
+発展する,to develop,Development,"都市が発展する。 — The city develops.",はってんする,hatten suru,進む (susumu),ja
+破る,to break / violate,Violation,"規則を破る。 — Break rules.",やぶる,yaburu,犯す (okasu),ja
+破れる,to tear,Damage,"紙が破れる。 — Paper tears.",やぶれる,yabureru,破損する (hason suru),ja
+述べられる,to be stated,Statement,"理由が述べられる。 — Reasons are stated.",のべられる,noberareru,言われる (iwareru),ja
+影響する,to influence,Influence,"社会に影響する。 — Influence society.",えいきょうする,eikyou suru,作用する (sayou suru),ja
+選ばれる,to be chosen,Selection,"代表に選ばれる。 — Be chosen as a representative.",えらばれる,erabareru,選出される (senshutsu sareru),ja
+採用する,to hire,Hiring,"新人を採用する。 — Hire new staff.",さいようする,saiyou suru,雇う (yatou),ja
+解決する,to solve,Solution,"問題を解決する。 — Solve a problem.",かいけつする,kaiketsu suru,処理する (shori suru),ja
+実現する,to realize,Achievement,"夢を実現する。 — Realize a dream.",じつげんする,jitsugen suru,達成する (tassei suru),ja
+優先する,to prioritize,Priority,"安全を優先する。 — Prioritize safety.",ゆうせんする,yuusen suru,重視する (juushi suru),ja
+結論づける,to conclude,Conclusion,"議論を結論づける。 — Conclude the discussion.",けつろんづける,ketsuronzukeru,決める (kimeru),ja
+想定する,to assume,Assumption,"問題を想定する。 — Assume a problem.",そうていする,soutei suru,仮定する (katei suru),ja
+阻止する,to prevent,Prevention,"攻撃を阻止する。 — Prevent an attack.",そしする,soshi suru,防ぐ (fusegu),ja
+評価する,to evaluate,Evaluation,"成果を評価する。 — Evaluate results.",ひょうかする,hyoka suru,判断する (handan suru),ja
+批判する,to criticize,Criticism,"行動を批判する。 — Criticize actions.",ひはんする,hihan suru,非難する (hinan suru),ja
+読み取る,to read / decipher,Reading,"意図を読み取る。 — Read intent.",よみとる,yomitoru,理解する (rikai suru),ja
+届かない,to not reach,Failure to reach,"声が届かない。 — The voice doesn't reach.",とどかない,todokanai,及ばない (oyobanai),ja
+仕上げる,to finish up,Completion,"仕事を仕上げる。 — Finish up work.",しあげる,shiageru,完成する (kansei suru),ja
+仕上がる,to be completed,Completion,"作品が仕上がる。 — The work is completed.",しあがる,shiagaru,完成する (kansei suru),ja
+抱きしめる,to hug tightly,Hug,"子どもを抱きしめる。 — Hug a child tightly.",だきしめる,dakishimeru,抱く (daku),ja
+抱き合う,to embrace each other,Embrace,"友達と抱き合う。 — Embrace each other.",だきあう,dakiau,抱く (daku),ja
+緩める,to loosen,Loosen,"ネジを緩める。 — Loosen a screw.",ゆるめる,yurumeru,弱める (yowameru),ja
+緩む,to become loose,Loosen,"ロープが緩む。 — The rope loosens.",ゆるむ,yurumu,たるむ (tarumu),ja
+防止する,to prevent,Prevention,"汚染を防止する。 — Prevent pollution.",ぼうしする,boushi suru,防ぐ (fusegu),ja
+示唆する,to suggest,Suggestion,"可能性を示唆する。 — Suggest a possibility.",しさする,shisa suru,提案する (teian suru),ja
+想像する,to imagine,Imagination,"未来を想像する。 — Imagine the future.",そうぞうする,souzou suru,思い描く (omoi egaku),ja
+観る,to watch (carefully),Viewing,"試合を観る。 — Watch a match closely.",みる,miru,見る (miru),ja
+訴える,to appeal,Appeal,"危険性を訴える。 — Appeal the danger.",うったえる,uttaeru,主張する (shuchou suru),ja
+背負う,to carry on back,Carry,"荷物を背負う。 — Carry luggage on your back.",せおう,seou,担ぐ (katsugu),ja
+悩む,to worry,Worry,"将来に悩む。 — Worry about the future.",なやむ,nayamu,困る (komaru),ja
+励ます,to encourage,Encouragement,"友達を励ます。 — Encourage a friend.",はげます,hagemasu,元気づける (genkizukeru),ja
+励む,to strive,Effort,"勉強に励む。 — Work hard at studying.",はげむ,hagemu,努力する (doryoku suru),ja
+描く,to draw,Drawing,"絵を描く。 — Draw a picture.",えがく,egaku,描写する (byousha suru),ja
+描写する,to depict,Depiction,"景色を描写する。 — Depict a scenery.",びょうしゃする,byousha suru,描く (egaku),ja
+望む,to hope,Hope,"成功を望む。 — Hope for success.",のぞむ,nozomu,期待する (kitai suru),ja
+恐れる,to fear,Fear,"失敗を恐れる。 — Fear failure.",おそれる,osoreru,怖がる (kowagaru),ja
+怖がる,to be scared,Fear,"暗闇を怖がる。 — Be scared of the dark.",こわがる,kowagaru,恐れる (osoreru),ja
+尋ねる,to ask,Inquiry,"道を尋ねる。 — Ask for directions.",たずねる,tazuneru,聞く (kiku),ja
+騒ぐ,to make noise,Noise,"子供が騒ぐ。 — Kids make noise.",さわぐ,sawagu,うるさくする (urusaku suru),ja
+沈む,to sink,Sinking,"船が沈む。 — The ship sinks.",しずむ,shizumu,沈下する (chinka suru),ja
+沈める,to sink something,Sinking,"石を沈める。 — Sink a stone.",しずめる,shizumeru,沈下させる (chinka saseru),ja
+浮かぶ,to float,Float,"雲が浮かぶ。 — Clouds float.",うかぶ,ukabu,漂う (tadayou),ja
+浮かべる,to float something,Float,"船を浮かべる。 — Float a boat.",うかべる,ukaberu,浮かす (ukasu),ja
+吸う,to inhale,Inhale,"空気を吸う。 — Inhale air.",すう,suu,取り込む (torikomu),ja
+吐く,to exhale,Exhale,"息を吐く。 — Exhale breath.",はく,haku,呼気する (kokisu suru),ja
+訪問する,to visit formally,Visit,"企業を訪問する。 — Visit a company.",ほうもんする,houmon suru,訪ねる (tazuneru),ja
+救助する,to rescue,Rescue,"人命を救助する。 — Rescue a life.",きゅうじょする,kyuujo suru,助ける (tasukeru),ja
+刺す,to stab,Stab,"フォークで刺す。 — Stab with a fork.",さす,sasu,突く (tsuku),ja
+刺さる,to be stuck,Stuck,"針が刺さる。 — A needle gets stuck.",ささる,sasaru,入る (hairu),ja
+砕く,to break into pieces,Smash,"氷を砕く。 — Crush ice.",くだく,kudaku,壊す (kowasu),ja
+砕ける,to break (intransitive),Smash,"波が砕ける。 — Waves break.",くだける,kudakeru,割れる (wareru),ja
+凍る,to freeze,Freeze,"水が凍る。 — Water freezes.",こおる,kooru,氷結する (hyouketsu suru),ja
+溶ける,to melt (intransitive),Melt,"雪が溶ける。 — Snow melts.",とける,tokeru,融ける (tokeru),ja
+溶かす,to melt something,Melt,"氷を溶かす。 — Melt ice.",とかす,tokasu,融解させる (yuugai saseru),ja
+耐える,to endure,Endurance,"痛みに耐える。 — Endure pain.",たえる,taeru,我慢する (gaman suru),ja
+耐えられる,to be able to endure,Endurance,"寒さに耐えられる。 — Can endure cold.",たえられる,taerareru,持つ (motsu),ja
+隠す,to hide something,Hide,"秘密を隠す。 — Hide a secret.",かくす,kakusu,隠蔽する (inpei suru),ja
+隠れる,to hide oneself,Hide,"猫が隠れる。 — A cat hides.",かくれる,kakureru,潜む (hisomu),ja
+誇る,to be proud,Pride,"文化を誇る。 — Be proud of culture.",ほこる,hokoru,自慢する (jiman suru),ja
+崩れる,to collapse (intransitive),Collapse,"山が崩れる。 — The mountain collapses.",くずれる,kuzureru,倒れる (taoreru),ja
+崩す,to demolish,Demolish,"建物を崩す。 — Demolish a building.",くずす,kuzusu,壊す (kowasu),ja
+奪う,to steal,Steal,"自由を奪う。 — Take away freedom.",うばう,ubau,取る (toru),ja
+迷う,to be lost,Confusion,"道に迷う。 — Get lost.",まよう,mayou,悩む (nayamu),ja
+追いかける,to chase,Chase,"車を追いかける。 — Chase a car.",おいかける,oikakeru,追う (ou),ja
+追う,to pursue,Pursue,"夢を追う。 — Pursue a dream.",おう,ou,追求する (tsuikyuu suru),ja
+囲む,to surround,Surround,"庭を囲む。 — Surround the garden.",かこむ,kakomu,取り囲む (torikakomu),ja
+囲まれる,to be surrounded,Surround,"緑に囲まれる。 — Be surrounded by greenery.",かこまれる,kakomareru,包まれる (tsutsumareru),ja
+祝福する,to bless,Blessing,"成功を祝福する。 — Bless success.",しゅくふくする,shukufuku suru,祈る (inoru),ja
+繰り返す,to repeat,Repeat,"練習を繰り返す。 — Repeat practice.",くりかえす,kurikaesu,再び行う (futatabi okonau),ja
+繰り返される,to be repeated,Repeat,"同じミスが繰り返される。 — The same mistakes are repeated.",くりかえされる,kurikaesareru,再発する (saihatsu suru),ja
+刺さり込む,to get embedded deeply,Embed,"ガラスが刺さり込む。 — Glass embeds deeply.",ささりこむ,sasarikomu,入る (hairu),ja
+叫び出す,to start shouting,Shouting,"突然叫び出す。 — Suddenly start shouting.",さけびだす,sakebidasu,叫ぶ (sakebu),ja
+泣き止む,to stop crying,Stop,"赤ちゃんが泣き止む。 — The baby stops crying.",なきやむ,nakiyamu,涙が止まる (namida ga tomaru),ja
+笑い出す,to burst into laughter,Laughter,"皆が笑い出す。 — Everyone bursts out laughing.",わらいだす,waraidasu,笑う (warau),ja
+固める,to harden,Harden,"考えを固める。 — Solidify an idea.",かためる,katameru,確定する (kakutei suru),ja
+固まる,to harden (intransitive),Harden,"セメントが固まる。 — Cement hardens.",かたまる,katamaru,凝固する (gyouko suru),ja
+伺う,to inquire politely,Inquiry,"事情を伺う。 — Politely ask the situation.",うかがう,ukagau,聞く (kiku),ja
+繋がる,to be connected,Connect,"道が繋がる。 — Roads connect.",つながる,tsunagaru,結びつく (musubitsuku),ja
+繋ぐ,to connect something,Connect,"線を繋ぐ。 — Connect the wires.",つなぐ,tsunagu,結ぶ (musubu),ja
+触れる,to touch,Touch,"芸術に触れる。 — Touch art.",ふれる,fureru,触る (sawaru),ja
+触る,to physically touch,Touch,"ボタンに触る。 — Touch the button.",さわる,sawaru,触れる (fureru),ja
+誤る,to make a mistake,Mistake,"判断を誤る。 — Make a wrong judgment.",あやまる,ayamaru,間違える (machigaeru),ja
+破産する,to go bankrupt,Bankruptcy,"会社が破産する。 — The company goes bankrupt.",はさんする,hasan suru,倒産する (tousan suru),ja
+誤解する,to misunderstand,Misunderstand,"言葉を誤解する。 — Misunderstand words.",ごかいする,gokai suru,勘違いする (kanchigai suru),ja
+邪魔する,to disturb,Disturb,"仕事を邪魔する。 — Disturb work.",じゃまする,jama suru,妨げる (samatageru),ja
+妨げる,to obstruct,Obstruction,"進行を妨げる。 — Obstruct progress.",さまたげる,samatageru,邪魔する (jama suru),ja
+引き受ける,to take on,Accept,"仕事を引き受ける。 — Take on a job.",ひきうける,hikiukeru,担当する (tantou suru),ja
+引き返す,to turn back,Return,"途中で引き返す。 — Turn back halfway.",ひきかえす,hikikaesu,戻る (modoru),ja
+見合わせる,to suspend,Pause,"運行を見合わせる。 — Suspend operation.",みあわせる,miawaseru,中止する (chuushi suru),ja
+見直す,to review,Review,"計画を見直す。 — Review the plan.",みなおす,minaosu,再検討する (saikentou suru),ja
+収まる,to settle down,Settle,"騒ぎが収まる。 — The commotion settles.",おさまる,osamaru,静まる (shizumaru),ja
+収める,to store/obtain,Store,"成果を収める。 — Achieve results.",おさめる,osameru,得る (eru),ja
+組み立てる,to assemble,Assemble,"家具を組み立てる。 — Assemble furniture.",くみたてる,kumitatsu,構築する (kouchiku suru),ja
+組み込む,to incorporate,Include,"機能を組み込む。 — Incorporate a feature.",くみこむ,kumikomu,含める (fukumeru),ja
+縛る,to tie up,Tie,"荷物を縛る。 — Tie up luggage.",しばる,shibaru,結ぶ (musubu),ja
+縛られる,to be tied,Bond,"規則に縛られる。 — Be bound by rules.",しばられる,shibarareru,拘束される (kousoku sareru),ja
+染める,to dye,Dye,"布を染める。 — Dye cloth.",そめる,someru,色付けする (irodzuke suru),ja
+染まる,to be dyed,Dye,"空が赤く染まる。 — The sky turns red.",そまる,somaru,色づく (irozuku),ja
+凍らせる,to freeze something,Freeze,"水を凍らせる。 — Freeze water.",こおらせる,kooraseru,凍結させる (tou ketsu saseru),ja
+頼る,to rely,Depend,"親に頼る。 — Rely on parents.",たよる,tayoru,依存する (izon suru),ja
+頼もしいと思う,to find reliable,Trust,"彼を頼もしいと思う。 — Find him reliable.",たのもしいとおもう,tanomoshii to omou,信頼する (shinrai suru),ja
+盛り上がる,to liven up,Excitement,"会場が盛り上がる。 — The venue gets excited.",もりあがる,moriagaru,活気づく (kakkizuku),ja
+盛り上げる,to excite,Excite,"雰囲気を盛り上げる。 — Boost the atmosphere.",もりあげる,moriageru,高める (takameru),ja
+刺繍する,to embroider,Embroider,"布に刺繍する。 — Embroider cloth.",ししゅうする,shishuu suru,縫う (nuu),ja
+縫う,to sew,Sew,"服を縫う。 — Sew clothes.",ぬう,nuu,繕う (tsukurou),ja
+繕う,to mend,Mend,"靴下を繕う。 — Mend socks.",つくろう,tsukurou,修理する (shuuri suru),ja
+崩壊する,to collapse,Collapse,"建物が崩壊する。 — A building collapses.",ほうかいする,houkai suru,倒壊する (toukai suru),ja
+爆発する,to explode,Explosion,"ガスが爆発する。 — Gas explodes.",ばくはつする,bakuhatsu suru,破裂する (haretsu suru),ja
+燃え上がる,to flare up,Flame,"炎が燃え上がる。 — Flames flare up.",もえあがる,moeagaru,燃える (moeru),ja
+膨らむ,to expand,Expand,"風船が膨らむ。 — A balloon expands.",ふくらむ,fukuramu,広がる (hirogaru),ja
+膨らませる,to inflate,Inflate,"風船を膨らませる。 — Inflate a balloon.",ふくらませる,fukuramaseru,膨張させる (bouchou saseru),ja
+縮む,to shrink,Shrink,"服が縮む。 — Clothes shrink.",ちぢむ,chijimu,小さくなる (chiisaku naru),ja
+縮める,to shrink something,Shrink,"距離を縮める。 — Shorten the distance.",ちぢめる,chijimeru,短くする (mijikaku suru),ja
+回避する,to avoid,Avoid,"問題を回避する。 — Avoid a problem.",かいひする,kaihi suru,避ける (sakeru),ja
+避けられる,to be avoidable,Avoid,"事故は避けられる。 — The accident is avoidable.",さけられる,sakerareru,回避できる (kaihi dekiru),ja
+示唆される,to be suggested,Suggest,"危険性が示唆される。 — The danger is suggested.",しさされる,shisa sareru,言われる (iwareru),ja
+予測する,to predict,Prediction,"結果を予測する。 — Predict results.",よそくする,yosoku suru,予想する (yosou suru),ja
+予想する,to expect,Expectation,"勝利を予想する。 — Expect victory.",よそうする,yosou suru,予測する (yosoku suru),ja
+企てる,to plan (secretly),Scheme,"脱出を企てる。 — Plot an escape.",くわだてる,kuwadateru,計画する (keikaku suru),ja
+捕まえる,to catch,Catch,"魚を捕まえる。 — Catch a fish.",つかまえる,tsukamaeru,捕獲する (hokaku suru),ja
+捕まる,to be caught,Caught,"犯人が捕まる。 — A criminal is caught.",つかまる,tsukamaru,逮捕される (taiho sareru),ja
+犯す,to commit (crime),Commit,"罪を犯す。 — Commit a crime.",おかす,okasu,違反する (ihan suru),ja
+刻む,to chop / carve,Carve,"思い出を胸に刻む。 — Carve memories into your heart.",きざむ,kizamu,切る (kiru),ja
+凹む,to dent,Indent,"車が凹む。 — The car dents.",へこむ,hekomu,つぶれる (tsubureru),ja
+伸縮する,to expand/contract,Flex,"布が伸縮する。 — Fabric stretches and shrinks.",しんしゅくする,shinshuku suru,伸び縮みする (nobichijimi suru),ja
+訴訟する,to prosecute,Legal,"相手を訴訟する。 — Sue the other party.",そしょうする,soshou suru,訴える (uttaeru),ja
+承継する,to inherit,Inherit,"財産を承継する。 — Inherit property.",しょうけいする,shoukei suru,受け継ぐ (uketsugu),ja
+披露する,to showcase,Show,"才能を披露する。 — Showcase talent.",ひろうする,hirou suru,見せる (miseru),ja
+蓄える,to store,Store,"知識を蓄える。 — Store knowledge.",たくわえる,takuwaeru,貯める (tameru),ja
+引き伸ばす,to stretch out,Stretch,"写真を引き伸ばす。 — Enlarge a photo.",ひきのばす,hikinobasu,伸ばす (nobasu),ja
+張り切る,to be enthusiastic,Eager,"仕事に張り切る。 — Be eager about work.",はりきる,harikiru,頑張る (ganbaru),ja
+張る,to stick,Stick,"紙を壁に張る。 — Stick paper on the wall.",はる,haru,貼る (haru),ja
+貼る,to paste,Paste,"切手を貼る。 — Paste a stamp.",はる,haru,付ける (tsukeru),ja
+掲げる,to raise / display,Display,"旗を掲げる。 — Raise a flag.",かかげる,kakageru,持ち上げる (mochiageru),ja
+損なう,to harm,Harm,"健康を損なう。 — Harm health.",そこなう,sokonau,害する (gaisuru),ja
+損ねる,to harm (polite),Harm,"関係を損ねる。 — Damage a relationship.",そこねる,sokoneru,悪化させる (akkasaseru),ja
+疲れ切る,to be exhausted,Exhaustion,"完全に疲れ切る。 — Become completely exhausted.",つかれきる,tsukarekiru,疲れる (tsukareru),ja
+取り消す,to cancel,Cancel,"注文を取り消す。 — Cancel an order.",とりけす,torikesu,キャンセルする (kyanseru suru),ja
+見抜く,to see through,Discern,"嘘を見抜く。 — See through a lie.",みぬく,minuku,見破る (miyaburu),ja
+見破る,to detect,Detect,"真実を見破る。 — Detect the truth.",みやぶる,miyaburu,見抜く (minuku),ja
+打ち勝つ,to overcome,Overcome,"不安に打ち勝つ。 — Overcome anxiety.",うちかつ,uchikatsu,克服する (kokufuku suru),ja
+打ち明ける,to confess,Confession,"秘密を打ち明ける。 — Confess a secret.",うちあける,uchiakeru,告白する (kokuhaku suru),ja
+取り除く,to remove,Remove,"障害を取り除く。 — Remove obstacles.",とりのぞく,torinozoku,排除する (haijo suru),ja
+取り組む,to tackle,Tackle,"課題に取り組む。 — Tackle a task.",とりくむ,torikumu,対処する (taisho suru),ja
+加わる,to join,Join,"チームに加わる。 — Join a team.",くわわる,kuwawaru,参加する (sanka suru),ja
+加える,to add,Add,"塩を加える。 — Add salt.",くわえる,kuwaeru,足す (tasu),ja
+押し寄せる,to surge,Surge,"波が押し寄せる。 — Waves surge in.",おしよせる,oshiyoseru,迫る (semaru),ja
+寄せる,to bring close,Bring,"椅子を寄せる。 — Pull a chair close.",よせる,yoseru,近づける (chikazukeru),ja
+寄る,to approach,Approach,"店に寄る。 — Stop by a store.",よる,yoru,立ち寄る (tachiyoru),ja
+潜り込む,to slip into,Sneak,"布団に潜り込む。 — Slip into bed.",もぐりこむ,mogurikomu,入る (hairu),ja
+跳ねる,to bounce,Bounce,"ボールが跳ねる。 — A ball bounces.",はねる,haneru,弾む (hazumu),ja
+跳ぶ,to jump,Jump,"高く跳ぶ。 — Jump high.",とぶ,tobu,ジャンプする (janpu suru),ja
+舞う,to dance lightly,Dance,"花びらが舞う。 — Petals dance.",まう,mau,踊る (odoru),ja
+耐え抜く,to persevere,Persevere,"困難を耐え抜く。 — Persevere through hardship.",たえぬく,taenuku,耐える (taeru),ja
+切り替える,to switch,Switch,"気持ちを切り替える。 — Switch your mindset.",きりかえる,kirikaeru,変更する (henkou suru),ja
+吹き飛ばす,to blow away,Blow,"風が葉を吹き飛ばす。 — Wind blows leaves away.",ふきとばす,fukitobasu,飛ばす (tobasu),ja
+吹き出す,to burst out,Outburst,"笑いが吹き出す。 — Burst out laughing.",ふきだす,fukidasu,笑い出す (waraidasu),ja
+漏らす,to leak,Leak,"秘密を漏らす。 — Leak a secret.",もらす,morasu,話す (hanasu),ja
+漏れる,to leak (intransitive),Leak,"音が漏れる。 — Sound leaks.",もれる,moreru,外に出る (soto ni deru),ja
+揺らす,to shake,Shake,"木を揺らす。 — Shake a tree.",ゆらす,yurasu,揺れる (yureru),ja
+揺れる,to sway,Sway,"地面が揺れる。 — The ground shakes.",ゆれる,yureru,動く (ugoku),ja
+吸収する,to absorb,Absorb,"水分を吸収する。 — Absorb moisture.",きゅうしゅうする,kyuushuu suru,吸う (suu),ja
+排出する,to emit,Emission,"ガスを排出する。 — Emit gas.",はいしゅつする,haishutsu suru,出す (dasu),ja
+磨り減る,to wear down,Wear,"靴底が磨り減る。 — Shoe soles wear down.",すりへる,suriharu,減る (heru),ja
+滑り込む,to slide in,Slide,"電車に滑り込む。 — Slide into the train.",すべりこむ,suberikomu,入る (hairu),ja
+頼み込む,to plead,Beg,"助けを頼み込む。 — Beg for help.",たのみこむ,tanomikomu,懇願する (kongan suru),ja
+踏み出す,to step forward,Advance,"一歩踏み出す。 — Step forward.",ふみだす,fumidasu,進む (susumu),ja
+延びる,to lengthen,Extend,"会議が延びる。 — The meeting is extended.",のびる,nobiru,延長される (enchou sareru),ja
+延ばす,to extend,Extend,"期限を延ばす。 — Extend a deadline.",のばす,nobasu,延長する (enchou suru),ja
+企画される,to be planned,Plan,"イベントが企画される。 — An event is planned.",きかくされる,kikaku sareru,予定される (yotei sareru),ja
+巻き込む,to involve,Involve,"友達を計画に巻き込む。 — Involve a friend in the plan.",まきこむ,makikomu,関与させる (kanyo saseru),ja
+巻き戻す,to rewind,Rewind,"ビデオを巻き戻す。 — Rewind the video.",まきもどす,makimodosu,戻す (modosu),ja
+巻き取る,to roll up,Roll,"ロープを巻き取る。 — Roll up the rope.",まきとる,makitoru,巻く (maku),ja
+潜り抜ける,to slip through,Slip,"群衆を潜り抜ける。 — Slip through a crowd.",くぐりぬける,kugurinukeru,通り抜ける (toorinukeru),ja
+積もる,to accumulate,Accumulate,"雪が積もる。 — Snow accumulates.",つもる,tsumoru,蓄積する (chikuseki suru),ja
+積む,to pile up,Pile,"箱を積む。 — Pile boxes.",つむ,tsumu,重ねる (kasaneru),ja
+育む,to nurture,Nurture,"愛情を育む。 — Nurture affection.",はぐくむ,hagukumu,育てる (sodateru),ja
+照らす,to illuminate,Light,"道を照らす。 — Illuminate the road.",てらす,terasu,照明する (shoumei suru),ja
+照れる,to feel shy,Shy,"褒められて照れる。 — Get shy when complimented.",てれる,tereru,恥ずかしがる (hazukashigaru),ja
+忍ぶ,to endure,Endure,"苦しみを忍ぶ。 — Endure suffering.",しのぶ,shinobu,耐える (taeru),ja
+忍ばせる,to hide,Hide,"手紙を忍ばせる。 — Hide a letter.",しのばせる,shinobaseru,隠す (kakusu),ja
+振る,to shake,Shake,"頭を振る。 — Shake your head.",ふる,furu,揺らす (yurasu),ja
+振る舞う,to behave,Behavior,"丁寧に振る舞う。 — Behave politely.",ふるまう,furumau,行動する (koudou suru),ja
+振り返る,to look back,Reflect,"過去を振り返る。 — Look back at the past.",ふりかえる,furikaeru,思い返す (omoikaesu),ja
+振り向く,to turn around,Turn,"後ろを振り向く。 — Turn around.",ふりむく,furimuku,向く (muku),ja
+滑落する,to fall (off a slope),Fall,"岩場から滑落する。 — Fall off a cliff.",かつらくする,katsuraku suru,落ちる (ochiru),ja
+こぼす,to spill (something),Spill,"水をこぼす。 — Spill water.",こぼす,kobosu,落とす (otosu),ja
+こぼれる,to spill (intransitive),Spill,"涙がこぼれる。 — Tears spill out.",こぼれる,koboreru,落ちる (ochiru),ja
+抱き寄せる,to pull close,Embrace,"子供を抱き寄せる。 — Pull a child close.",だきよせる,dakiyoseru,抱く (daku),ja
+踏み倒す,to dodge payment,Dodge,"借金を踏み倒す。 — Dodge debt repayment.",ふみたおす,fumitaosu,逃れる (nogareru),ja
+積み上げる,to stack up,Build,"経験を積み上げる。 — Build up experience.",つみあげる,tsumiageru,蓄積する (chikuseki suru),ja
+積み重ねる,to accumulate,Accumulate,"努力を積み重ねる。 — Accumulate effort.",つみかさねる,tsumikasaneru,重ねる (kasaneru),ja
+仕掛ける,to set up,Set,"罠を仕掛ける。 — Set a trap.",しかける,shikakeru,準備する (junbi suru),ja
+仕掛かる,to be underway,Underway,"工事が仕掛かる。 — Construction is underway.",しかかる,shikakaru,始まる (hajimaru),ja
+飛び越える,to jump over,Jump,"石を飛び越える。 — Jump over a rock.",とびこえる,tobikoeru,跳ぶ (tobu),ja
+飛び出す,to run out,Rush,"家から飛び出す。 — Run out of the house.",とびだす,tobidasu,走る (hashiru),ja
+飛び立つ,to take off,Takeoff,"飛行機が飛び立つ。 — The plane takes off.",とびたつ,tobitatsu,離陸する (ririku suru),ja
+照れ笑いする,to smile bashfully,Smile,"照れ笑いする。 — Smile bashfully.",てれわらいする,terewarai suru,微笑む (hohoemu),ja
+凹ませる,to dent something,Dent,"缶を凹ませる。 — Dent a can.",へこませる,hekomaseru,押しつぶす (oshitsubusu),ja
+盛る,to heap up,Heap,"ご飯を盛る。 — Heap rice.",もる,moru,載せる (noseru),ja
+盛り付ける,to plate food,Plate,"料理を盛り付ける。 — Plate food.",もりつける,moritsukeru,並べる (naraberu),ja
+差し出す,to offer,Offer,"手を差し出す。 — Offer a hand.",さしだす,sashidasu,渡す (watasu),ja
+差し込む,to insert,Insert,"カードを差し込む。 — Insert a card.",さしこむ,sashikomu,入れる (ireru),ja
+差し替える,to replace,Replace,"写真を差し替える。 — Replace a photo.",さしかえる,sashikaeru,変更する (henkou suru),ja
+痛む,to ache,Ache,"傷が痛む。 — A wound aches.",いたむ,itamu,痛がる (itagaru),ja
+痛める,to injure,Hurt,"足を痛める。 — Injure a leg.",いためる,itameru,傷つける (kizutsukeru),ja
+締め切る,to close deadline,Close,"応募を締め切る。 — Close applications.",しめきる,shimekiru,終了する (shuuryou suru),ja
+締め付ける,to tighten,Tighten,"ベルトを締め付ける。 — Tighten the belt.",しめつける,shimetsukeru,締める (shimeru),ja
+締まる,to tighten (intransitive),Tighten,"ネジが締まる。 — A screw tightens.",しまる,shimaru,固まる (katamaru),ja
+掲示する,to post (notice),Post,"結果を掲示する。 — Post results.",けいじする,keiji suru,貼る (haru),ja
+訴えかける,to appeal to,Appeal,"観客に訴えかける。 — Appeal to the audience.",うったえかける,uttaekakeru,訴える (uttaeru),ja
+訴え出る,to report,Report,"問題を訴え出る。 — Report a problem.",うったえでる,uttaederu,申し出る (moushideru),ja
+笑みを浮かべる,to smile subtly,Smile,"笑みを浮かべる。 — Show a slight smile.",えみをうかべる,emi wo ukaberu,微笑む (hohoemu),ja
+頭を下げる,to bow,Bow,"お礼に頭を下げる。 — Bow in gratitude.",あたまをさげる,atama wo sageru,お辞儀する (ojigi suru),ja
+頭を抱える,to hold one's head,Worry,"問題に頭を抱える。 — Be troubled by a problem.",あたまをかかえる,atama wo kakaeru,悩む (nayamu),ja
+抱え込む,to hold onto,Hold,"ストレスを抱え込む。 — Hold onto stress.",かかえこむ,kakaekomu,溜め込む (tamekomu),ja
+落ち着く,to calm down,Calm,"気持ちが落ち着く。 — Calm down.",おちつく,ochitsuku,静まる (shizumaru),ja
+落ち込む,to feel depressed,Depress,"失敗して落ち込む。 — Feel depressed after failing.",おちこむ,ochikomu,落胆する (rakutan suru),ja
+落ち着ける,to settle,Settle,"心を落ち着ける。 — Settle your mind.",おちつける,ochitsukeru,冷静になる (reisei ni naru),ja
+抜き取る,to extract,Extract,"番号を抜き取る。 — Extract a number.",ぬきとる,nukitoru,取り出す (toridasu),ja
+抜け落ちる,to fall out,Fall,"髪が抜け落ちる。 — Hair falls out.",ぬけおちる,nukeochiru,落ちる (ochiru),ja
+溜め込む,to accumulate,Store,"お金を溜め込む。 — Accumulate money.",ためこむ,tamekomu,蓄える (takuwaeru),ja
+煮込む,to simmer,Simmer,"肉を煮込む。 — Simmer meat.",にこむ,nikomu,煮る (niru),ja
+焼き尽くす,to burn completely,Burn,"森を焼き尽くす。 — Burn the forest completely.",やきつくす,yakitsukusu,燃やす (moyasu),ja
+焼き上げる,to bake fully,Bake,"パンを焼き上げる。 — Finish baking bread.",やきあげる,yakiageru,焼く (yaku),ja
+冷え込む,to get very cold,Cold,"夜に冷え込む。 — It gets cold at night.",ひえこむ,hiekome,寒くなる (samuku naru),ja
+冷え切る,to be completely cold,Cold,"手が冷え切る。 — Hands become completely cold.",ひえきる,hiekiru,凍える (kogoeru),ja
+煮立つ,to come to a boil,Boil,"水が煮立つ。 — Water boils.",にたつ,nitatsu,沸く (waku),ja
+沸き上がる,to boil up,Boil,"歓声が沸き上がる。 — Cheers erupt.",わきあがる,wakiagaru,湧く (waku),ja
+映す,to reflect,Reflect,"影を映す。 — Cast a shadow.",うつす,utsusu,反映する (han'ei suru),ja
+映る,to be reflected,Reflect,"湖に月が映る。 — The moon reflects on the lake.",うつる,utsuru,反射する (hansha suru),ja
+割り込む,to cut in,Interrupt,"列に割り込む。 — Cut into line.",わりこむ,warikomu,入る (hairu),ja
+割り当てる,to assign,Assign,"仕事を割り当てる。 — Assign tasks.",わりあてる,wariateru,配分する (haibun suru),ja
+拾い上げる,to pick up,Pickup,"石を拾い上げる。 — Pick up a stone.",ひろいあげる,hiroiageru,拾う (hirou),ja
+押し返す,to push back,Push,"敵を押し返す。 — Push back the enemy.",おしかえす,oshikaesu,退ける (shirizokeru),ja
+逃げ込む,to flee into,Flee,"家に逃げ込む。 — Flee into a house.",にげこむ,nigekomu,逃げる (nigeru),ja
+逃げ去る,to run away,Escape,"犯人が逃げ去る。 — The criminal runs away.",にげさる,nigesaru,逃走する (tousou suru),ja
+逃れられない,to be unavoidable,Unavoidable,"運命から逃れられない。 — Can't escape destiny.",のがれられない,nogarerarenai,避けられない (sakerarenai),ja
+跳ね返る,to bounce back,Bounce,"ボールが跳ね返る。 — The ball bounces back.",はねかえる,hanekaeru,戻る (modoru),ja
+跳ね返す,to repel,Repel,"攻撃を跳ね返す。 — Repel an attack.",はねかえす,hanekaesu,防ぐ (fusegu),ja
+刻まれる,to be engraved,Engrave,"記憶に刻まれる。 — Be engraved in memory.",きざまれる,kizamareru,残る (nokoru),ja
+掘る,to dig,Dig,"穴を掘る。 — Dig a hole.",ほる,horu,掘削する (kussaku suru),ja
+掘り下げる,to dig deep,Explore,"問題を掘り下げる。 — Dig deeper into an issue.",ほりさげる,horisageru,深める (fukameru),ja
+掘り返す,to dig up,Dig,"土を掘り返す。 — Dig up soil.",ほりかえす,horikaesu,掘る (horu),ja
+差し伸べる,to reach out,Reach,"手を差し伸べる。 — Reach out a hand.",さしのべる,sashinoberu,助ける (tasukeru),ja
+差し引く,to deduct,Deduct,"費用を差し引く。 — Deduct costs.",さしひく,sashihiku,引く (hiku),ja
+打ち上げる,to launch,Launch,"花火を打ち上げる。 — Launch fireworks.",うちあげる,uchiageru,上げる (ageru),ja
+打ち落とす,to shoot down,Shoot,"鳥を打ち落とす。 — Shoot down a bird.",うちおとす,uchiotosu,倒す (taosu),ja
+揺さぶる,to shake violently,Shake,"心を揺さぶる。 — Shake someone's heart.",ゆさぶる,yusaburu,動かす (ugokasu),ja
+揺れ動く,to sway,Sway,"世論が揺れ動く。 — Public opinion sways.",ゆれうごく,yureugoku,変動する (hendou suru),ja
+跳ね飛ばす,to knock away,Knock,"石を跳ね飛ばす。 — Knock a stone away.",はねとばす,hanetobasu,飛ばす (tobasu),ja
+締め上げる,to strangle / intensify,Tighten,"犯人を締め上げる。 — Pressure the suspect.",しめあげる,shimeageru,締める (shimeru),ja
+吸い寄せる,to be drawn to,Attraction,"光に吸い寄せられる。 — Be drawn to the light.",すいよせる,suiyoseru,引き寄せられる (hikiyoserareru),ja
+吸い上げる,to suck up,Suction,"液体を吸い上げる。 — Suck up liquid.",すいあげる,suiageru,吸収する (kyuushuu suru),ja
+吸い込まれる,to be inhaled,Inhale,"煙に吸い込まれる。 — Be inhaled by smoke.",すいこまれる,suikomareru,吸う (suu),ja
+吹き抜ける,to blow through,Wind,"風が吹き抜ける。 — Wind blows through.",ふきぬける,fukinukeru,通り抜ける (toorinukeru),ja
+吹き荒らす,to blow violently,Wind,"嵐が吹き荒らす。 — The storm rages.",ふきあらす,fukiarasu,荒れる (areru),ja
+吹き付ける,to blow against,Wind,"雪が吹き付ける。 — Snow blows against.",ふきつける,fukitsukeru,当たる (ataru),ja
+吹き飛ぶ,to be blown away,Blown,"帽子が吹き飛ぶ。 — A hat is blown away.",ふきとぶ,fukitobu,飛ぶ (tobu),ja
+吹き渡る,to blow across,Wind,"風が吹き渡る。 — Wind blows across.",ふきわたる,fuki-wataru,渡る (wataru),ja
+積み残す,to leave unstacked,Leave,"課題を積み残す。 — Leave tasks unfinished.",つみのこす,tsuminokosu,残す (nokosu),ja
+積み立てる,to save up,Save,"お金を積み立てる。 — Save money regularly.",つみたてる,tsumitaseru,貯める (tameru),ja
+積み増す,to increase load,Increase,"予算を積み増す。 — Increase the budget.",つみます,tsumimasu,増やす (fuyasu),ja
+積み込まれる,to be loaded,Load,"荷物が積み込まれる。 — Luggage is loaded.",つみこまれる,tsumikomareru,積まれる (tsumareru),ja
+映し出す,to project,Project,"映像を映し出す。 — Project an image.",うつしだす,utsushidasu,映す (utsusu),ja
+映り込む,to appear unintentionally,Appear,"猫が写真に映り込む。 — A cat appears in the photo.",うつりこむ,utsurikomu,写る (utsuru),ja
+映し取る,to reproduce,Reproduce,"模様を映し取る。 — Reproduce a pattern.",うつしとる,utsushitoru,真似る (maneru),ja
+映え渡る,to shine brightly,Shine,"空が映え渡る。 — The sky shines brightly.",はえわたる,haewataru,輝く (kagayaku),ja
+照り返す,to reflect light,Reflect,"海が照り返す。 — The sea reflects light.",てりかえす,terikaesu,反射する (hansha suru),ja
+照りつける,to blaze,Blaze,"太陽が照りつける。 — The sun blazes down.",てりつける,teritsukeru,照る (teru),ja
+照り渡る,to shine broadly,Shine,"太陽が照り渡る。 — The sun shines widely.",てりわたる,teriwataru,照る (teru),ja
+照り焼く,to teriyaki-grill,Grill,"肉を照り焼く。 — Grill meat in teriyaki style.",てりやく,teriyaku,焼く (yaku),ja
+溶きほぐす,to beat (eggs),Stir,"卵を溶きほぐす。 — Beat eggs.",ときほぐす,tokihogusu,混ぜる (mazeru),ja
+溶き込む,to blend in,Mix,"粉を溶き込む。 — Blend powder in.",ときこむ,tokikomu,混ぜ合わせる (mazeawaseru),ja
+溶け込む,to blend in (abstract),Assimilate,"街に溶け込む。 — Blend into the city.",とけこむ,tokekomu,なじむ (najimu),ja
+溶け落ちる,to melt and fall,Melt,"氷が溶け落ちる。 — Ice melts and falls.",とけおちる,tokeochiru,溶ける (tokeru),ja
+湿らす,to moisten,Moisten,"土を湿らす。 — Moisten the soil.",しめらす,shimerasu,濡らす (nurasu),ja
+湿る,to become moist,Moist,"空気が湿る。 — The air becomes moist.",しめる,shimeru,湿気る (shikkeru),ja
+湿り気を帯びる,to become damp,Damp,"土が湿り気を帯びる。 — Soil becomes damp.",しめりけをおびる,shimerike wo obiru,湿る (shimeru),ja
+湿気る,to get damp,Damp,"クッキーが湿気る。 — Cookies get damp.",しける,shikeru,しっとりする (shittori suru),ja
+蒸し返す,to bring up again,Repeat,"議論を蒸し返す。 — Bring up a debate again.",むしかえす,mushikaesu,繰り返す (kurikaesu),ja
+蒸し上げる,to steam completely,Steam,"茶碗蒸しを蒸し上げる。 — Steam chawanmushi.",むしあげる,mushiageru,蒸す (musu),ja
+蒸し焼く,to steam-roast,Steam,"肉を蒸し焼く。 — Steam-roast meat.",むしやく,mushiyaku,焼く (yaku),ja
+蒸し暑くなる,to become humid,Humidity,"夏が蒸し暑くなる。 — Summer becomes humid.",むしあつくなる,mushia tsuku naru,湿る (shimeru),ja
+蒸発する,to evaporate,Evaporate,"水が蒸発する。 — Water evaporates.",じょうはつする,jouhatsu suru,消える (kieru),ja
+蒸留する,to distill,Distill,"酒を蒸留する。 — Distill alcohol.",じょうりゅうする,jouryuu suru,精製する (seisei suru),ja
+凍り付く,to freeze solid,Freeze,"湖が凍り付く。 — The lake freezes solid.",こおりつく,kooritsuku,凍る (kooru),ja
+凍り込む,to freeze into,Freeze,"土が凍り込む。 — Soil freezes.",こおりこむ,koorikomu,凍る (kooru),ja
+凍てつく,to freeze bitterly,Freeze,"夜が凍てつく。 — Night freezes bitterly.",いてつく,itetsuku,凍る (kooru),ja
+凍り割れる,to crack from freezing,Crack,"湖が凍り割れる。 — The lake cracks from freezing.",こおりわれる,kooriwareru,割れる (wareru),ja
+燃え移る,to spread fire,Spread,"火が森に燃え移る。 — Fire spreads to the forest.",もえうつる,moeutsuru,燃える (moeru),ja
+燃え尽きる,to burn out,Exhaust,"力が燃え尽きる。 — Burn out completely.",もえつきる,moetsukiru,尽きる (tsukiru),ja
+燃え立つ,to blaze,Blaze,"炎が燃え立つ。 — Flames blaze up.",もえたつ,moetatsu,燃える (moeru),ja
+燃え盛る,to blaze fiercely,Blaze,"建物が燃え盛る。 — The building blazes fiercely.",もえさかる,moesakaru,燃える (moeru),ja
+飲み干す,to drink up,Drink,"水を飲み干す。 — Drink up water.",のみほす,nomihosu,飲む (nomu),ja
+飲み込む,to swallow,Swallow,"言葉を飲み込む。 — Swallow one's words.",のみこむ,nomikomu,呑む (nomu),ja
+飲みかける,to start drinking,Drink,"ビールを飲みかける。 — Start drinking beer.",のみかける,nomikakeru,飲む (nomu),ja
+飲み過ぎる,to drink too much,Overdrink,"酒を飲み過ぎる。 — Drink too much alcohol.",のみすぎる,nomisugiru,飲む (nomu),ja
+飲み比べる,to compare drinks,Compare,"ワインを飲み比べる。 — Compare wines.",のみくらべる,nomikuraberu,比較する (hikaku suru),ja
+食い込む,to dig in,Pressure,"靴が足に食い込む。 — Shoes dig into feet.",くいこむ,kuikomu,刺さる (sasaru),ja
+食い付く,to latch on,Bite,"犬が食い付く。 — A dog latches on.",くいつく,kuitzuku,噛みつく (kamitsuku),ja
+食い下がる,to persist,Persist,"要求に食い下がる。 — Persist in demands.",くいさがる,kuisagaru,粘る (nebaru),ja
+食い止める,to prevent,Prevent,"被害を食い止める。 — Prevent damage.",くいとめる,kuitomeru,防ぐ (fusegu),ja
+食べ残す,to leave food,Leftover,"料理を食べ残す。 — Leave food uneaten.",たべのこす,tabenokosu,残す (nokosu),ja
+食べ歩く,to eat while walking,Tasting,"街で食べ歩く。 — Eat around the town.",たべあるく,tabearuku,食う (kuu),ja
+食べ合わせる,to combine foods,Combine,"食材を食べ合わせる。 — Combine ingredients.",たべあわせる,tabeawaseru,組み合わせる (kumiawaseru),ja
+飲み合わせる,to combine drinks,Combine,"薬を飲み合わせる。 — Combine medications.",のみあわせる,nomiawaseru,合わせる (awaseru),ja
+飲み歩く,to bar-hop,Bars,"街で飲み歩く。 — Drink around bars.",のみあるく,nomiaruku,飲む (nomu),ja
+飲み明かす,to drink all night,Drink,"友達と飲み明かす。 — Drink all night with friends.",のみあかす,nomiakas.u,飲む (nomu),ja
+食べ終える,to finish eating,Finish,"夕食を食べ終える。 — Finish dinner.",たべおえる,tabeoeru,終える (oeru),ja
+飲み終える,to finish drinking,Finish,"水を飲み終える。 — Finish drinking water.",のみおえる,nomioeru,終える (oeru),ja
+飛び跳ねる,to hop,Hopping,"子供が飛び跳ねる。 — Children hop.",とびはねる,tobihaneru,跳ぶ (tobu),ja
+飛び越す,to leap over,Leap,"溝を飛び越す。 — Leap over a ditch.",とびこす,tobikosu,越える (koeru),ja
+跳ね上がる,to jump up,Jump,"魚が跳ね上がる。 — A fish jumps up.",はねあがる,haneagaru,跳ねる (haneru),ja
+跳び掛かる,to pounce,Pounce,"猫が跳び掛かる。 — A cat pounces.",とびかかる,tobikakaru,襲う (osou),ja
+跳び上がる,to leap up,Leap,"驚いて跳び上がる。 — Jump up in surprise.",とびあがる,tobiagaru,跳ぶ (tobu),ja
+跳び散らす,to scatter by jumping,Scatter,"泥を跳び散らす。 — Scatter mud.",とびちらす,tobichirasu,飛ばす (tobasu),ja
+踏み越える,to step over,Step,"線を踏み越える。 — Step over a line.",ふみこえる,fumikoueru,越える (koeru),ja
+踏み慣らす,to wear in shoes,Wear,"靴を踏み慣らす。 — Wear in shoes.",ふみならす,fuminarasu,慣らす (narasu),ja
+踏み倒れる,to fall forward,Fall,"勢いで踏み倒れる。 — Fall forward.",ふみたおれる,fumitaoreru,倒れる (taoreru),ja
+踏み外す,to misstep,Misstep,"足を踏み外す。 — Misstep.",ふみはずす,fumihazusu,落ちる (ochiru),ja
+踏み締める,to stomp firmly,Stomp,"地面を踏み締める。 — Stomp firmly on the ground.",ふみしめる,fumishimeru,踏む (fumu),ja
+引き揚げる,to withdraw,Withdraw,"部隊を引き揚げる。 — Withdraw troops.",ひきあげる,hikiageru,退く (shirizoku),ja
+引き裂かれる,to be torn,Torn,"家族が引き裂かれる。 — A family is torn apart.",ひきさかれる,hikisakareru,裂ける (sakeru),ja
+引き込まれる,to be drawn in,Drawn,"話に引き込まれる。 — Be drawn into a story.",ひきこまれる,hikikomaru,魅了される (miryō sareru),ja
+引き寄せ合う,to attract each other,Attract,"磁石が引き寄せ合う。 — Magnets attract.",ひきよせあう,hikiyoseau,引き寄せる (hikiyoseru),ja
+引き剥がれる,to be peeled off,Peel,"壁紙が引き剥がれる。 — Wallpaper peels off.",ひきはがれる,hikihagareru,剥がれる (hagareru),ja
+引き伸びる,to stretch out,Stretch,"ゴムが引き伸びる。 — Rubber stretches.",ひきのびる,hikinobiru,伸びる (nobiru),ja
+引き潰す,to crush down,Crush,"虫を引き潰す。 — Crush an insect.",ひきつぶす,hikitsubusu,潰す (tsubusu),ja
+見回す,to look around,Look,"部屋を見回す。 — Look around the room.",みまわす,mimawasu,見渡す (miwatasu),ja
+見渡す,to overlook,View,"景色を見渡す。 — Look over the scenery.",みわたす,miwatasu,眺める (nagameru),ja
+見下ろす,to look down,Look,"街を見下ろす。 — Look down over the city.",みおろす,miorosu,俯瞰する (fukan suru),ja
+見上げる,to look up,Look,"空を見上げる。 — Look up at the sky.",みあげる,miageru,仰ぐ (aogu),ja
+見逃す,to miss,Miss,"チャンスを見逃す。 — Miss a chance.",みのがす,minorasu,逃す (nogasu),ja
+見届ける,to confirm,Confirm,"最後まで見届ける。 — See it through.",みとどける,mitodokeru,確認する (kakunin suru),ja
+見失う,to lose sight,Lose,"方向を見失う。 — Lose one's direction.",みうしなう,miushinau,見えなくなる (mienakunaru),ja
+見当たる,to be found,Find,"財布が見当たる。 — The wallet is found.",みあたる,miataru,見つかる (mitsukaru),ja
+見破られる,to be seen through,Seen,"嘘が見破られる。 — A lie is exposed.",みやぶられる,miyaburareru,ばれる (bareru),ja
+見切る,to give up,Abandon,"希望を見切る。 — Give up hope.",みきる,mikiru,諦める (akirameru),ja
+見飽きる,to get tired of seeing,Bored,"景色に見飽きる。 — Get tired of the view.",みあきる,miakiru,飽きる (akiru),ja
+見比べる,to compare visually,Compare,"写真を見比べる。 — Compare photos.",みくらべる,mikuraberu,比較する (hikaku suru),ja
+聞き返す,to ask again,Ask,"質問を聞き返す。 — Ask again.",ききかえす,kikikaesu,聞き直す (kikinaosu),ja
+聞き直す,to re-ask,Ask,"もう一度聞き直す。 — Ask once more.",ききなおす,kikinaosu,聞き返す (kikikaesu),ja
+聞き分ける,to distinguish sounds,Distinguish,"声を聞き分ける。 — Distinguish voices.",ききわける,kikiwakeru,識別する (shikibetsu suru),ja
+聞き惚れる,to be charmed,Admire,"歌に聞き惚れる。 — Be charmed by a song.",ききほれる,kikihoreru,感動する (kandou suru),ja
+聞き取れる,to be audible,Audible,"声が聞き取れる。 — A voice is audible.",ききとれる,kikitoreru,聞こえる (kikoeru),ja
+聞き漏らす,to miss hearing,Miss,"ニュースを聞き漏らす。 — Miss the news.",ききもらす,kikimorasu,聞き逃す (kikinogasu),ja
+聞き入れる,to accept (advice),Accept,"忠告を聞き入れる。 — Accept advice.",ききいれる,kikiireru,受け入れる (ukeireru),ja
+言い渡す,to command,Order,"判決を言い渡す。 — Deliver a verdict.",いいわたす,iiwatasu,命じる (meijiru),ja
+言い切る,to state firmly,Assert,"断言して言い切る。 — State firmly.",いいきる,iikiru,言い張る (iiharu),ja
+言い付ける,to instruct,Instruct,"仕事を言い付ける。 — Assign work.",いいつける,iitsukeru,命じる (meijiru),ja
+言い争う,to argue,Argue,"友人と言い争う。 — Argue with a friend.",いいあらそう,iiarasou,口論する (kouron suru),ja
+言い逃れる,to evade,Evasion,"責任を言い逃れる。 — Evade responsibility.",いいのがれる,iinogaru,逃れる (nogareru),ja
+言い放つ,to declare boldly,Declare,"真実を言い放つ。 — Declare the truth.",いいはなつ,iihanatsu,言う (iu),ja
+言いよる,to approach romantically,Approach,"彼女に言いよる。 — Approach her romantically.",いいよる,iiyoru,口説く (kudoku),ja
+言い表す,to express,Express,"気持ちを言い表す。 — Express feelings.",いいあらわす,iiharawasu,説明する (setsumei suru),ja
+話し込む,to have a long talk,Talk,"友達と話し込む。 — Talk for a long time.",はなしこむ,hanashikomu,話す (hanasu),ja
+話し合える,to be able to discuss,Discuss,"率直に話し合える。 — Can discuss frankly.",はなしあえる,hanashiaeru,相談できる (soudan dekiru),ja
+話し続ける,to keep talking,Talk,"延々と話し続ける。 — Keep talking endlessly.",はなしつづける,hanashitsuzukeru,話す (hanasu),ja
+話し掛ける,to address someone,Address,"店員に話し掛ける。 — Speak to a clerk.",はなしかける,hanashikakeru,声をかける (koe o kakeru),ja
+話し戻す,to return to a topic,Return,"話を戻す。 — Return to the topic.",はなしもどす,hanashimodosu,戻る (modoru),ja
+読め上げる,to read out loud,Read,"文章を読み上げる。 — Read aloud.",よみあげる,yomiageru,朗読する (roudoku suru),ja
+読み返す,to reread,Reread,"本を読み返す。 — Reread a book.",よみかえす,yomikaesu,再読する (saidoku suru),ja
+読み進める,to keep reading,Continue,"小説を読み進める。 — Keep reading the novel.",よみすすめる,yomitsusumeru,読む (yomu),ja
+読み落とす,to overlook text,Overlook,"注釈を読み落とす。 — Overlook a note.",よみおとす,yomiotosu,見落とす (miotosu),ja
+読み切る,to finish reading,Finish,"長編を読み切る。 — Finish reading a long novel.",よみきる,yomikiru,読み終える (yomioeru),ja
+書き写す,to transcribe,Copy,"文章を書き写す。 — Transcribe text.",かきうつす,kakiutsusu,コピーする (kopii suru),ja
+書き出す,to begin writing,Write,"日記を書き出す。 — Begin writing a diary.",かきだす,kakidasu,書く (kaku),ja
+書き加える,to add writing,Add,"説明を書き加える。 — Add an explanation.",かきくわえる,kakikuwaeru,追加する (tsuika suru),ja
+書き直す,to rewrite,Rewrite,"原稿を書き直す。 — Rewrite the draft.",かきなおす,kakinaosu,修正する (shuusei suru),ja
+書き残す,to leave written,Leave,"メモを書き残す。 — Leave a memo.",かきのこす,kakinokosu,残す (nokosu),ja
+描き出す,to depict,Depict,"情景を描き出す。 — Depict a scene.",えがきだす,egakidasu,描写する (byousha suru),ja
+描き込む,to draw in detail,Detail,"背景を描き込む。 — Draw detailed background.",えがきこむ,egakikomu,書き込む (kakikomu),ja
+描き広げる,to expand drawing,Expand,"構図を描き広げる。 — Expand the composition.",えがきひろげる,egakihirogeru,広げる (hirogeru),ja
+抱き締め合う,to hug mutually,Hug,"互いに抱き締め合う。 — Hug each other.",だきしめあう,dakishimeau,抱く (daku),ja
+抱え落ちる,to collapse holding something,Fall,"荷物を抱え落ちる。 — Fall while holding luggage.",かかえおちる,kakaeochiru,落ちる (ochiru),ja
+抱きとめる,to catch in arms,Catch,"子供を抱きとめる。 — Catch a child.",だきとめる,dakitomeru,受け止める (uketomeru),ja
+支え合う,to support each other,Support,"家族が支え合う。 — Family supports each other.",ささえあう,sasaeau,助け合う (tasukeau),ja
+支え切る,to fully support,Support,"最後まで支え切る。 — Support until the end.",ささえきる,sasaekiru,支える (sasaeru),ja
+支え直す,to support again,Support,"倒れた木を支え直す。 — Support a fallen tree.",ささえなおす,sasaenaosu,立て直す (tatenaosu),ja
+取り決める,to agree,Agree,"条件を取り決める。 — Agree on terms.",とりきめる,torikimeru,合意する (goui suru),ja
+取り交わす,to exchange formally,Exchange,"契約を取り交わす。 — Exchange contracts.",とりかわす,torikawasu,交換する (koukan suru),ja
+取り壊す,to demolish,Demolish,"建物を取り壊す。 — Demolish a building.",とりこわす,torikowasu,解体する (kaitai suru),ja
+取り扱う,to handle,Handle,"商品を取り扱う。 — Handle products.",とりあつかう,toriatsukau,扱う (atsukau),ja
+取り尽くす,to exhaust,Exhaust,"資源を取り尽くす。 — Exhaust resources.",とりつくす,tori tsukusu,使い果たす (tsukaihat.su),ja
+取りそろえる,to gather together,Gather,"資料を取りそろえる。 — Gather documents.",とりそろえる,torisoroeru,集める (atsumeru),ja
+取り締まられる,to be regulated,Regulate,"交通が取り締まられる。 — Traffic is regulated.",とりしまられる,torishimarareru,管理される (kanri sareru),ja
+取り組み続ける,to keep tackling,Continue,"課題に取り組み続ける。 — Keep tackling tasks.",とりくみつづける,torikumitsuzukeru,続ける (tsuzukeru),ja
+取りこぼす,to let slip,Miss,"点を取りこぼす。 — Lose points.",とりこぼす,torikobosu,落とす (otosu),ja
+引き返らせる,to turn back (someone),Turn,"部下を引き返らせる。 — Turn subordinates back.",ひきかえらせる,hikikaeraseru,戻らせる (modoraseru),ja
+引き立てる,to enhance,Enhance,"味を引き立てる。 — Enhance flavor.",ひきたてる,hikitateru,高める (takameru),ja
+引き立つ,to stand out,Stand out,"色が引き立つ。 — Colors stand out.",ひきたつ,hikitatsu,映える (haeru),ja
+引き寄せられる,to be attracted,Attracted,"音に引き寄せられる。 — Drawn to a sound.",ひきよせられる,hikiyoserareru,惹かれる (hikareru),ja
+引き離す,to separate,Separate,"子犬を引き離す。 — Separate puppies.",ひきはなす,hikihanasu,離す (hanasu),ja
+引き離れる,to become separated,Separate,"友達と引き離れる。 — Become separated from friends.",ひきはなれる,hikihanareru,離れる (hanareru),ja
+寄り添う,to snuggle,Snuggle,"家族に寄り添う。 — Snuggle with family.",よりそう,yorisou,寄る (yoru),ja
+寄り道する,to stop by,Stop by,"学校帰りに寄り道する。 — Stop by after school.",よりみちする,yorimichi suru,立ち寄る (tachiyoru),ja
+寄り集まる,to gather,Assemble,"人が寄り集まる。 — People gather together.",よりあつまる,yoriatsumaru,集まる (atsumaru),ja
+寄り掛かる,to lean on,Lean,"壁に寄り掛かる。 — Lean against the wall.",よりかかる,yorikakaru,もたれる (motareru),ja
+乗り越す,to pass one's stop,Miss,"駅を乗り越す。 — Miss the station.",のりこす,norikosu,通過する (tsuuka suru),ja
+乗り込む,to board,Board,"電車に乗り込む。 — Board a train.",のりこむ,norikomu,乗る (noru),ja
+乗り遅れる,to miss transportation,Miss,"バスに乗り遅れる。 — Miss the bus.",のりおくれる,noriokureru,逃す (nogasu),ja
+乗り切る,to get through,Overcome,"困難を乗り切る。 — Get through difficulties.",のりきる,norikiru,克服する (kokufuku suru),ja
+踏み潰す,to crush,Crush,"虫を踏み潰す。 — Crush an insect.",ふみつぶす,fumitsubusu,潰す (tsubusu),ja
+振り落とす,to shake off,Shake,"ほこりを振り落とす。 — Shake off dust.",ふりおとす,furiotosu,落とす (otosu),ja
+振り乱す,to dishevel,Disorder,"髪を振り乱す。 — Hair becomes messy.",ふりみだす,furimidasu,乱す (midasu),ja
+振り返らせる,to make someone look back,Prompt,"後ろを振り返らせる。 — Make them look back.",ふりかえらせる,furikaeraseru,向かせる (mukaseru),ja
+振り切る,to shake free,Escape,"相手を振り切る。 — Shake someone off.",ふりきる,furikiru,逃れる (nogareru),ja
+振り向かせる,to turn someone’s head,Turn,"視線を振り向かせる。 — Draw attention.",ふりむかせる,furimukaseru,向ける (mukeru),ja
+振り替える,to substitute,Replace,"休みを振り替える。 — Substitute a holiday.",ふりかえる,furikaeru,変更する (henkou suru),ja
+差し迫る,to be imminent,Imminent,"危機が差し迫る。 — A crisis approaches.",さしせまる,sashisemaru,迫る (semaru),ja
+差し支える,to hinder,Hinder,"仕事に差し支える。 — Hinder work.",さしつかえる,sashitsukaeru,妨げる (samatageru),ja
+差し置く,to set aside,Set aside,"感情を差し置く。 — Set emotions aside.",さしおく,sashioku,脇に置く (wakini oku),ja
+差し替わる,to be replaced,Replace,"番組が差し替わる。 — Program is replaced.",さしかわる,sashikawaru,入れ替わる (irekawaru),ja
+差し伸ばす,to reach hand,Reach,"手を差し伸ばす。 — Reach out a hand.",さしのばす,sashinobasu,助ける (tasukeru),ja
+差し戻す,to send back,Return,"書類を差し戻す。 — Send documents back.",さしもどす,sashimodosu,戻す (modosu),ja
+差し引かれる,to be deducted,Deduct,"給料から差し引かれる。 — Deducted from salary.",さしひかれる,sashihikareru,控除される (koujo sareru),ja
+差し替えられる,to be swapped,Swap,"写真が差し替えられる。 — Photo is swapped.",さしかえられる,sashikaerareru,交換される (koukan sareru),ja
+流し去る,to wash away,Wash,"悲しみを流し去る。 — Wash sorrow away.",ながしさる,nagashisaru,流す (nagasu),ja
+流れ去る,to flow away,Flow,"水が流れ去る。 — Water flows away.",ながれさる,nagaresaru,消える (kieru),ja
+流れ着く,to drift ashore,Arrive,"船が流れ着く。 — A boat washes ashore.",ながれつく,nagaretsuku,漂着する (hyouchaku suru),ja
+流れ落ちる,to flow down,Flow,"涙が流れ落ちる。 — Tears flow down.",ながれおちる,nagareochiru,落ちる (ochiru),ja
+流れ回る,to circulate,Circulate,"血液が流れ回る。 — Blood circulates.",ながれまわる,nagaremawaru,巡る (meguru),ja
+流し戻す,to flush back,Return,"水を流し戻す。 — Flush water back.",ながしもどす,nagashimodosu,戻す (modosu),ja
+乗り合わせる,to ride together,Ride,"バスで乗り合わせる。 — Ride together on a bus.",のりあわせる,noriawaseru,同乗する (doujou suru),ja
+乗り移る,to possess,Possess,"気持ちが乗り移る。 — Be possessed by emotion.",のりうつる,noriutsuru,宿る (yadoru),ja
+乗り捨てる,to abandon vehicle,Abandon,"自転車を乗り捨てる。 — Abandon a bike.",のりすてる,norisuteru,放棄する (houki suru),ja
+乗り散らかす,to leave scattered,Scatter,"荷物を乗り散らかす。 — Leave luggage scattered.",のりちらかす,norichirakasu,散らかす (chirakasu),ja
+乗り広げる,to spread out,Spread,"布を乗り広げる。 — Spread cloth out.",のりひろげる,norihirogeru,広げる (hirogeru),ja
+乗り終える,to finish riding,Finish,"馬に乗り終える。 — Finish riding a horse.",のりおえる,norioeru,終える (oeru),ja
+乗り掛かる,to lean on,Lean,"肩に乗り掛かる。 — Lean on someone.",のりかかる,norikakaru,寄り掛かる (yorikakaru),ja
+乗り馴れる,to get used to riding,Adapt,"自転車に乗り馴れる。 — Get used to riding a bike.",のりなれる,norinareru,慣れる (nareru),ja
+乗り通す,to ride through,Ride,"終点まで乗り通す。 — Ride to the end.",のりとおす,noritoosu,乗り切る (norikiru),ja
+駆け寄る,to run up,Approach,"友達に駆け寄る。 — Run up to a friend.",かけよる,kakeyoru,走り寄る (hashiriyoru),ja
+駆け抜ける,to run through,Run,"道を駆け抜ける。 — Run through the road.",かけぬける,kakenukeru,走る (hashiru),ja
+駆け上がる,to run up,Run,"階段を駆け上がる。 — Run up stairs.",かけあがる,kakeagaru,登る (noboru),ja
+駆け下りる,to run down,Run,"坂を駆け下りる。 — Run downhill.",かけおりる,kakeoriru,降りる (oriru),ja
+駆け戻る,to run back,Return,"家に駆け戻る。 — Run back home.",かけもどる,kakemodoru,戻る (modoru),ja
+駆け集まる,to gather quickly,Gather,"人が駆け集まる。 — People gather quickly.",かけあつまる,kakeatsumaru,集まる (atsumaru),ja
+駆け去る,to run away,Run,"影が駆け去る。 — A shadow runs away.",かけさる,kakesaru,逃げる (nigeru),ja
+走り抜く,to run through fully,Run,"コースを走り抜く。 — Run the entire course.",はしりぬく,hashirinuku,走る (hashiru),ja
+走り寄せる,to rush toward,Rush,"子どもが走り寄せる。 — Kids rush toward you.",はしりよせる,hashiriyoseru,走り寄る (hashiriyoru),ja
+走り過ぎる,to run too much,Exceed,"走り過ぎて疲れる。 — Run too much and get tired.",はしりすぎる,hashirisugiru,走る (hashiru),ja
+走り続ける,to keep running,Continue,"ずっと走り続ける。 — Keep running endlessly.",はしりつづける,hashiritsuzukeru,走る (hashiru),ja
+跳び付く,to jump onto,Jump,"犬が跳び付く。 — The dog jumps on you.",とびつく,tobitsuku,飛び掛かる (tobikakaru),ja
+跳び走る,to run jumping,Bound,"うさぎが跳び走る。 — A rabbit bounds along.",とびはしる,tobihashiru,跳ねる (haneru),ja
+跳び渡る,to leap across,Leap,"石から石へ跳び渡る。 — Leap from stone to stone.",とびわたる,tobiwataru,跳ぶ (tobu),ja
+跳ね落とす,to knock down,Knock,"枝を跳ね落とす。 — Knock off branches.",はねおとす,haneotosu,落とす (otosu),ja
+跳ね散らかす,to splash around,Splash,"泥を跳ね散らかす。 — Splash mud everywhere.",はねちらかす,hanechirakasu,散らす (chirasu),ja
+跳ね飛び上がる,to spring up,Spring,"驚いて跳ね飛び上がる。 — Spring up in surprise.",はねとびあがる,hanetobiagaru,跳ぶ (tobu),ja
+抜け切る,to escape fully,Escape,"迷路を抜け切る。 — Fully escape the maze.",ぬけきる,nukekiru,抜ける (nukeru),ja
+抜け出せる,to be able to escape,Escape,"状況から抜け出せる。 — Be able to escape the situation.",ぬけだせる,nukedaseru,逃れる (nogareru),ja
+抜け落とす,to drop out,Drop,"ネジを抜け落とす。 — Drop a screw.",ぬけおとす,nukeotosu,落とす (otosu),ja
+抜き上げる,to pull up,Pull,"魚を抜き上げる。 — Pull up a fish.",ぬきあげる,nukiageru,引き上げる (hikiageru),ja
+抜き去る,to outstrip,Pass,"相手を抜き去る。 — Outstrip an opponent.",ぬきさる,nukisaru,追い越す (oikosu),ja
+抜き放つ,to draw (a sword),Draw,"刀を抜き放つ。 — Draw a sword.",ぬきはなつ,nukihanatsu,抜く (nuku),ja
+追い込まれる,to be cornered,Corner,"状況に追い込まれる。 — Be cornered by circumstances.",おいこまれる,oikomareru,追い詰められる (oitsumerareru),ja
+追い広げる,to expand outward,Expand,"勢力を追い広げる。 — Expand influence.",おいひろげる,oi hirogeru,広げる (hirogeru),ja
+追い散らす,to chase off,Drive,"鳥を追い散らす。 — Chase birds away.",おいちらす,oichirasu,追い払う (oiharau),ja
+追い落とす,to bring down,Down,"政敵を追い落とす。 — Bring down a rival.",おいおとす,oio.tosu,倒す (taosu),ja
+追い剥がす,to peel away,Peel,"ステッカーを追い剥がす。 — Peel off a sticker.",おいはがす,oihagasu,剥がす (hagasu),ja
+追い越される,to be overtaken,Pass,"車に追い越される。 — Be overtaken by a car.",おいこされる,oikosareru,抜かれる (nukareru),ja
+追い回す,to chase around,Chase,"犬が猫を追い回す。 — A dog chases a cat around.",おいまわす,oimawasu,追う (ou),ja
+追い回られる,to be chased,Chased,"猫が犬に追い回られる。 — A cat is chased by a dog.",おいまわられる,oimawareru,追われる (owareru),ja
+追い急ぐ,to hurry after,Hurry,"目的地へ追い急ぐ。 — Hurry toward the destination.",おいいそぐ,oiisogu,急ぐ (isogu),ja
+追い遣る,to send away,Send,"子供を追い遣る。 — Send away the child.",おいやる,oiyaru,追い出す (oidasu),ja
+くれる,to give (to me/us),Giving,"友達が本をくれる。 — A friend gives me a book.",くれる,kureru,恵む (megumu),ja
+持ってくる,to bring,Bring,"書類を持ってくる。 — Bring the documents.",もってくる,motte kuru,持参する (jisan suru),ja
+持っていく,to take (carry),Carry,"弁当を持っていく。 — Take a lunch box.",もっていく,motte iku,携帯する (keitai suru),ja
+連れていく,to take along,Accompany,"弟を公園に連れていく。 — Take my little brother to the park.",つれていく,tsurete iku,同行させる (doukou saseru),ja
+連れてくる,to bring along,Accompany,"友達を家に連れてくる。 — Bring a friend home.",つれてくる,tsurete kuru,同伴する (douhan suru),ja
+受け取る,to receive,Receiving,"荷物を受け取る。 — Receive a package.",うけとる,uketoru,受領する (juryou suru),ja
+返済する,to repay,Repayment,"借金を返済する。 — Repay a debt.",へんさいする,hensai suru,払い戻す (haraimodosu),ja
+使い切る,to use up,Completion,"ポイントを使い切る。 — Use up the points.",つかいきる,tsukaikiru,消費し尽くす (shouhi shitsukusu),ja
+しまう,to put away / finish,Put away,"本を棚にしまう。 — Put the book away on the shelf.",しまう,shimau,片付ける (katazukeru),ja
+片付く,to get tidied,Tidying,"部屋が片付く。 — The room gets tidied up.",かたづく,katazuku,整う (totonou),ja
+つける,to turn on / attach,Switch,"電気をつける。 — Turn on the light.",つける,tsukeru,点ける (tsukeru),ja
+つく,to arrive / be on,Arrival,"駅に着くとすぐ電話する。 — Call as soon as you arrive at the station.",つく,tsuku,到着する (touchaku suru),ja
+できる,to be able to,Ability,"一人でできる。 — I can do it alone.",できる,dekiru,可能だ (kanou da),ja
+なる,to become,Change,"寒くなる。 — It gets cold.",なる,naru,変化する (henka suru),ja
+やる,to do,Action,"宿題をやる。 — Do homework.",やる,yaru,する (suru),ja
+やめる,to quit / stop,Stop,"タバコをやめる。 — Quit smoking.",やめる,yameru,中止する (chuushi suru),ja
+生まれる,to be born,Birth,"彼は東京で生まれる。 — He is born in Tokyo.",うまれる,umareru,誕生する (tanjou suru),ja
+死ぬ,to die,Death,"魚が死ぬ。 — A fish dies.",しぬ,shinu,亡くなる (nakunaru),ja
+立ち止まる,to stop walking,Pause,"角で立ち止まる。 — Stop at the corner.",たちどまる,tachidomaru,止まる (tomaru),ja
+曲がる,to turn,Direction,"次の角を右に曲がる。 — Turn right at the next corner.",まがる,magaru,折れる (oreru),ja
+抑える,to hold down / suppress,Control,"声を抑える。 — Lower your voice.",おさえる,osaeru,制御する (seigyo suru),ja
+出かける,to go out,Outing,"週末に出かける。 — Go out on the weekend.",でかける,dekakeru,外出する (gaishutsu suru),ja
+帰宅する,to return home,Homecoming,"夜に帰宅する。 — Return home at night.",きたくする,kitaku suru,帰る (kaeru),ja
+降ろす,to unload / drop off,Transport,"荷物を降ろす。 — Unload luggage.",おろす,orosu,下ろす (orosu),ja
+乗せる,to put on / give a ride,Transport,"友達を車に乗せる。 — Give a friend a ride.",のせる,noseru,同乗させる (doujou saseru),ja
+着く,to arrive,Arrival,"駅に着く。 — Arrive at the station.",つく,tsuku,到着する (touchaku suru),ja
+出発する,to depart,Departure,"朝七時に出発する。 — Depart at 7 a.m.",しゅっぱつする,shuppatsu suru,出る (deru),ja
+到着する,to arrive,Arrival,"予定より早く到着する。 — Arrive earlier than planned.",とうちゃくする,touchaku suru,着く (tsuku),ja
+出会う,to encounter,Encounter,"偶然出会う。 — Meet by chance.",であう,deau,遭遇する (souguu suru),ja
+別れる,to part,Separation,"駅で別れる。 — Part at the station.",わかれる,wakareru,離別する (ribetsu suru),ja
+呼び出す,to call out,Call,"先生に呼び出される。 — Be called out by the teacher.",よびだす,yobidasu,召喚する (shoukan suru),ja
+呼びかける,to call to,Call,"みんなに呼びかける。 — Call out to everyone.",よびかける,yobikakeru,声をかける (koe wo kakeru),ja
+確かめる,to confirm,Check,"時間を確かめる。 — Check the time.",たしかめる,tashikameru,確認する (kakunin suru),ja
+見える,to be visible,Vision,"山が見える。 — The mountain is visible.",みえる,mieru,見えてくる (miete kuru),ja
+聞かせる,to let someone hear,Let hear,"音を聞かせる。 — Let someone hear the sound.",きかせる,kikaseru,聴かせる (kikaseru),ja
+教わる,to be taught,Learning,"先生に教わる。 — Be taught by a teacher.",おそわる,osowaru,習う (narau),ja
+伝わる,to be conveyed,Communication,"気持ちが伝わる。 — Feelings get across.",つたわる,tsutawaru,通じる (tsuujiru),ja
+買い物する,to shop,Shopping,"週末に買い物する。 — Go shopping on the weekend.",かいものする,kaimono suru,購入する (kounyuu suru),ja
+受注する,to receive an order,Business,"注文を受注する。 — Receive an order.",じゅちゅうする,juchuu suru,受ける (ukeru),ja
+間違える,to make a mistake,Mistake,"番号を間違える。 — Make a mistake with the number.",まちがえる,machigaeru,誤る (ayamaru),ja
+修理する,to repair,Repair,"自転車を修理する。 — Repair a bicycle.",しゅうりする,shuuri suru,直す (naosu),ja
+困る,to be troubled,Trouble,"お金がなくて困る。 — Be troubled by having no money.",こまる,komaru,悩む (nayamu),ja
+考慮する,to consider,Consideration,"提案を考慮する。 — Consider the proposal.",こうりょする,kouryo suru,検討する (kentou suru),ja
+検討する,to examine,Review,"計画を検討する。 — Examine the plan.",けんとうする,kentou suru,考える (kangaeru),ja
+任せる,to entrust,Entrust,"仕事を任せる。 — Entrust the task.",まかせる,makaseru,委ねる (yudaneru),ja
+承諾する,to consent,Consent,"条件を承諾する。 — Consent to the terms.",しょうだくする,shoudaku suru,受け入れる (ukeireru),ja
+禁止する,to prohibit,Prohibition,"喫煙を禁止する。 — Prohibit smoking.",きんしする,kinshi suru,禁じる (kinjiru),ja
+やり直す,to redo,Redo,"最初からやり直す。 — Redo from the start.",やりなおす,yarinaosu,再開する (saikai suru),ja
+挑戦する,to challenge,Challenge,"大会に挑戦する。 — Challenge a tournament.",ちょうせんする,chousen suru,試す (tamesu),ja
+叶う,to come true,Wish,"願いが叶う。 — A wish comes true.",かなう,kanau,実現する (jitsugen suru),ja
+叶える,to make come true,Wish,"夢を叶える。 — Make a dream come true.",かなえる,kanaeru,実現する (jitsugen suru),ja
+増加する,to increase,Increase,"利用者が増加する。 — Users increase.",ぞうかする,zouka suru,増える (fueru),ja
+減少する,to decrease,Decrease,"事故が減少する。 — Accidents decrease.",げんしょうする,genshou suru,減る (heru),ja
+維持する,to maintain,Maintenance,"品質を維持する。 — Maintain quality.",いじする,iji suru,保つ (tamotsu),ja
+更新する,to update,Update,"アプリを更新する。 — Update the app.",こうしんする,koushin suru,アップデートする (appudeeto suru),ja
+保存する,to save (data),Saving,"ファイルを保存する。 — Save the file.",ほぞんする,hozon suru,セーブする (seebu suru),ja
+削除する,to delete,Delete,"不要なデータを削除する。 — Delete unnecessary data.",さくじょする,sakujo suru,消す (kesu),ja
+追加する,to add,Add,"項目を追加する。 — Add an item.",ついかする,tsuika suru,加える (kuwaeru),ja
+変更する,to change,Change,"設定を変更する。 — Change the settings.",へんこうする,henkou suru,変える (kaeru),ja
+設定する,to set (configure),Setup,"目標を設定する。 — Set a goal.",せっていする,settei suru,決める (kimeru),ja
+ログインする,to log in,Access,"アカウントにログインする。 — Log in to the account.",ろぐいんする,roguin suru,入る (hairu),ja
+ログアウトする,to log out,Access,"作業後にログアウトする。 — Log out after work.",ろぐあうとする,roguauto suru,退出する (taishutsu suru),ja
+送信する,to send (data),Send,"メールを送信する。 — Send an email.",そうしんする,soushin suru,送る (okuru),ja
+受信する,to receive (data),Receive,"メールを受信する。 — Receive an email.",じゅしんする,jushin suru,受け取る (uketoru),ja
+印刷する,to print,Print,"資料を印刷する。 — Print the materials.",いんさつする,insatsu suru,プリントする (purinto suru),ja
+共有する,to share,Sharing,"情報を共有する。 — Share information.",きょうゆうする,kyouyuu suru,分け合う (wakeau),ja
+提案する,to propose,Proposal,"新案を提案する。 — Propose a new idea.",ていあんする,teian suru,勧める (susumeru),ja
+同意する,to agree,Agreement,"条件に同意する。 — Agree to the terms.",どういする,doui suru,賛成する (sansei suru),ja
+謝罪する,to apologize,Apology,"すぐ謝罪する。 — Apologize immediately.",しゃざいする,shazai suru,謝る (ayamaru),ja
+感謝する,to thank,Gratitude,"助けに感謝する。 — Thank for the help.",かんしゃする,kansha suru,礼を言う (rei wo iu),ja
+注意する,to warn / pay attention,Attention,"足元に注意する。 — Watch your step.",ちゅういする,chuui suru,気をつける (ki wo tsukeru),ja
+気づく,to notice,Notice,"ミスに気づく。 — Notice a mistake.",きづく,kizuku,察する (sassuru),ja
+信頼する,to trust,Trust,"仲間を信頼する。 — Trust teammates.",しんらいする,shinrai suru,信じる (shinjiru),ja
+約束する,to promise,Promise,"明日来ると約束する。 — Promise to come tomorrow.",やくそくする,yakusoku suru,誓う (chikau),ja
+誓う,to vow,Vow,"成功を誓う。 — Vow to succeed.",ちかう,chikau,約束する (yakusoku suru),ja
+期待する,to expect,Expectation,"成功を期待する。 — Expect success.",きたいする,kitai suru,望む (nozomu),ja
+安心する,to feel relieved,Relief,"結果を聞いて安心する。 — Feel relieved after hearing the result.",あんしんする,anshin suru,ほっとする (hotto suru),ja
+慌てる,to panic,Panic,"急に慌てる。 — Panic suddenly.",あわてる,awateru,焦る (aseru),ja
+焦る,to feel rushed,Haste,"時間がなくて焦る。 — Feel rushed without time.",あせる,aseru,慌てる (awateru),ja
+責める,to blame,Blame,"自分を責める。 — Blame yourself.",せめる,semeru,非難する (hinan suru),ja
+非難する,to criticize,Criticism,"行動を非難する。 — Criticize the action.",ひなんする,hinan suru,批判する (hihan suru),ja
+勘違いする,to misunderstand,Mistake,"時間を勘違いする。 — Misunderstand the time.",かんちがいする,kanchigai suru,誤解する (gokai suru),ja
+覚悟する,to be prepared,Resolve,"失敗を覚悟する。 — Be prepared for failure.",かくごする,kakugo suru,決意する (ketsui suru),ja
+諦める,to give up,Give up,"途中で諦める。 — Give up halfway.",あきらめる,akirameru,断念する (dannen suru),ja
+断念する,to abandon,Abandon,"計画を断念する。 — Abandon the plan.",だんねんする,dannen suru,諦める (akirameru),ja
+工夫する,to devise,Devise,"やり方を工夫する。 — Devise a method.",くふうする,kufuu suru,考える (kangaeru),ja
+用意する,to prepare,Preparation,"飲み物を用意する。 — Prepare drinks.",よういする,youi suru,準備する (junbi suru),ja
+整える,to arrange,Arrange,"服装を整える。 — Fix your outfit.",ととのえる,totonoeru,準備する (junbi suru),ja
+揃える,to align / prepare,Arrange,"道具を揃える。 — Gather the tools.",そろえる,soroeru,用意する (youi suru),ja
+収集する,to collect,Collect,"データを収集する。 — Collect data.",しゅうしゅうする,shuushuu suru,集める (atsumeru),ja
+配る,to distribute,Distribute,"資料を配る。 — Hand out materials.",くばる,kubaru,配布する (haifu suru),ja
+配布する,to distribute,Distribute,"チラシを配布する。 — Distribute flyers.",はいふする,haifu suru,配る (kubaru),ja
+比較する,to compare,Comparison,"結果を比較する。 — Compare results.",ひかくする,hikaku suru,比べる (kuraberu),ja
+測る,to measure,Measure,"距離を測る。 — Measure distance.",はかる,hakaru,計測する (keisoku suru),ja
+計測する,to measure,Measure,"速度を計測する。 — Measure speed.",けいそくする,keisoku suru,測る (hakaru),ja
+数が足りる,to be enough,Sufficiency,"人数が足りる。 — The number of people is enough.",かずがたりる,kazu ga tariru,十分だ (juubun da),ja
+足す,to add,Addition,"塩を足す。 — Add salt.",たす,tasu,加える (kuwaeru),ja
+削減する,to cut down,Reduction,"コストを削減する。 — Cut costs.",さくげんする,sakugen suru,減らす (herasu),ja
+延長する,to extend,Extension,"会議を延長する。 — Extend the meeting.",えんちょうする,enchou suru,伸ばす (nobasu),ja
+短縮する,to shorten,Shorten,"時間を短縮する。 — Shorten the time.",たんしゅくする,tanshuku suru,縮める (chijimeru),ja
+余る,to be left over,Leftover,"料理が余る。 — Food is left over.",あまる,amaru,残る (nokoru),ja
+埋める,to fill,Fill,"穴を埋める。 — Fill a hole.",うめる,umeru,満たす (mitasu),ja
+満たす,to fill / satisfy,Satisfy,"条件を満たす。 — Meet the conditions.",みたす,mitasu,充足する (juusoku suru),ja
+足りない,to be insufficient,Shortage,"時間が足りない。 — There isn’t enough time.",たりない,tarinai,不足する (fusoku suru),ja
+不足する,to lack,Shortage,"人手が不足する。 — There’s a labor shortage.",ふそくする,fusoku suru,足りない (tarinai),ja
+配達する,to deliver,Delivery,"新聞を配達する。 — Deliver newspapers.",はいたつする,haitatsu suru,届ける (todokeru),ja
+処分する,to dispose,Disposal,"古い家具を処分する。 — Dispose of old furniture.",しょぶんする,shobun suru,捨てる (suteru),ja
+貸し出す,to lend out,Lend,"本を貸し出す。 — Lend out books.",かしだす,kashidasu,貸す (kasu),ja
+請求する,to bill,Request,"料金を請求する。 — Bill the fee.",せいきゅうする,seikyuu suru,要求する (youkyuu suru),ja
+節約する,to save (money),Saving,"電気を節約する。 — Save electricity.",せつやくする,setsuyaku suru,切り詰める (kiritsumeru),ja
+節電する,to save electricity,Saving,"夜は節電する。 — Save electricity at night.",せつでんする,setsuden suru,節約する (setsuyaku suru),ja
+禁煙する,to stop smoking,Quit,"来月から禁煙する。 — Quit smoking from next month.",きんえんする,kin'en suru,やめる (yameru),ja
+乗り換える,to transfer (trains),Transfer,"渋谷で乗り換える。 — Transfer at Shibuya.",のりかえる,norikaeru,乗り継ぐ (noritsugu),ja
+迷子になる,to get lost,Lost,"子どもが迷子になる。 — A child gets lost.",まいごになる,maigo ni naru,道に迷う (michi ni mayou),ja
+道に迷う,to lose one’s way,Lost,"知らない町で道に迷う。 — Lose your way in an unfamiliar town.",みちにまよう,michi ni mayou,迷子になる (maigo ni naru),ja

@@ -7,6 +7,7 @@ import { supabase } from '../lib/supabase.js';
 const LANGUAGE_OPTIONS = [
   { value: 'nl', label: '🇳🇱 Dutch', flag: '🇳🇱' },
   { value: 'ja', label: '🇯🇵 Japanese', flag: '🇯🇵' },
+  { value: 'es', label: '🇪🇸 Spanish', flag: '🇪🇸' },
 ];
 const DIRECTION_MAP = {
   nl: [
@@ -19,11 +20,16 @@ const DIRECTION_MAP = {
     { value: 'en-ja', label: 'EN → JP' },
     { value: 'mix',   label: 'Mix' },
   ],
+  es: [
+    { value: 'es-en', label: 'ES → EN' },
+    { value: 'en-es', label: 'EN → ES' },
+    { value: 'mix',   label: 'Mix' },
+  ],
 };
 
 const FREEZE_PRICE = 50;
 
-export default function HomeScreen({ streak, todayDone, username, avatar, words, srsData, online, onStart, onHistory, onLogout, goalMinutes, onGoalChange, language, onLanguageChange, direction, onDirectionChange, onFriends, onWords, onEditAvatar, voice, onVoiceChange, showSynonyms, onSynonymsChange, discoverable, onDiscoverableChange, streakFreezes = 0, referralCode = '', email = '', coins = 0, onBuyFreeze, title = '' }) {
+export default function HomeScreen({ streak, todayDone, username, avatar, words, srsData, online, onStart, onHistory, onLogout, goalMinutes, onGoalChange, language, onLanguageChange, direction, onDirectionChange, onFriends, onWords, onEditAvatar, showSynonyms, onSynonymsChange, discoverable, onDiscoverableChange, streakFreezes = 0, referralCode = '', email = '', coins = 0, onBuyFreeze, title = '' }) {
   const [menuOpen, setMenuOpen]       = useState(false);
   const [menuClosing, setMenuClosing] = useState(false);
   const [showStatsCard, setShowStatsCard] = useState(false);
@@ -39,23 +45,8 @@ export default function HomeScreen({ streak, todayDone, username, avatar, words,
 
   return (
     <div className="text-center" style={{ position: 'relative' }}>
-      {/* Coin indicator + info button — top left */}
+      {/* Info button + coin indicator (with username) — top left */}
       <div style={{ position: 'absolute', top: 0, left: 0, display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 6 }}>
-        <button
-          onClick={() => setShowCoinInfo(true)}
-          style={{
-            display: 'flex', alignItems: 'center', gap: 4,
-            background: 'var(--surface)',
-            border: '2px solid var(--border)',
-            borderRadius: 'var(--radius-sm)',
-            padding: '6px 10px',
-            cursor: 'pointer',
-            fontFamily: 'var(--font-sans)',
-          }}
-        >
-          <img src="/avatar/vocacoin.png" alt="" style={{ width: 20, height: 20 }} />
-          <span style={{ fontWeight: 700, fontSize: 14, color: 'var(--amber)' }}>{coins}</span>
-        </button>
         <button
           onClick={() => setShowHowItWorks(true)}
           style={{
@@ -72,6 +63,28 @@ export default function HomeScreen({ streak, todayDone, username, avatar, words,
           }}
         >
           i
+        </button>
+        <button
+          onClick={() => setShowCoinInfo(true)}
+          style={{
+            display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 2,
+            background: 'var(--surface)',
+            border: '2px solid var(--border)',
+            borderRadius: 'var(--radius-sm)',
+            padding: '6px 10px',
+            cursor: 'pointer',
+            fontFamily: 'var(--font-sans)',
+          }}
+        >
+          {username && (
+            <span style={{ fontWeight: 700, fontSize: 11, color: 'var(--muted)', letterSpacing: '0.08em' }}>
+              {username.toUpperCase()}
+            </span>
+          )}
+          <div style={{ display: 'flex', alignItems: 'center', gap: 4 }}>
+            <img src="/avatar/vocacoin.png" alt="" style={{ width: 20, height: 20 }} />
+            <span style={{ fontWeight: 700, fontSize: 14, color: 'var(--amber)' }}>{coins}</span>
+          </div>
         </button>
       </div>
 
@@ -217,25 +230,6 @@ export default function HomeScreen({ streak, todayDone, username, avatar, words,
           </div>
         </div>
 
-        {/* Voice */}
-        <div style={{ marginBottom: '1.25rem' }}>
-          <p style={{ fontSize: 14, color: 'var(--hint)', textTransform: 'uppercase', letterSpacing: '0.1em', marginBottom: '0.5rem' }}>
-            Voice
-          </p>
-          <div style={{ display: 'flex', gap: '0.4rem' }}>
-            {['male', 'female'].map(v => (
-              <button
-                key={v}
-                className={`goal-pill${voice === v ? ' active' : ''}`}
-                onClick={() => onVoiceChange(v)}
-                style={{ flex: 1, textTransform: 'capitalize' }}
-              >
-                {v}
-              </button>
-            ))}
-          </div>
-        </div>
-
         {/* Synonyms */}
         <div style={{ marginBottom: '1.25rem' }}>
           <p style={{ fontSize: 14, color: 'var(--hint)', textTransform: 'uppercase', letterSpacing: '0.1em', marginBottom: '0.5rem' }}>
@@ -376,12 +370,8 @@ export default function HomeScreen({ streak, todayDone, username, avatar, words,
         }}>
           Vocardably
         </h1>
-        {username ? (<>
-          <p className="text-muted">Welcome back, <strong style={{ color: 'var(--text)' }}>{username}</strong>!</p>
-          {title && <p style={{ fontSize: 14, color: 'var(--amber)', fontWeight: 800, marginTop: 2 }}>{title}</p>}
-        </>) : (
-          <p className="text-muted">Learn 3,000 words. Understand everything.</p>
-        )}
+        {title && <p style={{ fontSize: 14, color: 'var(--amber)', fontWeight: 800, marginTop: 2 }}>{title}</p>}
+        {!title && <p className="text-muted">Learn 3,000 words. Understand everything.</p>}
       </div>
 
       {/* Offline indicator */}
@@ -407,17 +397,18 @@ export default function HomeScreen({ streak, todayDone, username, avatar, words,
               </p>
             </div>
             <div className="stat-card">
-              <p className="label"><span style={{ fontSize: 15 }}>🎓</span> Mastered</p>
+              <p className="label">In Progress</p>
+              <p className="number" style={{ color: 'var(--amber)' }}>
+                📚 {inProgress}
+              </p>
+            </div>
+            <div className="stat-card">
+              <p className="label">Mastered</p>
               <p className="number" style={{ color: 'var(--success-fg)' }}>
-                {mastered}
+                🎓 {mastered}
               </p>
             </div>
           </div>
-          {inProgress > 0 && (
-            <p style={{ fontSize: 12, color: 'var(--hint)', marginBottom: '1.25rem', marginTop: '-0.5rem' }}>
-              {inProgress} words in progress
-            </p>
-          )}
         </>);
       })()}
 

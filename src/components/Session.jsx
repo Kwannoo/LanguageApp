@@ -9,13 +9,14 @@ function timerColor() {
 
 /** Resolve a random direction for "mix" mode based on language */
 function randomDir(language) {
-  const pair = language === 'ja' ? ['ja-en', 'en-ja'] : ['nl-en', 'en-nl'];
-  return pair[Math.random() < 0.5 ? 0 : 1];
+  if (language === 'ja') return ['ja-en', 'en-ja'][Math.random() < 0.5 ? 0 : 1];
+  if (language === 'es') return ['es-en', 'en-es'][Math.random() < 0.5 ? 0 : 1];
+  return ['nl-en', 'en-nl'][Math.random() < 0.5 ? 0 : 1];
 }
 
 /** Is the direction "target language → EN"? */
 function isForward(dir) {
-  return dir === 'nl-en' || dir === 'ja-en';
+  return dir === 'nl-en' || dir === 'ja-en' || dir === 'es-en';
 }
 
 /**
@@ -30,7 +31,7 @@ function getAccepted(word, dir) {
     return [...raw, ...extra];
   }
   // User types the target language
-  const answers = word.nl.split('/').map(a => a.trim().toLowerCase());
+  const answers = word.word.split('/').map(a => a.trim().toLowerCase());
   // For Japanese, also accept reading and romaji
   if (word.reading) answers.push(word.reading.toLowerCase());
   if (word.romaji)  answers.push(word.romaji.toLowerCase());
@@ -41,6 +42,7 @@ export default function Session({ onComplete, goalMinutes = 5, words: wordList =
   const SESSION_SECONDS = goalMinutes * 60;
   const [srsData, setSrsData]     = useState(loadSRS);
   const [words, setWords]         = useState(() => sortByPriority(wordList, loadSRS()));
+  const prevMasteredRef           = useRef(computeProgress(wordList, loadSRS()).mastered);
   const [idx, setIdx]             = useState(0);
   const [input, setInput]         = useState('');
   const [flipped, setFlipped]     = useState(false);
@@ -134,9 +136,8 @@ export default function Session({ onComplete, goalMinutes = 5, words: wordList =
           clearInterval(timerIdRef.current);
           setTimeout(() => {
             const srs = srsDataRef.current;
-            const mastered = Object.values(srs).filter(e => (e.streak ?? 0) >= 5).length;
-            const { inProgress } = computeProgress(words, srs);
-            onComplete({ ...scoreRef.current, sessionWords: sessionWordsRef.current, completed: true, newLearned: newLearnedRef.current.size, mastered, inProgress });
+            const { mastered, inProgress } = computeProgress(words, srs);
+            onComplete({ ...scoreRef.current, sessionWords: sessionWordsRef.current, completed: true, newLearned: newLearnedRef.current.size, mastered, inProgress, prevMastered: prevMasteredRef.current });
           }, 0);
           return 0;
         }
@@ -166,7 +167,7 @@ export default function Session({ onComplete, goalMinutes = 5, words: wordList =
       setIsCorrect(false);
       setScore(s => { const next = { correct: s.correct, total: s.total + 1 }; scoreRef.current = next; return next; });
       sessionWordsRef.current.push({ word: words[idx], correct: false, direction: cardDir, userAnswer: '(skipped)' });
-      const skippedSRS = updateSRS(srsData, words[idx].nl, false);
+      const skippedSRS = updateSRS(srsData, words[idx].word, false);
       setSrsData(skippedSRS);
       saveSRS(skippedSRS);
       setFlipped(true);
@@ -185,8 +186,8 @@ export default function Session({ onComplete, goalMinutes = 5, words: wordList =
     });
 
     // Track new words learned (first time seen + correct)
-    if (correct && !srsData[words[idx].nl]) {
-      newLearnedRef.current.add(words[idx].nl);
+    if (correct && !srsData[words[idx].word]) {
+      newLearnedRef.current.add(words[idx].word);
     }
 
     // Track this word for review
@@ -197,7 +198,7 @@ export default function Session({ onComplete, goalMinutes = 5, words: wordList =
       userAnswer: typed
     });
 
-    const updated = updateSRS(srsData, words[idx].nl, correct);
+    const updated = updateSRS(srsData, words[idx].word, correct);
     setSrsData(updated);
     saveSRS(updated);
 
@@ -218,7 +219,7 @@ export default function Session({ onComplete, goalMinutes = 5, words: wordList =
       direction: cardDir,
       userAnswer: '(skipped)',
     });
-    const updated = updateSRS(srsData, words[idx].nl, false);
+    const updated = updateSRS(srsData, words[idx].word, false);
     setSrsData(updated);
     saveSRS(updated);
     setFlipped(true);
@@ -246,7 +247,9 @@ export default function Session({ onComplete, goalMinutes = 5, words: wordList =
     ? 'Type the English word…'
     : language === 'ja'
       ? 'Type in romaji or Japanese…'
-      : 'Type the Dutch word…';
+      : language === 'es'
+        ? 'Type the Spanish word…'
+        : 'Type the Dutch word…';
 
   return (
     <div style={{ position: 'relative' }}>
@@ -363,17 +366,16 @@ export default function Session({ onComplete, goalMinutes = 5, words: wordList =
             You won't earn any coins for this session. Only completing the full session rewards you with coins!
           </p>
           <div style={{ display: 'flex', gap: '0.5rem' }}>
-            <button className="btn-ghost" onClick={() => setShowQuitConfirm(false)} style={{ flex: 1 }}>
+            <button className="btn-ghost" onClick={() => setShowQuitConfirm(false)} style={{ flex: 1, fontSize: 15 }}>
               Keep going
             </button>
             <button
               className="btn-primary"
-              style={{ flex: 1, background: 'var(--danger-fg)' }}
+              style={{ flex: 1, background: 'var(--danger-fg)', fontSize: 15 }}
               onClick={() => {
                 const srs = srsDataRef.current;
-                const mastered = Object.values(srs).filter(e => (e.streak ?? 0) >= 5).length;
-                const { inProgress } = computeProgress(words, srs);
-                onComplete({ ...score, sessionWords: sessionWordsRef.current, completed: false, newLearned: newLearnedRef.current.size, mastered, inProgress });
+                const { mastered, inProgress } = computeProgress(words, srs);
+                onComplete({ ...score, sessionWords: sessionWordsRef.current, completed: false, newLearned: newLearnedRef.current.size, mastered, inProgress, prevMastered: prevMasteredRef.current });
               }}
             >
               End session

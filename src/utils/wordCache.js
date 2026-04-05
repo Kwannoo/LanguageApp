@@ -1,5 +1,5 @@
-const KEY_PREFIX = 'taalkaarten_words_v1_';
-const TTL_MS    = 7 * 24 * 60 * 60 * 1000; // 7 days
+const KEY_PREFIX = 'taalkaarten_words_v3_';
+const TTL_MS    = 24 * 60 * 60 * 1000; // 24 hours
 
 export function getCachedWords(language = 'nl') {
   try {

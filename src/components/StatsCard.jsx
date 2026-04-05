@@ -8,8 +8,8 @@ export default function StatsCard({ username, streak, words, srsData, language, 
   const canvasRef = useRef(null);
   const [ready, setReady] = useState(false);
 
-  const { mastered, total } = computeProgress(words, srsData);
-  const langLabel = language === 'ja' ? 'Japanese' : 'Dutch';
+  const { mastered, inProgress, total } = computeProgress(words, srsData);
+  const langLabel = language === 'ja' ? 'Japanese' : language === 'es' ? 'Spanish' : 'Dutch';
 
   useEffect(() => {
     const canvas = canvasRef.current;
@@ -51,9 +51,9 @@ export default function StatsCard({ username, streak, words, srsData, language, 
 
     // Stats
     const stats = [
-      { label: 'Streak', value: `🔥 ${streak} days` },
-      { label: `${langLabel} words mastered`, value: `🎓 ${mastered} / ${total}` },
-      { label: 'Progress', value: `${total > 0 ? Math.round((mastered / total) * 100) : 0}%` },
+      { label: 'Streak', value: `🔥 ${streak}` },
+      { label: 'In Progress', value: `📚 ${inProgress}` },
+      { label: 'Mastered', value: `🎓 ${mastered}` },
     ];
 
     stats.forEach((s, i) => {
@@ -81,7 +81,7 @@ export default function StatsCard({ username, streak, words, srsData, language, 
     // Tagline
     ctx.fillStyle = '#3A6080';
     ctx.font = '14px system-ui, sans-serif';
-    ctx.fillText('Learn 3,000 words. Understand everything.', 36, 285);
+    ctx.fillText('A little every day goes a long way. - Vocardably', 36, 285);
 
     // URL
     ctx.fillStyle = '#1CB0F6';
@@ -89,7 +89,7 @@ export default function StatsCard({ username, streak, words, srsData, language, 
     ctx.fillText(window.location.origin, 36, 315);
 
     setReady(true);
-  }, [username, streak, mastered, total, langLabel]);
+  }, [username, streak, mastered, inProgress, total, langLabel]);
 
   const handleShare = async () => {
     const canvas = canvasRef.current;

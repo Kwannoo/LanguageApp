@@ -1,7 +1,7 @@
 function speak(text, lang, voicePref) {
   window.speechSynthesis.cancel();
   const utt = new SpeechSynthesisUtterance(text);
-  const langTag = lang === 'ja' ? 'ja-JP' : 'nl-NL';
+  const langTag = lang === 'ja' ? 'ja-JP' : lang === 'es' ? 'es-ES' : 'nl-NL';
   utt.lang = langTag;
   utt.rate = 0.7;
 
@@ -21,22 +21,24 @@ function speak(text, lang, voicePref) {
 }
 
 export default function FlashCard({ word, flipped, isCorrect, instant, direction = 'nl-en', language = 'nl', voice = 'male', showSynonyms = false }) {
-  const isForward = direction === 'nl-en' || direction === 'ja-en';
+  const isForward = direction === 'nl-en' || direction === 'ja-en' || direction === 'es-en';
   const langNames = language === 'ja'
     ? { target: 'Japanese', base: 'English' }
-    : { target: 'Dutch', base: 'English' };
+    : language === 'es'
+      ? { target: 'Spanish', base: 'English' }
+      : { target: 'Dutch', base: 'English' };
 
   const promptLang  = isForward ? langNames.target : langNames.base;
   const answerLang  = isForward ? langNames.base   : langNames.target;
-  const promptWord  = isForward ? word.nl          : word.en;
-  const answerWord  = isForward ? word.en          : word.nl;
+  const promptWord  = isForward ? word.word        : word.en;
+  const answerWord  = isForward ? word.en          : word.word;
 
   const showReading = language === 'ja' && word.reading;
 
   const speakBtn = (
     <button
       className="speak-btn"
-      onClick={e => { e.stopPropagation(); speak(word.nl, language, voice); }}
+      onClick={e => { e.stopPropagation(); speak(word.word, language, voice); }}
       title="Listen"
     >
       🔊

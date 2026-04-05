@@ -78,7 +78,7 @@ export function sortByPriority(words, srsData) {
   const notDue = [];
 
   for (const w of words) {
-    const entry = srsData[w.nl];
+    const entry = srsData[w.word];
     if (!entry || entry.nextDue <= today) due.push(w);
     else notDue.push(w);
   }
@@ -92,7 +92,7 @@ export function computeProgress(words, srsData) {
   let mastered = 0;
   let inProgress = 0;
   for (const w of words) {
-    const entry = srsData[w.nl];
+    const entry = srsData[w.word];
     if (!entry) continue;
     if ((entry.streak ?? 0) >= MASTERED_STREAK) mastered++;
     else inProgress++;

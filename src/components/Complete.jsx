@@ -24,24 +24,24 @@ export default function Complete({ score, language = 'nl', onHome, onRetry }) {
 
   function getPrompt(item) {
     const { word, direction } = item;
-    if (direction === 'ja-en') return `${word.nl || word.reading} (${word.romaji})`;
+    if (direction === 'ja-en') return `${word.word || word.reading} (${word.romaji})`;
     if (direction === 'en-ja') return word.en;
-    if (direction === 'en-nl') return word.en;
-    return word.nl;
+    if (direction === 'en-nl' || direction === 'en-es') return word.en;
+    return word.word;
   }
 
   function getCorrectAnswer(item) {
     const { word, direction } = item;
-    if (direction === 'nl-en' || direction === 'ja-en') return word.en;
-    if (direction === 'en-ja') return `${word.nl || word.reading} (${word.romaji})`;
-    return word.nl;
+    if (direction === 'nl-en' || direction === 'ja-en' || direction === 'es-en') return word.en;
+    if (direction === 'en-ja') return `${word.word || word.reading} (${word.romaji})`;
+    return word.word;
   }
 
   // Group attempts by word+direction so repeated attempts on the same word are merged
   const groupedWords = (() => {
     const map = new Map();
     for (const item of sessionWords) {
-      const key = `${item.direction}:${item.word.romaji || item.word.nl}`;
+      const key = `${item.direction}:${item.word.romaji || item.word.word}`;
       if (!map.has(key)) {
         map.set(key, { item, wrongAnswers: [], allCorrect: true });
       }
@@ -94,27 +94,40 @@ export default function Complete({ score, language = 'nl', onHome, onRetry }) {
       {tab === 'summary' && (
         <>
           {/* Result stats */}
-          <div className="stats-row">
-            <div className="stat-card">
-              <p className="label">Correct</p>
-              <p className="number" style={{ color: 'var(--success-fg)' }}>{score.correct}</p>
-            </div>
-            <div className="stat-card">
-              <p className="label"><span style={{ fontSize: 15 }}>📚</span> Learning</p>
-              <p className="number">
-                {score.inProgress ?? 0}
-                {(score.newLearned ?? 0) > 0 && (
-                  <span style={{ fontSize: '0.7em', color: 'var(--success-fg)', marginLeft: 4 }}>
-                    (+{score.newLearned})
-                  </span>
-                )}
-              </p>
-            </div>
-            <div className="stat-card">
-              <p className="label"><span style={{ fontSize: 15 }}>🎓</span> Mastered</p>
-              <p className="number" style={{ color: 'var(--success-fg)' }}>{score.mastered ?? 0}</p>
-            </div>
-          </div>
+          {(() => {
+            const masteredDelta = (score.mastered ?? 0) - (score.prevMastered ?? 0);
+            const newLearned = score.newLearned ?? 0;
+            return (
+              <div className="stats-row">
+                <div className="stat-card">
+                  <p className="label">Correct</p>
+                  <p className="number" style={{ color: 'var(--success-fg)' }}>{score.correct}</p>
+                </div>
+                <div className="stat-card">
+                  <p className="label">📚 Learning</p>
+                  <p className="number">
+                    {score.inProgress ?? 0}
+                    {newLearned > 0 && (
+                      <span style={{ fontSize: '0.7em', color: 'var(--success-fg)', marginLeft: 4 }}>
+                        +{newLearned}
+                      </span>
+                    )}
+                  </p>
+                </div>
+                <div className="stat-card">
+                  <p className="label">🎓 Mastered</p>
+                  <p className="number" style={{ color: 'var(--success-fg)' }}>
+                    {score.mastered ?? 0}
+                    {masteredDelta !== 0 && (
+                      <span style={{ fontSize: '0.7em', color: masteredDelta > 0 ? 'var(--success-fg)' : 'var(--danger-fg)', marginLeft: 4 }}>
+                        {masteredDelta > 0 ? `+${masteredDelta}` : masteredDelta}
+                      </span>
+                    )}
+                  </p>
+                </div>
+              </div>
+            );
+          })()}
 
           {/* Coins earned */}
           <div style={{

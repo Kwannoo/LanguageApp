@@ -1,17 +1,18 @@
 /**
- * Seed the Supabase `words` table from words.js (Dutch) and/or wordsJa.js (Japanese).
+ * Seed the Supabase `words` table from CSV files.
  *
  * Usage:
- *   node src/utils/import_words.mjs           # import both
+ *   node src/utils/import_words.mjs           # import all three
  *   node src/utils/import_words.mjs nl        # Dutch only
  *   node src/utils/import_words.mjs ja        # Japanese only
+ *   node src/utils/import_words.mjs es        # Spanish only
  *
  * Requires SUPABASE_SERVICE_ROLE_KEY in .env.local.
  */
 import { createClient } from '@supabase/supabase-js';
 import { readFileSync }  from 'fs';
 
-const lang = process.argv[2]; // 'nl', 'ja', or undefined (both)
+const lang = process.argv[2]; // 'nl', 'ja', 'es', or undefined (all)
 
 const env = Object.fromEntries(
   readFileSync('.env.local', 'utf8')
@@ -22,51 +23,40 @@ const env = Object.fromEntries(
 
 const supabase = createClient(env.VITE_SUPABASE_URL, env.SUPABASE_SERVICE_ROLE_KEY);
 
-async function importDutch() {
-  const { WORDS } = await import('../../src/data/words.js');
-  const rawRows = WORDS.map(w => ({
-    nl:       w.nl.replace(/^\d+\s+/, ''),
-    en:       w.en,
-    meaning:  w.meaning ?? null,
-    sentence: w.example ? w.example.replace(/\*\*/g, '') : null,
-    synonyms: w.synonyms ?? null,
-    language: 'nl',
-  }));
-
-  const seen = new Map();
-  for (const row of rawRows) seen.set(row.nl, row);
-  const rows = [...seen.values()];
-
-  console.log(`[NL] ${WORDS.length} entries → ${rows.length} unique words`);
-
-  const { error } = await supabase.from('words').upsert(rows, { onConflict: 'nl,language' });
-  if (error) { console.error('[NL] Import failed:', error.message); process.exit(1); }
-  console.log(`[NL] Imported ${rows.length} words.`);
+function parseCsv(filePath) {
+  const lines = readFileSync(filePath, 'utf-8').trim().split('\n');
+  const headers = lines[0].split(',').map(h => h.trim());
+  return lines.slice(1).filter(l => l.trim()).map(line => {
+    const parts = line.split(',');
+    return Object.fromEntries(headers.map((h, i) => [h, (parts[i] ?? '').trim()]));
+  });
 }
 
-async function importJapanese() {
-  const { WORDS_JA } = await import('../../src/data/wordsJa.js');
-  const rawRows = WORDS_JA.map(w => ({
-    nl:       w.word,
-    en:       w.en,
-    meaning:  w.meaning ?? null,
-    sentence: w.sentence ?? null,
-    reading:  w.reading ?? null,
-    romaji:   w.romaji ?? null,
-    synonyms: w.synonyms ?? null,
-    language: 'ja',
-  }));
-
+async function importCsv(filePath, langCode) {
+  const raw = parseCsv(filePath);
   const seen = new Map();
-  for (const row of rawRows) seen.set(row.nl, row);
+  for (const r of raw) {
+    const key = r.word || r.nl;
+    if (!key) continue;
+    seen.set(key, {
+      word:       key,
+      en:       r.en || null,
+      meaning:  r.meaning || null,
+      sentence: r.sentence || null,
+      reading:  r.reading || null,
+      romaji:   r.romaji || null,
+      synonyms: r.synonyms || null,
+      language: langCode,
+    });
+  }
   const rows = [...seen.values()];
+  console.log(`[${langCode.toUpperCase()}] ${raw.length} entries → ${rows.length} unique words`);
 
-  console.log(`[JA] ${WORDS_JA.length} entries → ${rows.length} unique words`);
-
-  const { error } = await supabase.from('words').upsert(rows, { onConflict: 'nl,language' });
-  if (error) { console.error('[JA] Import failed:', error.message); process.exit(1); }
-  console.log(`[JA] Imported ${rows.length} words.`);
+  const { error } = await supabase.from('words').upsert(rows, { onConflict: 'word,language' });
+  if (error) { console.error(`[${langCode.toUpperCase()}] Import failed:`, error.message); process.exit(1); }
+  console.log(`[${langCode.toUpperCase()}] Imported ${rows.length} words.`);
 }
 
-if (!lang || lang === 'nl') await importDutch();
-if (!lang || lang === 'ja') await importJapanese();
+if (!lang || lang === 'nl') await importCsv('src/data/words_nl.csv', 'nl');
+if (!lang || lang === 'ja') await importCsv('src/data/words_ja.csv', 'ja');
+if (!lang || lang === 'es') await importCsv('src/data/words_es.csv', 'es');
