@@ -62,6 +62,14 @@ export default function App() {
   const [showSynonyms, setShowSynonyms] = useState(
     () => localStorage.getItem('taalkaarten_synonyms') === 'true'
   );
+  const [theme, setTheme] = useState(
+    () => localStorage.getItem('taalkaarten_theme') ?? 'system'
+  );
+
+  useEffect(() => {
+    if (theme === 'system') document.documentElement.removeAttribute('data-theme');
+    else document.documentElement.setAttribute('data-theme', theme);
+  }, [theme]);
 
   const handleVoiceChange = (v) => {
     setVoice(v);
@@ -71,6 +79,11 @@ export default function App() {
   const handleSynonymsChange = (val) => {
     setShowSynonyms(val);
     localStorage.setItem('taalkaarten_synonyms', val);
+  };
+
+  const handleThemeChange = (val) => {
+    setTheme(val);
+    localStorage.setItem('taalkaarten_theme', val);
   };
 
   const [discoverable, setDiscoverable]     = useState(true);
@@ -363,6 +376,8 @@ export default function App() {
           onVoiceChange={handleVoiceChange}
           showSynonyms={showSynonyms}
           onSynonymsChange={handleSynonymsChange}
+          theme={theme}
+          onThemeChange={handleThemeChange}
           discoverable={discoverable}
           onDiscoverableChange={handleDiscoverableChange}
           streakFreezes={streakFreezes}
@@ -375,7 +390,7 @@ export default function App() {
       )}
 
       {screen === 'session' && (
-        <Session onComplete={handleSessionComplete} goalMinutes={goalMinutes} words={words} direction={direction} language={language} voice={voice} showSynonyms={showSynonyms} />
+        <Session onComplete={handleSessionComplete} goalMinutes={goalMinutes} words={words} direction={direction} language={language} voice={voice} showSynonyms={showSynonyms} theme={theme} />
       )}
 
       {screen === 'complete' && (

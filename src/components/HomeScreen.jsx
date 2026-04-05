@@ -29,7 +29,7 @@ const DIRECTION_MAP = {
 
 const FREEZE_PRICE = 50;
 
-export default function HomeScreen({ streak, todayDone, username, avatar, words, srsData, online, onStart, onHistory, onLogout, goalMinutes, onGoalChange, language, onLanguageChange, direction, onDirectionChange, onFriends, onWords, onEditAvatar, showSynonyms, onSynonymsChange, discoverable, onDiscoverableChange, streakFreezes = 0, referralCode = '', email = '', coins = 0, onBuyFreeze, title = '' }) {
+export default function HomeScreen({ streak, todayDone, username, avatar, words, srsData, online, onStart, onHistory, onLogout, goalMinutes, onGoalChange, language, onLanguageChange, direction, onDirectionChange, onFriends, onWords, onEditAvatar, showSynonyms, onSynonymsChange, discoverable, onDiscoverableChange, streakFreezes = 0, referralCode = '', email = '', coins = 0, onBuyFreeze, title = '', theme = 'system', onThemeChange }) {
   const [menuOpen, setMenuOpen]       = useState(false);
   const [menuClosing, setMenuClosing] = useState(false);
   const [showStatsCard, setShowStatsCard] = useState(false);
@@ -221,7 +221,7 @@ export default function HomeScreen({ streak, todayDone, username, avatar, words,
               min={1} max={15} step={1}
               value={goalMinutes}
               onChange={e => onGoalChange(parseInt(e.target.value, 10))}
-              style={{ width: '100%', accentColor: 'var(--amber)' }}
+              style={{ width: '100%' }}
             />
             <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: 14, color: 'var(--hint)' }}>
               <span>1 min</span>
@@ -250,6 +250,25 @@ export default function HomeScreen({ streak, todayDone, username, avatar, words,
           <p style={{ fontSize: 12, color: 'var(--hint)', marginTop: 6 }}>
             Show extra synonyms on the card back
           </p>
+        </div>
+
+        {/* Theme */}
+        <div style={{ marginBottom: '1.25rem' }}>
+          <p style={{ fontSize: 14, color: 'var(--hint)', textTransform: 'uppercase', letterSpacing: '0.1em', marginBottom: '0.5rem' }}>
+            Theme
+          </p>
+          <div style={{ display: 'flex', gap: '0.4rem' }}>
+            {[{ value: 'system', label: 'Auto' }, { value: 'light', label: '☀️ Light' }, { value: 'dark', label: '🌙 Dark' }].map(t => (
+              <button
+                key={t.value}
+                className={`goal-pill${theme === t.value ? ' active' : ''}`}
+                onClick={() => onThemeChange(t.value)}
+                style={{ flex: 1 }}
+              >
+                {t.label}
+              </button>
+            ))}
+          </div>
         </div>
 
         {/* Privacy */}
@@ -360,7 +379,7 @@ export default function HomeScreen({ streak, todayDone, username, avatar, words,
 
       {/* Logo + App title */}
       <div style={{ marginBottom: '1.5rem' }}>
-        <img src="/transparent-white-logo.png" alt="Vocardably" style={{ width: 220, marginBottom: 8 }} />
+        <img src={theme === 'light' || (theme === 'system' && !window.matchMedia('(prefers-color-scheme: dark)').matches) ? '/transparent-black-logo.png' : '/transparent-white-logo.png'} alt="Vocardably" style={{ width: 220, marginBottom: 8 }} />
         <h1 style={{
           fontFamily: 'var(--font-serif)',
           fontSize: '2.25rem',

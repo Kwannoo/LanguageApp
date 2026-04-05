@@ -38,7 +38,7 @@ function getAccepted(word, dir) {
   return answers;
 }
 
-export default function Session({ onComplete, goalMinutes = 5, words: wordList = [], direction = 'nl-en', language = 'nl', voice = 'male', showSynonyms = false }) {
+export default function Session({ onComplete, goalMinutes = 5, words: wordList = [], direction = 'nl-en', language = 'nl', voice = 'male', showSynonyms = false, theme = 'system' }) {
   const SESSION_SECONDS = goalMinutes * 60;
   const [srsData, setSrsData]     = useState(loadSRS);
   const [words, setWords]         = useState(() => sortByPriority(wordList, loadSRS()));
@@ -274,7 +274,7 @@ export default function Session({ onComplete, goalMinutes = 5, words: wordList =
       {/* Logo + encouragement — hidden when keyboard is open */}
       {!keyboardOpen && (
         <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', marginBottom: '0.25rem', paddingRight: 40 }}>
-          <img src="/transparent-white-logo.png" alt="Vocardably" style={{ width: 48 }} />
+          <img src={theme === 'light' || (theme === 'system' && !window.matchMedia('(prefers-color-scheme: dark)').matches) ? '/transparent-black-logo.png' : '/transparent-white-logo.png'} alt="Vocardably" style={{ width: 48 }} />
           <p style={{ margin: 0, fontSize: 16, color: 'var(--hint)', fontStyle: 'italic', lineHeight: 1.4 }}>
             Every word brings you closer to fluency!
           </p>

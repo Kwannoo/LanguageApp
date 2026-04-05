@@ -28,23 +28,103 @@
   --radius-lg: 24px;
 }
 
-/* Dark mode */
+/* Dark mode variables */
+.dark-vars {
+  --bg:         #0D1B2A;
+  --surface:    #1A2D3E;
+  --border:     #2A4A6A;
+  --text:       #E8F4FF;
+  --muted:      #7AA8C8;
+  --hint:       #3A6080;
+  --amber:      #1CB0F6;
+  --amber-light:#0D3550;
+  --amber-dark: #7DD8FC;
+  --success-bg: #14532D;
+  --success-fg: #86EFAC;
+  --danger-bg:  #4C0519;
+  --danger-fg:  #FCA5A5;
+}
+
+/* Follow OS preference by default */
 @media (prefers-color-scheme: dark) {
-  :root {
-    --bg:       #0D1B2A;
-    --surface:  #1A2D3E;
-    --border:   #2A4A6A;
-    --text:     #E8F4FF;
-    --muted:    #7AA8C8;
-    --hint:     #3A6080;
-    --amber:          #1CB0F6;
-    --amber-light:    #0D3550;
-    --amber-dark:     #7DD8FC;
-    --success-bg:     #14532D;
-    --success-fg:     #86EFAC;
-    --danger-bg:      #4C0519;
-    --danger-fg:      #FCA5A5;
+  :root:not([data-theme="light"]) {
+    --bg:         #0D1B2A;
+    --surface:    #1A2D3E;
+    --border:     #2A4A6A;
+    --text:       #E8F4FF;
+    --muted:      #7AA8C8;
+    --hint:       #3A6080;
+    --amber:      #1CB0F6;
+    --amber-light:#0D3550;
+    --amber-dark: #7DD8FC;
+    --success-bg: #14532D;
+    --success-fg: #86EFAC;
+    --danger-bg:  #4C0519;
+    --danger-fg:  #FCA5A5;
   }
+}
+
+/* Force dark regardless of OS */
+:root[data-theme="dark"] {
+  --bg:         #0D1B2A;
+  --surface:    #1A2D3E;
+  --border:     #2A4A6A;
+  --text:       #E8F4FF;
+  --muted:      #7AA8C8;
+  --hint:       #3A6080;
+  --amber:      #1CB0F6;
+  --amber-light:#0D3550;
+  --amber-dark: #7DD8FC;
+  --success-bg: #14532D;
+  --success-fg: #86EFAC;
+  --danger-bg:  #4C0519;
+  --danger-fg:  #FCA5A5;
+}
+
+/* Force light regardless of OS — :root already has light values, just need to re-assert */
+:root[data-theme="light"] {
+  --bg:         #EFF6FF;
+  --surface:    #FFFFFF;
+  --border:     #BFDBFE;
+  --text:       #1E3A5F;
+  --muted:      #5E87AA;
+  --hint:       #93C5FD;
+  --amber:      #1CB0F6;
+  --amber-light:#E0F5FF;
+  --amber-dark: #0284C7;
+  --success-bg: #DCFCE7;
+  --success-fg: #16A34A;
+  --danger-bg:  #FEE2E2;
+  --danger-fg:  #DC2626;
+}
+
+/* ── Range slider ── */
+input[type="range"] {
+  accent-color: var(--amber);
+  -webkit-appearance: none;
+  appearance: none;
+  height: 6px;
+  border-radius: 3px;
+  background: var(--border);
+  outline: none;
+  cursor: pointer;
+}
+input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: var(--amber);
+  cursor: pointer;
+}
+input[type="range"]::-moz-range-thumb {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: var(--amber);
+  border: none;
+  cursor: pointer;
 }
 
 body {
