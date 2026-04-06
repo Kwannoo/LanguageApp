@@ -22,17 +22,15 @@ export function saveSRS(data) {
 //   streak   – consecutive correct answers (resets on wrong)
 //   correct  – total lifetime correct answers
 //   attempts – total lifetime attempts
-// Levels are forgiving at lower tiers (based on correct count),
-// but mastery requires 5 consecutive correct (streak).
+// Mastery requires MASTERED_STREAK consecutive correct answers — proves real
+// recall, not luck. Every word, including freshly seen ones, must earn it.
 export function updateSRS(srsData, wordNl, isCorrect) {
   const entry = srsData[wordNl] || { interval: 1, streak: 0, correct: 0, attempts: 0 };
   const prevStreak = entry.streak ?? 0;
   const prevCorrect = entry.correct ?? 0;
   const prevAttempts = entry.attempts ?? 0;
 
-  // First-time correct → immediately master the word
-  const isFirstTime = !srsData[wordNl];
-  const newStreak = isCorrect ? (isFirstTime ? MASTERED_STREAK : prevStreak + 1) : 0;
+  const newStreak = isCorrect ? prevStreak + 1 : 0;
   const newCorrect = prevCorrect + (isCorrect ? 1 : 0);
   const newAttempts = prevAttempts + 1;
   const newInterval = isCorrect ? Math.min(entry.interval * 2, 60) : 1;
@@ -68,6 +66,40 @@ export function getWordLevel(entry) {
   if (correct >= 3) return 'Good';
   if (correct >= 1) return 'Learning';
   return 'New';
+}
+
+/**
+ * Split a wordlist into three learning buckets and sort each by priority.
+ *   - inProgress : has an SRS entry but streak < MASTERED_STREAK
+ *                  (sorted: overdue first, then by earliest nextDue)
+ *   - unseen     : no SRS entry yet (shuffled)
+ *   - mastered   : streak >= MASTERED_STREAK (shuffled, used for spaced review)
+ */
+export function splitByLearningStage(words, srsData) {
+  const today = new Date().toISOString().split('T')[0];
+  const inProgress = [];
+  const unseen = [];
+  const mastered = [];
+  for (const w of words) {
+    const entry = srsData[w.word];
+    if (!entry) { unseen.push(w); continue; }
+    if ((entry.streak ?? 0) >= MASTERED_STREAK) { mastered.push(w); continue; }
+    inProgress.push(w);
+  }
+  // In-progress: overdue words first, then by earliest nextDue date.
+  inProgress.sort((a, b) => {
+    const ad = srsData[a.word]?.nextDue ?? '9999-99-99';
+    const bd = srsData[b.word]?.nextDue ?? '9999-99-99';
+    const aOverdue = ad <= today;
+    const bOverdue = bd <= today;
+    if (aOverdue !== bOverdue) return aOverdue ? -1 : 1;
+    return ad.localeCompare(bd);
+  });
+  return {
+    inProgress,
+    unseen: shuffle(unseen),
+    mastered: shuffle(mastered),
+  };
 }
 
 // Unseen words (no SRS entry) and overdue words come first — both groups shuffled.

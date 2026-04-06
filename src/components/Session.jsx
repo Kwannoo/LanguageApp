@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef, useCallback } from 'react';
 import FlashCard from './FlashCard.jsx';
-import { loadSRS, saveSRS, updateSRS, sortByPriority, computeProgress } from '../utils/srs.js';
+import { loadSRS, saveSRS, updateSRS, splitByLearningStage, computeProgress } from '../utils/srs.js';
 import { playCorrect, vibrateWrong } from '../utils/feedback.js';
 
 function timerColor() {
@@ -47,12 +47,34 @@ function getAccepted(word, dir) {
   return [...new Set(all)];
 }
 
+// In-session learning queue tuning
+const ACTIVE_SET_SIZE     = 8;   // max distinct words being learned at once
+const GRADUATE_THRESHOLD  = 2;   // consecutive correct in-session to graduate
+const WRONG_REINSERT_GAP  = 3;   // how many cards later a wrong word reappears
+const RIGHT_REINSERT_GAP  = 6;   // how many cards later a right-but-not-graduated word reappears
+const IN_PROGRESS_CAP     = 200; // hard cap on lifetime in-progress words across the wordlist
+
+// Target composition of the active set: 5 in-progress, 2 new, 1 mastered review.
+// Buckets are filled in priority order (in-progress first), and any unmet
+// target falls through to the next bucket so the queue never runs short.
+const TARGET_IN_PROGRESS = 5;
+const TARGET_NEW         = 2;
+const TARGET_MASTERED    = 1;
+
 export default function Session({ onComplete, goalMinutes = 5, words: wordList = [], direction = 'nl-en', language = 'nl', voice = 'male', showSynonyms = false, theme = 'system' }) {
   const SESSION_SECONDS = goalMinutes * 60;
   const [srsData, setSrsData]     = useState(loadSRS);
-  const [words, setWords]         = useState(() => sortByPriority(wordList, loadSRS()));
   const prevMasteredRef           = useRef(computeProgress(wordList, loadSRS()).mastered);
-  const [idx, setIdx]             = useState(0);
+  // Learning queue: front of queueRef.current is always the current card.
+  // bucketsRef holds three priority-sorted refill pools (in-progress / new /
+  // mastered). The active queue is built and topped up by drawing from
+  // whichever bucket is most under-represented vs. its target ratio.
+  // learningRef tracks in-session consecutive-correct counts per word key.
+  const queueRef    = useRef([]);
+  const bucketsRef  = useRef({ inProgress: [], unseen: [], mastered: [] });
+  const allowNewRef = useRef(true); // false when lifetime in-progress >= cap
+  const learningRef = useRef({});
+  const [currentWord, setCurrentWord] = useState(null);
   const [input, setInput]         = useState('');
   const [flipped, setFlipped]     = useState(false);
   const [instant, setInstant]     = useState(false);
@@ -76,6 +98,131 @@ export default function Session({ onComplete, goalMinutes = 5, words: wordList =
 
   useEffect(() => { scoreRef.current = score; }, [score]);
   useEffect(() => { srsDataRef.current = srsData; }, [srsData]);
+
+  // ── Bucket helpers ────────────────────────────────────────────────────────
+  // Count how many words from each bucket currently sit in the active queue.
+  // We tag every word object on its way into the queue with `__bucket` so we
+  // can read this back without re-querying SRS state mid-session.
+  const countByBucket = useCallback(() => {
+    const counts = { inProgress: 0, unseen: 0, mastered: 0 };
+    for (const w of queueRef.current) {
+      const b = w.__bucket;
+      if (b && counts[b] !== undefined) counts[b]++;
+    }
+    return counts;
+  }, []);
+
+  // Pull one word from the bucket that is most under its target ratio.
+  // Buckets with no remaining words are skipped; "unseen" is also skipped
+  // when the lifetime in-progress cap has been reached.
+  const drawNextWord = useCallback(() => {
+    const buckets = bucketsRef.current;
+    const counts = countByBucket();
+    const targets = {
+      inProgress: TARGET_IN_PROGRESS,
+      unseen:     allowNewRef.current ? TARGET_NEW : 0,
+      mastered:   TARGET_MASTERED,
+    };
+    // Build a priority list of bucket names ordered by how far each is below
+    // its target (largest deficit first). Ties: in-progress > unseen > mastered.
+    const order = ['inProgress', 'unseen', 'mastered'];
+    order.sort((a, b) => {
+      const da = targets[a] - counts[a];
+      const db = targets[b] - counts[b];
+      if (db !== da) return db - da;
+      return order.indexOf(a) - order.indexOf(b); // stable preference
+    });
+    for (const name of order) {
+      if (targets[name] <= 0) continue;
+      const pool = buckets[name];
+      if (pool.length === 0) continue;
+      const word = pool.shift();
+      word.__bucket = name;
+      return word;
+    }
+    // Every targeted bucket is empty — fall back to any non-empty bucket so
+    // the session never stalls (e.g. tiny wordlists or near the end).
+    for (const name of order) {
+      const pool = buckets[name];
+      if (pool.length === 0) continue;
+      const word = pool.shift();
+      word.__bucket = name;
+      return word;
+    }
+    return null;
+  }, [countByBucket]);
+
+  // Initialise the learning queue once at session start.
+  useEffect(() => {
+    const srs = loadSRS();
+    // Cap check: if the user already has >= 200 in-progress words across the
+    // wordlist, stop introducing fresh ones until some get mastered.
+    const { inProgress } = computeProgress(wordList, srs);
+    allowNewRef.current = inProgress < IN_PROGRESS_CAP;
+
+    bucketsRef.current = splitByLearningStage(wordList, srs);
+    learningRef.current = {};
+    queueRef.current = [];
+
+    // Fill the active set by repeatedly drawing the next best word.
+    for (let i = 0; i < ACTIVE_SET_SIZE; i++) {
+      const w = drawNextWord();
+      if (!w) break;
+      queueRef.current.push(w);
+    }
+    setCurrentWord(queueRef.current[0] ?? null);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  // Pop the current card from the front, decide where (if anywhere) to
+  // re-insert it, and reveal the new front of the queue.
+  const advanceQueue = useCallback((wasCorrect) => {
+    const q = queueRef.current;
+    const word = q.shift();
+    if (!word) { setCurrentWord(null); return; }
+    const key = word.word;
+    const prev = learningRef.current[key] ?? 0;
+
+    if (wasCorrect) {
+      const next = prev + 1;
+      if (next >= GRADUATE_THRESHOLD) {
+        // Graduated this session — re-evaluate the cap (a freshly mastered
+        // word lowers the lifetime in-progress count) and pull a new word
+        // from the bucket most under target.
+        delete learningRef.current[key];
+        const { inProgress } = computeProgress(wordList, srsDataRef.current);
+        allowNewRef.current = inProgress < IN_PROGRESS_CAP;
+        const replacement = drawNextWord();
+        if (replacement) q.push(replacement);
+      } else {
+        learningRef.current[key] = next;
+        const pos = Math.min(RIGHT_REINSERT_GAP, q.length);
+        q.splice(pos, 0, word);
+      }
+    } else {
+      // Wrong (or skipped) — reset progress and bring the word back soon,
+      // but not immediately, so the user has to actually recall it.
+      learningRef.current[key] = 0;
+      const pos = Math.min(WRONG_REINSERT_GAP, q.length);
+      q.splice(pos, 0, word);
+    }
+
+    // If queue is empty AND every bucket is drained (tiny wordlist), recycle.
+    const buckets = bucketsRef.current;
+    const bucketsEmpty = buckets.inProgress.length === 0 && buckets.unseen.length === 0 && buckets.mastered.length === 0;
+    if (q.length === 0 && bucketsEmpty) {
+      const split = splitByLearningStage(wordList, srsDataRef.current);
+      bucketsRef.current = split;
+      learningRef.current = {};
+      for (let i = 0; i < ACTIVE_SET_SIZE; i++) {
+        const w = drawNextWord();
+        if (!w) break;
+        q.push(w);
+      }
+    }
+
+    setCurrentWord(queueRef.current[0] ?? null);
+  }, [wordList, drawNextWord]);
 
   // Minimise space below the button so the keyboard auto-scroll doesn't push the card off-screen
   useEffect(() => {
@@ -145,7 +292,7 @@ export default function Session({ onComplete, goalMinutes = 5, words: wordList =
           clearInterval(timerIdRef.current);
           setTimeout(() => {
             const srs = srsDataRef.current;
-            const { mastered, inProgress } = computeProgress(words, srs);
+            const { mastered, inProgress } = computeProgress(wordList, srs);
             onComplete({ ...scoreRef.current, sessionWords: sessionWordsRef.current, completed: true, newLearned: newLearnedRef.current.size, mastered, inProgress, prevMastered: prevMasteredRef.current });
           }, 0);
           return 0;
@@ -156,27 +303,28 @@ export default function Session({ onComplete, goalMinutes = 5, words: wordList =
     return () => clearInterval(timerIdRef.current);
   }, [onComplete, paused]);
 
-  useEffect(() => { inputRef.current?.focus(); }, [idx]);
+  useEffect(() => { inputRef.current?.focus(); }, [currentWord]);
 
   const handleCheck = useCallback(() => {
     if (flipped) {
-      const nextIdx = (idx + 1) % words.length;
+      // Move to the next card via the learning queue.
       setInstant(true);
       setFlipped(false);
-      setIdx(nextIdx);
       setInput('');
       setIsCorrect(null);
       if (direction === 'mix') setCardDir(randomDir(language));
-      if (nextIdx === 0) setWords(sortByPriority(wordList, srsData));
+      advanceQueue(isCorrect === true);
       return;
     }
+
+    if (!currentWord) return;
 
     if (!input.trim()) {
       // Treat empty submit as a skip
       setIsCorrect(false);
       setScore(s => { const next = { correct: s.correct, total: s.total + 1 }; scoreRef.current = next; return next; });
-      sessionWordsRef.current.push({ word: words[idx], correct: false, direction: cardDir, userAnswer: '(skipped)' });
-      const skippedSRS = updateSRS(srsData, words[idx].word, false);
+      sessionWordsRef.current.push({ word: currentWord, correct: false, direction: cardDir, userAnswer: '(skipped)' });
+      const skippedSRS = updateSRS(srsData, currentWord.word, false);
       setSrsData(skippedSRS);
       saveSRS(skippedSRS);
       setFlipped(true);
@@ -184,7 +332,7 @@ export default function Session({ onComplete, goalMinutes = 5, words: wordList =
     }
 
     const typed = input.trim().toLowerCase();
-    const accepted = getAccepted(words[idx], cardDir);
+    const accepted = getAccepted(currentWord, cardDir);
     const correct = accepted.includes(typed);
     if (correct) playCorrect(); else vibrateWrong();
     setIsCorrect(correct);
@@ -195,27 +343,27 @@ export default function Session({ onComplete, goalMinutes = 5, words: wordList =
     });
 
     // Track new words learned (first time seen + correct)
-    if (correct && !srsData[words[idx].word]) {
-      newLearnedRef.current.add(words[idx].word);
+    if (correct && !srsData[currentWord.word]) {
+      newLearnedRef.current.add(currentWord.word);
     }
 
     // Track this word for review
     sessionWordsRef.current.push({
-      word: words[idx],
+      word: currentWord,
       correct,
       direction: cardDir,
       userAnswer: typed
     });
 
-    const updated = updateSRS(srsData, words[idx].word, correct);
+    const updated = updateSRS(srsData, currentWord.word, correct);
     setSrsData(updated);
     saveSRS(updated);
 
     setFlipped(true);
-  }, [flipped, input, idx, words, srsData, cardDir, direction, language, wordList]);
+  }, [flipped, input, currentWord, srsData, cardDir, direction, language, isCorrect, advanceQueue]);
 
   const handleSkip = useCallback(() => {
-    if (flipped) return;
+    if (flipped || !currentWord) return;
     setIsCorrect(false);
     setScore(s => {
       const next = { correct: s.correct, total: s.total + 1 };
@@ -223,16 +371,16 @@ export default function Session({ onComplete, goalMinutes = 5, words: wordList =
       return next;
     });
     sessionWordsRef.current.push({
-      word: words[idx],
+      word: currentWord,
       correct: false,
       direction: cardDir,
       userAnswer: '(skipped)',
     });
-    const updated = updateSRS(srsData, words[idx].word, false);
+    const updated = updateSRS(srsData, currentWord.word, false);
     setSrsData(updated);
     saveSRS(updated);
     setFlipped(true);
-  }, [flipped, srsData, words, idx, cardDir]);
+  }, [flipped, srsData, currentWord, cardDir]);
 
   useEffect(() => {
     const handler = (e) => { if (e.key === 'Enter') handleCheck(); };
@@ -240,7 +388,7 @@ export default function Session({ onComplete, goalMinutes = 5, words: wordList =
     return () => document.removeEventListener('keydown', handler);
   }, [handleCheck]);
 
-  if (!words.length) {
+  if (!currentWord) {
     return (
       <div style={{ textAlign: 'center', paddingTop: '4rem', color: 'var(--muted)', fontWeight: 600 }}>
         Loading words…
@@ -307,7 +455,7 @@ export default function Session({ onComplete, goalMinutes = 5, words: wordList =
 
       {/* Flash card */}
       <FlashCard
-        word={words[idx]}
+        word={currentWord}
         flipped={flipped}
         isCorrect={isCorrect}
         userAnswer={input}
@@ -383,7 +531,7 @@ export default function Session({ onComplete, goalMinutes = 5, words: wordList =
               style={{ flex: 1, background: 'var(--danger-fg)', fontSize: 15 }}
               onClick={() => {
                 const srs = srsDataRef.current;
-                const { mastered, inProgress } = computeProgress(words, srs);
+                const { mastered, inProgress } = computeProgress(wordList, srs);
                 onComplete({ ...score, sessionWords: sessionWordsRef.current, completed: false, newLearned: newLearnedRef.current.size, mastered, inProgress, prevMastered: prevMasteredRef.current });
               }}
             >

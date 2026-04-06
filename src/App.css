@@ -447,6 +447,11 @@ body {
 .pt-wrapper {
   width: 100%;
 }
+.pt-zoom-entering, .pt-zoom-exiting {
+  will-change: opacity, transform;
+  backface-visibility: hidden;
+  transform: translateZ(0);
+}
 
 /* ── Style 1: Fade ── */
 @keyframes fadeIn  { from { opacity: 0; }           to { opacity: 1; } }
@@ -470,11 +475,11 @@ body {
 .pt-slideup-exiting  { animation: slideUpOut 0.25s cubic-bezier(0.55,0,1,0.45)        forwards; }
 
 /* ── Style 4: Zoom ── */
-@keyframes zoomIn  { from { opacity: 0; transform: scale(0.93); } to { opacity: 1; transform: scale(1); } }
-@keyframes zoomOut { from { opacity: 1; transform: scale(1); }    to { opacity: 0; transform: scale(1.04); } }
+@keyframes zoomIn  { from { opacity: 0; transform: scale(0.97); } to { opacity: 1; transform: scale(1); } }
+@keyframes zoomOut { from { opacity: 1; transform: scale(1); }    to { opacity: 0; transform: scale(1);    } }
 
-.pt-zoom-entering { animation: zoomIn  0.35s cubic-bezier(0.34,1.56,0.64,1) forwards; }
-.pt-zoom-exiting  { animation: zoomOut 0.22s ease                             forwards; }
+.pt-zoom-entering { animation: zoomIn  0.18s cubic-bezier(0.22, 1, 0.36, 1) forwards; }
+.pt-zoom-exiting  { animation: zoomOut 0.10s ease-in                         forwards; }
 
 /* Settings panel slide */
 @keyframes settingsSlideIn   { from { transform: translateX(100%); } to { transform: translateX(0); } }

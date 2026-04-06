@@ -643,9 +643,15 @@ export default function HomeScreen({ streak, todayDone, username, avatar, words,
               </p>
             </div>
             <div style={{ display: 'flex', gap: '0.75rem', alignItems: 'flex-start' }}>
+              <span style={{ fontSize: '1.2rem' }}>🔁</span>
+              <p style={{ fontSize: 14, color: 'var(--text)', lineHeight: 1.5 }}>
+                You learn in small batches. A handful of words is mixed with a couple of new ones and a quick review — words you miss come back a few cards later until you nail them.
+              </p>
+            </div>
+            <div style={{ display: 'flex', gap: '0.75rem', alignItems: 'flex-start' }}>
               <span style={{ fontSize: '1.2rem' }}>⭐</span>
               <p style={{ fontSize: 14, color: 'var(--text)', lineHeight: 1.5 }}>
-                A word is <strong>mastered</strong> when you get it right the very first time you ever see it, or when you answer it correctly 5 times in a row.
+                A word becomes <strong>mastered</strong> after you answer it correctly 5 times in a row. No shortcuts — real recall, not lucky guesses.
               </p>
             </div>
             <div style={{ display: 'flex', gap: '0.75rem', alignItems: 'flex-start' }}>

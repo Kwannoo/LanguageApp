@@ -22,18 +22,22 @@ export default function PageTransition({ screenKey, children }) {
     timerRef.current = setTimeout(() => {
       setDisplayedKey(pendingRef.current);
       setPhase('entering');
-      timerRef.current = setTimeout(() => setPhase('idle'), 400);
-    }, 220);
+      timerRef.current = setTimeout(() => setPhase('idle'), 180);
+    }, 100);
 
     return () => clearTimeout(timerRef.current);
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [screenKey]);
 
-  const cls = phase === 'idle' ? '' : `pt-zoom-${phase}`;
+  // If the key just changed but the effect hasn't run yet, treat this render
+  // as already exiting so we don't flash the incoming screen for one frame.
+  const transitioning = screenKey !== displayedKey;
+  const effectivePhase = transitioning && phase !== 'exiting' ? 'exiting' : phase;
+  const cls = effectivePhase === 'idle' ? '' : `pt-zoom-${effectivePhase}`;
 
   return (
     <div className={`pt-wrapper ${cls}`}>
-      {phase === 'exiting' ? prevChildrenRef.current : children}
+      {effectivePhase === 'exiting' ? prevChildrenRef.current : children}
     </div>
   );
 }
