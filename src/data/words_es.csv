@@ -1903,7 +1903,6 @@ mecánico,mechanic,Machine fixer,El **mecánico** repara máquinas. — The **me
 técnico,technician,Technical worker,El **técnico** arregla equipos. — The **technician** fixes equipment.,,,,es
 soldador,welder,Metal joiner,El **soldador** une metales. — The **welder** joins metals.,,,,es
 tornero,turner,Metal lathe operator,El **tornero** da forma al metal. — The **turner** shapes metal.,,,,es
-fresador,milling machine operator,Milling expert,El **fresador** usa máquina fresadora. — The **milling machine operator** uses milling machine.,,,,es
 operario,laborer,General worker,El **operario** hace trabajos manuales. — The **laborer** does manual work.,,,,es
 obrero,worker,Factory worker,El **obrero** trabaja en fábrica. — The **worker** works in factory.,,,,es
 jornalero,day laborer,Hourly worker,El **jornalero** gana por día. — The **day laborer** earns daily.,,,,es
@@ -2312,7 +2311,7 @@ licencia,license,Permission to operate,Necesito una **licencia** de conducir. �
 permiso,permit,Authorization,Me dieron **permiso**. — I was given **permission**.,,,,es
 visa,visa,Travel permission,Necesito una **visa** para viajar. — I need a **visa** to travel.,,,,es
 cédula,ID card,Identity document,Mostré mi **cédula**. — I showed my **ID card**.,,,,es
-dni,national ID,National identity card,Tengo mi **DNI**. — I have my **national ID**.,,,,es
+DNI,national ID,National identity card,Tengo mi **DNI**. — I have my **national ID**.,,,,es
 carnet,card/ID,Identification card,Mi **carnet** está vencido. — My **card** is expired.,,,,es
 carné,card/ID,Identification card variant,Necesito un **carné** de estudiante. — I need a student **card**.,,,,es
 libreta,booklet,Small book,Tengo una **libreta** de ahorros. — I have a savings **booklet**.,,,,es
@@ -2335,8 +2334,6 @@ superávit,surplus,Excess funds,Tenemos **superávit**. — We have a **surplus*
 déficit,deficit,Missing funds,Tenemos **déficit**. — We have a **deficit**.,,,,es
 rentabilidad,profitability,Profit potential,La **rentabilidad** es alta. — The **profitability** is high.,,,,es
 liquidez,liquidity,Available funds,Tenemos buena **liquidez**. — We have good **liquidity**.,,,,es
-solvencia,solvency,Ability to pay,Gozamos de **solvencia**. — We enjoy **solvency**.,,,,es
-insolvencia,insolvency,Unable to pay,Enfrentamos **insolvencia**. — We face **insolvency**.,,,,es
 quiebra,bankruptcy,Financial failure,Declaró **quiebra**. — He declared **bankruptcy**.,,,,es
 suspensión de pagos,payment suspension,Stopping payments,La **suspensión de pagos** es temporal. — **Payment suspension** is temporary.,,,,es
 reestructuración,restructuring,Reorganizing finances,Necesitamos **reestructuración**. — We need **restructuring**.,,,,es
@@ -2361,7 +2358,6 @@ deflación,deflation,Falling prices,La **deflación** es rara. — **Deflation**
 estanflación,stagflation,Stagnation with inflation,La **estanflación** es peligrosa. — **Stagflation** is dangerous.,,,,es
 desempleo,unemployment,Lack of jobs,El **desempleo** es alto. — **Unemployment** is high.,,,,es
 subempleo,underemployment,Inadequate employment,El **subempleo** crece. — **Underemployment** grows.,,,,es
-precariedade,precarity,Unstable work,La **precariedad** laboral es real. — Labor **precarity** is real.,,,,es
 sindicato,union,Worker organization,Me uní al **sindicato**. — I joined the **union**.,,,,es
 paro,strike,Work stoppage variant,Convocaron **paro**. — They called a **strike**.,,,,es
 marchitar,to wither,Becoming dry,Las flores **marchitan**. — The flowers **wither**.,,,,es
@@ -2375,7 +2371,6 @@ desgaste,wear,Wearing out,El **desgaste** del zapato es normal. — The **wear**
 envejecimiento,aging,Getting old,El **envejecimiento** es natural. — **Aging** is natural.,,,,es
 juvenil,youthful,Of youth,El aspecto **juvenil** es atractivo. — The **youthful** appearance is attractive.,,,,es
 juvenilmente,youthfully,In youthful manner,Actúa muy **juvenilmente**. — He acts very **youthfully**.,,,,es
-senilidad,senility,Age-related decay,La **senilidad** avanza. — **Senility** advances.,,,,es
 vejez,old age,Advanced age,La **vejez** es inevitable. — **Old age** is inevitable.,,,,es
 infancia,childhood,Early age,La **infancia** es importante. — **Childhood** is important.,,,,es
 adolescencia,adolescence,Teen years,La **adolescencia** es difícil. — **Adolescence** is difficult.,,,,es
@@ -2409,12 +2404,8 @@ emperador,emperor,Imperial ruler,El **emperador** es poderoso. — The **emperor
 emperatriz,empress,Female imperial ruler,La **emperatriz** es respetada. — The **empress** is respected.,,,,es
 duque,duke,Noble rank,El **duque** posee tierras. — The **duke** owns lands.,,,,es
 duquesa,duchess,Female duke,La **duquesa** es noble. — The **duchess** is noble.,,,,es
-conde,count,Noble rank,El **conde** es rico. — The **count** is rich.,,,,es
 condesa,countess,Female count,La **condesa** es bella. — The **countess** is beautiful.,,,,es
 vizconde,viscount,Lower noble rank,El **vizconde** tiene título. — The **viscount** has title.,,,,es
-vizcondesa,viscountess,Female viscount,La **vizcondesa** es distinguida. — The **viscountess** is distinguished.,,,,es
-marqués,marquis,Noble rank,El **marqués** es poderoso. — The **marquis** is powerful.,,,,es
-marquesa,marchioness,Female marquis,La **marquesa** es refinada. — The **marchioness** is refined.,,,,es
 barón,baron,Noble rank,El **barón** es respetado. — The **baron** is respected.,,,,es
 baronesa,baroness,Female baron,La **baronesa** es distinguida. — The **baroness** is distinguished.,,,,es
 señorío,domain,Noble territory,El **señorío** es vasto. — The **domain** is vast.,,,,es
@@ -2490,7 +2481,6 @@ bacteria,bacterium,Microscopic organism,La **bacteria** es unicelular. — **Bac
 protozoo,protozoan,Single-cell animal,El **protozoo** se mueve. — The **protozoan** moves.,,,,es
 hongo,fungus,Fungal organism,El **hongo** crece en lugares húmedos. — **Fungus** grows in damp places.,,,,es
 alga,algae,Aquatic plant,El **alga** es verde. — The **algae** is green.,,,,es
-liquen,lichen,Symbiotic organism,El **liquen** es resistente. — **Lichen** is resistant.,,,,es
 musgo,moss,Small plant,El **musgo** cubre rocas. — **Moss** covers rocks.,,,,es
 helecho,fern,Leafy plant,El **helecho** es antiguo. — **Fern** is ancient.,,,,es
 conífera,conifer,Pine tree,La **conífera** es verde. — The **conifer** is green.,,,,es
@@ -2500,20 +2490,9 @@ frondosa,broadleaf tree,Leaf-bearing tree,La **frondosa** es decidua. — The **
 raíz pivotante,taproot,Main root,La **raíz pivotante** es profunda. — The **taproot** is deep.,,,,es
 raíces fibrosas,fibrous roots,Multiple roots,Las **raíces fibrosas** absorben agua. — **Fibrous roots** absorb water.,,,,es
 bulbo,bulb,Underground bud,El **bulbo** es redondo. — The **bulb** is round.,,,,es
-tubérculo,tuber,Underground stem,El **tubérculo** es nutritivo. — The **tuber** is nutritious.,,,,es
-cormo,corm,Solid underground stem,El **cormo** es sólido. — The **corm** is solid.,,,,es
-rizoma,rhizome,Underground stem,El **rizoma** se expande. — The **rhizome** expands.,,,,es
-estolón,runner,Horizontal stem,El **estolón** produce plantas. — The **runner** produces plants.,,,,es
-inflorescencia,inflorescence,Flower cluster,La **inflorescencia** es hermosa. — The **inflorescence** is beautiful.,,,,es
 capítulo,capitulum,Flower head,El **capítulo** es redondo. — The **capitulum** is round.,,,,es
 espiga,spike,Flower spike,La **espiga** es larga. — The **spike** is long.,,,,es
-racimo,raceme,Flower cluster,El **racimo** de uvas es grande. — The grape **raceme** is large.,,,,es
-corimbo,corymb,Flat flower cluster,El **corimbo** es plano. — The **corymb** is flat.,,,,es
-umbela,umbel,Umbrella-shaped cluster,La **umbela** es regular. — The **umbel** is regular.,,,,es
 fascículo,fascicle,Bundle,El **fascículo** contiene hojas. — The **fascicle** contains leaves.,,,,es
-vaina,sheath,Leaf base wrapper,La **vaina** envuelve. — The **sheath** wraps.,,,,es
-estípula,stipule,Leaf-like structure,La **estípula** es pequeña. — The **stipule** is small.,,,,es
-zarcillo,tendril,Climbing organ,El **zarcillo** se enrosca. — The **tendril** coils.,,,,es
 espina,thorn,Sharp point,La **espina** es peligrosa. — The **thorn** is dangerous.,,,,es
 aguijón,prickle,Sharp projection,El **aguijón** pincha. — The **prickle** pricks.,,,,es
 glándula,gland,Secreting organ,La **glándula** segrega. — The **gland** secretes.,,,,es
@@ -2628,41 +2607,12 @@ roquedo,rocky ground,Rocky terrain,El **roquedo** es accidentado. — The **rock
 morrena,moraine,Glacial deposit,La **morrena** marca el glaciar. — The **moraine** marks the glacier.,,,,es
 glaciar,glacier,Flowing ice,El **glaciar** se mueve. — The **glacier** moves.,,,,es
 iceberg,iceberg,Floating ice,El **iceberg** flota. — The **iceberg** floats.,,,,es
-nieve perenne,perennial snow,Snow all year,La **nieve perenne** es eterna. — **Perennial snow** is eternal.,,,,es
 nieve perpetua,perpetual snow,Year-round snow,La **nieve perpetua** cubre picos. — **Perpetual snow** covers peaks.,,,,es
 línea de nieve,snowline,Snow boundary,La **línea de nieve** sube. — The **snowline** rises.,,,,es
 alud,avalanche,Falling snow,El **alud** es peligroso. — The **avalanche** is dangerous.,,,,es
 grieta,crevasse,Ice crack,La **grieta** es profunda. — The **crevasse** is deep.,,,,es
 seracs,seracs,Ice pinnacles,Los **seracs** son afilados. — **Seracs** are sharp.,,,,es
-morrena lateral,lateral moraine,Side glacier deposit,La **morrena lateral** es pared. — The **lateral moraine** is wall-like.,,,,es
-morrena terminal,terminal moraine,End glacier deposit,La **morrena terminal** marca fin. — The **terminal moraine** marks end.,,,,es
-drumlín,drumlin,Glacial mound,El **drumlín** es ovalado. — The **drumlin** is oval.,,,,es
-esker,esker,Glacial ridge,El **esker** es sinuoso. — The **esker** is sinuous.,,,,es
-kame,kame,Glacial hill,El **kame** es redondeado. — The **kame** is rounded.,,,,es
-depresión glaciar,glacial lake,Lake from glacier,La **depresión glaciar** es profunda. — The **glacial lake** is deep.,,,,es
-circo glaciar,cirque,Glacier basin,El **circo glaciar** es amplio. — The **cirque** is wide.,,,,es
-espolón de hielo,ice dome,Ice mound,El **espolón de hielo** es grande. — The **ice dome** is large.,,,,es
-lengua glaciar,glacier tongue,Extended glacier,La **lengua glaciar** avanza. — The **glacier tongue** advances.,,,,es
 piedra pómez,pumice,Volcanic rock,La **piedra pómez** flota. — **Pumice** floats.,,,,es
-obsidiana,obsidian,Volcanic glass,La **obsidiana** es negra. — **Obsidian** is black.,,,,es
-basalto,basalt,Dark volcanic rock,El **basalto** es denso. — **Basalt** is dense.,,,,es
-andesita,andesite,Intermediate volcanic,La **andesita** es gris. — **Andesite** is gray.,,,,es
-riolita,rhyolite,Light volcanic rock,La **riolita** es clara. — **Rhyolite** is light.,,,,es
-diorita,diorite,Intrusive rock,La **diorita** es moteada. — **Diorite** is speckled.,,,,es
-granodiorita,granodiorite,Igneous rock,La **granodiorita** es gruesa. — **Granodiorite** is coarse.,,,,es
-tonalita,tonalite,Granitic rock,La **tonalita** es parecida a granito. — **Tonalite** is granitic.,,,,es
-pegmatita,pegmatite,Coarse granite,La **pegmatita** tiene cristales grandes. — **Pegmatite** has large crystals.,,,,es
-aplita,aplite,Fine granite,La **aplita** es fina. — **Aplite** is fine.,,,,es
-sienita,syenite,Igneous rock,La **sienita** es oscura. — **Syenite** is dark.,,,,es
-diabasa,diabase,Dark igneous rock,La **diabasa** es dura. — **Diabase** is hard.,,,,es
-gabro,gabbro,Dark igneous rock,El **gabro** es oscuro. — **Gabbro** is dark.,,,,es
-troctolita,troctolite,Igneous rock,La **troctolita** es rara. — **Troctolite** is rare.,,,,es
-anortosita,anorthosite,Feldspar rock,La **anortosita** es clara. — **Anorthosite** is light.,,,,es
-peridotita,peridotite,Olivine rock,La **peridotita** es densa. — **Peridotite** is dense.,,,,es
-dunita,dunite,Pure olivine rock,La **dunita** es verde. — **Dunite** is green.,,,,es
-wehrlita,wehrlite,Olivine and pyroxene,La **wehrlita** es compleja. — **Wehrlite** is complex.,,,,es
-lherzolita,lherzolite,Mantle rock,La **lherzolita** es profunda. — **Lherzolite** is deep.,,,,es
-harzburgita,harzburgite,Mantle rock variant,La **harzburgita** es residual. — **Harzburgite** is residual.,,,,es
 fuego,fire,Flames and heat,El **fuego** es caliente. — The **fire** is hot.,,,,es
 hielo,ice,Frozen water,El **hielo** es frío. — The **ice** is cold.,,,,es
 arco,bow/arc,Curved line,El **arco** iris es hermoso. — The **rainbow** is beautiful.,,,,es
