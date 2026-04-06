@@ -3,7 +3,6 @@ import { supabase } from '../lib/supabase.js';
 import Avatar from './Avatar.jsx';
 import StatsCard from './StatsCard.jsx';
 import { computeProgress } from '../utils/srs.js';
-import { supabase } from '../lib/supabase.js';
 
 const LANGUAGE_OPTIONS = [
   { value: 'nl', label: '🇳🇱 Dutch', flag: '🇳🇱' },
