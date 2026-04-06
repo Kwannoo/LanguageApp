@@ -30,11 +30,24 @@ export default function AuthScreen() {
     }
 
     if (mode === 'login') {
-      const { error } = await supabase.auth.signInWithPassword({ email, password });
+      let loginEmail = email.trim();
+      // If the user typed a username (no @), look up their email via RPC
+      // (regular profiles SELECT is blocked by RLS for unauthenticated users)
+      if (!loginEmail.includes('@')) {
+        const { data: resolvedEmail, error: rpcError } = await supabase
+          .rpc('get_email_by_username', { lookup_username: loginEmail });
+        if (rpcError || !resolvedEmail) {
+          setError('No account found with that username.');
+          setLoading(false);
+          return;
+        }
+        loginEmail = resolvedEmail;
+      }
+      const { error } = await supabase.auth.signInWithPassword({ email: loginEmail, password });
       if (error) setError(error.message);
     } else {
-      if (username.trim().length < 3) {
-        setError('Username must be at least 3 characters.');
+      if (username.trim().length < 3 || username.trim().length > 20) {
+        setError('Username must be between 3 and 20 characters.');
         setLoading(false);
         return;
       }
@@ -61,15 +74,23 @@ export default function AuthScreen() {
         return;
       }
 
-      const { data, error } = await supabase.auth.signUp({ email, password });
+      // Store username BEFORE signUp so it's available when onAuthStateChange fires
+      localStorage.setItem('taalkaarten_pending_username', username.trim());
+      // Also store in user metadata so it survives across devices/browsers (localStorage may be unavailable)
+      const { data, error } = await supabase.auth.signUp({
+        email,
+        password,
+        options: { data: { username: username.trim() } },
+      });
       if (error) {
+        localStorage.removeItem('taalkaarten_pending_username');
         if (error.message.toLowerCase().includes('email') && error.message.toLowerCase().includes('send')) {
           setError('Could not send verification email right now — please try again in a few minutes.');
         } else {
           setError(error.message);
         }
       } else if (data.user) {
-        await supabase.from('profiles').upsert({ id: data.user.id, username: username.trim() }, { onConflict: 'id' });
+        await supabase.from('profiles').upsert({ id: data.user.id, username: username.trim(), email: email.trim() }, { onConflict: 'id' });
         // If referred by someone, award a freeze to both
         if (pendingRef) {
           const referrer = await resolveReferralCode(pendingRef);
@@ -172,21 +193,22 @@ export default function AuthScreen() {
                 onChange={e => setUsername(e.target.value)}
                 placeholder="your_username"
                 required
+                maxLength={20}
                 autoComplete="username"
               />
             </>
           )}
           <label style={{ fontSize: 12, fontWeight: 600, color: 'var(--muted)', display: 'block', marginBottom: 6 }}>
-            Email
+            {mode === 'login' ? 'Email or username' : 'Email'}
           </label>
           <input
             className="input-field"
-            type="email"
+            type={mode === 'login' ? 'text' : 'email'}
             value={email}
             onChange={e => setEmail(e.target.value)}
-            placeholder="you@example.com"
+            placeholder={mode === 'login' ? 'you@example.com or your_username' : 'you@example.com'}
             required
-            autoComplete="email"
+            autoComplete={mode === 'login' ? 'username' : 'email'}
           />
 
           {mode !== 'forgot' && (

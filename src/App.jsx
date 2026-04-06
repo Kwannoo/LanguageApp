@@ -87,6 +87,13 @@ export default function App() {
     localStorage.setItem('taalkaarten_theme', val);
   };
 
+  const handleUsernameChange = useCallback(async (newName) => {
+    setUsername(newName);
+    if (user) {
+      await supabase.from('profiles').update({ username: newName }).eq('id', user.id);
+    }
+  }, [user]);
+
   const [discoverable, setDiscoverable]     = useState(true);
   const [referralCode, setReferralCode]     = useState('');
   const [streakFreezes, setStreakFreezes]   = useState(0);
@@ -159,10 +166,15 @@ export default function App() {
 
     if (profile) {
       const { data: { user: authUser } } = await supabase.auth.getUser();
+      const metadataUsername = authUser?.user_metadata?.username;
+      const pendingUsername = localStorage.getItem('taalkaarten_pending_username');
       const fallback = (authUser?.email?.split('@')[0] ?? 'user').replace(/[^a-zA-Z0-9_]/g, '_');
-      const resolvedUsername = profile.username || fallback;
-      if (!profile.username) {
+      // Priority: user_metadata (set at signup, survives across devices) > localStorage > existing DB value > email fallback
+      const intendedUsername = metadataUsername || pendingUsername;
+      const resolvedUsername = intendedUsername || profile.username || fallback;
+      if (intendedUsername || !profile.username) {
         await supabase.from('profiles').update({ username: resolvedUsername }).eq('id', userId);
+        localStorage.removeItem('taalkaarten_pending_username');
       }
       setUsername(resolvedUsername);
       setAvatar(profile.avatar ?? DEFAULT_AVATAR);
@@ -180,15 +192,23 @@ export default function App() {
       if (profile.srs_data) {
         saveSRS(profile.srs_data);
         setSrsData(profile.srs_data);
+      } else {
+        saveSRS({});
+        setSrsData({});
       }
     } else {
       // Auto-create profile for old accounts that don't have one
       const { data: { user: authUser } } = await supabase.auth.getUser();
-      const fallbackName = (authUser?.email?.split('@')[0] ?? 'user').replace(/[^a-zA-Z0-9_]/g, '_');
-      const newProfile = { id: userId, username: fallbackName, avatar: DEFAULT_AVATAR, streak: 0, streak_freezes: 0, coins: 0, unlocked_items: [], discoverable: true };
+      const metadataUsername = authUser?.user_metadata?.username;
+      const pendingUsername = localStorage.getItem('taalkaarten_pending_username');
+      const fallbackName = metadataUsername || pendingUsername || (authUser?.email?.split('@')[0] ?? 'user').replace(/[^a-zA-Z0-9_]/g, '_');
+      const newProfile = { id: userId, username: fallbackName, email: authUser?.email ?? '', avatar: DEFAULT_AVATAR, streak: 0, streak_freezes: 0, coins: 0, unlocked_items: [], discoverable: true };
       await supabase.from('profiles').upsert(newProfile);
+      localStorage.removeItem('taalkaarten_pending_username');
       setUsername(fallbackName);
       setAvatar(DEFAULT_AVATAR);
+      saveSRS({});
+      setSrsData({});
       const code = await ensureReferralCode(userId, null);
       setReferralCode(code);
     }
@@ -266,15 +286,9 @@ export default function App() {
 
   const handleDeleteAccount = useCallback(async () => {
     if (!user) return;
-    // Delete data first
     await supabase.from('session_history').delete().eq('user_id', user.id);
     await supabase.from('profiles').delete().eq('id', user.id);
-    // Delete the auth user via Edge Function (requires service role)
-    const { data: { session } } = await supabase.auth.getSession();
-    await fetch(`${import.meta.env.VITE_SUPABASE_URL}/functions/v1/delete-user`, {
-      method: 'POST',
-      headers: { Authorization: `Bearer ${session?.access_token}` },
-    });
+    await supabase.rpc('delete_own_account');
     localStorage.clear();
     await supabase.auth.signOut();
   }, [user]);
@@ -410,6 +424,7 @@ export default function App() {
           title={title}
           onPrivacy={() => setScreen('privacy')}
           onDeleteAccount={handleDeleteAccount}
+          onUsernameChange={handleUsernameChange}
         />
       )}
 

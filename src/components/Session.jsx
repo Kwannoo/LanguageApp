@@ -23,19 +23,28 @@ function isForward(dir) {
  * Build the list of accepted answers for the current card + direction.
  * For Japanese EN→JP: accepts kanji, kana reading, and romaji.
  */
+// Strip parenthetical hints like "you (formal)" → "you" so users don't have to type them
+function stripParens(s) {
+  return s.replace(/\s*\([^)]*\)\s*/g, ' ').replace(/\s+/g, ' ').trim();
+}
+
 function getAccepted(word, dir) {
   if (isForward(dir)) {
     // User types English — also accept without "to " prefix for verbs
     const raw = word.en.split('/').map(a => a.trim().toLowerCase());
-    const extra = raw.filter(a => a.startsWith('to ')).map(a => a.slice(3));
-    return [...raw, ...extra];
+    const stripped = raw.map(stripParens).filter(Boolean);
+    const all = [...raw, ...stripped];
+    const extra = all.filter(a => a.startsWith('to ')).map(a => a.slice(3));
+    return [...new Set([...all, ...extra])];
   }
   // User types the target language
   const answers = word.word.split('/').map(a => a.trim().toLowerCase());
+  const stripped = answers.map(stripParens).filter(Boolean);
+  const all = [...answers, ...stripped];
   // For Japanese, also accept reading and romaji
-  if (word.reading) answers.push(word.reading.toLowerCase());
-  if (word.romaji)  answers.push(word.romaji.toLowerCase());
-  return answers;
+  if (word.reading) all.push(word.reading.toLowerCase());
+  if (word.romaji)  all.push(word.romaji.toLowerCase());
+  return [...new Set(all)];
 }
 
 export default function Session({ onComplete, goalMinutes = 5, words: wordList = [], direction = 'nl-en', language = 'nl', voice = 'male', showSynonyms = false, theme = 'system' }) {

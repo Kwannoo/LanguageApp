@@ -6,7 +6,7 @@ import { MASTERED_STREAK } from '../utils/srs.js';
 export default function FriendsScreen({ user, referralCode = '', onBack }) {
   const [tab, setTab]                     = useState('friends'); // 'friends' | 'leaderboard'
   const [searchQuery, setSearchQuery]     = useState('');
-  const [searchResult, setSearchResult]   = useState(null);  // profile | null | 'not_found'
+  const [searchResults, setSearchResults]  = useState(null);  // [] | null | 'not_found'
   const [searching, setSearching]         = useState(false);
   const [friends, setFriends]             = useState([]);
   const [incoming, setIncoming]           = useState([]);
@@ -78,7 +78,7 @@ export default function FriendsScreen({ user, referralCode = '', onBack }) {
     const q = searchQuery.trim();
     if (!q) return;
     setSearching(true);
-    setSearchResult(null);
+    setSearchResults(null);
 
     const { data } = await supabase
       .from('profiles')
@@ -87,16 +87,27 @@ export default function FriendsScreen({ user, referralCode = '', onBack }) {
       .not('username', 'is', null)
       .neq('id', user.id)
       .neq('discoverable', false)
-      .limit(1)
-      .maybeSingle();
+      .limit(15);
 
-    setSearchResult(data || 'not_found');
+    if (!data || data.length === 0) {
+      setSearchResults('not_found');
+    } else {
+      // Sort: exact match first, then starts-with, then contains
+      const ql = q.toLowerCase();
+      const sorted = [...data].sort((a, b) => {
+        const al = a.username.toLowerCase();
+        const bl = b.username.toLowerCase();
+        const rank = (u) => u === ql ? 0 : u.startsWith(ql) ? 1 : 2;
+        return rank(al) - rank(bl);
+      });
+      setSearchResults(sorted);
+    }
     setSearching(false);
   };
 
   const sendRequest = async (toId) => {
     await supabase.from('friend_requests').insert({ from_user_id: user.id, to_user_id: toId });
-    setSearchResult(null);
+    setSearchResults(null);
     setSearchQuery('');
     loadFriends();
   };
@@ -211,25 +222,39 @@ export default function FriendsScreen({ user, referralCode = '', onBack }) {
         </button>
       </form>
 
-      {/* Search result */}
-      {searchResult === 'not_found' && (
+      {/* Search results */}
+      {searchResults === 'not_found' && (
         <p style={{ fontSize: 13, color: 'var(--muted)', marginBottom: '1.25rem', textAlign: 'center' }}>
-          No user found with that username.
+          No users found matching "{searchQuery}".
         </p>
       )}
-      {searchResult && searchResult !== 'not_found' && (
-        <div className="history-row" style={{ marginBottom: '1.25rem' }}>
-          <div style={{ display: 'flex', alignItems: 'center', gap: '0.65rem' }}>
-            <Avatar config={searchResult.avatar} size={40} />
-            <div>
-              <p style={{ fontWeight: 700, color: 'var(--text)' }}>{searchResult.username}</p>
-              <p style={{ fontSize: 12, color: 'var(--hint)' }}>🔥 {searchResult.streak} day streak</p>
-            </div>
-          </div>
-          <button className="btn-primary" style={{ width: 'auto', padding: '8px 18px', fontSize: 13 }}
-            onClick={() => sendRequest(searchResult.id)}>
-            Add friend
-          </button>
+      {Array.isArray(searchResults) && (
+        <div className="history-list" style={{ marginBottom: '1.25rem' }}>
+          {searchResults.map(result => {
+            const isFriend = friends.some(f => f.id === result.id);
+            const isPending = outgoing.some(f => f.id === result.id) || incoming.some(f => f.id === result.id);
+            return (
+              <div key={result.id} className="history-row">
+                <div style={{ display: 'flex', alignItems: 'center', gap: '0.65rem' }}>
+                  <Avatar config={result.avatar} size={40} />
+                  <div>
+                    <p style={{ fontWeight: 700, color: 'var(--text)' }}>{result.username}</p>
+                    <p style={{ fontSize: 12, color: 'var(--hint)' }}>🔥 {result.streak ?? 0} day streak</p>
+                  </div>
+                </div>
+                {isFriend ? (
+                  <span style={{ fontSize: 12, color: 'var(--success-fg)', fontWeight: 600 }}>Friends</span>
+                ) : isPending ? (
+                  <span style={{ fontSize: 12, color: 'var(--muted)', fontWeight: 600 }}>Pending</span>
+                ) : (
+                  <button className="btn-primary" style={{ width: 'auto', padding: '8px 18px', fontSize: 13 }}
+                    onClick={() => sendRequest(result.id)}>
+                    Add
+                  </button>
+                )}
+              </div>
+            );
+          })}
         </div>
       )}
 

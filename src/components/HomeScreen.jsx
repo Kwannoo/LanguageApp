@@ -29,7 +29,7 @@ const DIRECTION_MAP = {
 
 const FREEZE_PRICE = 50;
 
-export default function HomeScreen({ streak, todayDone, username, avatar, words, srsData, online, onStart, onHistory, onLogout, goalMinutes, onGoalChange, language, onLanguageChange, direction, onDirectionChange, onFriends, onWords, onEditAvatar, showSynonyms, onSynonymsChange, discoverable, onDiscoverableChange, streakFreezes = 0, referralCode = '', email = '', coins = 0, onBuyFreeze, title = '', theme = 'system', onThemeChange, onPrivacy, onDeleteAccount }) {
+export default function HomeScreen({ streak, todayDone, username, avatar, words, srsData, online, onStart, onHistory, onLogout, goalMinutes, onGoalChange, language, onLanguageChange, direction, onDirectionChange, onFriends, onWords, onEditAvatar, showSynonyms, onSynonymsChange, discoverable, onDiscoverableChange, streakFreezes = 0, referralCode = '', email = '', coins = 0, onBuyFreeze, title = '', theme = 'system', onThemeChange, onPrivacy, onDeleteAccount, onUsernameChange }) {
   const [menuOpen, setMenuOpen]       = useState(false);
   const [menuClosing, setMenuClosing] = useState(false);
   const [showStatsCard, setShowStatsCard] = useState(false);
@@ -40,6 +40,10 @@ export default function HomeScreen({ streak, todayDone, username, avatar, words,
   const [deletePassword, setDeletePassword] = useState('');
   const [deleteError, setDeleteError]     = useState('');
   const [deleteSending, setDeleteSending] = useState(false);
+  const [editingUsername, setEditingUsername] = useState(false);
+  const [newUsername, setNewUsername]         = useState('');
+  const [usernameError, setUsernameError]     = useState('');
+  const [usernameSaving, setUsernameSaving]   = useState(false);
   const directionOptions = DIRECTION_MAP[language] || DIRECTION_MAP.nl;
 
   const closeMenu = () => {
@@ -328,11 +332,84 @@ export default function HomeScreen({ streak, todayDone, username, avatar, words,
           </p>
           <div style={{
             background: 'var(--bg)', border: '1px solid var(--border)',
-            borderRadius: 'var(--radius-sm)', padding: '12px 14px',
+            borderRadius: 'var(--radius-sm)', padding: '12px 14px', marginBottom: '0.5rem',
           }}>
             <p style={{ fontSize: 12, color: 'var(--hint)', marginBottom: 2 }}>Email</p>
             <p style={{ fontSize: 14, fontWeight: 600, color: 'var(--text)', wordBreak: 'break-all' }}>{email}</p>
           </div>
+
+          {/* Username */}
+          {!editingUsername ? (
+            <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', background: 'var(--bg)', border: '1px solid var(--border)', borderRadius: 'var(--radius-sm)', padding: '12px 14px', marginBottom: '0.5rem' }}>
+              <div>
+                <p style={{ fontSize: 12, color: 'var(--hint)', marginBottom: 2 }}>Username</p>
+                <p style={{ fontSize: 14, fontWeight: 600, color: 'var(--text)' }}>{username}</p>
+              </div>
+              <button
+                onClick={() => { setNewUsername(username); setUsernameError(''); setEditingUsername(true); }}
+                style={{ background: 'none', border: 'none', fontSize: 12, color: 'var(--amber)', fontWeight: 700, cursor: 'pointer', fontFamily: 'var(--font-sans)' }}
+              >
+                Edit
+              </button>
+            </div>
+          ) : (
+            <div style={{ background: 'var(--bg)', border: '1px solid var(--border)', borderRadius: 'var(--radius-sm)', padding: '12px 14px', marginBottom: '0.5rem' }}>
+              <p style={{ fontSize: 12, color: 'var(--hint)', marginBottom: 6 }}>New username</p>
+              <input
+                className="input-field"
+                type="text"
+                value={newUsername}
+                onChange={e => setNewUsername(e.target.value)}
+                maxLength={20}
+                placeholder="your_username"
+                autoFocus
+                style={{ marginBottom: usernameError ? 6 : 8 }}
+              />
+              {usernameError && <p style={{ fontSize: 12, color: 'var(--danger-fg)', marginBottom: 8 }}>{usernameError}</p>}
+              <div style={{ display: 'flex', gap: '0.4rem' }}>
+                <button
+                  className="btn-ghost"
+                  style={{ flex: 1, padding: '6px 0', fontSize: 13 }}
+                  onClick={() => { setEditingUsername(false); setUsernameError(''); }}
+                >
+                  Cancel
+                </button>
+                <button
+                  className="btn-primary"
+                  style={{ flex: 1, padding: '6px 0', fontSize: 13 }}
+                  disabled={usernameSaving || !newUsername.trim()}
+                  onClick={async () => {
+                    const trimmed = newUsername.trim();
+                    if (trimmed.length < 3 || trimmed.length > 20) {
+                      setUsernameError('Must be 3–20 characters.');
+                      return;
+                    }
+                    if (!/^[a-zA-Z0-9_]+$/.test(trimmed)) {
+                      setUsernameError('Letters, numbers and underscores only.');
+                      return;
+                    }
+                    if (trimmed === username) {
+                      setEditingUsername(false);
+                      return;
+                    }
+                    setUsernameSaving(true);
+                    const { data: existing } = await supabase.from('profiles').select('id').ilike('username', trimmed).maybeSingle();
+                    if (existing) {
+                      setUsernameError('Username already taken.');
+                      setUsernameSaving(false);
+                      return;
+                    }
+                    await onUsernameChange(trimmed);
+                    setEditingUsername(false);
+                    setUsernameSaving(false);
+                  }}
+                >
+                  {usernameSaving ? 'Saving…' : 'Save'}
+                </button>
+              </div>
+            </div>
+          )}
+
           <button
             onClick={async () => {
               const { error } = await supabase.auth.resetPasswordForEmail(email, {
@@ -342,7 +419,7 @@ export default function HomeScreen({ streak, todayDone, username, avatar, words,
               else alert('Password reset email sent! Check your inbox (and spam folder).');
             }}
             style={{
-              marginTop: '0.5rem', width: '100%',
+              width: '100%',
               background: 'none', border: '1px solid var(--border)',
               borderRadius: 'var(--radius-sm)', padding: '8px 14px',
               fontSize: 13, fontWeight: 600, color: 'var(--text)',
@@ -402,7 +479,7 @@ export default function HomeScreen({ streak, todayDone, username, avatar, words,
           Vocardably
         </h1>
         {title && <p style={{ fontSize: 14, color: 'var(--amber)', fontWeight: 800, marginTop: 2 }}>{title}</p>}
-        {!title && <p className="text-muted">Learn 3,000 words. Understand everything.</p>}
+        {!title && <p className="text-muted">Small steps every day. Big results over time.</p>}
       </div>
 
       {/* Offline indicator */}
@@ -487,7 +564,6 @@ export default function HomeScreen({ streak, todayDone, username, avatar, words,
           streak={streak}
           words={words}
           srsData={srsData}
-          language={language}
           onClose={() => setShowStatsCard(false)}
         />
       )}
