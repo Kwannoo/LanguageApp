@@ -94,7 +94,11 @@ export default function FlashCard({ word, flipped, isCorrect, instant, direction
           {!isForward && speakBtn}
           {word.sentence && (
             <p style={{ fontSize: 12, color: 'var(--muted)', marginTop: 6, fontStyle: 'italic' }}>
-              "{word.sentence}"
+              "{word.sentence.split(/(\*\*[^*]+\*\*)/g).map((part, i) =>
+                part.startsWith('**') && part.endsWith('**')
+                  ? <strong key={i} style={{ color: 'var(--text)', fontStyle: 'normal' }}>{part.slice(2, -2)}</strong>
+                  : part
+              )}"
             </p>
           )}
 
