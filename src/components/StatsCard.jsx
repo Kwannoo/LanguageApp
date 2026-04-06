@@ -4,9 +4,12 @@ import { computeProgress } from '../utils/srs.js';
 export default function StatsCard({ username, streak, words, srsData, onClose }) {
   const canvasRef = useRef(null);
   const [ready, setReady] = useState(false);
+  const [copied, setCopied] = useState(false);
 
   const { mastered, inProgress } = computeProgress(words, srsData);
   const appUrl = window.location.origin;
+  const defaultCaption = `I'm learning a new language on Vocardably! 🔥 ${streak} day streak, 🎓 ${mastered} words mastered. Join me for free 👉 ${appUrl}`;
+  const [caption, setCaption] = useState(defaultCaption);
 
   useEffect(() => {
     const canvas = canvasRef.current;
@@ -101,27 +104,27 @@ export default function StatsCard({ username, streak, words, srsData, onClose })
     }
   }, [username, streak, mastered, inProgress, appUrl]);
 
+  const handleCopyCaption = async () => {
+    await navigator.clipboard?.writeText(caption).catch(() => {});
+    setCopied(true);
+    setTimeout(() => setCopied(false), 2000);
+  };
+
   const handleShare = async () => {
     const canvas = canvasRef.current;
     if (!canvas) return;
 
     canvas.toBlob(async (blob) => {
       const file = new File([blob], 'vocardably-stats.png', { type: 'image/png' });
-      const shareText = `I'm learning a new language on Vocardably! 🔥 ${streak} day streak, 🎓 ${mastered} words mastered. Join me for free 👉`;
       if (navigator.canShare?.({ files: [file] })) {
-        await navigator.share({
-          files: [file],
-          title: `${username}'s Vocardably stats`,
-          text: shareText,
-          url: appUrl,
-        });
+        // Share the image — caption is shown separately so the user can paste it
+        await navigator.share({ files: [file], title: `${username}'s Vocardably stats` });
       } else {
-        // Fallback: download image + copy link
+        // Fallback: download the image
         const a = document.createElement('a');
         a.href = URL.createObjectURL(blob);
         a.download = 'vocardably-stats.png';
         a.click();
-        await navigator.clipboard?.writeText(`${shareText} ${appUrl}`).catch(() => {});
       }
     }, 'image/png');
   };
@@ -148,9 +151,29 @@ export default function StatsCard({ username, streak, words, srsData, onClose })
           style={{ width: '100%', borderRadius: 12, display: 'block', marginBottom: '0.75rem' }}
         />
 
-        <button className="btn-primary" onClick={handleShare} disabled={!ready}>
-          {navigator.share ? 'Share stats' : 'Download image'}
-        </button>
+        {/* Editable caption */}
+        <textarea
+          value={caption}
+          onChange={e => setCaption(e.target.value)}
+          rows={3}
+          style={{
+            width: '100%', boxSizing: 'border-box',
+            background: 'var(--bg)', color: 'var(--text)',
+            border: '1px solid var(--border)', borderRadius: 8,
+            padding: '0.6rem 0.75rem', fontSize: 13, lineHeight: 1.5,
+            resize: 'vertical', fontFamily: 'var(--font-sans)',
+            marginBottom: '0.5rem',
+          }}
+        />
+
+        <div style={{ display: 'flex', gap: '0.5rem' }}>
+          <button className="btn-ghost" onClick={handleCopyCaption} style={{ flex: 1 }}>
+            {copied ? 'Copied!' : 'Copy caption'}
+          </button>
+          <button className="btn-primary" onClick={handleShare} disabled={!ready} style={{ flex: 1 }}>
+            {navigator.share ? 'Share image' : 'Download image'}
+          </button>
+        </div>
       </div>
     </div>
   );

@@ -1,7 +1,6 @@
 import { useState } from 'react';
 import { supabase } from '../lib/supabase.js';
 import Avatar from './Avatar.jsx';
-import StatsCard from './StatsCard.jsx';
 import { computeProgress } from '../utils/srs.js';
 
 const LANGUAGE_OPTIONS = [
@@ -32,7 +31,6 @@ const FREEZE_PRICE = 50;
 export default function HomeScreen({ streak, todayDone, username, avatar, words, srsData, online, onStart, onHistory, onLogout, goalMinutes, onGoalChange, language, onLanguageChange, direction, onDirectionChange, onFriends, onWords, onEditAvatar, showSynonyms, onSynonymsChange, discoverable, onDiscoverableChange, streakFreezes = 0, referralCode = '', email = '', coins = 0, onBuyFreeze, title = '', theme = 'system', onThemeChange, onPrivacy, onDeleteAccount, onUsernameChange }) {
   const [menuOpen, setMenuOpen]       = useState(false);
   const [menuClosing, setMenuClosing] = useState(false);
-  const [showStatsCard, setShowStatsCard] = useState(false);
   const [showCoinInfo, setShowCoinInfo]   = useState(false);
   const [showFreezeShop, setShowFreezeShop] = useState(false);
   const [showHowItWorks, setShowHowItWorks] = useState(false);
@@ -535,19 +533,17 @@ export default function HomeScreen({ streak, todayDone, username, avatar, words,
         <button className="btn-ghost" onClick={() => { closeMenu(); onFriends(); }}>Friends</button>
       </div>
       <div style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem', marginBottom: '1.5rem' }}>
-        <button className="btn-ghost" style={{ width: '100%' }} onClick={() => setShowStatsCard(true)}>
-          📊 Share my stats
-        </button>
         {referralCode && (
           <button
             className="btn-ghost"
             style={{ width: '100%' }}
             onClick={() => {
               const url = `${window.location.origin}?ref=${referralCode}`;
+              const text = `Learn a new language in just 5 minutes a day — for free! 🌍\nJoin Vocardably 👇`;
               if (navigator.share) {
-                navigator.share({ title: 'Join Vocardably!', text: 'Learn languages with me on Vocardably!', url });
+                navigator.share({ title: 'Join Vocardably!', text, url });
               } else {
-                navigator.clipboard.writeText(url);
+                navigator.clipboard.writeText(`${text}\n${url}`);
                 alert('Invite link copied!');
               }
             }}
@@ -557,16 +553,6 @@ export default function HomeScreen({ streak, todayDone, username, avatar, words,
         )}
       </div>
 
-      {/* Stats card modal */}
-      {showStatsCard && (
-        <StatsCard
-          username={username}
-          streak={streak}
-          words={words}
-          srsData={srsData}
-          onClose={() => setShowStatsCard(false)}
-        />
-      )}
 
       {/* Coin info popup */}
       {showCoinInfo && (<>
