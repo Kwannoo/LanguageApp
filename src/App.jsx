@@ -158,7 +158,13 @@ export default function App() {
       .single();
 
     if (profile) {
-      setUsername(profile.username ?? '');
+      const { data: { user: authUser } } = await supabase.auth.getUser();
+      const fallback = (authUser?.email?.split('@')[0] ?? 'user').replace(/[^a-zA-Z0-9_]/g, '_');
+      const resolvedUsername = profile.username || fallback;
+      if (!profile.username) {
+        await supabase.from('profiles').update({ username: resolvedUsername }).eq('id', userId);
+      }
+      setUsername(resolvedUsername);
       setAvatar(profile.avatar ?? DEFAULT_AVATAR);
       setStreak(profile.streak ?? 0);
       setDiscoverable(profile.discoverable ?? true);
@@ -260,10 +266,17 @@ export default function App() {
 
   const handleDeleteAccount = useCallback(async () => {
     if (!user) return;
+    // Delete data first
     await supabase.from('session_history').delete().eq('user_id', user.id);
     await supabase.from('profiles').delete().eq('id', user.id);
-    await supabase.auth.signOut();
+    // Delete the auth user via Edge Function (requires service role)
+    const { data: { session } } = await supabase.auth.getSession();
+    await fetch(`${import.meta.env.VITE_SUPABASE_URL}/functions/v1/delete-user`, {
+      method: 'POST',
+      headers: { Authorization: `Bearer ${session?.access_token}` },
+    });
     localStorage.clear();
+    await supabase.auth.signOut();
   }, [user]);
 
   const handleBuyFreeze = useCallback(async () => {

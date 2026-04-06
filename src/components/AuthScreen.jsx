@@ -63,9 +63,13 @@ export default function AuthScreen() {
 
       const { data, error } = await supabase.auth.signUp({ email, password });
       if (error) {
-        setError(error.message);
+        if (error.message.toLowerCase().includes('email') && error.message.toLowerCase().includes('send')) {
+          setError('Could not send verification email right now — please try again in a few minutes.');
+        } else {
+          setError(error.message);
+        }
       } else if (data.user) {
-        await supabase.from('profiles').update({ username: username.trim() }).eq('id', data.user.id);
+        await supabase.from('profiles').upsert({ id: data.user.id, username: username.trim() }, { onConflict: 'id' });
         // If referred by someone, award a freeze to both
         if (pendingRef) {
           const referrer = await resolveReferralCode(pendingRef);
@@ -76,7 +80,7 @@ export default function AuthScreen() {
             ]);
           }
         }
-        setMessage('Account created! You are now signed in.');
+        setMode('verify');
       }
     }
 
@@ -111,8 +115,40 @@ export default function AuthScreen() {
         </div>
       )}
 
+      {/* Verify email screen */}
+      {mode === 'verify' && (
+        <div style={{
+          background: 'var(--surface)',
+          border: '2px solid var(--border)',
+          borderRadius: 'var(--radius-lg)',
+          padding: '1.75rem',
+          textAlign: 'center',
+        }}>
+          <p style={{ fontSize: '2.5rem', marginBottom: '0.5rem' }}>📬</p>
+          <h2 style={{ fontWeight: 800, fontSize: '1.2rem', color: 'var(--text)', marginBottom: '0.5rem' }}>
+            Check your email
+          </h2>
+          <p style={{ fontSize: 14, color: 'var(--muted)', marginBottom: '0.5rem' }}>
+            We sent a verification link to
+          </p>
+          <p style={{ fontSize: 14, fontWeight: 700, color: 'var(--text)', marginBottom: '1rem', wordBreak: 'break-all' }}>
+            {email}
+          </p>
+          <p style={{ fontSize: 13, color: 'var(--muted)', marginBottom: '1.5rem' }}>
+            Click the link in the email to verify your account before signing in. Check your spam folder if you don't see it.
+          </p>
+          <button
+            className="btn-ghost"
+            style={{ width: '100%' }}
+            onClick={() => { setMode('login'); setError(''); setMessage(''); }}
+          >
+            Back to sign in
+          </button>
+        </div>
+      )}
+
       {/* Auth card */}
-      <div style={{
+      {mode !== 'verify' && <div style={{
         background: 'var(--surface)',
         border: '2px solid var(--border)',
         borderRadius: 'var(--radius-lg)',
@@ -244,7 +280,7 @@ export default function AuthScreen() {
             {mode === 'forgot' ? 'Sign in' : mode === 'login' ? 'Sign up' : 'Sign in'}
           </button>
         </p>
-      </div>
+      </div>}
     </div>
   );
 }
