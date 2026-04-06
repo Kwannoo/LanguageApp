@@ -266,7 +266,7 @@ export default function HomeScreen({ streak, todayDone, username, avatar, words,
             Theme
           </p>
           <div style={{ display: 'flex', gap: '0.4rem' }}>
-            {[{ value: 'system', label: 'Auto' }, { value: 'light', label: '☀️ Light' }, { value: 'dark', label: '🌙 Dark' }].map(t => (
+            {[{ value: 'system', label: 'System' }, { value: 'light', label: '☀️ Light' }, { value: 'dark', label: '🌙 Dark' }].map(t => (
               <button
                 key={t.value}
                 className={`goal-pill${theme === t.value ? ' active' : ''}`}
