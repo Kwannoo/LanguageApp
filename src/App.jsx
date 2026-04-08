@@ -158,11 +158,20 @@ export default function App() {
   }, [language]);
 
   const loadUserData = useCallback(async (userId) => {
-    const { data: profile } = await supabase
+    const { data: profile, error: profileError } = await supabase
       .from('profiles')
       .select('streak, last_session_date, srs_data, username, avatar, discoverable, referral_code, streak_freezes, coins, unlocked_items, title')
       .eq('id', userId)
-      .single();
+      .maybeSingle();
+
+    // If the query errored for any reason OTHER than "no row", bail out
+    // without touching local state. Overwriting local data on a transient
+    // network/RLS failure used to silently reset users' progress, which
+    // looked like an account deletion.
+    if (profileError) {
+      console.error('Failed to load profile, keeping local state intact:', profileError);
+      return;
+    }
 
     if (profile) {
       const { data: { user: authUser } } = await supabase.auth.getUser();
@@ -197,18 +206,27 @@ export default function App() {
         setSrsData({});
       }
     } else {
-      // Auto-create profile for old accounts that don't have one
+      // Profile genuinely does not exist (maybeSingle returned null with no
+      // error) — this is a brand-new account. Insert a fresh profile, but
+      // preserve any existing local SRS data in case the user was working
+      // offline before first sync.
       const { data: { user: authUser } } = await supabase.auth.getUser();
       const metadataUsername = authUser?.user_metadata?.username;
       const pendingUsername = localStorage.getItem('taalkaarten_pending_username');
       const fallbackName = metadataUsername || pendingUsername || (authUser?.email?.split('@')[0] ?? 'user').replace(/[^a-zA-Z0-9_]/g, '_');
-      const newProfile = { id: userId, username: fallbackName, email: authUser?.email ?? '', avatar: DEFAULT_AVATAR, streak: 0, streak_freezes: 0, coins: 0, unlocked_items: [], discoverable: true };
-      await supabase.from('profiles').upsert(newProfile);
+      const localSRS = loadSRS();
+      const newProfile = { id: userId, username: fallbackName, email: authUser?.email ?? '', avatar: DEFAULT_AVATAR, streak: 0, streak_freezes: 0, coins: 0, unlocked_items: [], discoverable: true, srs_data: localSRS };
+      // insert (not upsert) so we crash loudly if a row somehow appeared
+      // between the select and this write, instead of silently clobbering it.
+      const { error: insertError } = await supabase.from('profiles').insert(newProfile);
+      if (insertError) {
+        console.error('Failed to create profile, keeping local state intact:', insertError);
+        return;
+      }
       localStorage.removeItem('taalkaarten_pending_username');
       setUsername(fallbackName);
       setAvatar(DEFAULT_AVATAR);
-      saveSRS({});
-      setSrsData({});
+      setSrsData(localSRS);
       const code = await ensureReferralCode(userId, null);
       setReferralCode(code);
     }
