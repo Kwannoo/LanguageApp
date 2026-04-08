@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef, useCallback } from 'react';
 import FlashCard from './FlashCard.jsx';
-import { loadSRS, saveSRS, updateSRS, splitByLearningStage, computeProgress } from '../utils/srs.js';
+import { loadSRS, saveSRS, updateSRS, splitByLearningStage, computeProgress, MASTERED_STREAK } from '../utils/srs.js';
 import { playCorrect, vibrateWrong } from '../utils/feedback.js';
 
 function timerColor() {
@@ -91,22 +91,42 @@ export default function Session({ onComplete, goalMinutes = 5, words: wordList =
   const newLearnedRef  = useRef(new Set()); // words that were unseen and got answered correctly
   const srsDataRef     = useRef(srsData);   // mirrors srsData state for timer closure
   const srsSnapshotRef = useRef(loadSRS()); // SRS state at session start, for mastery diff
+  const onCompleteRef  = useRef(onComplete); // stable handle so the timer effect never re-runs due to parent re-renders
+  const doneRef        = useRef(false);      // guards against onComplete firing twice (timer + quit, or StrictMode)
+  useEffect(() => { onCompleteRef.current = onComplete; }, [onComplete]);
 
-  // Returns { gained, lost } — arrays of word objects whose mastery status
-  // changed during this session compared to the snapshot taken at start.
-  const getMasteryDiff = useCallback(() => {
+  // Centralised finish — single source of truth for ending the session.
+  // Guarantees onComplete is called exactly once whether triggered by the
+  // timer running out or the user quitting early.
+  const finishSession = useCallback((completed) => {
+    if (doneRef.current) return;
+    doneRef.current = true;
+    clearInterval(timerIdRef.current);
+    timerIdRef.current = null;
+    const srs = srsDataRef.current;
+    const { mastered, inProgress } = computeProgress(wordList, srs);
     const before = srsSnapshotRef.current;
-    const after  = srsDataRef.current;
     const gained = [];
     const lost   = [];
     for (const w of wordList) {
       const wasMastered = (before[w.word]?.streak ?? 0) >= MASTERED_STREAK;
-      const isMastered  = (after[w.word]?.streak  ?? 0) >= MASTERED_STREAK;
+      const isMastered  = (srs[w.word]?.streak    ?? 0) >= MASTERED_STREAK;
       if (!wasMastered && isMastered) gained.push(w);
       if (wasMastered && !isMastered) lost.push(w);
     }
-    return { gained, lost };
+    onCompleteRef.current({
+      ...scoreRef.current,
+      sessionWords: sessionWordsRef.current,
+      completed,
+      newLearned: newLearnedRef.current.size,
+      mastered,
+      inProgress,
+      prevMastered: prevMasteredRef.current,
+      masteredGained: gained,
+      masteredLost: lost,
+    });
   }, [wordList]);
+
   const [paused, setPaused] = useState(false);
   const timerIdRef = useRef(null);
   const [keyboardOpen, setKeyboardOpen] = useState(false);
@@ -297,8 +317,11 @@ export default function Session({ onComplete, goalMinutes = 5, words: wordList =
     return () => vv.removeEventListener('resize', handler);
   }, []);
 
+  // Timer loop. Decouples from onComplete (via refs) so parent re-renders
+  // never reset the interval. Uses a done-guard so we can't fire onComplete
+  // twice if the timer and the quit button race each other.
   useEffect(() => {
-    if (paused) {
+    if (paused || doneRef.current) {
       clearInterval(timerIdRef.current);
       timerIdRef.current = null;
       return;
@@ -307,19 +330,17 @@ export default function Session({ onComplete, goalMinutes = 5, words: wordList =
       setTimeLeft(t => {
         if (t <= 1) {
           clearInterval(timerIdRef.current);
-          setTimeout(() => {
-            const srs = srsDataRef.current;
-            const { mastered, inProgress } = computeProgress(wordList, srs);
-            const { gained, lost } = getMasteryDiff();
-            onComplete({ ...scoreRef.current, sessionWords: sessionWordsRef.current, completed: true, newLearned: newLearnedRef.current.size, mastered, inProgress, prevMastered: prevMasteredRef.current, masteredGained: gained, masteredLost: lost });
-          }, 0);
+          timerIdRef.current = null;
+          // Defer to next tick so we don't call a setter from inside a
+          // state updater (which would be unsafe in StrictMode).
+          queueMicrotask(() => finishSession(true));
           return 0;
         }
         return t - 1;
       });
     }, 1000);
     return () => clearInterval(timerIdRef.current);
-  }, [onComplete, paused]);
+  }, [paused, finishSession]);
 
   useEffect(() => { inputRef.current?.focus(); }, [currentWord]);
 
@@ -547,12 +568,7 @@ export default function Session({ onComplete, goalMinutes = 5, words: wordList =
             <button
               className="btn-primary"
               style={{ flex: 1, background: 'var(--danger-fg)', fontSize: 15 }}
-              onClick={() => {
-                const srs = srsDataRef.current;
-                const { mastered, inProgress } = computeProgress(wordList, srs);
-                const { gained, lost } = getMasteryDiff();
-                onComplete({ ...score, sessionWords: sessionWordsRef.current, completed: false, newLearned: newLearnedRef.current.size, mastered, inProgress, prevMastered: prevMasteredRef.current, masteredGained: gained, masteredLost: lost });
-              }}
+              onClick={() => finishSession(false)}
             >
               End session
             </button>
