@@ -491,6 +491,11 @@ export default function HomeScreen({ streak, todayDone, username, avatar, words,
         </p>
       )}
 
+      {/* Today's status */}
+      {todayDone && (
+        <p className="done-pill">✓ Today's session done — streak secured!</p>
+      )}
+
       {/* Stats */}
       {(() => {
         const { mastered, inProgress } = words.length > 0 ? computeProgress(words, srsData) : { mastered: 0, inProgress: 0 };
@@ -517,11 +522,6 @@ export default function HomeScreen({ streak, todayDone, username, avatar, words,
           </div>
         </>);
       })()}
-
-      {/* Today's status */}
-      {todayDone && (
-        <p className="done-pill">✓ Today's session done — streak secured!</p>
-      )}
 
       {/* CTA button */}
       <button className="btn-primary" onClick={() => { closeMenu(); onStart(); }} style={{ marginBottom: '0.75rem' }}>
