@@ -22,15 +22,23 @@ export function saveSRS(data) {
 //   streak   – consecutive correct answers (resets on wrong)
 //   correct  – total lifetime correct answers
 //   attempts – total lifetime attempts
-// Mastery requires MASTERED_STREAK consecutive correct answers — proves real
-// recall, not luck. Every word, including freshly seen ones, must earn it.
+//
+// Mastery requires MASTERED_STREAK consecutive correct answers — but there is
+// a fast-track: if you nail a brand-new word correctly on both of your first
+// two attempts (no wrong answers in between), the word jumps straight to
+// mastered. This rewards words you clearly already know without demanding
+// five reps, while still catching lucky guesses (one wrong = back to normal).
 export function updateSRS(srsData, wordNl, isCorrect) {
   const entry = srsData[wordNl] || { interval: 1, streak: 0, correct: 0, attempts: 0 };
   const prevStreak = entry.streak ?? 0;
   const prevCorrect = entry.correct ?? 0;
   const prevAttempts = entry.attempts ?? 0;
 
-  const newStreak = isCorrect ? prevStreak + 1 : 0;
+  // Fast-track: second correct answer in a row on a never-missed new word.
+  const fastTrack = isCorrect && prevAttempts === 1 && prevStreak === 1;
+  const newStreak = isCorrect
+    ? (fastTrack ? MASTERED_STREAK : prevStreak + 1)
+    : 0;
   const newCorrect = prevCorrect + (isCorrect ? 1 : 0);
   const newAttempts = prevAttempts + 1;
   const newInterval = isCorrect ? Math.min(entry.interval * 2, 60) : 1;

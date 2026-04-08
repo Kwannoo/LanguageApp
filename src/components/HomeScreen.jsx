@@ -637,7 +637,7 @@ export default function HomeScreen({ streak, todayDone, username, avatar, words,
             <div style={{ display: 'flex', gap: '0.75rem', alignItems: 'flex-start' }}>
               <span style={{ fontSize: '1.2rem' }}>⭐</span>
               <p style={{ fontSize: 14, color: 'var(--text)', lineHeight: 1.5 }}>
-                A word becomes <strong>mastered</strong> after you answer it correctly 5 times in a row. No shortcuts — real recall, not lucky guesses.
+                A word becomes <strong>mastered</strong> after 5 correct answers in a row. Already know it? Get your very first two attempts right and it's instantly mastered.
               </p>
             </div>
             <div style={{ display: 'flex', gap: '0.75rem', alignItems: 'flex-start' }}>

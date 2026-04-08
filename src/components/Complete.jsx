@@ -129,6 +129,63 @@ export default function Complete({ score, language = 'nl', onHome, onRetry }) {
             );
           })()}
 
+          {/* Mastery changes */}
+          {(() => {
+            const gained = score.masteredGained ?? [];
+            const lost   = score.masteredLost   ?? [];
+            if (gained.length === 0 && lost.length === 0) return null;
+            return (
+              <div style={{ textAlign: 'left', marginBottom: '1rem' }}>
+                {gained.length > 0 && (
+                  <div style={{
+                    background: 'color-mix(in srgb, var(--success-fg) 8%, transparent)',
+                    border: '1px solid color-mix(in srgb, var(--success-fg) 30%, transparent)',
+                    borderRadius: 10, padding: '0.75rem 1rem', marginBottom: '0.5rem',
+                  }}>
+                    <p style={{ fontWeight: 700, fontSize: 13, color: 'var(--success-fg)', marginBottom: '0.4rem' }}>
+                      🎓 Newly mastered ({gained.length})
+                    </p>
+                    <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.4rem' }}>
+                      {gained.map((w, i) => (
+                        <span key={i} style={{
+                          fontSize: 12, fontWeight: 600,
+                          background: 'color-mix(in srgb, var(--success-fg) 12%, transparent)',
+                          color: 'var(--success-fg)',
+                          borderRadius: 6, padding: '2px 8px',
+                        }}>
+                          {w.word} → {w.en}
+                        </span>
+                      ))}
+                    </div>
+                  </div>
+                )}
+                {lost.length > 0 && (
+                  <div style={{
+                    background: 'color-mix(in srgb, #e74c3c 8%, transparent)',
+                    border: '1px solid color-mix(in srgb, #e74c3c 30%, transparent)',
+                    borderRadius: 10, padding: '0.75rem 1rem',
+                  }}>
+                    <p style={{ fontWeight: 700, fontSize: 13, color: '#e74c3c', marginBottom: '0.4rem' }}>
+                      📉 Lost mastery ({lost.length})
+                    </p>
+                    <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.4rem' }}>
+                      {lost.map((w, i) => (
+                        <span key={i} style={{
+                          fontSize: 12, fontWeight: 600,
+                          background: 'color-mix(in srgb, #e74c3c 12%, transparent)',
+                          color: '#e74c3c',
+                          borderRadius: 6, padding: '2px 8px',
+                        }}>
+                          {w.word} → {w.en}
+                        </span>
+                      ))}
+                    </div>
+                  </div>
+                )}
+              </div>
+            );
+          })()}
+
           {/* Coins earned */}
           <div style={{
             display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 8,

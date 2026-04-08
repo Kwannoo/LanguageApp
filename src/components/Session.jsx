@@ -88,8 +88,25 @@ export default function Session({ onComplete, goalMinutes = 5, words: wordList =
   const checkButtonRef = useRef(null);
   const scoreRef = useRef({ correct: 0, total: 0 });
   const sessionWordsRef = useRef([]);
-  const newLearnedRef = useRef(new Set()); // words that were unseen and got answered correctly
-  const srsDataRef = useRef(srsData);      // mirrors srsData state for timer closure
+  const newLearnedRef  = useRef(new Set()); // words that were unseen and got answered correctly
+  const srsDataRef     = useRef(srsData);   // mirrors srsData state for timer closure
+  const srsSnapshotRef = useRef(loadSRS()); // SRS state at session start, for mastery diff
+
+  // Returns { gained, lost } — arrays of word objects whose mastery status
+  // changed during this session compared to the snapshot taken at start.
+  const getMasteryDiff = useCallback(() => {
+    const before = srsSnapshotRef.current;
+    const after  = srsDataRef.current;
+    const gained = [];
+    const lost   = [];
+    for (const w of wordList) {
+      const wasMastered = (before[w.word]?.streak ?? 0) >= MASTERED_STREAK;
+      const isMastered  = (after[w.word]?.streak  ?? 0) >= MASTERED_STREAK;
+      if (!wasMastered && isMastered) gained.push(w);
+      if (wasMastered && !isMastered) lost.push(w);
+    }
+    return { gained, lost };
+  }, [wordList]);
   const [paused, setPaused] = useState(false);
   const timerIdRef = useRef(null);
   const [keyboardOpen, setKeyboardOpen] = useState(false);
@@ -293,7 +310,8 @@ export default function Session({ onComplete, goalMinutes = 5, words: wordList =
           setTimeout(() => {
             const srs = srsDataRef.current;
             const { mastered, inProgress } = computeProgress(wordList, srs);
-            onComplete({ ...scoreRef.current, sessionWords: sessionWordsRef.current, completed: true, newLearned: newLearnedRef.current.size, mastered, inProgress, prevMastered: prevMasteredRef.current });
+            const { gained, lost } = getMasteryDiff();
+            onComplete({ ...scoreRef.current, sessionWords: sessionWordsRef.current, completed: true, newLearned: newLearnedRef.current.size, mastered, inProgress, prevMastered: prevMasteredRef.current, masteredGained: gained, masteredLost: lost });
           }, 0);
           return 0;
         }
@@ -532,7 +550,8 @@ export default function Session({ onComplete, goalMinutes = 5, words: wordList =
               onClick={() => {
                 const srs = srsDataRef.current;
                 const { mastered, inProgress } = computeProgress(wordList, srs);
-                onComplete({ ...score, sessionWords: sessionWordsRef.current, completed: false, newLearned: newLearnedRef.current.size, mastered, inProgress, prevMastered: prevMasteredRef.current });
+                const { gained, lost } = getMasteryDiff();
+                onComplete({ ...score, sessionWords: sessionWordsRef.current, completed: false, newLearned: newLearnedRef.current.size, mastered, inProgress, prevMastered: prevMasteredRef.current, masteredGained: gained, masteredLost: lost });
               }}
             >
               End session

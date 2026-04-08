@@ -1,10 +1,26 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { supabase } from '../lib/supabase.js';
 import { resolveReferralCode, awardStreakFreeze, getReferralFromUrl } from '../utils/referral.js';
+
+function isDarkTheme() {
+  const attr = document.documentElement.getAttribute('data-theme');
+  if (attr === 'dark') return true;
+  if (attr === 'light') return false;
+  return window.matchMedia('(prefers-color-scheme: dark)').matches;
+}
 
 export default function AuthScreen() {
   const pendingRef = getReferralFromUrl();
   const [mode, setMode]         = useState('login'); // 'login' | 'signup' | 'forgot'
+  const [dark, setDark]         = useState(isDarkTheme);
+
+  // Keep logo in sync if the user's OS theme changes while on the login screen
+  useEffect(() => {
+    const mq = window.matchMedia('(prefers-color-scheme: dark)');
+    const handler = () => setDark(isDarkTheme());
+    mq.addEventListener('change', handler);
+    return () => mq.removeEventListener('change', handler);
+  }, []);
   const [email, setEmail]       = useState('');
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
@@ -111,17 +127,13 @@ export default function AuthScreen() {
 
   return (
     <div className="text-center">
-      {/* App title */}
+      {/* App logo */}
       <div style={{ marginBottom: '2rem' }}>
-        <h1 style={{
-          fontFamily: 'var(--font-serif)',
-          fontSize: '2.25rem',
-          fontWeight: 800,
-          color: 'var(--text)',
-          marginBottom: 4,
-        }}>
-          Vocardably
-        </h1>
+        <img
+          src={dark ? '/transparent-white-logo.png' : '/transparent-black-logo.png'}
+          alt="Vocardably"
+          style={{ height: 160, width: 'auto', marginBottom: 8 }}
+        />
         <p className="text-muted">Learn languages, one card at a time.</p>
       </div>
 
@@ -177,7 +189,7 @@ export default function AuthScreen() {
         textAlign: 'left',
       }}>
         <h2 style={{ fontWeight: 700, fontSize: '1.1rem', marginBottom: '1.25rem', textAlign: 'center', color: 'var(--text)' }}>
-          {mode === 'login' ? 'Welcome back' : mode === 'signup' ? 'Create account' : 'Forgot password'}
+          {mode === 'login' ? 'Welcome back to Vocardably!' : mode === 'signup' ? 'Create account' : 'Forgot password'}
         </h2>
 
         <form onSubmit={handleSubmit}>
