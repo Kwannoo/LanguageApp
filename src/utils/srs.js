@@ -77,34 +77,30 @@ export function getWordLevel(entry) {
 }
 
 /**
- * Split a wordlist into three learning buckets and sort each by priority.
- *   - inProgress : has an SRS entry but streak < MASTERED_STREAK
- *                  (sorted: overdue first, then by earliest nextDue)
+ * Split a wordlist into three learning buckets, each shuffled so consecutive
+ * sessions don't show the same words in the same order.
+ *   - inProgress : has an SRS entry but streak < MASTERED_STREAK.
+ *                  Overdue words are shuffled and placed first, not-yet-due
+ *                  words are shuffled and placed after — so urgency is
+ *                  preserved at the group level but individual order rotates.
  *   - unseen     : no SRS entry yet (shuffled)
  *   - mastered   : streak >= MASTERED_STREAK (shuffled, used for spaced review)
  */
 export function splitByLearningStage(words, srsData) {
   const today = new Date().toISOString().split('T')[0];
-  const inProgress = [];
+  const overdue = [];
+  const notDue = [];
   const unseen = [];
   const mastered = [];
   for (const w of words) {
     const entry = srsData[w.word];
     if (!entry) { unseen.push(w); continue; }
     if ((entry.streak ?? 0) >= MASTERED_STREAK) { mastered.push(w); continue; }
-    inProgress.push(w);
+    if ((entry.nextDue ?? '9999-99-99') <= today) overdue.push(w);
+    else notDue.push(w);
   }
-  // In-progress: overdue words first, then by earliest nextDue date.
-  inProgress.sort((a, b) => {
-    const ad = srsData[a.word]?.nextDue ?? '9999-99-99';
-    const bd = srsData[b.word]?.nextDue ?? '9999-99-99';
-    const aOverdue = ad <= today;
-    const bOverdue = bd <= today;
-    if (aOverdue !== bOverdue) return aOverdue ? -1 : 1;
-    return ad.localeCompare(bd);
-  });
   return {
-    inProgress,
+    inProgress: [...shuffle(overdue), ...shuffle(notDue)],
     unseen: shuffle(unseen),
     mastered: shuffle(mastered),
   };

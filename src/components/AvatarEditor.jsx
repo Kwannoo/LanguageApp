@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import Avatar from './Avatar.jsx';
-import { AVATAR_OPTIONS, BG_COLORS, DEFAULT_AVATAR } from '../data/avatarConfig.js';
+import { AVATAR_OPTIONS, BG_COLORS, DEFAULT_AVATAR, TITLE_OPTIONS } from '../data/avatarConfig.js';
 
 const CATEGORIES = [
   { key: 'face',        label: 'Face' },
@@ -11,16 +11,6 @@ const CATEGORIES = [
   { key: 'accessories', label: 'Acc.' },
   { key: 'bg',          label: 'BG' },
   { key: 'title',       label: 'Title' },
-];
-
-const TITLE_OPTIONS = [
-  { id: '',                     label: 'None',                  price: 0 },
-  { id: 'Word Wizard',          label: 'Word Wizard',            price: 100 },
-  { id: 'Vocab Rookie',         label: 'Vocab Rookie',           price: 100 },
-  { id: 'Polyglot in Training', label: 'Polyglot in Training',   price: 100 },
-  { id: 'King Vocab',           label: 'King Vocab',             price: 100 },
-  { id: 'Goon',                 label: 'Goon',                   price: 100 },
-  { id: 'The Strongest One',    label: 'The Strongest One',      price: 100 },
 ];
 
 /**

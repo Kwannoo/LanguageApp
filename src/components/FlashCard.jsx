@@ -1,26 +1,4 @@
-function speak(text, lang, voicePref) {
-  window.speechSynthesis.cancel();
-  const utt = new SpeechSynthesisUtterance(text);
-  const langTag = lang === 'ja' ? 'ja-JP' : lang === 'es' ? 'es-ES' : 'nl-NL';
-  utt.lang = langTag;
-  utt.rate = 0.7;
-
-  // Try to find a matching voice for the gender preference
-  const voices = window.speechSynthesis.getVoices();
-  const langVoices = voices.filter(v => v.lang.startsWith(langTag.split('-')[0]));
-  if (langVoices.length) {
-    const preferred = langVoices.find(v =>
-      voicePref === 'female'
-        ? /female|zira|hazel|anna|haruka|nanami/i.test(v.name)
-        : /male|david|mark|george|ichiro|takumi/i.test(v.name)
-    );
-    utt.voice = preferred || langVoices[0];
-  }
-
-  window.speechSynthesis.speak(utt);
-}
-
-export default function FlashCard({ word, flipped, isCorrect, instant, direction = 'nl-en', language = 'nl', voice = 'male', showSynonyms = false }) {
+export default function FlashCard({ word, flipped, isCorrect, instant, direction = 'nl-en', language = 'nl', showSynonyms = false }) {
   const isForward = direction === 'nl-en' || direction === 'ja-en' || direction === 'es-en';
   const langNames = language === 'ja'
     ? { target: 'Japanese', base: 'English' }
@@ -35,16 +13,6 @@ export default function FlashCard({ word, flipped, isCorrect, instant, direction
 
   const showReading = language === 'ja' && word.reading;
 
-  const speakBtn = (
-    <button
-      className="speak-btn"
-      onClick={e => { e.stopPropagation(); speak(word.word, language, voice); }}
-      title="Listen"
-    >
-      🔊
-    </button>
-  );
-
   return (
     <div className="card-scene">
       <div className={`card-3d${flipped ? ' flipped' : ''}${instant ? ' instant' : ''}`}>
@@ -58,7 +26,6 @@ export default function FlashCard({ word, flipped, isCorrect, instant, direction
               {word.reading} ({word.romaji})
             </p>
           )}
-          {isForward && speakBtn}
         </div>
 
         {/* ── Back face: answer ── */}
@@ -91,7 +58,6 @@ export default function FlashCard({ word, flipped, isCorrect, instant, direction
               {word.reading} ({word.romaji})
             </p>
           )}
-          {!isForward && speakBtn}
           {word.sentence && (
             <p style={{ fontSize: 12, color: 'var(--muted)', marginTop: 6, fontStyle: 'italic' }}>
               "{word.sentence.split(/(\*\*[^*]+\*\*)/g).map((part, i) =>

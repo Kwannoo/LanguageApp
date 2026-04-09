@@ -28,7 +28,7 @@ const DIRECTION_MAP = {
 
 const FREEZE_PRICE = 50;
 
-export default function HomeScreen({ streak, todayDone, username, avatar, words, srsData, online, onStart, onHistory, onLogout, goalMinutes, onGoalChange, language, onLanguageChange, direction, onDirectionChange, onFriends, onWords, onEditAvatar, showSynonyms, onSynonymsChange, discoverable, onDiscoverableChange, streakFreezes = 0, referralCode = '', email = '', coins = 0, onBuyFreeze, title = '', theme = 'system', onThemeChange, onPrivacy, onDeleteAccount, onUsernameChange }) {
+export default function HomeScreen({ streak, todayDone, username, avatar, words, srsData, online, onStart, onHistory, onLogout, goalMinutes, onGoalChange, language, onLanguageChange, direction, onDirectionChange, onFriends, onWords, onEditAvatar, onShop, showSynonyms, onSynonymsChange, discoverable, onDiscoverableChange, streakFreezes = 0, referralCode = '', email = '', coins = 0, onBuyFreeze, title = '', theme = 'system', onThemeChange, onPrivacy, onDeleteAccount, onUsernameChange }) {
   const [menuOpen, setMenuOpen]       = useState(false);
   const [menuClosing, setMenuClosing] = useState(false);
   const [showCoinInfo, setShowCoinInfo]   = useState(false);
@@ -531,6 +531,7 @@ export default function HomeScreen({ streak, todayDone, username, avatar, words,
         <button className="btn-ghost" onClick={() => { closeMenu(); onHistory(); }}>History</button>
         <button className="btn-ghost" onClick={() => { closeMenu(); onWords(); }}>Words</button>
         <button className="btn-ghost" onClick={() => { closeMenu(); onFriends(); }}>Friends</button>
+        <button className="btn-ghost" onClick={() => { closeMenu(); onShop(); }}>🛒 Shop</button>
       </div>
       <div style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem', marginBottom: '1.5rem' }}>
         {referralCode && (

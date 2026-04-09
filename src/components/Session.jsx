@@ -61,7 +61,7 @@ const TARGET_IN_PROGRESS = 5;
 const TARGET_NEW         = 2;
 const TARGET_MASTERED    = 1;
 
-export default function Session({ onComplete, goalMinutes = 5, words: wordList = [], direction = 'nl-en', language = 'nl', voice = 'male', showSynonyms = false, theme = 'system' }) {
+export default function Session({ onComplete, goalMinutes = 5, words: wordList = [], direction = 'nl-en', language = 'nl', showSynonyms = false, theme = 'system' }) {
   const SESSION_SECONDS = goalMinutes * 60;
   const [srsData, setSrsData]     = useState(loadSRS);
   const prevMasteredRef           = useRef(computeProgress(wordList, loadSRS()).mastered);
@@ -501,7 +501,6 @@ export default function Session({ onComplete, goalMinutes = 5, words: wordList =
         instant={instant}
         direction={cardDir}
         language={language}
-        voice={voice}
         showSynonyms={showSynonyms}
       />
 

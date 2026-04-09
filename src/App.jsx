@@ -8,6 +8,7 @@ import FriendsScreen from './components/FriendsScreen.jsx';
 import AuthScreen      from './components/AuthScreen.jsx';
 import WordListScreen  from './components/WordListScreen.jsx';
 import AvatarEditor    from './components/AvatarEditor.jsx';
+import ShopScreen      from './components/ShopScreen.jsx';
 import ResetPassword   from './components/ResetPassword.jsx';
 import PrivacyScreen   from './components/PrivacyScreen.jsx';
 import { supabase }  from './lib/supabase.js';
@@ -57,9 +58,6 @@ export default function App() {
   );
   const [avatar, setAvatar] = useState(DEFAULT_AVATAR);
   const [srsData, setSrsData] = useState(loadSRS);
-  const [voice, setVoice] = useState(
-    () => localStorage.getItem('taalkaarten_voice') ?? 'male'
-  );
   const [showSynonyms, setShowSynonyms] = useState(
     () => localStorage.getItem('taalkaarten_synonyms') === 'true'
   );
@@ -71,11 +69,6 @@ export default function App() {
     if (theme === 'system') document.documentElement.removeAttribute('data-theme');
     else document.documentElement.setAttribute('data-theme', theme);
   }, [theme]);
-
-  const handleVoiceChange = (v) => {
-    setVoice(v);
-    localStorage.setItem('taalkaarten_voice', v);
-  };
 
   const handleSynonymsChange = (val) => {
     setShowSynonyms(val);
@@ -417,6 +410,7 @@ export default function App() {
           onStart={() => setScreen('session')}
           onHistory={() => setScreen('history')}
           onFriends={() => setScreen('friends')}
+          onShop={() => setScreen('shop')}
           onWords={() => setScreen('words')}
           onEditAvatar={() => setScreen('avatar')}
           onLogout={() => supabase.auth.signOut()}
@@ -426,8 +420,6 @@ export default function App() {
           onLanguageChange={handleLanguageChange}
           direction={direction}
           onDirectionChange={handleDirectionChange}
-          voice={voice}
-          onVoiceChange={handleVoiceChange}
           showSynonyms={showSynonyms}
           onSynonymsChange={handleSynonymsChange}
           theme={theme}
@@ -447,7 +439,7 @@ export default function App() {
       )}
 
       {screen === 'session' && (
-        <Session onComplete={handleSessionComplete} goalMinutes={goalMinutes} words={words} direction={direction} language={language} voice={voice} showSynonyms={showSynonyms} theme={theme} />
+        <Session onComplete={handleSessionComplete} goalMinutes={goalMinutes} words={words} direction={direction} language={language} showSynonyms={showSynonyms} theme={theme} />
       )}
 
       {screen === 'complete' && (
@@ -479,6 +471,17 @@ export default function App() {
           onBuyItem={handleBuyItem}
           title={title}
           onTitleChange={handleTitleChange}
+        />
+      )}
+
+      {screen === 'shop' && (
+        <ShopScreen
+          coins={coins}
+          unlockedItems={unlockedItems}
+          streakFreezes={streakFreezes}
+          onBuyItem={handleBuyItem}
+          onBuyFreeze={handleBuyFreeze}
+          onBack={() => setScreen('home')}
         />
       )}
 

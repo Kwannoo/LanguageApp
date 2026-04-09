@@ -55,6 +55,16 @@ export const AVATAR_OPTIONS = {
   ],
 };
 
+export const TITLE_OPTIONS = [
+  { id: '',                     label: 'None',                  price: 0 },
+  { id: 'Word Wizard',          label: 'Word Wizard',            price: 100 },
+  { id: 'Vocab Rookie',         label: 'Vocab Rookie',           price: 100 },
+  { id: 'Polyglot in Training', label: 'Polyglot in Training',   price: 100 },
+  { id: 'King Vocab',           label: 'King Vocab',             price: 100 },
+  { id: 'Goon',                 label: 'Goon',                   price: 100 },
+  { id: 'The Strongest One',    label: 'The Strongest One',      price: 100 },
+];
+
 export const BG_COLORS = [
   '#1CB0F6', '#6C63FF', '#F5A623', '#E74C3C',
   '#2ECC71', '#FF6B9D', '#00D2D3', '#F368E0',
