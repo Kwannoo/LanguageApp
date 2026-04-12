@@ -81,6 +81,11 @@ export const TITLE_OPTIONS = [
   { id: 'King Vocab',           label: 'King Vocab',             price: 250 },
   { id: 'Goon',                 label: 'Goon',                   price: 250 },
   { id: 'The Strongest One',    label: 'The Strongest One',      price: 250 },
+  { id: 'Fish',                 label: 'Fish',                   price: 250 },
+  { id: 'Girlie',               label: 'Girlie',                 price: 250 },
+  { id: 'Bestie',               label: 'Bestie',                 price: 250 },
+  { id: 'Word Pirate',          label: 'Word Pirate',            price: 250 },
+
 ];
 
 export const BG_COLORS = [
