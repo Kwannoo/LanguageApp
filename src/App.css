@@ -8,6 +8,7 @@
 
   --bg:         #EFF6FF;
   --surface:    #FFFFFF;
+  --card:       #F5FAFF;
   --border:     #BFDBFE;
   --text:       #1E3A5F;
   --muted:      #5E87AA;
@@ -32,6 +33,7 @@
 .dark-vars {
   --bg:         #0D1B2A;
   --surface:    #1A2D3E;
+  --card:       #1E3448;
   --border:     #2A4A6A;
   --text:       #E8F4FF;
   --muted:      #7AA8C8;
@@ -50,6 +52,7 @@
   :root:not([data-theme="light"]) {
     --bg:         #0D1B2A;
     --surface:    #1A2D3E;
+    --card:       #1E3448;
     --border:     #2A4A6A;
     --text:       #E8F4FF;
     --muted:      #7AA8C8;
@@ -68,6 +71,7 @@
 :root[data-theme="dark"] {
   --bg:         #0D1B2A;
   --surface:    #1A2D3E;
+  --card:       #1E3448;
   --border:     #2A4A6A;
   --text:       #E8F4FF;
   --muted:      #7AA8C8;
@@ -85,6 +89,7 @@
 :root[data-theme="light"] {
   --bg:         #EFF6FF;
   --surface:    #FFFFFF;
+  --card:       #F5FAFF;
   --border:     #BFDBFE;
   --text:       #1E3A5F;
   --muted:      #5E87AA;
@@ -497,3 +502,23 @@ body {
 @keyframes popupOut   { from { opacity: 1; transform: translate(-50%, -50%) scale(1); }   to { opacity: 0; transform: translate(-50%, -50%) scale(0.7); } }
 @keyframes popupBgIn  { from { opacity: 0; } to { opacity: 1; } }
 @keyframes popupBgOut { from { opacity: 1; } to { opacity: 0; } }
+
+.modal-backdrop {
+  position: fixed; inset: 0;
+  background: rgba(0,0,0,0.45);
+  z-index: 90;
+  animation: popupBgIn 0.18s ease forwards;
+}
+.modal-popup {
+  position: fixed; top: 50%; left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 100;
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  padding: 1.5rem;
+  max-width: 320px;
+  width: 90%;
+  text-align: center;
+  animation: popupIn 0.2s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}

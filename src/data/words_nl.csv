@@ -18,10 +18,10 @@ dat,that,Demonstrative pronoun,Ik weet **dat** hij gelijk heeft. — I know **th
 worden,to become,Verb indicating change,Hij wil arts **worden**. — He wants to **become** a doctor.,,,zijn;raken;veranderen,nl
 ze,they/she,Pronoun,**Ze** lopen naar school. — **They** walk to school.,,,zij;hen;hun,nl
 voor,for,Preposition,Dit is **voor** jou. — This is **for** you.,,,ten behoeve van;ten gunste van,nl
-als,if/when,Conjunction,**Als** het regent, blijf ik thuis. — **If** it rains, I stay at home.,wanneer;indien;zodra;wanneer;indien;zodra,nl
+als,if/when,Conjunction,**Als** het regent blijf ik thuis. — **If** it rains I stay at home.,wanneer;indien;zodra;wanneer;indien;zodra,nl
 er,there,Existential word,**Er** zijn veel mensen in de stad. — **There** are many people in the city.,,,daar;hier,nl
 aan,on/to,Preposition,Ik hang de foto **aan** de muur. — I hang the photo **on** the wall.,,,op;tegen;bij,nl
-maar,but / only,Conjunction,Ik wil gaan, **maar** ik ben moe. — I want to go, **but** I am tired.,echter;doch;toch;echter;doch;toch,nl
+maar,but / only,Conjunction,Ik wil gaan **maar** ik ben moe. — I want to go, **but** I am tired.,echter;doch;toch;echter;doch;toch,nl
 je,you,Second person informal,Hoe gaat het met **je**? — How are **you** doing?,,,jij;jou,nl
 zullen,will (future),Future auxiliary verb,We **zullen** morgen vertrekken. — We **will** leave tomorrow.,,,gaan;mogen,nl
 kunnen,can,Ability verb,**Kun** jij zwemmen? — **Can** you swim?,,,mogen;vermogen,nl
@@ -39,7 +39,7 @@ gaan,to go,Movement verb,Morgen **ga** ik naar de markt. — Tomorrow I **go** t
 hem,him,Object pronoun,Ik zie **hem** elke dag. — I see **him** every day.,,,die;diegene,nl
 komen,to come,Movement verb,Wanneer **kom** jij naar huis? — When are you **coming** home?,,,aankomen;arriveren;verschijnen,nl
 zeggen,to say,Speech verb,Wat wil je **zeggen**? — What do you want to **say**?,,,spreken;vertellen;mededelen,nl
-dan,then,Time relation,Eerst werken, **dan** spelen. — First work, **then** play.,vervolgens;daarna;nadien;vervolgens;daarna;nadien,nl
+dan,then,Time relation,Eerst werken **dan** spelen. — First work **then** play.,vervolgens;daarna;nadien;vervolgens;daarna;nadien,nl
 zo,so / like this,Degree word,Het is **zo** eenvoudig. — It is **so** simple.,,,zodanig;dergelijk,nl
 moeten,must,Obligation verb,Ik **moet** vroeg opstaan. — I **must** get up early.,,,dienen;behoren;zijn verplicht,nl
 over,about/over,Preposition,We praten **over** het weer. — We talk **about** the weather.,,,aangaande;betreffende;omtrent,nl
@@ -76,7 +76,7 @@ tegen,against,Preposition,Hij leunt **tegen** de muur. — He leans **against** 
 denken,to think,Mental verb,Ik **denk** dat hij gelijk heeft. — I **think** he is right.,,,geloven;menen;vermoeden,nl
 mens,human,Noun,Elke **mens** heeft rechten. — Every **human** has rights.,,,persoon;individu;iemand,nl
 toch,yet/however,Contrast word,Ik ga **toch** mee. — I am coming **after all**.,,,echter;maar;alsnog,nl
-toen,then (past),Time word,**Toen** ik klein was, woonde ik in Utrecht. — **When** I was young, I lived in Utrecht.,op dat moment;terwijl;in die tijd;terwijl;terzelfdertijd,nl
+toen,then (past),Time word,**Toen** ik klein was woonde ik in Utrecht. — **When** I was young I lived in Utrecht.,op dat moment;terwijl;in die tijd;terwijl;terzelfdertijd,nl
 geven,to give,Action verb,Hij **geeft** mij een boek. — He **gives** me a book.,,,schenken;reiken;overhandigen,nl
 hoe,how,Question word,**Hoe** laat is het? — **How** late is it?,,,op welke manier;waarmee,nl
 blijven,to stay,To remain in a place or state,Ik **blijf** thuis vanavond. — I **stay** home tonight.,,,verblijven;volharden;aanblijven,nl
@@ -87,7 +87,7 @@ kijken,to look,To see with attention,We **kijken** naar een film. — We are **l
 man,man / husband,Adult male,De **man** loopt naar zijn auto. — The **man** walks to his car.,,,heer;kerel;vent,nl
 na,after,Time relation,**Na** het eten gaan we wandelen. — **After** eating we go for a walk.,,,achter;volgend op,nl
 jaar,year,Time unit,Volgend **jaar** ga ik studeren. — Next **year** I am going to study.,,,jaargang;seizoen,nl
-hier,here,Place word,Kom **hier**, alsjeblieft. — Come **here**, please.,hierheen;op deze plek;aldaar;hierheen;hiernaartoe;aldaar,nl
+hier,here,Place word,Kom **hier** alsjeblieft. — Come **here** please.,hierheen;op deze plek;aldaar;hierheen;hiernaartoe;aldaar,nl
 wij,we,First person plural,**Wij** gaan samen eten. — **We** are eating together.,,,we;ons,nl
 houden,to keep/hold,To retain or like,Ik **houd** van lezen. — I **love** reading.,,,bewaren;vasthouden;bewaren,nl
 tijd,time,Concept of time,We hebben geen **tijd** meer. — We have no more **time**.,,,periode;moment;ogenblik,nl
@@ -116,7 +116,7 @@ beginnen,to begin,Start action,We kunnen nu **beginnen**. — We can **begin** n
 lopen,to walk,Movement verb,Ik **loop** elke dag naar school. — I **walk** to school every day.,,,wandelen;stappen;gaan,nl
 toe,to (towards),Direction,Hij gaat de deur **toe**. — He closes the door **shut**.,,,dicht;gesloten,nl
 oog,eye,Body part,Ze heeft mooie blauwe **ogen**. — She has beautiful blue **eyes**.,,,gezichtsvermogen,nl
-want,because,Reason conjunction,Ik ga niet mee, **want** ik ben moe. — I am not coming, **because** I am tired.,omdat;aangezien;doordat;omdat;aangezien;doordat,nl
+want,because,Reason conjunction,Ik ga niet mee **want** ik ben moe. — I am not coming **because** I am tired.,omdat;aangezien;doordat;omdat;aangezien;doordat,nl
 elkaar,each other,Reciprocal pronoun,Ze helpen **elkaar** altijd. — They always help **each other**.,,,wederzijds;onderling,nl
 nooit,never,Time word,Ik ga **nooit** naar de supermarkt op zondag. — I **never** go to the supermarket on Sunday.,,,nimmer;geenszins,nl
 vragen,to ask,To request information,Mag ik je iets **vragen**? — May I **ask** you something?,,,verzoeken;informeren;ondervragen,nl
@@ -125,12 +125,12 @@ zelf,self,Emphasis,Hij heeft het **zelf** gedaan. — He did it **himself**.,,,e
 horen,to hear,Perception verb,Ik kan je goed **horen**. — I can **hear** you well.,,,luisteren;vernemen;waarnemen,nl
 altijd,always,Frequency,Ze is **altijd** vriendelijk. — She is **always** friendly.,,,steeds;voortdurend;eeuwig,nl
 nieuw,new,Adjective,Ik heb een **nieuw** boek gekocht. — I bought a **new** book.,,,fris;vers;recent,nl
-dus,so / therefore,Conclusion word,Hij was moe, **dus** ging hij vroeg slapen. — He was tired, **so** he went to bed early.,daarom;bijgevolg;derhalve;daarom;bijgevolg;derhalve,nl
+dus,so / therefore,Conclusion word,Hij was moe **dus** ging hij vroeg slapen. — He was tired **so** he went to bed early.,daarom;bijgevolg;derhalve;daarom;bijgevolg;derhalve,nl
 wezen,to be (formal) / being / creature,Formal verb form,Dat kan niet **wezen**. — That cannot **be**.,,,zijn;bestaan,nl
 eigen,own,Possessive adjective,Dit is mijn **eigen** kamer. — This is my **own** room.,,,persoonlijk;exclusief;privé,nl
 laat,late / let,Time adjective,Het is al **laat**. — It is already **late**.,,,laattijdig;vertraagd;recent,nl
 heel,very / whole,Degree word,Het was **heel** leuk. — It was **very** nice.,,,erg;zeer;enorm,nl
-even,just / for a moment,Short time,Wacht **even**, ik kom eraan. — Wait **just** a moment, I'm coming.,korte tijd;momentje;efkes;korte tijd;momentje,nl
+even,just / for a moment,Short time,Wacht **even** ik kom eraan. — Wait **just** a moment I'm coming.,korte tijd;momentje;efkes;korte tijd;momentje,nl
 zelfs,even,Emphasis,**Zelfs** kinderen begrijpen dit. — **Even** children understand this.,,,ook;tot;inclusief,nl
 mogen,may,Permission verb,**Mag** ik een koekje? — **May** I have a biscuit?,,,kunnen;toestemming hebben,nl
 voelen,to feel,Emotion or touch,Ik **voel** me goed vandaag. — I **feel** good today.,,,gewaarworden;beseffen;bespeuren,nl
@@ -151,7 +151,7 @@ anders,otherwise / different,Alternative,Dat is **anders** dan ik dacht. — Tha
 moeder,mother,Parent,Mijn **moeder** kookt elke avond. — My **mother** cooks every evening.,,,mama;mam;maatje,nl
 spreken,to speak,Communication verb,Ze **spreekt** drie talen. — She **speaks** three languages.,,,praten;zeggen;vertellen,nl
 woord,word,Language unit,Wat betekent dit **woord**? — What does this **word** mean?,,,term;uitdrukking;begrip,nl
-ja,yes,Affirmation,**Ja**, dat klopt. — **Yes**, that is correct.,jawel;zeker;inderdaad;jawel;zeker;inderdaad,nl
+ja,yes,Affirmation,**Ja** dat klopt. — **Yes** that is correct.,jawel;zeker;inderdaad;jawel;zeker;inderdaad,nl
 wanneer,when,Question word,**Wanneer** ga je op vakantie? — **When** are you going on holiday?,,,op welk moment;als;zodra,nl
 vader,father,Parent,Mijn **vader** werkt in de stad. — My **father** works in the city.,,,papa;pa,nl
 terug,back,Direction,Ze komt morgen **terug**. — She is coming **back** tomorrow.,,,achteruit;retour,nl
@@ -164,7 +164,7 @@ elk,each,Distribution,**Elk** kind wil spelen. — **Each** child wants to play.
 ver,far,Distance,De stad is **ver** weg. — The city is **far** away.,,,afgelegen;verafgelegen,nl
 hoofd,head,Body part,Hij heeft pijn in zijn **hoofd**. — He has pain in his **head**.,,,kop;schedel,nl
 geval,case,Situation,In dit **geval** heb jij gelijk. — In this **case** you are right.,,,situatie;omstandigheid;kwestie,nl
-echter,however,Contrast word,Het regent, **echter** we gaan toch. — It is raining, **however** we are still going.,maar;toch;doch;maar;toch;doch,nl
+echter,however,Contrast word,Het regent **echter** we gaan toch. — It is raining **however** we are still going.,maar;toch;doch;maar;toch;doch,nl
 zeker,certainly / sure / certain,Confidence word,Ben je **zeker** van je antwoord? — Are you **sure** of your answer?,,,gewis;beslist;vaststaand,nl
 bestaan,to exist,Existence verb,Dit probleem **bestaat** al lang. — This problem has **existed** for a long time.,,,zijn;leven;voorkomen,nl
 later,later,Future time,We praten **later** over dit onderwerp. — We will talk about this topic **later**.,,,nadien;daarna;achteraf,nl
@@ -192,7 +192,7 @@ soms,sometimes,Occasionally,**Soms** ga ik naar de bioscoop. — **Sometimes** I
 wereld,world,The earth or global society,De **wereld** is groot en mooi. — The **world** is big and beautiful.,,,aardbol;globe;aarde,nl
 keer,time/occasion,Occurrence,Ik heb dat al twee **keer** gedaan. — I have already done that two **times**.,,,maal;keer;gelegenheid,nl
 duidelijk,clear,Easy to understand,Zijn uitleg was heel **duidelijk**. — His explanation was very **clear**.,,,helder;begrijpelijk;zonneklaar,nl
-eerst,first,Before others,**Eerst** eten, dan spelen. — **First** eat, then play.,allereerst;vooreerst;in eerste instantie;allereerst;in de eerste plaats,nl
+eerst,first,Before others,**Eerst** eten dan spelen. — **First** eat then play.,allereerst;vooreerst;in eerste instantie;allereerst;in de eerste plaats,nl
 vooral,especially,Particularly,**Vooral** in de zomer ga ik zwemmen. — I go swimming **especially** in summer.,,,met name;in het bijzonder;bovenal,nl
 noemen,to name,To give a name,Ze **noemen** hem Jan. — They **call** him Jan.,,,heten;aanduiden;betitelen,nl
 begrijpen,to understand,To comprehend,Ik **begrijp** het niet. — I do not **understand** it.,,,snappen;verstaan;vatten,nl
@@ -223,7 +223,7 @@ vol,full,Filled,De trein is **vol**. — The train is **full**.,,,bezet;gevuld;o
 helemaal,completely,Fully,Het huis is **helemaal** schoon. — The house is **completely** clean.,,,geheel;totaal;volledig,nl
 juist,correct / precisely / exactly,Right,Dat is **juist**. — That is **correct**.,,,correct;goed;nauwkeurig,nl
 welk,which,Question word,**Welk** boek heb jij gelezen? — **Which** book did you read?,,,wat voor;die;dat,nl
-binnen,inside,Interior,Kom **binnen**, het is warm hier. — Come **inside**, it is warm here.,naar binnen;in;inpandig;naar binnen;in;inpandig,nl
+binnen,inside,Interior,Kom **binnen** het is warm hier. — Come **inside** it is warm here.,naar binnen;in;inpandig;naar binnen;in;inpandig,nl
 sterk,strong,Powerful,Hij is heel **sterk**. — He is very **strong**.,,,krachtig;robuust;gespierd,nl
 waar,where/true,Place or truth,**Waar** woon jij? — **Where** do you live?,,,ergens;welke plek,nl
 deel,part,Section,Dit is een **deel** van het verhaal. — This is a **part** of the story.,,,stuk;gedeelte;fragment,nl
@@ -236,7 +236,7 @@ gebeuren,to happen,Occur,Wat is hier **gebeurd**? — What **happened** here?,,,
 deur,door,Entrance,De **deur** staat open. — The **door** is open.,,,toegang;ingang;poort,nl
 manier,way/manner,Method,Dat is een goede **manier** om het te doen. — That is a good **way** to do it.,,,methode;wijze;aanpak,nl
 ding,thing,Object,Dat is een vreemd **ding**. — That is a strange **thing**.,,,object;zaak;item,nl
-nee,no,Negative answer,**Nee**, dat wil ik niet. — **No**, I do not want that.,neen;absoluut niet;weigering;neen;absoluut niet,nl
+nee,no,Negative answer,**Nee** dat wil ik niet. — **No** I do not want that.,neen;absoluut niet;weigering;neen;absoluut niet,nl
 uw,your (formal),Possessive formal,Is dit **uw** jas? — Is this **your** coat?,,,van u;uw eigen,nl
 kamer,room,Space in house,Mijn **kamer** is klein maar gezellig. — My **room** is small but cosy.,,,ruimte;zaal;vertrek,nl
 water,water,Liquid,Ik drink graag **water**. — I like to drink **water**.,,,vloeistof;H2O;drank,nl
@@ -263,7 +263,7 @@ vast,fixed / sure / stuck,Firm or certain,Het touw is **vast** gebonden. — The
 enig,some,A little,Er is **enige** twijfel over zijn plan. — There is **some** doubt about his plan.,,,weinig;beperkt;een beetje,nl
 zoeken,to search,To look for,Ik **zoek** mijn sleutels. — I am **searching** for my keys.,,,opzoeken;speuren;naspeuren,nl
 niemand,no one,Nobody,**Niemand** weet het antwoord. — **Nobody** knows the answer.,,,geen mens;geen één;geen persoon,nl
-daarom,therefore,Reason,Ik ben ziek, **daarom** ga ik niet mee. — I am ill, **therefore** I am not coming.,dus;bijgevolg;derhalve;dus;bijgevolg;derhalve,nl
+daarom,therefore,Reason,Ik ben ziek **daarom** ga ik niet mee. — I am ill **therefore** I am not coming.,dus;bijgevolg;derhalve;dus;bijgevolg;derhalve,nl
 slaan,to hit / to beat / to strike,To strike,Hij **slaat** een spijker in de muur. — He **strikes** a nail into the wall.,,,raken;treffen;kloppen,nl
 stad,city,Urban area,Amsterdam is een grote **stad**. — Amsterdam is a big **city**.,,,gemeente;metropool;wereldstad,nl
 groep,group,Collection of people,We werken in een **groep**. — We work in a **group**.,,,team;ploeg;collectief,nl
@@ -279,14 +279,14 @@ samen,together,With others,We eten **samen** vanavond. — We are eating **toget
 stem,voice / vote,Sound of speaking,Zijn **stem** klinkt mooi. — His **voice** sounds beautiful.,,,geluid;klank;toonhoogte,nl
 wit,white,Color,De muren zijn **wit** geschilderd. — The walls are painted **white**.,,,blank;licht;helder,nl
 lezen,to read,To interpret text,Ik **lees** elke avond een boek. — I **read** a book every evening.,,,doornemen;bestuderen;doorlezen,nl
-zodat,so that,Indicates purpose or result,Ik doe mijn best, **zodat** hij trots is. — I do my best **so that** he is proud.,,opdat;teneinde;zodat;opdat;teneinde,nl
+zodat,so that,Indicates purpose or result,Ik doe mijn best **zodat** hij trots is. — I do my best **so that** he is proud.,,opdat;teneinde;zodat;opdat;teneinde,nl
 lachen,to laugh,To show amusement,Ze **lachte** luid bij zijn grap. — She **laughed** loudly at his joke.,,,grinniken;giechelen;schateren,nl
 bed,bed,Furniture to sleep,Het **bed** is heel comfortabel. — The **bed** is very comfortable.,,,slaapplaats;rustplaats,nl
 genoeg,enough,Sufficient amount,Ik heb **genoeg** gegeten. — I have eaten **enough**.,,,voldoende;toereikend;ruim,nl
 verder,further,More ahead,Laten we **verder** gaan. — Let us move **further**.,,,vooruit;voort;door,nl
 God,God,Deity,Velen bidden tot **God**. — Many pray to **God**.,,,Heer;de Almachtige;Schepper,nl
 moment,moment,Short time,Wacht even een **moment**. — Wait just a **moment**.,,,ogenblik;seconde;instant,nl
-daarna,after that,Following time,We aten, en **daarna** gingen we wandelen. — We ate, and **afterwards** we went for a walk.,vervolgens;later;nadien;vervolgens;later;nadien,nl
+daarna,after that,Following time,We aten en **daarna** gingen we wandelen. — We ate and **afterwards** we went for a walk.,vervolgens;later;nadien;vervolgens;later;nadien,nl
 verschillende,different,Various,We hebben **verschillende** opties. — We have **different** options.,,,diverse;uiteenlopende;verscheidene,nl
 beetje,a little,Small amount,Ik ben een **beetje** moe. — I am a **little** tired.,,,klein beetje;ietsje;enigszins,nl
 volgens,according to,Based on,**Volgens** hem is alles goed. — **According to** him, everything is fine.,,naar;op grond van;gebaseerd op;naar;op grond van;gebaseerd op,nl
@@ -327,7 +327,7 @@ beide,both,Two together,**Beide** opties zijn goed. — **Both** options are goo
 jullie,you (plural),Plural pronoun,Gaan **jullie** mee? — Are **you** all coming along?,,,jij allemaal;u allen,nl
 leiden,to lead,To guide,De weg **leidt** naar het centrum. — The road **leads** to the centre.,,,brengen;gidsen;begeleiden,nl
 ontstaan,to arise,To come into being,Hoe **ontstaat** een regenboog? — How does a rainbow **arise**?,,,zich vormen;groeien;verschijnen,nl
-nou,well,Filler word,**Nou**, dat is leuk! — **Well**, that is nice!,tja;ach;welnu;tja;ach;och,nl
+nou,well,Filler word,**Nou** dat is leuk! — **Well** that is nice!,tja;ach;welnu;tja;ach;och,nl
 ontwikkeling,development,Growth process,De **ontwikkeling** van technologie gaat snel. — The **development** of technology is fast.,,,groei;evolutie;voortgang,nl
 vrij,free / quite / off,Not occupied,Morgen ben ik **vrij**. — Tomorrow I am **free**.,,,ongebonden;onbelemmerd;ledig,nl
 zit,sits,Form of zitten,Hij **zit** op de bank. — He **sits** on the couch.,,,bevindt zich;rust;verblijft,nl
@@ -340,7 +340,7 @@ half,half,50 percent,Het is **half** vijf. — It is **half** past four.,,,gedee
 wijzen,to point,To indicate,Hij **wijst** naar de kaart. — He **points** at the map.,,,aanwijzen;aanduiden;tonen,nl
 tafel,table,Furniture,We eten aan de **tafel**. — We eat at the **table**.,,,tafelblad;aanrecht;bureau,nl
 boven,above,Higher position,De vogel vliegt **boven** ons. — The bird flies **above** us.,,,omhoog;hoger;erbovenuit,nl
-algemeen,general,Common,In het **algemeen** gaat het goed. — **In general**, things are going well.,,breed;universeel;gangbaar;breed;universeel;gangbaar,nl
+algemeen,general,Common,In het **algemeen** gaat het goed. — **In general** things are going well.,,breed;universeel;gangbaar;breed;universeel;gangbaar,nl
 politiek,politics,Government affairs,Hij is geïnteresseerd in **politiek**. — He is interested in **politics**.,,,bestuur;staatszaken;overheid,nl
 school,school,Education place,De kinderen gaan naar **school**. — The children go to **school**.,,,onderwijsinstelling;scholengroep;leerinrichting,nl
 gebied,area,Region,In dit **gebied** regent het veel. — In this **area** it rains a lot.,,,regio;streek;zone,nl
@@ -355,7 +355,7 @@ veranderen,to change,To make different,De wereld **verandert** snel. — The wor
 verhaal,story,Narrative,Hij vertelde een mooi **verhaal**. — He told a beautiful **story**.,,,vertelling;anekdote;relaas,nl
 pas,just/only,Recently or only,Ik ben **pas** wakker. — I have **just** woken up.,,,net;zojuist;recentelijk,nl
 dood,dead,No longer alive,Het blad is **dood**. — The leaf is **dead**.,,,levenloos;gestorven;afgestorven,nl
-hoewel,although,Contrast conjunction,**Hoewel** het regende, gingen we wandelen. — **Although** it rained, we went for a walk.,ook al;zelfs als;ondanks dat;ook al;zelfs als;ondanks dat,nl
+hoewel,although,Contrast conjunction,**Hoewel** het regende gingen we wandelen. — **Although** it rained, we went for a walk.,ook al;zelfs als;ondanks dat;ook al;zelfs als;ondanks dat,nl
 draaien,to turn,To rotate,De ventilator **draait** snel. — The fan **turns** quickly.,,,roteren;tollen;wentelen,nl
 sociaal,social,Related to society,Dit is een **sociaal** probleem. — This is a **social** problem.,,,maatschappelijk;gemeenschappelijk,nl
 recht,right/straight,Direction or law,Je hebt **recht** op informatie. — You have the **right** to information.,,,aanspraak;prerogaat;bevoegdheid,nl
@@ -390,7 +390,7 @@ ouder,older/parent,Comparative or parent,Hij is **ouder** dan zijn broer. — He
 betreffen,to concern,To relate to,Dit **betreft** ons allemaal. — This **concerns** us all.,,,gaan over;raken;aangaan,nl
 kracht,strength,Power,Hij heeft veel **kracht**. — He has a lot of **strength**.,,,macht;energie;vermogen,nl
 wonen,to live,To reside,Ik **woon** in Utrecht. — I **live** in Utrecht.,,,verblijven;resideren;domiciliëren,nl
-heer,sir / gentleman / lord,Polite address,Goede avond, **heer**. — Good evening, **sir**.,meneer;mijnheer;jonkheer;meneer;mijnheer;jonkheer,nl
+heer,sir / gentleman / lord,Polite address,Goede avond **heer**. — Good evening **sir**.,meneer;mijnheer;jonkheer;meneer;mijnheer;jonkheer,nl
 gebruik,use,Usage,Het **gebruik** van alcohol is verboden. — The **use** of alcohol is forbidden.,,,toepassing;aanwending;benutting,nl
 meteen,immediately,Right away,Ik doe het **meteen**. — I will do it **immediately**.,,,direct;onmiddellijk;ter plekke,nl
 rol,role,Function or part,Hij speelt een grote **rol**. — He plays a big **role**.,,,functie;positie;taak,nl
@@ -404,7 +404,7 @@ slapen,to sleep,Rest,Ik **slaap** acht uur per nacht. — I **sleep** eight hour
 dicht,closed / close / near,Not open,De winkel is **dicht** op zondag. — The shop is **closed** on Sunday.,,,gesloten;toe;vergrendeld,nl
 zowel,both,And also,**Zowel** mannen als vrouwen zijn welkom. — **Both** men and women are welcome.,,,ook;evenals,nl
 kerk,church,Religious building,Ze gaat elke zondag naar de **kerk**. — She goes to **church** every Sunday.,,,godshuis;heiligdom;bidplaats,nl
-meneer,sir,Polite address,Goede dag, **meneer**. — Good day, **sir**.,heer;man;mijnheer;heer;man,nl
+meneer,sir,Polite address,Goede dag **meneer**. — Good day **sir**.,heer;man;mijnheer;heer;man,nl
 onderzoek,research,Study or investigation,Het **onderzoek** duurt nog een jaar. — The **research** takes another year.,,,studie;analyse;examinatie,nl
 beweging,movement,Motion,De **beweging** van de aarde is circulair. — The **movement** of the earth is circular.,,,motie;gang;actie,nl
 blik,look/glance,Way of seeing,Ze wierp een **blik** op zijn brief. — She cast a **glance** at his letter.,,,oogopslag;kijk;oog,nl
@@ -468,7 +468,7 @@ rug,back,Body part,Mijn **rug** doet pijn. — My **back** hurts.,,,ruggengraat;
 plotseling,suddenly,Unexpectedly,**Plotseling** begon het te regenen. — **Suddenly** it started to rain.,,,ineens;opeens;onverwacht,nl
 zorgen,to care/worry,To take care or worry,Ik **zorg** voor mijn ouders. — I **care** for my parents.,,,koesteren;onderhouden;ondersteunen,nl
 gezien,seen,Past of see,Heb jij dit film **gezien**? — Have you **seen** this film?,,,bekeken;aanschouwd;waargenomen,nl
-inderdaad,indeed,Confirmation,**Inderdaad**, dat klopt. — **Indeed**, that is correct.,zeker;juist;werkelijk;zeker;juist;werkelijk,nl
+inderdaad,indeed,Confirmation,**Inderdaad** dat klopt. — **Indeed** that is correct.,zeker;juist;werkelijk;zeker;juist;werkelijk,nl
 maatschappelijk,social,Societal,Dit is een **maatschappelijk** probleem. — This is a **social** problem.,,,sociaal;gemeenschappelijk,nl
 kiezen,to choose,To select,Ik moet tussen twee opties **kiezen**. — I have to **choose** between two options.,,,selecteren;uitkiezen;aanwijzen,nl
 kennis,knowledge,Understanding,Ze heeft veel **kennis** van geschiedenis. — She has a lot of **knowledge** of history.,,,wetenschap;expertise;vaardigheid,nl
@@ -494,7 +494,7 @@ hond,dog,Animal,Onze **hond** is heel lief. — Our **dog** is very sweet.,,,hon
 voeren,to feed,Give food to,Ze **voert** de katten. — She **feeds** the cats.,,,te eten geven;van voedsel voorzien,nl
 relatie,relationship,Connection between people,Ze hebben een goede **relatie**. — They have a good **relationship**.,,,verband;verbinding;omgang,nl
 begrip,understanding/concept,Comprehension,Hij heeft geen **begrip** hiervoor. — He has no **understanding** of this.,,,inzicht;kennis;comprehensie,nl
-mevrouw,madam,Polite address,Goede dag, **mevrouw**. — Good day, **madam**.,dame;vrouw;madame;dame;vrouw,nl
+mevrouw,madam,Polite address,Goede dag **mevrouw**. — Good day **madam**.,dame;vrouw;madame;dame;vrouw,nl
 glimlachen,to smile,Facial expression,Ze **glimlacht** altijd. — She always **smiles**.,,,lachen;stralen;grijnen,nl
 volgend,next,Coming after,De **volgende** trein vertrekt over tien minuten. — The **next** train departs in ten minutes.,,,aankomende;komende;opvolgende,nl
 systeem,system,Organized structure,Dit **systeem** werkt niet goed. — This **system** does not work well.,,,methode;structuur;organisatie,nl
@@ -510,7 +510,7 @@ onderwijs,education,Learning system,Het **onderwijs** in Nederland is goed. — 
 verliezen,to lose,Not win or misplace,We mogen niet **verliezen**. — We must not **lose**.,,,kwijtraken;mislopen;afleggen,nl
 zwart,black,Color,Ze draagt een **zwarte** jurk. — She wears a **black** dress.,,,donker;pikzwart;nachtelijk,nl
 menen,to think/mean,To believe,Ik **meen** dat hij gelijk heeft. — I **think** he is right.,,,denken;geloven;van mening zijn,nl
-nadat,after,Time conjunction,**Nadat** ze had gegeten, ging ze slapen. — **After** she had eaten, she went to sleep.,na;wanneer;zodra;na;wanneer,nl
+nadat,after,Time conjunction,**Nadat** ze had gegeten ging ze slapen. — **After** she had eaten she went to sleep.,na;wanneer;zodra;na;wanneer,nl
 behoefte,need,Requirement,Er is een grote **behoefte** aan leraren. — There is a great **need** for teachers.,,,nood;noodzaak;tekort,nl
 rustig,calm,Not busy,Dit dorp is heel **rustig**. — This village is very **calm**.,,,stil;vredig;bedaard,nl
 eenmaal,once,One time,**Eenmaal** per week gaan we uit eten. — **Once** a week we go out to eat.,,,een keer;ooit;op een dag,nl
@@ -565,15 +565,15 @@ dokter,doctor,Medical professional,Ze gaat naar de **dokter**. — She goes to t
 betrekking,relation,Connection,Dit heeft **betrekking** op ons plan. — This has a **bearing** on our plan.,,,relatie;verband;connectie,nl
 gedrag,behavior,Actions,Zijn **gedrag** was onacceptabel. — His **behaviour** was unacceptable.,,,houding;optreden;manier van doen,nl
 zee,sea,Large water body,We wandelen langs de **zee**. — We walk along the **sea**.,,,oceaan;water;diepzee,nl
-hoor,hear (informal),Emphasis word,Dat snap ik, **hoor**. — I understand that, **you know**.,zeker;toch;wel;zeker;toch,nl
-indien,if (formal),Condition,**Indien** je vragen hebt, bel me. — **If** you have questions, call me.,als;wanneer;mits;als;wanneer;mits,nl
+hoor,hear (informal),Emphasis word,Dat snap ik **hoor**. — I understand that **you know**.,zeker;toch;wel;zeker;toch,nl
+indien,if (formal),Condition,**Indien** je vragen hebt bel me. — **If** you have questions call me.,als;wanneer;mits;als;wanneer;mits,nl
 vergeten,to forget,Not remember,Ik ben mijn sleutels **vergeten**. — I have **forgotten** my keys.,,,kwijtraken;niet meer weten;laten liggen,nl
 bewust,aware,Knowing,Ik ben me **bewust** van de risico's. — I am **aware** of the risks.,,,doordrongen;beseffen;begrijpen,nl
 raad,advice,Suggestion,Kan jij me **raad** geven? — Can you give me **advice**?,,,advies;tip;aanwijzing,nl
-namelijk,namely,Explanation word,Ik kan niet komen, **namelijk** ik ben ziek. — I cannot come, **namely** I am sick.,want;immers;dat wil zeggen;want;immers;dat wil zeggen,nl
+namelijk,namely,Explanation word,Ik kan niet komen **namelijk** ik ben ziek. — I cannot come **namely** I am sick.,want;immers;dat wil zeggen;want;immers;dat wil zeggen,nl
 regel,rule,Guideline,Iedereen moet de **regels** volgen. — Everyone must follow the **rules**.,,,wet;norm;principe,nl
 groeien,to grow,Increase,De planten **groeien** snel in de zomer. — The plants **grow** quickly in summer.,,,toenemen;zich uitbreiden;bloeien,nl
-voordat,before,Earlier than,**Voordat** je gaat, zeg je gedag. — **Before** you go, you say goodbye.,voor;alvorens;eerder dan;voor;alvorens,nl
+voordat,before,Earlier than,**Voordat** je gaat zeg je gedag. — **Before** you go you say goodbye.,voor;alvorens;eerder dan;voor;alvorens,nl
 min,minus,Subtraction,Tien **min** vier is zes. — Ten **minus** four is six.,,,negatief;aftrekken,nl
 boom,tree,Plant,Er staat een grote **boom** in de tuin. — There is a large **tree** in the garden.,,,eikenboom;beuk;conifeer,nl
 dorp,village,Small town,Ze woont in een klein **dorp**. — She lives in a small **village**.,,,gehucht;gemeente;buurtschap,nl
@@ -594,7 +594,7 @@ bekijken,to look at,To watch or examine,Zullen we de film **bekijken**? — Shal
 nogal,quite/rather,Fairly,Het is **nogal** warm buiten. — It is **quite** warm outside.,,,tamelijk;redelijk;vrij,nl
 hoofdstuk,chapter,Part of a book,Ik lees het derde **hoofdstuk**. — I am reading the third **chapter**.,,,gedeelte;deel;sectie,nl
 periode,period,Time span,Dit was een moeilijke **periode**. — This was a difficult **period**.,,,tijdperk;fase;tijdvak,nl
-overigens,by the way,Additional remark,**Overigens** is hij een goede student. — **By the way**, he is a good student.,,trouwens;bovendien;verder;trouwens;bovendien;verder,nl
+overigens,by the way,Additional remark,**Overigens** is hij een goede student. — **By the way** he is a good student.,,trouwens;bovendien;verder;trouwens;bovendien;verder,nl
 sinds,since,From a time,**Sinds** gisteren is hij ziek. — He has been ill **since** yesterday.,,,van;sedert;nadat,nl
 erop,on it,On something,Hij legt zijn hoofd **erop**. — He rests his head **on it**.,,,erbovenop;daarboven,nl
 aard,nature/type,Kind or character,Dit is van een andere **aard**. — This is of a different **nature**.,,,type;karakter;soort,nl
@@ -606,7 +606,7 @@ normaal,normal,Usual,Dat is heel **normaal**. — That is very **normal**.,,,geb
 tonen,to show,To display,Hij **toont** zijn paspoort. — He **shows** his passport.,,,laten zien;presenteren;tentoonstellen,nl
 noch,nor,Neither...nor,Hij **noch** zij kwamen. — **Neither** he nor she came.,,,en niet;evenmin,nl
 breed,wide,Large width,De weg is erg **breed**. — The road is very **wide**.,,,ruim;uitgestrekt;spacious,nl
-trouwens,by the way,Extra remark,**Trouwens**, hoe is het met je? — **By the way**, how are you?,overigens;terzijde;bovendien;overigens;terzijde;bovendien,nl
+trouwens,by the way,Extra remark,**Trouwens** hoe is het met je? — **By the way** how are you?,overigens;terzijde;bovendien;overigens;terzijde;bovendien,nl
 rond,around,Circular or surrounding,Ze lopen **rond** het meer. — They walk **around** the lake.,,,rondom;om;circulair,nl
 toekomst,future,Time ahead,De **toekomst** ziet er goed uit. — The **future** looks good.,,,morgen;dat wat komt;perspectief,nl
 Heer,Lord,Formal or religious title,Bid tot de **Heer**. — Pray to the **Lord**.,,,God;Almachtige;Schepper,nl
@@ -627,7 +627,7 @@ zes,six,Number,Ik heb **zes** appels. — I have **six** apples.,,,zestal;sextet
 overheid,government,Public authority,De **overheid** neemt maatregelen. — The **government** is taking measures.,,,bestuur;staat;autoriteiten,nl
 bevinden,to be located,To be situated,We **bevinden** ons in Amsterdam. — We are **located** in Amsterdam.,,,zijn;verblijven;aanwezig zijn,nl
 afstand,distance,Space between,De **afstand** naar Parijs is groot. — The **distance** to Paris is large.,,,weg;kilometertal;ruimte,nl
-vervolgens,then/afterwards,Next step,Ze at, en **vervolgens** gingen we dansen. — She ate, and **then** we went dancing.,daarna;nadien;hierna;daarna;nadien;hierna,nl
+vervolgens,then/afterwards,Next step,Ze at en **vervolgens** gingen we dansen. — She ate and **then** we went dancing.,daarna;nadien;hierna;daarna;nadien;hierna,nl
 wetenschap,science,Study of knowledge,De **wetenschap** maakt grote vorderingen. — **Science** is making great progress.,,,kennis;studie;onderzoek,nl
 vertrekken,to leave/depart,To go away,We **vertrekken** om negen uur. — We **depart** at nine o'clock.,,,weggaan;afreizen;vertrekken,nl
 ondanks,despite,In spite of,**Ondanks** de regen gingen we toch. — **Despite** the rain we went anyway.,,,hoewel;al is het;zij het,nl
@@ -663,7 +663,7 @@ dochter,daughter,Female child,Haar **dochter** studeert geneeskunde. — Her **d
 stappen,to step,Walk,Ze **stappen** in de bus. — They **step** into the bus.,,,lopen;treden;gaan,nl
 droom,dream,Thought during sleep,Ik had een mooie **droom**. — I had a beautiful **dream**.,,,fantasie;visioen;wensdroom,nl
 schrijver,writer,Author,Hij is een beroemde **schrijver**. — He is a famous **writer**.,,,auteur;literator;scribent,nl
-doch,however,Contrast word,Ik wil gaan, **doch** ik kan niet. — I want to go, **but** I cannot.,maar;echter;toch;maar;echter;toch,nl
+doch,however,Contrast word,Ik wil gaan **doch** ik kan niet. — I want to go **but** I cannot.,maar;echter;toch;maar;echter;toch,nl
 tuin,garden,Outdoor space,Wij hebben een grote **tuin**. — We have a large **garden**.,,,park;plantsoen;hof,nl
 maatschappij,society,Community,De **maatschappij** verandert snel. — **Society** is changing rapidly.,,,samenleving;wereld;gemeenschap,nl
 bedrijf,company,Business,Ze werkt bij een klein **bedrijf**. — She works at a small **company**.,,,firma;onderneming;zaak,nl
@@ -774,7 +774,7 @@ terecht,rightly/correct,Justified,Zijn kritiek is **terecht**. — His criticism
 leeftijd,age,Years lived,Op welke **leeftijd** begon je te lopen? — At what **age** did you start walking?,,,ouderdom;jaren;tijd,nl
 kloppen,to be correct/knock,Be right or knock,Dat **klopt** helemaal. — That is completely **correct**.,,,juist zijn;overeenkomen;bevestigen,nl
 reactie,reaction,Response,Zijn **reactie** verraste mij. — His **reaction** surprised me.,,,respons;antwoord;weerwoord,nl
-telkens,each time,Every time,**Telkens** als ik hem zie, lacht hij. — **Every time** I see him, he laughs.,steeds;elke keer;keer op keer;steeds;elke keer;keer op keer,nl
+telkens,each time,Every time,**Telkens** als ik hem zie lacht hij. — **Every time** I see him he laughs.,steeds;elke keer;keer op keer;steeds;elke keer;keer op keer,nl
 verkopen,to sell,Give for money,Hij **verkoopt** zijn huis. — He is **selling** his house.,,,te koop zetten;verhandelen;van de hand doen,nl
 eveneens,also/likewise,In addition,Zij was **eveneens** aanwezig. — She was **also** present.,,,ook;tevens;bovendien,nl
 tegelijk,at the same time,Simultaneously,We praten nooit **tegelijk**. — We never talk **at the same time**.,,,simultaan;gelijktijdig;samen,nl
@@ -813,13 +813,13 @@ grijpen,to grab,Take quickly,Hij **greep** zijn kans. — He **seized** his oppo
 reis,journey,Trip,Ze maakt een lange **reis**. — She is making a long **journey**.,,,trip;tocht;rondreis,nl
 zwarte,black,Color,Ze draagt een **zwarte** jas. — She wears a **black** coat.,,,donkere;pikzwarte,nl
 druk,busy/pressure,Occupied,Hij heeft een **drukke** dag. — He has a **busy** day.,,,bezet;hectisch;vol,nl
-zover,so far,Up to now,**Zover** ik weet, klopt dat. — **As far as** I know, that is correct.,voor zover;in zoverre;tot zover;voor zover;in zoverre,nl
+zover,so far,Up to now,**Zover** ik weet klopt dat. — **As far as** I know that is correct.,voor zover;in zoverre;tot zover;voor zover;in zoverre,nl
 staren,to stare,Look fixedly,Ze **staart** uit het raam. — She **stares** out of the window.,,,turen;fixeren;aanstaren,nl
 oplossing,solution,Answer to problem,Er is geen makkelijke **oplossing**. — There is no easy **solution**.,,,antwoord;uitweg;remedie,nl
 achten,to consider,Think of as,Hij wordt hoogst **geacht**. — He is highly **regarded**.,,,respecteren;waarderen;beschouwen,nl
 missen,to miss,Not have or fail,Ik **mis** jou heel erg. — I **miss** you very much.,,,nodig hebben;wensen;verlangen,nl
 element,element,Part,Water is een belangrijk **element**. — Water is an important **element**.,,,component;ingrediënt;bestanddeel,nl
-doordat,because of,Reason,Ze slaagde, **doordat** ze hard werkte. — She succeeded **because** she worked hard.,,omdat;vanwege;dankzij;omdat;vanwege;dankzij,nl
+doordat,because of,Reason,Ze slaagde **doordat** ze hard werkte. — She succeeded **because** she worked hard.,,omdat;vanwege;dankzij;omdat;vanwege;dankzij,nl
 verlangen,desire,Strong wish,Ik heb een sterk **verlangen** naar rust. — I have a strong **desire** for rest.,,,wens;behoefte;drang,nl
 bevatten,to contain,Have inside,Dit pakket **bevat** twee boeken. — This package **contains** two books.,,,inhouden;omvatten;beslaan,nl
 moeilijkheid,difficulty,Problem,Ze overwinnen vele **moeilijkheden**. — They overcome many **difficulties**.,,,probleem;hindernis;obstakel,nl
@@ -843,7 +843,7 @@ dagelijks,daily,Every day,Dit is mijn **dagelijkse** routine. — This is my **d
 ziekenhuis,hospital,Medical place,Ze werkt in een **ziekenhuis**. — She works in a **hospital**.,,,kliniek;medisch centrum;ziekenboeg,nl
 factor,factor,Element influencing,Tijd is een belangrijke **factor**. — Time is an important **factor**.,,,element;aspect;invloedspunt,nl
 bouwen,to build,Construct,Ze **bouwen** een nieuw huis. — They are **building** a new house.,,,construeren;oprichten;aanleggen,nl
-zodra,as soon as,Immediately when,**Zodra** het stopt met regenen, gaan we. — **As soon as** it stops raining, we go.,als;wanneer;meteen als;als;wanneer;meteen als,nl
+zodra,as soon as,Immediately when,**Zodra** het stopt met regenen gaan we. — **As soon as** it stops raining, we go.,als;wanneer;meteen als;als;wanneer;meteen als,nl
 begin,beginning,Start,Dit is het **begin** van een nieuw tijdperk. — This is the **beginning** of a new era.,,,aanvang;start;ontluiking,nl
 succes,success,Good result,Ik wens je veel **succes**. — I wish you lots of **success**.,,,resultaat;prestatie;welgelukken,nl
 onderwerp,subject/topic,Theme or topic,Dit is het **onderwerp** van de les. — This is the **subject** of the lesson.,,,thema;kwestie;topic,nl
@@ -900,7 +900,7 @@ rand,edge,Border,Hij staat aan de **rand** van het water. — He stands at the *
 gebouw,building,Structure to stay in,Dat is een oud **gebouw**. — That is an old **building**.,,,pand;constructie;bouwsel,nl
 beperken,to limit,Reduce,We moeten de kosten **beperken**. — We must **limit** the costs.,,,verminderen;inkorten;reduceren,nl
 adem,breath,Air inhaled,Ze haalt diep **adem**. — She takes a deep **breath**.,,,ademhaling;inademing;lucht,nl
-althans,at least,Minimum,Ik denk het, **althans** voor nu. — I think so, **at least** for now.,tenminste;op zijn minst;in elk geval;tenminste;op zijn minst;in elk geval,nl
+althans,at least,Minimum,Ik denk het **althans** voor nu. — I think so **at least** for now.,tenminste;op zijn minst;in elk geval;tenminste;op zijn minst;in elk geval,nl
 huid,skin,Body covering,Ze heeft een zachte **huid**. — She has soft **skin**.,,,vel;opperhuid;vacht,nl
 schrikken,to be startled,Get frightened,Ze **schrok** van de harde knap. — She **was startled** by the loud bang.,,,verschieten;verbaasd zijn;opspringen,nl
 uiteraard,of course,Naturally,**Uiteraard** help ik je graag. — **Of course** I am glad to help you.,,,natuurlijk;vanzelfsprekend;zeker,nl
@@ -916,7 +916,7 @@ uitdrukking,expression,Phrase or face expression,Dit is een bekende **uitdrukkin
 hoeveel,how much/many,Amount,**Hoeveel** kost dit? — **How much** does this cost?,,,welke hoeveelheid;in welke mate,nl
 kwaad,angry / evil,Upset,Hij is **kwaad** op mij. — He is **angry** with me.,,,boos;woedend;nijdig,nl
 inhoud,content,What is inside,Wat is de **inhoud** van het pakket? — What is the **content** of the package?,,,lading;vulling;substantie,nl
-zolang,as long as,During the time,**Zolang** ik hier woon, ga ik elke dag wandelen. — **As long as** I live here, I walk every day.,terwijl;als;gedurende de tijd dat;terwijl;als,nl
+zolang,as long as,During the time,**Zolang** ik hier woon ga ik elke dag wandelen. — **As long as** I live here I walk every day.,terwijl;als;gedurende de tijd dat;terwijl;als,nl
 ineens,suddenly,All at once,**Ineens** stopte de auto. — The car stopped **all of a sudden**.,,,plotseling;opeens;abrupt,nl
 lekker,tasty/nice,Pleasant taste or feeling,Het eten smaakt **lekker**. — The food tastes **delicious**.,,,heerlijk;smakelijk;aangenaam,nl
 midden,middle,Center,De tafel staat in het **midden** van de kamer. — The table is in the **middle** of the room.,,,centrum;hart;kern,nl
@@ -950,7 +950,7 @@ helft,half,50%,Ze drinkt de **helft** van haar koffie. — She drinks **half** o
 dichter,poet / closer,Writes poems,Hij is een beroemde **dichter**. — He is a famous **poet**.,,,lyricus;zanger;rijmer,nl
 keuze,choice,Selection,Dit is jouw **keuze**. — This is your **choice**.,,,beslissing;selectie;optie,nl
 zijde,side,Part of something,Aan welke **zijde** staat je auto? — On which **side** is your car?,,,kant;richting;flank,nl
-behalve,except,Excluding,Iedereen was er, **behalve** hij. — Everyone was there, **except** him.,uitgezonderd;buiten;zonder;uitgezonderd;buiten;zonder,nl
+behalve,except,Excluding,Iedereen was er **behalve** hij. — Everyone was there **except** him.,uitgezonderd;buiten;zonder;uitgezonderd;buiten;zonder,nl
 dwingen,to force,Make someone do,Ik kan je niet **dwingen**. — I cannot **force** you.,,,nopen;opdringen;verplichten,nl
 verrichten,to perform,Carry out actions,Ze **verricht** haar werk zorgvuldig. — She **performs** her work carefully.,,,doen;uitvoeren;ondernemen,nl
 haast,hurry,Quickly,Ze heeft **haast**. — She is in a **hurry**.,,,spoed;urgentie;rush,nl
@@ -960,7 +960,7 @@ voorwaarde,condition,Requirement,Dat is een belangrijke **voorwaarde**. — That
 vertrouwen,trust,Reliance,Ik heb **vertrouwen** in jou. — I have **trust** in you.,,,geloof;zekerheid;betrouwbaarheid,nl
 trein,train,Transport by rail,De **trein** vertrekt om negen uur. — The **train** departs at nine o'clock.,,,spoortrein;locomotief;exprestrein,nl
 vangen,to catch,Grab,Ze **ving** de bal. — She **caught** the ball.,,,pakken;grijpen;snappen,nl
-evenals,as well as,Also,Hij, **evenals** zijn broer, werkt hard. — He,**as well as** his brother;works hard.;net als;zoals;als,nl
+evenals,as well as,Also,Hij **evenals** zijn broer werkt hard. — He**as well as** his brother works hard.,net als;zoals;als,nl
 praktisch,practical,Useful,Dit is een **praktische** oplossing. — This is a **practical** solution.,,,haalbaar;uitvoerbaar;bruikbaar,nl
 bewijzen,to prove,Show evidence,Hij moet zijn onschuld **bewijzen**. — He must **prove** his innocence.,,,aantonen;demonstreren;staven,nl
 betrekken,to involve,Include,We moeten iedereen **betrekken**. — We must **involve** everyone.,,,insluiten;opnemen;erbij halen,nl
@@ -993,7 +993,7 @@ besluit,decision,Choice made,Het **besluit** is genomen. — The **decision** ha
 vaag,vague,Not clear,Zijn antwoord was erg **vaag**. — His answer was very **vague**.,,,onduidelijk;onbepaald;diffuus,nl
 publiek,audience/public,Group of people watching or general public,Het **publiek** klapte luid. — The **audience** clapped loudly.,,,toeschouwers;kijkers;menigte,nl
 voorlopig,temporary,For the moment,Dit is **voorlopig** de beste oplossing. — This is **for now** the best solution.,,,tijdelijk;provisorisch;interim,nl
-weliswaar,indeed/admittedly,Confirms previous statement,Het is klein, **weliswaar**, maar comfortabel. — It is small,**admittedly**;but comfortable.;ook al;al;toegegeven,nl
+weliswaar,indeed/admittedly,Confirms previous statement,Het is klein **weliswaar** maar comfortabel. — It is small,**admittedly**;but comfortable.;ook al;al;toegegeven,nl
 internationaal,international,Between countries,Dit is een **internationaal** probleem. — This is an **international** problem.,,,wereldwijd;globaal;transnationaal,nl
 gebrek,lack,Shortage,Er is een **gebrek** aan water. — There is a **lack** of water.,,,tekort;gemis;onvoldoende,nl
 stevig,strong/sturdy,Solid,De muur is erg **stevig**. — The wall is very **sturdy**.,,,sterk;robuust;solide,nl
@@ -1107,10 +1107,10 @@ geur,smell,Odor,De **geur** van koffie is heerlijk. — The **smell** of coffee 
 tellen,to count,Add numbers,Ze **telt** de kinderen. — She **counts** the children.,,,berekenen;optellen;opsommen,nl
 buik,stomach,Body part,Hij heeft pijn in zijn **buik**. — He has pain in his **stomach**.,,,maag;pens;onderbuik,nl
 rivier,river,Flowing water,Ze zwemmen in de **rivier**. — They swim in the **river**.,,,stroom;waterloop;beek,nl
-ach,oh,Expression of emotion,**Ach**, dat is jammer. — **Oh**, that is a pity.,och;o;helaas;och;o;helaas,nl
+ach,oh,Expression of emotion,**Ach** dat is jammer. — **Oh** that is a pity.,och;o;helaas;och;o;helaas,nl
 verbinden,to connect,Join together,We **verbinden** de computer met het internet. — We **connect** the computer to the internet.,,,koppelen;linken;samenvoegen,nl
 functioneren,to function,Work properly,Dit apparaat **functioneert** niet goed. — This device does not **function** well.,,,werken;draaien;opereren,nl
-aangezien,since/because,For the reason that,**Aangezien** hij ziek is, blijft hij thuis. — **Since** he is ill, he stays at home.,omdat;doordat;want;omdat;doordat;want,nl
+aangezien,since/because,For the reason that,**Aangezien** hij ziek is blijft hij thuis. — **Since** he is ill he stays at home.,omdat;doordat;want;omdat;doordat;want,nl
 dansen,to dance,Move to music,Ze **danst** heel goed. — She **dances** very well.,,,bewegen op muziek;ronddansen,nl
 openbaar,public,For everyone,Dit is **openbaar** vervoer. — This is **public** transport.,,,publiek;gemeenschappelijk;vrij toegankelijk,nl
 evenmin,neither,Not either,Ik ga **evenmin**. — I am not going **either**.,,,ook niet;noch,nl
@@ -1136,7 +1136,7 @@ officieel,official,Authorized,Dit is de **officiële** regeling. — This is the
 baas,boss,Manager,Wie is jouw **baas**? — Who is your **boss**?,,,chef;manager;directeur,nl
 schoen,shoe,Footwear,Ze draagt rode **schoenen**. — She wears red **shoes**.,,,laars;pump;sneaker,nl
 lezer,reader,Person who reads,De **lezer** neemt het boek mee. — The **reader** takes the book along.,,,lezeres;boekliefhebber,nl
-hè,eh,Expression of surprise,Dat is mooi, **hè**? — That is nice, **isn't it**?,nietwaar;toch;of niet;nietwaar;toch;of niet,nl
+hè,eh,Expression of surprise,Dat is mooi **hè**? — That is nice **isn't it**?,nietwaar;toch;of niet;nietwaar;toch;of niet,nl
 herhalen,to repeat,Say again,Kun je dat **herhalen**? — Can you **repeat** that?,,,opnieuw zeggen;recapituleren;nogmaals zeggen,nl
 geestelijk,spiritual,Relating to the mind or spirit,Ze heeft **geestelijke** zorg nodig. — She needs **spiritual** care.,,,mentaal;psychisch;innerlijk,nl
 zakken,to drop/fail,Fall or fail,Het water **zakt** langzaam. — The water **drops** slowly.,,,dalen;teruglopen;lager worden,nl
@@ -1242,7 +1242,7 @@ concreet,concrete,"Specific, not abstract",,,specifiek,duidelijk;tastbaar,
 arbeider,worker,Manual laborer,De **arbeider** werkt op de fabriek. — The **worker** works at the factory.,,,werknemer;werkman;laborer,nl
 pak,suit/package,Clothing or bundle,Hij draagt een donker **pak**. — He wears a dark **suit**.,,,kostuum;kleding;outfit,nl
 broek,pants,Clothing for legs,Ze draagt een blauwe **broek**. — She wears blue **trousers**.,,,pantalon;jeans;legging,nl
-enz.,etc.,Et cetera,Appels, peren, bananen **enz.** — Apples,pears;bananas **etc.**;enzovoort;et cetera;en zo verder,nl
+enz.,etc.,Et cetera,Appels; peren; bananen; **enz.** — Apples;pears;bananas **etc.**;,,,enzovoort;et cetera;en zo verder,nl
 prettig,pleasant,Enjoyable,Dit is een **prettige** omgeving. — This is a **pleasant** environment.,,,aangenaam;fijn;gezellig,nl
 ster,star,Celestial body,De **ster** schijnt helder. — The **star** shines brightly.,,,hemellichaam;celebrity;beroemdheid,nl
 geheim,secret,Hidden information,Dit is een groot **geheim**. — This is a big **secret**.,,,mysterie;verborgenheid;confidentieel,nl
@@ -1325,7 +1325,7 @@ bloot,bare/naked,Without covering,De voeten zijn **bloot**. — The feet are **b
 directeur,director,Leader of organization,Ze is **directeur** van het bedrijf. — She is the **director** of the company.,,,ceo;baas;manager,nl
 spijten,to regret,Feel sorry,Het **spijt** me. — I am **sorry**.,,,berouwen;betreuren;bedroefd zijn,nl
 dak,roof,Top of a building,Het **dak** is beschadigd. — The **roof** is damaged.,,,dakbedekking;top;bedekking,nl
-evenwel,however,Nevertheless,Het plan is goed, **evenwel** duur. — The plan is good, **however** expensive.,maar;toch;echter;maar;toch;echter,nl
+evenwel,however,Nevertheless,Het plan is goed **evenwel** duur. — The plan is good **however** expensive.,maar;toch;echter;maar;toch;echter,nl
 god,God,Supreme being,Ze bidt tot **god**. — She prays to **god**.,,,godheid;almachtige;heer,nl
 hals,neck,Part connecting head and body,Ze draagt een ketting om haar **hals**. — She wears a necklace around her **neck**.,,,nek;keel;keelgat,nl
 geel,yellow,Color,De bloem is **geel**. — The flower is **yellow**.,,,goudgeel;citroengeel;zonnig,nl
@@ -1706,7 +1706,7 @@ zondag,Sunday,The seventh day of the week,We eten samen op **zondag**. — We ea
 huisarts,family doctor,A general practitioner,Ze gaat naar de **huisarts**. — She goes to the **family doctor**.,,,arts;dokter;geneesheer,nl
 inrichting,interior / setup,The way something is furnished or organised,De **inrichting** van het huis is mooi. — The **interior** of the house is beautiful.,,,decoratie;indeling;design,nl
 overig,remaining / other,The rest or the others,De **overige** taken zijn klaar. — The **remaining** tasks are done.,,,rest;anderen;resterende,nl
-degene,the one who,Used to refer to a specific person,**Degene** die het weet, mag het zeggen. — **The one** who knows may say it.,,hij/zij die;diegene;die persoon;hij/zij die;diegene;die persoon,nl
+degene,the one who,Used to refer to a specific person,**Degene** die het weet mag het zeggen. — **The one** who knows may say it.,,,hij/zij die;diegene;die persoon;hij/zij die;diegene;die persoon,nl
 psycholoog,psychologist,A specialist in psychology and mental health,Ze spreekt met een **psycholoog**. — She speaks with a **psychologist**.,,,therapeut;geestelijk hulpverlener,nl
 bereid,willing / ready,Prepared to do something,Zij is **bereid** te helpen. — She is **willing** to help.,,,klaar;gereed;beschikbaar,nl
 koningin,queen,A female monarch,De **koningin** groet de menigte. — The **queen** greets the crowd.,,,vorstin;monarchin;staatshoofd,nl
@@ -1825,7 +1825,7 @@ pen,pen,Writing instrument,Ze schrijft met een **pen**. — She writes with a **
 vuil,dirty,Covered with dirt,De straat is erg **vuil**. — The street is very **dirty**.,,,smerig;onrein;vies,nl
 hallo,hello,Greeting,Ze zegt **hallo** bij de deur. — She says **hello** at the door.,,,dag;goedendag;hi,nl
 bedankt,thank you,Expression of gratitude,Hartelijk **bedankt**! — Many **thanks**!,,,dankjewel;dank je;dank u,nl
-alstublieft,please,Polite request word,**Alstublieft**, mag ik een koffie? — **Please**, may I have a coffee?,graag;wil je;wees zo vriendelijk;graag;wil je;wees zo vriendelijk,nl
+alstublieft,please,Polite request word,**Alstublieft** mag ik een koffie? — **Please** may I have a coffee?,graag;wil je;wees zo vriendelijk;graag;wil je;wees zo vriendelijk,nl
 excuses,sorry,Apology expression,Ze bood haar **excuses** aan. — She offered her **apologies**.,,,sorry;spijt;verontschuldiging,nl
 nul,zero,Number 0,De score is **nul**. — The score is **zero**.,,,niets;0;geen,nl
 elf,eleven,Number 11,Ze is **elf** jaar oud. — She is **eleven** years old.,,,11,nl

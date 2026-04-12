@@ -29,21 +29,32 @@ export const AVATAR_OPTIONS = {
     { id: 'mouthangry',   label: 'Angry',   src: '/avatar/mouths/mouthangry.png' },
   ],
   hair: [
-    { id: 'none',           label: 'None',   src: '/avatar/eyes/none.png' },
-    { id: 'hairguy',        label: 'Short',       src: '/avatar/hair/hairguy.png' },
-    { id: 'hairgirl',       label: 'Long',        src: '/avatar/hair/hairgirl.png' },
-    { id: 'hairspike',      label: 'Spikes',      src: '/avatar/hair/hairspike.png' },
-    { id: 'haircurllong',   label: 'Long Curls',  src: '/avatar/hair/haircurllong.png' },
-    { id: 'hairbob',        label: 'Bob',         src: '/avatar/hair/hairbob.png' },
-    { id: 'hairafro',       label: 'Afro',        src: '/avatar/hair/hairafro.png' },
-    { id: 'hairmiddlepart',  label: 'Middle Part',  src: '/avatar/hair/hairmiddlepart.png' },
-    { id: 'hairspikewhite', label: 'White Spikes', src: '/avatar/hair/hairspikewhite.png' },
+    { id: 'none',                  label: 'None',              src: '/avatar/eyes/none.png' },
+    { id: 'hairguy',               label: 'Short',             src: '/avatar/hair/hairguy.png' },
+    { id: 'hairguyblonde',         label: 'Short (Blonde)',    src: '/avatar/hair/hairguyblonde.png',         price: 100 },
+    { id: 'hairguybrown',          label: 'Short (Brown)',     src: '/avatar/hair/hairguybrown.png',          price: 100 },
+    { id: 'hairgirl',              label: 'Long',              src: '/avatar/hair/hairgirl.png' },
+    { id: 'hairgirlblonde',        label: 'Long (Blonde)',     src: '/avatar/hair/hairgirlblonde.png',        price: 100 },
+    { id: 'hairgirlbrown',         label: 'Long (Brown)',      src: '/avatar/hair/hairgirlbrown.png',         price: 100 },
+    { id: 'hairspike',             label: 'Spikes',            src: '/avatar/hair/hairspike.png' },
+    { id: 'haircurllong',          label: 'Long Curls',        src: '/avatar/hair/haircurllong.png' },
+    { id: 'haircurllongblonde',    label: 'Long Curls (Blonde)', src: '/avatar/hair/haircurllongblonde.png', price: 100 },
+    { id: 'haircurllongbrown',     label: 'Long Curls (Brown)',  src: '/avatar/hair/haircurllongbrown.png',  price: 100 },
+    { id: 'hairbob',               label: 'Bob',               src: '/avatar/hair/hairbob.png' },
+    { id: 'hairbobblonde',         label: 'Bob (Blonde)',      src: '/avatar/hair/hairbobblonde.png',         price: 100 },
+    { id: 'hairbobbrown',          label: 'Bob (Brown)',       src: '/avatar/hair/hairbobbrown.png',          price: 100 },
+    { id: 'hairafro',              label: 'Afro',              src: '/avatar/hair/hairafro.png' },
+    { id: 'hairmiddlepart',        label: 'Middle Part',       src: '/avatar/hair/hairmiddlepart.png' },
+    { id: 'hairmiddlepartblonde',  label: 'Middle Part (Blonde)', src: '/avatar/hair/hairmiddlepartblonde.png', price: 100 },
+    { id: 'hairmiddlepartbrown',   label: 'Middle Part (Brown)',  src: '/avatar/hair/hairmiddlepartbrown.png',  price: 100 },
+    { id: 'hairspikewhite',        label: 'White Spikes',      src: '/avatar/hair/hairspikewhite.png' },
   ],
   hats: [
     { id: 'none',          label: 'None',       src: '/avatar/eyes/none.png' },
     { id: 'hatpartyhat',   label: 'Party Hat',  src: '/avatar/hats/hatpartyhat.png',  price: 100 },
     { id: 'hatstrawhat',   label: 'Straw Hat',  src: '/avatar/hats/hatstrawhat.png',  price: 100 },
     { id: 'hatdurag',      label: 'Durag',      src: '/avatar/hats/hatdurag.png',     price: 100 },
+    { id: 'hatchic',       label: 'Chic Hat',   src: '/avatar/hats/hatchic.png',      price: 100 },
   ],
   accessories: [
     { id: 'none',                  label: 'None',       src: '/avatar/eyes/none.png' },
@@ -52,6 +63,13 @@ export const AVATAR_OPTIONS = {
     { id: 'accessorypeaceyellow',  label: 'Peace (M)',   src: '/avatar/accessories/accessorypeaceyellow.png',  price: 100 },
     { id: 'accessorypeaceblack',   label: 'Peace (D)',   src: '/avatar/accessories/accessorypeaceblack.png',   price: 100 },
     { id: 'accessoryshine',        label: 'Shine',       src: '/avatar/accessories/accessoryshine.png',        price: 100 },
+  ],
+  glasses: [
+    { id: 'none',                label: 'None',           src: '/avatar/eyes/none.png' },
+    { id: 'glassesround',        label: 'Round',          src: '/avatar/glasses/glassesround.png',        price: 100 },
+    { id: 'glassesroundsun',     label: 'Round Shades',   src: '/avatar/glasses/glassesroundsun.png',     price: 100 },
+    { id: 'glassessquare',       label: 'Square',         src: '/avatar/glasses/glassessquare.png',       price: 100 },
+    { id: 'glassessquaresun',    label: 'Square Shades',  src: '/avatar/glasses/glassessquaresun.png',    price: 100 },
   ],
 };
 
@@ -71,17 +89,18 @@ export const BG_COLORS = [
 ];
 
 export const DEFAULT_AVATAR = {
-  face:  'faceyellow',
-  eyes:  'eyesnormal',
-  mouth: 'mouthsmile',
-  hair:  'hairguy',
-  hats:  'none',
+  face:        'faceyellow',
+  eyes:        'eyesnormal',
+  mouth:       'mouthsmile',
+  hair:        'hairguy',
+  hats:        'none',
   accessories: 'none',
-  bg:    '#1CB0F6',
+  glasses:     'none',
+  bg:          '#1CB0F6',
 };
 
 /** Render order for avatar layers (bottom to top) */
-export const LAYER_ORDER = ['face', 'eyes', 'mouth', 'hair', 'hats', 'accessories'];
+export const LAYER_ORDER = ['face', 'eyes', 'mouth', 'hair', 'hats', 'accessories', 'glasses'];
 
 /** Look up the image src for a given category + id */
 export function getOptionSrc(category, id) {

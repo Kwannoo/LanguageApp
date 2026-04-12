@@ -181,7 +181,8 @@ export default function FriendsScreen({ user, referralCode = '', onBack }) {
                 <div key={p.id} className="history-row" style={{
                   background: p.id === user.id ? 'var(--amber-light)' : 'var(--card)',
                   border: p.id === user.id ? '2px solid var(--amber)' : undefined,
-                }}>
+                  cursor: p.id !== user.id ? 'pointer' : undefined,
+                }} onClick={() => p.id !== user.id && openFriendProfile(p.id)}>
                   <div style={{ display: 'flex', alignItems: 'center', gap: '0.65rem' }}>
                     <span style={{ fontWeight: 800, fontSize: 18, color: i === 0 ? '#F5A623' : i === 1 ? '#A0A0A0' : i === 2 ? '#CD7F32' : 'var(--muted)', width: 28, textAlign: 'center' }}>
                       {i === 0 ? '🥇' : i === 1 ? '🥈' : i === 2 ? '🥉' : `#${i + 1}`}

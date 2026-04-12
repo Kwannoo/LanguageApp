@@ -47,6 +47,28 @@ export default function ShopScreen({
       owned: unlockedItems.includes(o.id),
     }));
 
+  const glasses = AVATAR_OPTIONS.glasses
+    .filter(o => o.price)
+    .map(o => ({
+      id: o.id,
+      label: o.label,
+      price: o.price,
+      kind: 'glasses',
+      src: o.src,
+      owned: unlockedItems.includes(o.id),
+    }));
+
+  const hair = AVATAR_OPTIONS.hair
+    .filter(o => o.price)
+    .map(o => ({
+      id: o.id,
+      label: o.label,
+      price: o.price,
+      kind: 'hair',
+      src: o.src,
+      owned: unlockedItems.includes(o.id),
+    }));
+
   const titles = TITLE_OPTIONS
     .filter(t => t.price)
     .map(t => ({
@@ -67,6 +89,12 @@ export default function ShopScreen({
   if (tab === 'all' || tab === 'accessories') {
     sections.push({ key: 'accessories', label: 'Accessories', items: accessories });
   }
+  if (tab === 'all' || tab === 'glasses') {
+    sections.push({ key: 'glasses', label: 'Glasses', items: glasses });
+  }
+  if (tab === 'all' || tab === 'hair') {
+    sections.push({ key: 'hair', label: 'Hair', items: hair });
+  }
   if (tab === 'all' || tab === 'titles') {
     sections.push({ key: 'titles', label: 'Titles', items: titles });
   }
@@ -76,6 +104,8 @@ export default function ShopScreen({
     { key: 'freezes',     label: 'Freezes' },
     { key: 'hats',        label: 'Hats' },
     { key: 'accessories', label: 'Acc.' },
+    { key: 'glasses',     label: 'Glasses' },
+    { key: 'hair',        label: 'Hair' },
     { key: 'titles',      label: 'Titles' },
   ];
 
@@ -187,41 +217,61 @@ export default function ShopScreen({
       {/* Confirm popup */}
       {confirm && (
         <>
-          <div className="settings-backdrop" onClick={() => setConfirm(null)} />
-          <div className="settings-panel" style={{
-            position: 'fixed', top: '50%', left: '50%', transform: 'translate(-50%, -50%)',
-            padding: '1.5rem', borderRadius: 'var(--radius-md)', maxWidth: 320, width: '90%',
-            textAlign: 'center', zIndex: 100,
+          <div
+            onClick={() => setConfirm(null)}
+            style={{
+              position: 'fixed', inset: 0,
+              background: 'rgba(0,0,0,0.5)',
+              zIndex: 200,
+              animation: 'popupBgIn 0.2s ease forwards',
+            }}
+          />
+          <div style={{
+            position: 'fixed',
+            top: '50%', left: '50%',
+            transform: 'translate(-50%, -50%)',
+            zIndex: 201,
+            width: 'min(320px, 90vw)',
+            background: 'var(--surface)',
+            border: '2px solid var(--border)',
+            borderRadius: 16,
+            padding: '1.75rem 1.5rem',
+            textAlign: 'center',
+            animation: 'popupIn 0.25s ease forwards',
           }}>
-            <p style={{ fontSize: 16, fontWeight: 700, marginBottom: '0.5rem' }}>
-              Buy {confirm.item.label}?
+            <p style={{ fontWeight: 800, fontSize: '1.1rem', color: 'var(--text)', marginBottom: 4 }}>
+              {confirm.item.label}
             </p>
-            <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 4, marginBottom: '0.75rem' }}>
-              <img src="/avatar/vocacoin.png" alt="" style={{ width: 18, height: 18 }} />
+            <div style={{
+              display: 'inline-flex', alignItems: 'center', gap: 6,
+              background: 'var(--amber-light)',
+              border: '1.5px solid var(--amber)',
+              borderRadius: 20,
+              padding: '6px 14px',
+              marginBottom: '1rem',
+            }}>
+              <img src="/avatar/vocacoin.png" alt="" style={{ width: 22, height: 22 }} />
               <span style={{ fontWeight: 800, fontSize: 16, color: 'var(--amber)' }}>{confirm.item.price}</span>
             </div>
-            <p style={{ fontSize: 13, color: 'var(--muted)', marginBottom: '1rem' }}>
-              Balance: <strong style={{ color: coins >= confirm.item.price ? 'var(--text)' : 'var(--danger-fg)' }}>{coins}</strong> coins
+            <p style={{ fontSize: 13, color: 'var(--muted)', marginBottom: '1.25rem' }}>
+              Your balance: <strong style={{ color: coins >= confirm.item.price ? 'var(--text)' : 'var(--danger-fg)' }}>{coins}</strong> coins
               {coins >= confirm.item.price && (
-                <span style={{ color: 'var(--hint)' }}> → {coins - confirm.item.price} after</span>
+                <span style={{ color: 'var(--hint)' }}> → {coins - confirm.item.price} after purchase</span>
               )}
             </p>
-            {coins < confirm.item.price ? (
-              <p style={{ fontSize: 13, color: 'var(--danger-fg)', fontWeight: 600, marginBottom: '0.75rem' }}>
-                Not enough coins! You need {confirm.item.price - coins} more.
-              </p>
-            ) : null}
-            <div style={{ display: 'flex', gap: '0.5rem' }}>
-              <button className="btn-ghost" onClick={() => setConfirm(null)} style={{ flex: 1 }}>Cancel</button>
-              <button
-                className="btn-primary"
-                onClick={confirm.onConfirm}
-                disabled={coins < confirm.item.price}
-                style={{ flex: 1, opacity: coins < confirm.item.price ? 0.5 : 1 }}
-              >
-                Buy
-              </button>
-            </div>
+            {coins >= confirm.item.price ? (
+              <div style={{ display: 'flex', gap: '0.5rem' }}>
+                <button className="btn-ghost" onClick={() => setConfirm(null)} style={{ flex: 1 }}>Cancel</button>
+                <button className="btn-primary" onClick={confirm.onConfirm} style={{ flex: 1 }}>Buy</button>
+              </div>
+            ) : (
+              <>
+                <p style={{ fontSize: 13, color: 'var(--danger-fg)', fontWeight: 600, marginBottom: '0.75rem' }}>
+                  Not enough coins! You need {confirm.item.price - coins} more.
+                </p>
+                <button className="btn-ghost" onClick={() => setConfirm(null)} style={{ width: '100%' }}>Close</button>
+              </>
+            )}
           </div>
         </>
       )}

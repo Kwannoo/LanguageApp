@@ -9,6 +9,7 @@ const CATEGORIES = [
   { key: 'hair',        label: 'Hair' },
   { key: 'hats',        label: 'Hats' },
   { key: 'accessories', label: 'Acc.' },
+  { key: 'glasses',     label: 'Glasses' },
   { key: 'bg',          label: 'BG' },
   { key: 'title',       label: 'Title' },
 ];
