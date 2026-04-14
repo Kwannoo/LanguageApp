@@ -54,9 +54,14 @@ const WRONG_REINSERT_GAP  = 3;   // how many cards later a wrong word reappears
 const RIGHT_REINSERT_GAP  = 6;   // how many cards later a right-but-not-graduated word reappears
 const IN_PROGRESS_CAP     = 200; // hard cap on lifetime in-progress words across the wordlist
 
-// Target composition of the active set: 5 in-progress, 2 new, 1 mastered review.
-// Buckets are filled in priority order (in-progress first), and any unmet
-// target falls through to the next bucket so the queue never runs short.
+// Bootstrap mode: aggressively introduce new words until the user has seen
+// BOOTSTRAP_THRESHOLD words. After that, switch to the regular target ratios.
+const BOOTSTRAP_THRESHOLD   = 30;
+const BOOTSTRAP_IN_PROGRESS = 2;
+const BOOTSTRAP_NEW         = 5;
+const BOOTSTRAP_MASTERED    = 1;
+
+// Regular target composition once the user is past the bootstrap phase.
 const TARGET_IN_PROGRESS = 5;
 const TARGET_NEW         = 2;
 const TARGET_MASTERED    = 1;
@@ -73,6 +78,7 @@ export default function Session({ onComplete, goalMinutes = 5, words: wordList =
   const queueRef    = useRef([]);
   const bucketsRef  = useRef({ inProgress: [], unseen: [], mastered: [] });
   const allowNewRef = useRef(true); // false when lifetime in-progress >= cap
+  const targetsRef  = useRef({ inProgress: TARGET_IN_PROGRESS, unseen: TARGET_NEW, mastered: TARGET_MASTERED });
   const learningRef = useRef({});
   const [currentWord, setCurrentWord] = useState(null);
   const [input, setInput]         = useState('');
@@ -155,10 +161,11 @@ export default function Session({ onComplete, goalMinutes = 5, words: wordList =
   const drawNextWord = useCallback(() => {
     const buckets = bucketsRef.current;
     const counts = countByBucket();
+    const t = targetsRef.current;
     const targets = {
-      inProgress: TARGET_IN_PROGRESS,
-      unseen:     allowNewRef.current ? TARGET_NEW : 0,
-      mastered:   TARGET_MASTERED,
+      inProgress: t.inProgress,
+      unseen:     allowNewRef.current ? t.unseen : 0,
+      mastered:   t.mastered,
     };
     // Build a priority list of bucket names ordered by how far each is below
     // its target (largest deficit first). Ties: in-progress > unseen > mastered.
@@ -194,8 +201,16 @@ export default function Session({ onComplete, goalMinutes = 5, words: wordList =
     const srs = loadSRS();
     // Cap check: if the user already has >= 200 in-progress words across the
     // wordlist, stop introducing fresh ones until some get mastered.
-    const { inProgress } = computeProgress(wordList, srs);
+    const { inProgress, mastered } = computeProgress(wordList, srs);
     allowNewRef.current = inProgress < IN_PROGRESS_CAP;
+
+    // Bootstrap mode: user has seen fewer than BOOTSTRAP_THRESHOLD words total —
+    // prioritise new words so the vocabulary grows quickly before settling into
+    // the regular spaced-repetition rhythm.
+    const seen = inProgress + mastered;
+    targetsRef.current = seen < BOOTSTRAP_THRESHOLD
+      ? { inProgress: BOOTSTRAP_IN_PROGRESS, unseen: BOOTSTRAP_NEW, mastered: BOOTSTRAP_MASTERED }
+      : { inProgress: TARGET_IN_PROGRESS,    unseen: TARGET_NEW,    mastered: TARGET_MASTERED    };
 
     bucketsRef.current = splitByLearningStage(wordList, srs);
     learningRef.current = {};
