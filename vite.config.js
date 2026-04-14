@@ -9,7 +9,7 @@ export default defineConfig({
       registerType: 'autoUpdate',
       workbox: {
         cleanupOutdatedCaches: true,
-        globPatterns: ['**/*.{js,css,ico,png,svg,woff2}'],
+        globPatterns: ['**/*.{js,css,ico,png,jpg,jpeg,svg,woff2}'],
         runtimeCaching: [
           {
             urlPattern: /^https:\/\/fonts\.(googleapis|gstatic)\.com\/.*/i,
@@ -39,8 +39,8 @@ export default defineConfig({
         display: 'standalone',
         start_url: '/',
         icons: [
-          { src: '/transparent-white-logo.png', sizes: '192x192', type: 'image/png' },
-          { src: '/transparent-white-logo.png', sizes: '512x512', type: 'image/png' },
+          { src: '/logosquare.jpg', sizes: '192x192', type: 'image/jpeg' },
+          { src: '/logosquare.jpg', sizes: '512x512', type: 'image/jpeg' },
         ],
       },
     }),

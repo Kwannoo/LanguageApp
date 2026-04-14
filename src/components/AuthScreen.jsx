@@ -135,6 +135,24 @@ export default function AuthScreen() {
           style={{ height: 160, width: 'auto', marginBottom: 8 }}
         />
         <p className="text-muted">Learn languages, one card at a time.</p>
+        <a
+          href="https://ko-fi.com/kwannoo#shareGoalModal"
+          target="_blank"
+          rel="noopener noreferrer"
+          style={{
+            display: 'inline-flex', alignItems: 'center', gap: 6,
+            marginTop: '0.75rem',
+            padding: '7px 16px',
+            borderRadius: 99,
+            background: '#FF5E5B',
+            color: '#fff',
+            fontWeight: 700,
+            fontSize: 13,
+            textDecoration: 'none',
+          }}
+        >
+          ☕ Support on Ko-fi
+        </a>
       </div>
 
       {/* Referral banner */}
