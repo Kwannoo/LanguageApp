@@ -31,8 +31,8 @@ export default defineConfig({
         ],
       },
       manifest: {
-        name: 'Vocably',
-        short_name: 'Vocably',
+        name: 'Vocardably',
+        short_name: 'Vocardably',
         description: 'Learn Dutch & Japanese flashcards',
         theme_color: '#1CB0F6',
         background_color: '#EFF6FF',
