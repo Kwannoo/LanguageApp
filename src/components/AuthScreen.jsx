@@ -13,6 +13,11 @@ export default function AuthScreen() {
   const pendingRef = getReferralFromUrl();
   const [mode, setMode]         = useState('login'); // 'login' | 'signup' | 'forgot'
   const [dark, setDark]         = useState(isDarkTheme);
+  const [installPrompt, setInstallPrompt] = useState(null);
+  const [showIosInstall, setShowIosInstall] = useState(false);
+
+  const isIos = /iphone|ipad|ipod/i.test(navigator.userAgent);
+  const isStandalone = window.matchMedia('(display-mode: standalone)').matches || window.navigator.standalone;
 
   // Keep logo in sync if the user's OS theme changes while on the login screen
   useEffect(() => {
@@ -21,6 +26,26 @@ export default function AuthScreen() {
     mq.addEventListener('change', handler);
     return () => mq.removeEventListener('change', handler);
   }, []);
+
+  // Capture beforeinstallprompt for Android/Chrome
+  useEffect(() => {
+    const handler = (e) => {
+      e.preventDefault();
+      setInstallPrompt(e);
+    };
+    window.addEventListener('beforeinstallprompt', handler);
+    return () => window.removeEventListener('beforeinstallprompt', handler);
+  }, []);
+
+  const handleInstall = async () => {
+    if (installPrompt) {
+      installPrompt.prompt();
+      const { outcome } = await installPrompt.userChoice;
+      if (outcome === 'accepted') setInstallPrompt(null);
+    } else if (isIos) {
+      setShowIosInstall(true);
+    }
+  };
   const [email, setEmail]       = useState('');
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
@@ -153,7 +178,59 @@ export default function AuthScreen() {
         >
           ☕ Support on Ko-fi
         </a>
+
+        {/* PWA install button — shown if not already installed */}
+        {!isStandalone && (installPrompt || isIos) && (
+          <div style={{ marginTop: '0.75rem' }}>
+            <button
+              onClick={handleInstall}
+              style={{
+                display: 'inline-flex', alignItems: 'center', gap: 6,
+                padding: '7px 16px',
+                borderRadius: 99,
+                background: '#1CB0F6',
+                color: '#fff',
+                fontWeight: 700,
+                fontSize: 13,
+                border: 'none',
+                cursor: 'pointer',
+                fontFamily: 'var(--font-sans)',
+              }}
+            >
+              📲 Install app
+            </button>
+          </div>
+        )}
       </div>
+
+      {/* iOS install instructions popup */}
+      {showIosInstall && (
+        <div style={{
+          position: 'fixed', inset: 0, zIndex: 300,
+          background: 'rgba(0,0,0,0.6)',
+          display: 'flex', alignItems: 'center', justifyContent: 'center',
+          padding: '1rem',
+        }}>
+          <div style={{
+            background: 'var(--surface)',
+            borderRadius: 'var(--radius-lg)',
+            padding: '1.5rem',
+            maxWidth: 340, width: '100%',
+            textAlign: 'center',
+          }}>
+            <p style={{ fontSize: '2rem', marginBottom: '0.5rem' }}>📲</p>
+            <h3 style={{ fontWeight: 800, color: 'var(--text)', marginBottom: '0.75rem' }}>Install Vocardably</h3>
+            <ol style={{ textAlign: 'left', fontSize: 14, color: 'var(--muted)', lineHeight: 1.8, paddingLeft: '1.25rem', marginBottom: '1.25rem' }}>
+              <li>Tap the <strong style={{ color: 'var(--text)' }}>Share</strong> button at the bottom of your browser (the square with an arrow)</li>
+              <li>Scroll down and tap <strong style={{ color: 'var(--text)' }}>Add to Home Screen</strong></li>
+              <li>Tap <strong style={{ color: 'var(--text)' }}>Add</strong> to confirm</li>
+            </ol>
+            <button className="btn-primary" onClick={() => setShowIosInstall(false)} style={{ width: '100%' }}>
+              Got it
+            </button>
+          </div>
+        </div>
+      )}
 
       {/* Referral banner */}
       {pendingRef && (
