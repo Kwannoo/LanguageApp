@@ -87,6 +87,7 @@ export default function Session({ onComplete, goalMinutes = 5, words: wordList =
   const [isCorrect, setIsCorrect] = useState(null);
   const [timeLeft, setTimeLeft]   = useState(SESSION_SECONDS);
   const [score, setScore]         = useState({ correct: 0, total: 0 });
+  const [coinAnim, setCoinAnim]   = useState(false); // triggers pop + glow animation
   const [cardDir, setCardDir]     = useState(() =>
     direction === 'mix' ? randomDir(language) : direction
   );
@@ -388,7 +389,14 @@ export default function Session({ onComplete, goalMinutes = 5, words: wordList =
     const typed = input.trim().toLowerCase();
     const accepted = getAccepted(currentWord, cardDir);
     const correct = accepted.includes(typed);
-    if (correct) playCorrect(); else vibrateWrong();
+    if (correct) {
+      playCorrect();
+      setCoinAnim(false);
+      requestAnimationFrame(() => setCoinAnim(true));
+      setTimeout(() => setCoinAnim(false), 500);
+    } else {
+      vibrateWrong();
+    }
     setIsCorrect(correct);
     setScore(s => {
       const next = { correct: s.correct + (correct ? 1 : 0), total: s.total + 1 };
@@ -501,9 +509,9 @@ export default function Session({ onComplete, goalMinutes = 5, words: wordList =
           />
         </div>
         <span className="timer-text" style={{ color }}>{paused ? '⏸ ' : ''}{fmt(timeLeft)}</span>
-        <span style={{ fontSize: 15, fontWeight: 600 }}>
-          <span style={{ color: 'var(--success-fg, #2ecc71)' }}>{score.correct}</span>
-          <span style={{ color: 'var(--muted)' }}> / {score.total}</span>
+        <span style={{ display: 'flex', alignItems: 'center', gap: 4, fontSize: 15, fontWeight: 700, color: 'var(--amber)' }}>
+          <img src="/avatar/vocacoin.png" alt="" style={{ width: 22, height: 22 }} className={coinAnim ? 'coin-pop' : ''} />
+          <span className={coinAnim ? 'coin-glow' : ''}>{score.correct}</span>
         </span>
       </div>
 
