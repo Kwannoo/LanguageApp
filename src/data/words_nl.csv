@@ -692,7 +692,7 @@ treden,to step/enter,Formal for step,Hij **treedt** de kamer binnen. — He **st
 maal,time (occurrence),Number of times,Ik heb hem al tien **maal** gezien. — I have seen him ten **times** already.,,,keer;gelegenheid,nl
 openen,to open,Make open,Ze **opent** de deur. — She **opens** the door.,,,open maken;ontsluiten;openslaan,nl
 gek,crazy / fool,Strange,Wat een **gek** idee! — What a **crazy** idea!,,,gestoord;waanzinnig;excentriek,nl
-bank,bank/bench,Financial place or seat,We zitten op de **bank**. — We sit on the **sofa**.,,,canapé;sofa;zetel,nl
+bank,bank/bench,Financial place or seat,We zitten op de **bank**. — We sit on the **bench**.,,,canapé;sofa;zetel,nl
 blad,leaf/page,Paper or plant part,Het **blad** valt van de boom. — The **leaf** falls from the tree.,,,blaadje;paginablad;folio,nl
 schip,ship,Large boat,Het grote **schip** vaart de haven in. — The large **ship** sails into the harbour.,,,boot;vaartuig;zeeschip,nl
 spel,game,Play activity,Het **spel** duurt twee uur. — The **game** lasts two hours.,,,game;activiteit;wedstrijd,nl
@@ -918,7 +918,7 @@ kwaad,angry / evil,Upset,Hij is **kwaad** op mij. — He is **angry** with me.,,
 inhoud,content,What is inside,Wat is de **inhoud** van het pakket? — What is the **content** of the package?,,,lading;vulling;substantie,nl
 zolang,as long as,During the time,**Zolang** ik hier woon ga ik elke dag wandelen. — **As long as** I live here I walk every day.,terwijl;als;gedurende de tijd dat;terwijl;als,nl
 ineens,suddenly,All at once,**Ineens** stopte de auto. — The car stopped **all of a sudden**.,,,plotseling;opeens;abrupt,nl
-lekker,tasty/nice,Pleasant taste or feeling,Het eten smaakt **lekker**. — The food tastes **delicious**.,,,heerlijk;smakelijk;aangenaam,nl
+lekker,tasty/nice,Pleasant taste or feeling,Het eten smaakt **lekker**. — The food tastes **tasty**.,,,heerlijk;smakelijk;aangenaam,nl
 midden,middle,Center,De tafel staat in het **midden** van de kamer. — The table is in the **middle** of the room.,,,centrum;hart;kern,nl
 tekst,text,Written words,Lees de **tekst** zorgvuldig. — Read the **text** carefully.,,,inhoud;woorden;inhoud,nl
 beweren,to claim,Say something confidently,Hij **beweert** onschuldig te zijn. — He **claims** to be innocent.,,,stellen;volhouden;zeggen,nl
@@ -1901,12 +1901,12 @@ papegaai,parrot,Talking bird,De **papegaai** herhaalt alles. — The **parrot** 
 uil,owl,Night bird,De **uil** jaagt 's nachts. — The **owl** hunts at night.,,,nachtdier;wijze vogel,nl
 adelaar,eagle,Large bird,De **adelaar** zweeft hoog. — The **eagle** soars high.,,,roofvogel;havik;valk,nl
 duif,pigeon,City bird,Er zit een **duif** op het dak. — There is a **pigeon** on the roof.,,,tortelduif;vogel;vredessymbool,nl
-kin,guinea pig,Small pet,Ze heeft een cavia als **huisdier**. — She has a guinea pig as a **pet**.,,,cavia;guinea pig;knaagdier,nl
+cavia,guinea pig,Small pet,Ze heeft een **cavia** als huisdier. — She has a **guinea pig** as a pet.,,,kin;knaagdier;huisdier,nl
 hamster,hamster,Small rodent,Ze heeft een **hamster**. — She has a **hamster**.,,,knaagdier;huisdier,nl
 rat,rat,Large rodent,De **rat** verstopt zich. — The **rat** hides.,,,knaagdier;muis,nl
 kalkoen,turkey,Large bird,Ze eten **kalkoen** met kerst. — They eat **turkey** at Christmas.,,,gevogelte;pluimvee;Thanksgivingeend,nl
 plafond,ceiling,Overhead surface,Het **plafond** is wit. — The **ceiling** is white.,,,bovenwand;dak;bovenste,nl
-laden,drawers,Pull out storage,Ze **laadt** haar telefoon op. — She charges (**loads**) her phone.,,,tiroirs;treker;vakjes,nl
+laden,drawers,Pull out storage,De **laden** van de kast zijn vol. — The **drawers** of the cupboard are full.,,,tiroirs;treker;vakjes,nl
 boekenplank,bookshelf,Book storage,Ze zet het boek op de **boekenplank**. — She puts the book on the **bookshelf**.,,,rek;boekenrek;stellage,nl
 tapijt,carpet,Floor covering,Het **tapijt** is blauw. — The **carpet** is blue.,,,vloerkleed;vloerbedekking,nl
 schilderij,painting,Wall art,Er hangt een **schilderij** aan de muur. — There is a **painting** on the wall.,,,kunstwerk;doek;afbeelding,nl
@@ -2042,7 +2042,7 @@ herfst,autumn,Cool season,In de **herfst** vallen de bladeren. — In **autumn**
 middernacht,midnight,Twelve PM,Om **middernacht** vieren we het nieuwe jaar. — At **midnight** we celebrate the new year.,,,twaalf uur 's nachts,nl
 zonsopgang,sunrise,Sun appears,Ze kijkt naar de **zonsopgang**. — She watches the **sunrise**.,,,dageraad;ochtendschemering;ochtendgloren,nl
 zonsondergang,sunset,Sun disappears,De **zonsondergang** is prachtig. — The **sunset** is beautiful.,,,avondschemering;daglicht,nl
-turkoois,turquoise,Color,Ze draagt een **turquoise** sjaal. — She wears a **turquoise** scarf.,,,blauwgroen;aqua,nl
+turkoois,turquoise,Color,Ze draagt een **turkoois** sjaal. — She wears a **turquoise** scarf.,,,blauwgroen;aqua,nl
 marineblue,navy,Dark blue,Hij draagt een **marine** blauw pak. — He wears a **navy** blue suit.,,,donkerblauw;diepblauw,nl
 beige,beige,Light brown,De muur is **beige** geschilderd. — The wall is painted **beige**.,,,lichtbruin;crème;zandkleurig,nl
 bordeaux,burgundy,Dark red,Ze draagt een **bordeaux** rode jurk. — She wears a **burgundy** red dress.,,,wijnrood;donkerrood,nl
@@ -2128,7 +2128,7 @@ sandaal,sandal,Open shoe,Ze draagt een **sandaal**. — She wears a **sandal**.,
 pump,pump,High heel,Ze draagt hoge **pumps**. — She wears high **pumps**.,,,hoge hak;hakschoen,nl
 laars,boot,Single boot,Ze trekt een **laars** aan. — She puts on a **boot**.,,,laarzen;rubberlaarzen,nl
 riem,belt,Waist fastener,Hij trekt een **riem** aan. — He puts on a **belt**.,,,leerriem;ceintuur;gordel,nl
-braces,suspenders,Pants holder,Hij draagt **bretels**. — He wears **suspenders**.,,,bretels;sokhouders,nl
+bretels,suspenders,Pants holder,Hij draagt **bretels**. — He wears **suspenders**.,,,braces;sokhouders,nl
 bh,bra,Undergarment,Ze koopt een nieuwe **bh**. — She buys a new **bra**.,,,beha;bustier;lingerie,nl
 onderhemd,undershirt,Inner shirt,Hij draagt een wit **onderhemd**. — He wears a white **undershirt**.,,,hemd;inliggend shirt,nl
 ondergoed,underwear,Inner garments,Ze koopt nieuw **ondergoed**. — She buys new **underwear**.,,,onderkledij;intieme kledij,nl
@@ -2153,7 +2153,7 @@ vermomming,disguise,Hidden identity,Ze draagt een **vermomming**. — She wears 
 huisje,cottage,Small house,Ze huren een **huisje** op het platteland. — They rent a **cottage** in the countryside.,,,boerderijtje;woning;blokhut,nl
 villa,villa,Large house,Ze wonen in een grote **villa**. — They live in a large **villa**.,,,herenwoning;kasteel;landhuis,nl
 landhuisje,farmhouse,Farm building,Ze verblijven in een **landhuisje**. — They stay in a **farmhouse**.,,,boerderij;woning;cottages,nl
-grondwet,mansion,Grand house,Ze lezen de **grondwet**. — They read the **constitution**.,,,staatswet;fundamentele wet;basiswet,nl
+grondwet,constitution,Fundamental law of a country,Ze lezen de **grondwet**. — They read the **constitution**.,,,staatswet;fundamentele wet;basiswet,nl
 kasteel,castle,Fortified building,Ze bezoeken een oud **kasteel**. — They visit an old **castle**.,,,fort;burcht;paleis,nl
 toren,tower,Tall building,De **toren** is heel hoog. — The **tower** is very high.,,,klokkentoren;spits;structure,nl
 flat,apartment,Unit dwelling,Ze wonen in een **flat**. — They live in a **flat**.,,,appartement;etage;studio,nl

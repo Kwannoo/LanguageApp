@@ -1,3 +1,11 @@
+function getWordType(en) {
+  if (!en) return null;
+  const e = en.trim().toLowerCase();
+  if (e.startsWith('to ')) return 'verb';
+  if (e === 'the' || e === 'a/an' || e === 'a' || e === 'an') return 'article';
+  return null;
+}
+
 export default function FlashCard({ word, flipped, isCorrect, instant, direction = 'nl-en', language = 'nl', showSynonyms = false }) {
   const isForward = direction === 'nl-en' || direction === 'ja-en' || direction === 'es-en';
   const langNames = language === 'ja'
@@ -25,6 +33,22 @@ export default function FlashCard({ word, flipped, isCorrect, instant, direction
             <p style={{ fontSize: 14, color: 'var(--muted)', marginTop: 4 }}>
               {word.reading} ({word.romaji})
             </p>
+          )}
+          {isForward && getWordType(word.en) && (
+            <span style={{
+              display: 'inline-block',
+              marginTop: 8,
+              padding: '3px 10px',
+              borderRadius: 99,
+              fontSize: 11,
+              fontWeight: 700,
+              background: 'var(--amber-light)',
+              color: 'var(--amber-dark)',
+              letterSpacing: '0.04em',
+              textTransform: 'uppercase',
+            }}>
+              {getWordType(word.en)}
+            </span>
           )}
         </div>
 
