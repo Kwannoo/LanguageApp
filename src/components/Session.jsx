@@ -304,6 +304,24 @@ export default function Session({ onComplete, goalMinutes = 5, words: wordList =
     return () => document.removeEventListener('visibilitychange', handleVisibility);
   }, []);
 
+  // Scroll so the Check answer button sits just above the keyboard.
+  const scrollButtonAboveKeyboard = useCallback((delay = 0) => {
+    const vv = window.visualViewport;
+    if (!vv) return;
+    const run = () => {
+      const keyboardHeight = window.innerHeight - vv.height;
+      const btn = checkButtonRef.current;
+      if (btn) {
+        const buttonBottom = btn.getBoundingClientRect().bottom + window.scrollY;
+        const visibleBottom = window.innerHeight - keyboardHeight;
+        const gap = 12;
+        window.scrollTo(0, Math.max(0, buttonBottom - visibleBottom + gap));
+      }
+    };
+    if (delay > 0) setTimeout(run, delay);
+    else run();
+  }, []);
+
   // After the keyboard animation settles, scroll so the Check answer button
   // sits just above the keyboard — keeping the card visible at the top.
   useEffect(() => {
@@ -315,23 +333,22 @@ export default function Session({ onComplete, goalMinutes = 5, words: wordList =
       keyboardOpenRef.current = isOpen;
       setKeyboardOpen(isOpen);
       if (isOpen) {
-        setTimeout(() => {
-          const keyboardHeight = window.innerHeight - window.visualViewport.height;
-          const btn = checkButtonRef.current;
-          if (btn) {
-            const buttonBottom = btn.getBoundingClientRect().bottom + window.scrollY;
-            const visibleBottom = window.innerHeight - keyboardHeight;
-            const gap = 12;
-            window.scrollTo(0, Math.max(0, buttonBottom - visibleBottom + gap));
-          }
-        }, 300);
+        scrollButtonAboveKeyboard(300);
       } else {
         window.scrollTo(0, 0);
       }
     };
     vv.addEventListener('resize', handler);
     return () => vv.removeEventListener('resize', handler);
-  }, []);
+  }, [scrollButtonAboveKeyboard]);
+
+  // When a new card loads while the keyboard is already open, re-run the
+  // scroll adjustment — the viewport resize won't fire in that case.
+  useEffect(() => {
+    if (keyboardOpenRef.current) {
+      scrollButtonAboveKeyboard(50);
+    }
+  }, [currentWord, scrollButtonAboveKeyboard]);
 
   // Timer loop. Decouples from onComplete (via refs) so parent re-renders
   // never reset the interval. Uses a done-guard so we can't fire onComplete
