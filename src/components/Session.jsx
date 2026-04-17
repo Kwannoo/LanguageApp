@@ -305,50 +305,62 @@ export default function Session({ onComplete, goalMinutes = 5, words: wordList =
   }, []);
 
   // Scroll so the Check answer button sits just above the keyboard.
-  const scrollButtonAboveKeyboard = useCallback((delay = 0) => {
+  // Reads viewport state at call time rather than relying on a cached ref,
+  // so it works whether the keyboard open/close event fired or not.
+  const scrollButtonAboveKeyboard = useCallback(() => {
     const vv = window.visualViewport;
     if (!vv) return;
-    const run = () => {
-      const keyboardHeight = window.innerHeight - vv.height;
-      const btn = checkButtonRef.current;
-      if (btn) {
-        const buttonBottom = btn.getBoundingClientRect().bottom + window.scrollY;
-        const visibleBottom = window.innerHeight - keyboardHeight;
-        const gap = 12;
-        window.scrollTo(0, Math.max(0, buttonBottom - visibleBottom + gap));
-      }
-    };
-    if (delay > 0) setTimeout(run, delay);
-    else run();
+    const keyboardHeight = window.innerHeight - vv.height;
+    // Keyboard isn't actually up — nothing to do.
+    if (keyboardHeight < window.innerHeight * 0.2) return;
+    const btn = checkButtonRef.current;
+    if (!btn) return;
+    const buttonBottom = btn.getBoundingClientRect().bottom + window.scrollY;
+    const visibleBottom = window.innerHeight - keyboardHeight;
+    const gap = 12;
+    const target = Math.max(0, buttonBottom - visibleBottom + gap);
+    window.scrollTo(0, target);
   }, []);
 
-  // After the keyboard animation settles, scroll so the Check answer button
-  // sits just above the keyboard — keeping the card visible at the top.
+  // Retry the scroll a few times — mobile browsers settle layout/viewport at
+  // different cadences (iOS Safari vs Android Chrome), and content changes
+  // (flip animation, logo show/hide, re-focus) can shift the button after our
+  // first measurement. Multiple passes make it robust without flicker.
+  const scheduleScrollAdjust = useCallback(() => {
+    requestAnimationFrame(scrollButtonAboveKeyboard);
+    setTimeout(scrollButtonAboveKeyboard, 100);
+    setTimeout(scrollButtonAboveKeyboard, 350);
+  }, [scrollButtonAboveKeyboard]);
+
+  // Track keyboard open/close via visualViewport resize. Hides the logo
+  // when open to free up vertical space, and kicks off the scroll adjust.
   useEffect(() => {
     const vv = window.visualViewport;
     if (!vv) return;
     const handler = () => {
       const isOpen = vv.height < window.innerHeight * 0.75;
-      if (isOpen === keyboardOpenRef.current) return; // ignore mid-animation resize ticks
-      keyboardOpenRef.current = isOpen;
-      setKeyboardOpen(isOpen);
+      if (isOpen !== keyboardOpenRef.current) {
+        keyboardOpenRef.current = isOpen;
+        setKeyboardOpen(isOpen);
+      }
       if (isOpen) {
-        scrollButtonAboveKeyboard(300);
+        scheduleScrollAdjust();
       } else {
         window.scrollTo(0, 0);
       }
     };
     vv.addEventListener('resize', handler);
     return () => vv.removeEventListener('resize', handler);
-  }, [scrollButtonAboveKeyboard]);
+  }, [scheduleScrollAdjust]);
 
-  // When a new card loads while the keyboard is already open, re-run the
-  // scroll adjustment — the viewport resize won't fire in that case.
+  // Re-run scroll adjustment whenever the card content changes (new card or
+  // flip between prompt/answer). The back face shows badges + sentence, so
+  // the button's absolute position can shift even with a fixed-height card
+  // once the logo toggles. Check viewport live — keyboardOpenRef may be
+  // stale if a resize event was missed between cards.
   useEffect(() => {
-    if (keyboardOpenRef.current) {
-      scrollButtonAboveKeyboard(50);
-    }
-  }, [currentWord, scrollButtonAboveKeyboard]);
+    scheduleScrollAdjust();
+  }, [currentWord, flipped, keyboardOpen, scheduleScrollAdjust]);
 
   // Timer loop. Decouples from onComplete (via refs) so parent re-renders
   // never reset the interval. Uses a done-guard so we can't fire onComplete
