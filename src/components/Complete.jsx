@@ -98,25 +98,25 @@ export default function Complete({ score, language = 'nl', onHome, onRetry }) {
             const masteredDelta = (score.mastered ?? 0) - (score.prevMastered ?? 0);
             const newLearned = score.newLearned ?? 0;
             return (
-              <div className="stats-row">
-                <div className="stat-card">
-                  <p className="label">Correct</p>
-                  <p className="number" style={{ color: 'var(--success-fg)' }}>{score.correct}</p>
+              <div className="stats-row" style={{ paddingTop: 6 }}>
+                <div className="stat-card" style={{ transform: 'rotate(-3deg)', boxShadow: '0 3px 0 var(--border), 0 6px 16px rgba(0,0,0,0.2)' }}>
+                  <p style={{ fontSize: 22, margin: '0 0 4px' }}>✅</p>
+                  <p className="number" style={{ color: 'var(--success-fg)', fontWeight: 900, fontSize: '1.75rem', margin: '0 0 4px' }}>{score.correct}</p>
+                  <p className="label" style={{ margin: 0 }}>Correct</p>
                 </div>
-                <div className="stat-card">
-                  <p className="label">📚 Learning</p>
-                  <p className="number">
+                <div className="stat-card" style={{ transform: 'rotate(2deg)', boxShadow: '0 3px 0 var(--border), 0 6px 16px rgba(0,0,0,0.2)' }}>
+                  <p style={{ fontSize: 22, margin: '0 0 4px' }}>📚</p>
+                  <p className="number" style={{ color: 'var(--amber)', fontWeight: 900, fontSize: '1.75rem', margin: '0 0 4px' }}>
                     {score.inProgress ?? 0}
                     {newLearned > 0 && (
-                      <span style={{ fontSize: '0.7em', color: 'var(--success-fg)', marginLeft: 4 }}>
-                        +{newLearned}
-                      </span>
+                      <span style={{ fontSize: '0.7em', color: 'var(--success-fg)', marginLeft: 4 }}>+{newLearned}</span>
                     )}
                   </p>
+                  <p className="label" style={{ margin: 0 }}>Learning</p>
                 </div>
-                <div className="stat-card">
-                  <p className="label">🎓 Mastered</p>
-                  <p className="number" style={{ color: 'var(--success-fg)' }}>
+                <div className="stat-card" style={{ transform: 'rotate(-2deg)', boxShadow: '0 3px 0 var(--border), 0 6px 16px rgba(0,0,0,0.2)' }}>
+                  <p style={{ fontSize: 22, margin: '0 0 4px' }}>🎓</p>
+                  <p className="number" style={{ color: 'var(--success-fg)', fontWeight: 900, fontSize: '1.75rem', margin: '0 0 4px' }}>
                     {score.mastered ?? 0}
                     {masteredDelta !== 0 && (
                       <span style={{ fontSize: '0.7em', color: masteredDelta > 0 ? 'var(--success-fg)' : 'var(--danger-fg)', marginLeft: 4 }}>
@@ -124,6 +124,7 @@ export default function Complete({ score, language = 'nl', onHome, onRetry }) {
                       </span>
                     )}
                   </p>
+                  <p className="label" style={{ margin: 0 }}>Mastered</p>
                 </div>
               </div>
             );
@@ -196,7 +197,7 @@ export default function Complete({ score, language = 'nl', onHome, onRetry }) {
           }}>
             <img src="/avatar/vocacoin.png" alt="" style={{ width: 24, height: 24 }} />
             {score.earnedCoins > 0 ? (
-              <span style={{ fontWeight: 700, fontSize: 15, color: 'var(--amber)' }}>
+              <span style={{ fontWeight: 700, fontSize: 15, color: '#F5C518' }}>
                 +{score.earnedCoins} coins earned!
               </span>
             ) : (

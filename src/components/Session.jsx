@@ -538,7 +538,7 @@ export default function Session({ onComplete, goalMinutes = 5, words: wordList =
           />
         </div>
         <span className="timer-text" style={{ color }}>{paused ? '⏸ ' : ''}{fmt(timeLeft)}</span>
-        <span style={{ display: 'flex', alignItems: 'center', gap: 4, fontSize: 15, fontWeight: 700, color: 'var(--amber)' }}>
+        <span style={{ display: 'flex', alignItems: 'center', gap: 4, fontSize: 15, fontWeight: 700, color: '#F5C518' }}>
           <img src="/avatar/vocacoin.png" alt="" style={{ width: 22, height: 22 }} className={coinAnim ? 'coin-pop' : ''} />
           <span className={coinAnim ? 'coin-glow' : ''}>{score.correct}</span>
         </span>

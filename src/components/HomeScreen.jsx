@@ -3,6 +3,25 @@ import { supabase } from '../lib/supabase.js';
 import Avatar from './Avatar.jsx';
 import { computeProgress } from '../utils/srs.js';
 
+function WigglyUnderline({ width = 220 }) {
+  const n = 8;
+  const seg = (width - 4) / n;
+  const parts = ['M 2 6'];
+  for (let i = 0; i < n; i++) {
+    const cx = 2 + seg * (i + 0.5);
+    const cy = i % 2 === 0 ? 0 : 12;
+    const ex = 2 + seg * (i + 1);
+    parts.push(`Q ${cx} ${cy} ${ex} 6`);
+  }
+  return (
+    <svg width={width} height="14" viewBox={`0 0 ${width} 14`}
+      style={{ position: 'absolute', bottom: -10, left: '50%', transform: 'translateX(-50%)' }}>
+      <path d={parts.join(' ')} stroke="var(--amber)" strokeWidth="3.5" fill="none" strokeLinecap="round"
+        style={{ filter: 'drop-shadow(0 0 6px rgba(28,176,246,0.4))' }} />
+    </svg>
+  );
+}
+
 const LANGUAGE_OPTIONS = [
   { value: 'nl', label: '🇳🇱 Dutch', flag: '🇳🇱' },
   { value: 'ja', label: '🇯🇵 Japanese', flag: '🇯🇵' },
@@ -89,7 +108,7 @@ export default function HomeScreen({ streak, todayDone, username, avatar, words,
           )}
           <div style={{ display: 'flex', alignItems: 'center', gap: 4 }}>
             <img src="/avatar/vocacoin.png" alt="" style={{ width: 20, height: 20 }} />
-            <span style={{ fontWeight: 700, fontSize: 14, color: 'var(--amber)' }}>{coins}</span>
+            <span style={{ fontWeight: 700, fontSize: 14, color: '#F5C518' }}>{coins}</span>
           </div>
         </button>
       </div>
@@ -467,15 +486,18 @@ export default function HomeScreen({ streak, todayDone, username, avatar, words,
       {/* Logo + App title */}
       <div style={{ marginBottom: '1.5rem' }}>
         <img src={theme === 'light' || (theme === 'system' && !window.matchMedia('(prefers-color-scheme: dark)').matches) ? '/transparent-black-logo.png' : '/transparent-white-logo.png'} alt="Vocardably" style={{ width: 220, marginBottom: 8 }} />
-        <h1 style={{
-          fontFamily: 'var(--font-serif)',
-          fontSize: '2.25rem',
-          fontWeight: 800,
-          color: 'var(--text)',
-          marginBottom: 4,
-        }}>
-          Vocardably
-        </h1>
+        <div style={{ position: 'relative', display: 'inline-block', marginBottom: 16 }}>
+          <h1 style={{
+            fontFamily: 'var(--font-serif)',
+            fontSize: '2.25rem',
+            fontWeight: 800,
+            color: 'var(--text)',
+            margin: 0,
+          }}>
+            Vocardably
+          </h1>
+          <WigglyUnderline width={220} />
+        </div>
         {title && <p style={{ fontSize: 14, color: 'var(--amber)', fontWeight: 800, marginTop: 2 }}>{title}</p>}
         {!title && <p className="text-muted">Small steps every day. Big results over time.</p>}
       </div>
@@ -500,24 +522,27 @@ export default function HomeScreen({ streak, todayDone, username, avatar, words,
       {(() => {
         const { mastered, inProgress } = words.length > 0 ? computeProgress(words, srsData) : { mastered: 0, inProgress: 0 };
         return (<>
-          <div className="stats-row">
-            <div className="stat-card">
-              <p className="label">Streak</p>
-              <p className="number" style={{ color: streak > 0 ? 'var(--amber)' : 'var(--text)' }}>
-                🔥 {streak}
+          <div className="stats-row" style={{ paddingTop: 6 }}>
+            <div className="stat-card" style={{ transform: 'rotate(-3deg)', boxShadow: '0 3px 0 var(--border), 0 6px 16px rgba(0,0,0,0.2)' }}>
+              <p style={{ fontSize: 22, margin: '0 0 4px' }}>🔥</p>
+              <p className="number" style={{ color: '#FF9F43', fontWeight: 900, fontSize: '1.75rem', margin: '0 0 4px' }}>
+                {streak}
               </p>
+              <p className="label" style={{ margin: 0 }}>Streak</p>
             </div>
-            <div className="stat-card">
-              <p className="label">In Progress</p>
-              <p className="number" style={{ color: 'var(--amber)' }}>
-                📚 {inProgress}
+            <div className="stat-card" style={{ transform: 'rotate(2deg)', boxShadow: '0 3px 0 var(--border), 0 6px 16px rgba(0,0,0,0.2)' }}>
+              <p style={{ fontSize: 22, margin: '0 0 4px' }}>📚</p>
+              <p className="number" style={{ color: 'var(--amber)', fontWeight: 900, fontSize: '1.75rem', margin: '0 0 4px' }}>
+                {inProgress}
               </p>
+              <p className="label" style={{ margin: 0 }}>Learning</p>
             </div>
-            <div className="stat-card">
-              <p className="label">Mastered</p>
-              <p className="number" style={{ color: 'var(--success-fg)' }}>
-                🎓 {mastered}
+            <div className="stat-card" style={{ transform: 'rotate(-2deg)', boxShadow: '0 3px 0 var(--border), 0 6px 16px rgba(0,0,0,0.2)' }}>
+              <p style={{ fontSize: 22, margin: '0 0 4px' }}>🎓</p>
+              <p className="number" style={{ color: 'var(--success-fg)', fontWeight: 900, fontSize: '1.75rem', margin: '0 0 4px' }}>
+                {mastered}
               </p>
+              <p className="label" style={{ margin: 0 }}>Mastered</p>
             </div>
           </div>
         </>);
@@ -525,13 +550,13 @@ export default function HomeScreen({ streak, todayDone, username, avatar, words,
 
       {/* CTA button */}
       <button className="btn-primary" onClick={() => { closeMenu(); onStart(); }} style={{ marginBottom: '0.75rem' }}>
-        {todayDone ? 'Practice more' : "Start today's session"}
+        {todayDone ? 'Practice more →' : "Start today's session →"}
       </button>
       <div style={{ display: 'flex', gap: '0.5rem', justifyContent: 'center', marginTop: '0.5rem', marginBottom: '0.75rem' }}>
         <button className="btn-ghost" onClick={() => { closeMenu(); onHistory(); }}>History</button>
         <button className="btn-ghost" onClick={() => { closeMenu(); onWords(); }}>Words</button>
         <button className="btn-ghost" onClick={() => { closeMenu(); onFriends(); }}>Friends</button>
-        <button className="btn-ghost" onClick={() => { closeMenu(); onShop(); }}>🛒 Shop</button>
+        <button className="btn-ghost" onClick={() => { closeMenu(); onShop(); }}>Shop</button>
       </div>
       <div style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem', marginBottom: '1.5rem' }}>
         {referralCode && (

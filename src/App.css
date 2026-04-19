@@ -286,9 +286,14 @@ body {
   background: var(--surface);
   border: 1px solid var(--border);
   border-radius: var(--radius-md);
-  padding: 0.9rem 1.25rem;
+  padding: 0.9rem;
   text-align: center;
-  min-width: 88px;
+  width: 118px;
+  height: 118px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
 .stat-card .number {
   font-size: 1.65rem;
@@ -504,7 +509,7 @@ body {
 @keyframes popupBgOut { from { opacity: 1; } to { opacity: 0; } }
 
 @keyframes coinPop    { 0% { transform: scale(1); } 40% { transform: scale(1.45); } 100% { transform: scale(1); } }
-@keyframes coinGlow   { 0% { color: var(--amber); } 40% { color: #fff; text-shadow: 0 0 8px var(--amber), 0 0 16px var(--amber); } 100% { color: var(--amber); text-shadow: none; } }
+@keyframes coinGlow   { 0% { color: #F5C518; } 40% { color: #fff; text-shadow: 0 0 8px #F5C518, 0 0 16px #F5C518; } 100% { color: #F5C518; text-shadow: none; } }
 .coin-pop  { animation: coinPop  0.35s cubic-bezier(0.22, 1, 0.36, 1) forwards; }
 .coin-glow { animation: coinGlow 0.5s ease-out forwards; }
 
