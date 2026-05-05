@@ -507,9 +507,10 @@ export default function HomeScreen({ streak, todayDone, username, avatar, words,
         <p style={{
           fontSize: 11, padding: '4px 12px', borderRadius: 99,
           background: 'var(--danger-bg)', color: 'var(--danger-fg)',
-          display: 'inline-block', marginBottom: '0.75rem',
+          display: 'inline-flex', alignItems: 'center', gap: 6,
+          marginBottom: '0.75rem',
         }}>
-          Offline — progress will sync when reconnected
+          📡 Offline — coins and streak will update once you reconnect
         </p>
       )}
 

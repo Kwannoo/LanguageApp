@@ -285,15 +285,22 @@ export default function App() {
 
     (async () => {
       for (const item of queue) {
-        if (item.type === 'profile') {
+        if (item.type === 'session') {
+          const { error } = await supabase.rpc('complete_session', {
+            p_correct:   item.data.correct,
+            p_total:     item.data.total,
+            p_completed: item.data.completed,
+          });
+          if (error) console.error('Queued session replay failed:', error);
+        } else if (item.type === 'srs') {
           await supabase.from('profiles').update(item.data).eq('id', user.id);
-        } else if (item.type === 'history') {
-          await supabase.from('session_history').insert(item.data);
         }
       }
       clearQueue();
+      // Refresh authoritative values from server
+      loadUserData(user.id);
     })();
-  }, [online, user]);
+  }, [online, user, loadUserData]);
 
   const handleDeleteAccount = useCallback(async () => {
     if (!user) return;
@@ -305,27 +312,32 @@ export default function App() {
   }, [user]);
 
   const handleBuyFreeze = useCallback(async () => {
-    if (coins < 50 || streakFreezes >= 3) return;
-    const newCoins = coins - 50;
-    const newFreezes = streakFreezes + 1;
-    setCoins(newCoins);
-    setStreakFreezes(newFreezes);
-    if (user) {
-      const { error } = await supabase.from('profiles').update({ coins: newCoins, streak_freezes: newFreezes }).eq('id', user.id);
-      if (error) console.error('Buy freeze sync failed:', error);
+    if (!user || coins < 50 || streakFreezes >= 3) return;
+    const { data, error } = await supabase.rpc('buy_streak_freeze');
+    if (error) {
+      console.error('Buy freeze failed:', error);
+      loadUserData(user.id);
+      return;
     }
-  }, [coins, streakFreezes, user]);
+    if (data) {
+      setCoins(data.coins);
+      setStreakFreezes(data.streak_freezes);
+    }
+  }, [coins, streakFreezes, user, loadUserData]);
 
-  const handleBuyItem = useCallback(async (itemId, price) => {
-    const newCoins = Math.max(0, coins - price);
-    const newUnlocked = [...unlockedItems, itemId];
-    setCoins(newCoins);
-    setUnlockedItems(newUnlocked);
-    if (user) {
-      const { error } = await supabase.from('profiles').update({ coins: newCoins, unlocked_items: newUnlocked }).eq('id', user.id);
-      if (error) console.error('Buy item sync failed:', error);
+  const handleBuyItem = useCallback(async (itemId, _price) => {
+    if (!user) return;
+    const { data, error } = await supabase.rpc('buy_item', { p_item_id: itemId });
+    if (error) {
+      console.error('Buy item failed:', error);
+      loadUserData(user.id);
+      return;
     }
-  }, [coins, unlockedItems, user]);
+    if (data) {
+      setCoins(data.coins);
+      setUnlockedItems(data.unlocked_items ?? []);
+    }
+  }, [user, loadUserData]);
 
   const handleAvatarSave = useCallback(async (newAvatar) => {
     setAvatar(newAvatar);
@@ -342,49 +354,62 @@ export default function App() {
     const entry = { date: new Date().toISOString(), correct: score.correct, total: score.total };
     setHistory(prev => [entry, ...prev].slice(0, 30));
 
-    let finalStreak = streak;
-    let finalFreezes = streakFreezes;
+    // Optimistic local update so the Complete screen feels instant.
+    // The server is the source of truth — we reconcile below if online.
+    let optimisticStreak = streak;
+    let optimisticFreezes = streakFreezes;
     if (!todayDone) {
       const today = new Date().toDateString();
       const { streak: newStreak, usedFreeze } = computeNewStreak(streak, lastDate, streakFreezes);
-      finalStreak = newStreak;
-      if (usedFreeze) finalFreezes = Math.max(0, streakFreezes - 1);
-      setStreak(finalStreak);
-      setStreakFreezes(finalFreezes);
+      optimisticStreak = newStreak;
+      if (usedFreeze) optimisticFreezes = Math.max(0, streakFreezes - 1);
+      setStreak(optimisticStreak);
+      setStreakFreezes(optimisticFreezes);
       setLastDate(today);
       setTodayDone(true);
     }
+    const earnedCoinsOptimistic = (score.completed && !todayDone) ? Math.min(score.correct, 200) : 0;
+    setCoins(c => c + earnedCoinsOptimistic);
+    score.earnedCoins = earnedCoinsOptimistic;
 
-    // Award coins only if session was completed (not quit early)
-    const earnedCoins = score.completed ? score.correct : 0;
-    const finalCoins = coins + earnedCoins;
-    setCoins(finalCoins);
-    // Store earned coins in score for display on Complete screen
-    score.earnedCoins = earnedCoins;
-
-    // Refresh SRS data for progress display
     setSrsData(loadSRS());
-
     setScreen('complete');
 
-    if (user) {
-      const todayISO   = new Date().toISOString().split('T')[0];
-      const currentSRS = loadSRS();
+    if (!user) return;
 
-      const profileData = { streak: finalStreak, last_session_date: todayISO, srs_data: currentSRS, streak_freezes: finalFreezes, coins: finalCoins };
-      const historyData = { user_id: user.id, correct: score.correct, total: score.total };
+    const currentSRS = loadSRS();
+    const sessionInput = { correct: score.correct, total: score.total, completed: !!score.completed };
 
-      if (online) {
-        supabase.from('profiles').update(profileData).eq('id', user.id)
-          .then(({ error }) => { if (error) console.error('Profile sync failed:', error); });
-        supabase.from('session_history').insert(historyData)
-          .then(({ error }) => { if (error) console.error('History sync failed:', error); });
-      } else {
-        enqueue({ type: 'profile', data: profileData });
-        enqueue({ type: 'history', data: historyData });
-      }
+    if (online) {
+      // Authoritative server call — overwrites optimistic values with server truth.
+      (async () => {
+        const { data, error } = await supabase.rpc('complete_session', {
+          p_correct:   sessionInput.correct,
+          p_total:     sessionInput.total,
+          p_completed: sessionInput.completed,
+        });
+        if (error) {
+          console.error('Session sync failed:', error);
+          loadUserData(user.id); // reconcile from server
+          return;
+        }
+        if (data) {
+          setStreak(data.streak);
+          setStreakFreezes(data.streak_freezes);
+          setCoins(data.coins);
+          score.earnedCoins = data.earned_coins;
+        }
+        // SRS data is still client-controlled (Option A).
+        supabase.from('profiles').update({ srs_data: currentSRS }).eq('id', user.id)
+          .then(({ error: e }) => { if (e) console.error('SRS sync failed:', e); });
+      })();
+    } else {
+      // Offline: queue the session inputs and the SRS snapshot.
+      // Will be replayed via the RPC when reconnected.
+      enqueue({ type: 'session', data: sessionInput });
+      enqueue({ type: 'srs', data: { srs_data: currentSRS } });
     }
-  }, [streak, lastDate, todayDone, user, online, coins]);
+  }, [streak, lastDate, todayDone, streakFreezes, user, online, loadUserData]);
 
   if (authLoading) {
     return (
